@@ -19,5 +19,5 @@ clean:
 	rm -r $(PROJECT).dSYM
 
 total-lines:
-	# Just to see check... Remove later
+	# Just to check... Remove later
 	find . -name '*.cpp' | xargs wc -l
