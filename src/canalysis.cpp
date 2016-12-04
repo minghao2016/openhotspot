@@ -29,7 +29,6 @@ Canalysis::Canalysis(std::string csvfile, int crime_column, int lat_column, int 
 
 Canalysis::~Canalysis()
 {
-
 }
 
 void canalysis::Canalysis::get_version()
@@ -61,6 +60,10 @@ void canalysis::Canalysis::model()
 
       auto mf = predict.match_coordinates(lat_values, long_values);
    }
+}
+
+void canalysis::Canalysis::train_layer(float learning_rate)
+{
 }
 
 }

@@ -38,6 +38,7 @@ public:
    ~Canalysis();
    void get_version();
    void model();
+   void train_layer(float learning_rate);
 };
 
 }
