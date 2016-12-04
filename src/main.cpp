@@ -36,28 +36,28 @@ void usage(){
 }
 
 int main(int argc, char **argv){
-	/*if (argc <= 1) {
-		usage();
-	}
+   /*if (argc <= 1) {
+      usage();
+   }
 
-	std::string _argv = argv[1];
-	if ((_argv == "-h") || (_argv == "--help")){
-		usage();
-	}
+   std::string _argv = argv[1];
+   if ((_argv == "-h") || (_argv == "--help")){
+      usage();
+   }
 
-	if ((_argv == "-file") || (_argv == "--file")){
-	}
-	if ((_argv == "-crime-column-number") || (_argv == "--crime-column-number")){
-	}
-	if ((_argv == "-lat-column-number") || (_argv == "--lat-column-number")){
-	}
-	if ((_argv == "-long-column-number") || (_argv == "--long-column-number")){
-	}
-	if ((_argv == "-export") || (_argv == "--export")){
-	}
+   if ((_argv == "-file") || (_argv == "--file")){
+   }
+   if ((_argv == "-crime-column-number") || (_argv == "--crime-column-number")){
+   }
+   if ((_argv == "-lat-column-number") || (_argv == "--lat-column-number")){
+   }
+   if ((_argv == "-long-column-number") || (_argv == "--long-column-number")){
+   }
+   if ((_argv == "-export") || (_argv == "--export")){
+   }
    if ((_argv == "-version") || (_argv == "--version")){
    }*/
 
-   //Canalysis canalysis("../test.csv", 0, 1, 2);
-   //canalysis.model();
+   Canalysis canalysis("../test.csv", 0, 1, 2);
+   canalysis.model();
 }
