@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * Canalysis v0.0.1 Beta
+ * Canalysis v0.0.1 Alpha
  * Copyright (c) 2016, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -14,7 +14,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <math.h> 
+#include <math.h>
 
 namespace canalysis {
 
