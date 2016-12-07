@@ -31,7 +31,7 @@ private:
    int _long_column;
 
 public:
-   Canalysis(std::string csvfile,
+   Canalysis(const std::string csvfile,
              int crime_column,
              int lat_column,
              int long_column);

@@ -32,7 +32,7 @@ private:
 public:
    Parser();
    ~Parser();
-   std::string operator[](const int column){return file_data[column];}
+   std::string operator[](int column){return file_data[column];}
    void get_column_fields(std::istream &csvfile);
 	int get_column_length(std::istream &csvfile);
 };

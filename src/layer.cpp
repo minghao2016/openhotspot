@@ -20,8 +20,4 @@ Layer::Layer()
 {
 }
 
-Layer::~Layer()
-{
-}
-
 }
