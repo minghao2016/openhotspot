@@ -16,10 +16,13 @@
 #include <string>
 #include <math.h>
 
+#include "version.h"
+
 namespace canalysis {
 
-int percent_conversion(std::string crime, int value, int total);
+void percent_conversion(std::string crime, int value, int total);
 double sigmoid(double value);
+void get_version();
 
 }
 

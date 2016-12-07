@@ -35,12 +35,10 @@ private:
 
 public:
    Predict();
-   ~Predict();
    std::tuple<double, double> match_coordinates(double lat_values, double long_values);
    int get_fields_occurrence(double coordinates);
    float locate_correlation();
    double locate_variances(double coordinates);
-
 };
 
 }

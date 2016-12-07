@@ -27,14 +27,6 @@ Canalysis::Canalysis(std::string csvfile, int crime_column, int lat_column, int 
    _long_column = long_column;
 }
 
-Canalysis::~Canalysis()
-{
-}
-
-void canalysis::Canalysis::get_version()
-{
-}
-
 std::istream &operator>>(std::istream &file, Parser &parser)
 {
    parser.get_column_fields(file);
@@ -58,7 +50,7 @@ void canalysis::Canalysis::model()
       double lat_values = atof(lat_c.c_str());
       double long_values = atof(long_c.c_str());
 
-      auto mf = predict.match_coordinates(lat_values, long_values);
+      auto coordinates = predict.match_coordinates(lat_values, long_values);
    }
 }
 

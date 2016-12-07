@@ -19,3 +19,5 @@ $(PROJECT):
 clean:
 	find . -name '*.DS_Store' -type f -delete
 	rm -r $(PROJECT).dSYM
+	# Delete later
+	rm -r $(PROJECT)

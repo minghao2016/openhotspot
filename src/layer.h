@@ -28,7 +28,7 @@ private:
 
 public:
    Layer();
-   float forward();
+   float feed_forward();
    void train(float learning_rate);
 };
 

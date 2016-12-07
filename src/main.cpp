@@ -18,6 +18,8 @@
 
 #include "canalysis.h"
 
+#include "predict.h"
+
 using namespace canalysis;
 
 void usage(){
@@ -41,23 +43,23 @@ int main(int argc, char **argv){
    }
 
    std::string _argv = argv[1];
-   if ((_argv == "-h") || (_argv == "--help")){
+   if (_argv == "--help"){
       usage();
    }
-
-   if ((_argv == "-file") || (_argv == "--file")){
+   if (_argv == "--file"){
    }
-   if ((_argv == "-crime-column-number") || (_argv == "--crime-column-number")){
+   if (_argv == "--crime-column"){
    }
-   if ((_argv == "-lat-column-number") || (_argv == "--lat-column-number")){
+   if (_argv == "--lat-column"){
    }
-   if ((_argv == "-long-column-number") || (_argv == "--long-column-number")){
+   if (_argv == "--long-column"){
    }
-   if ((_argv == "-export") || (_argv == "--export")){
+   if (_argv == "--train-model"){
    }
-   if ((_argv == "-version") || (_argv == "--version")){
+   if (_argv == "--version"){
+      get_version();
    }*/
 
-   Canalysis canalysis("../test.csv", 0, 1, 2);
+   Canalysis canalysis("test.csv", 0, 1, 2);
    canalysis.model();
 }

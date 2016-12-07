@@ -16,7 +16,6 @@
 
 #include "parser.h"
 #include "predict.h"
-#include "version.h"
 #include "utils.h"
 
 using namespace std;
@@ -31,11 +30,10 @@ private:
    int _long_column;
 
 public:
-   Canalysis(const std::string csvfile,
+   Canalysis(std::string csvfile,
              int crime_column,
              int lat_column,
              int long_column);
-   ~Canalysis();
    void get_version();
    void model();
    void train_layer(float learning_rate);
