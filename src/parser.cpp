@@ -18,10 +18,6 @@ Parser::Parser()
 {
 }
 
-Parser::~Parser()
-{
-}
-
 void canalysis::Parser::get_column_fields(std::istream &csvfile)
 {
    file_data.clear();
