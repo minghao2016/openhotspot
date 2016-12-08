@@ -1,8 +1,12 @@
+Wed Dec 7
+---------
+- Fixed a directory issue when compiling program.
+
 Sun Dec 4
 ---------
-- Began working on neural network layer to process and sort through data
-- Uploaded to Github
-- Fixed a few issues
+- Began working on neural network layer to process and sort through data.
+- Uploaded to Github.
+- Fixed a few issues in the code.
 
 Thur Dec 1
 ----------
@@ -11,4 +15,3 @@ Thur Dec 1
 - Added License
 - Added README
 - Added server for ui display
-- Located datasets for different states

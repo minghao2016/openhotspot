@@ -18,8 +18,6 @@
 
 #include "canalysis.h"
 
-#include "predict.h"
-
 using namespace canalysis;
 
 void usage(){
