@@ -14,7 +14,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <fstream>
 #include <sstream>
 
 #include <boost/tokenizer.hpp>
@@ -30,7 +29,6 @@ private:
    std::vector<std::string> file_data;
 
 public:
-   Parser();
    std::string operator[](int column){return file_data[column];}
    void get_column_fields(std::istream &csvfile);
 	int get_column_length(std::istream &csvfile);

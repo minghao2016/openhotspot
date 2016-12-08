@@ -30,14 +30,12 @@ struct Coordinates {
 
 class Predict {
 private:
-   int variance_scale;
+   const int hidden_layers = 200;
    const int max_variances = 50;
 
 public:
    Predict();
-   std::tuple<double, double> match_coordinates(double lat_values, double long_values);
-   int get_fields_occurrence(double coordinates);
-   float locate_correlation();
+   std::pair<double, double> match_coordinates(double lat_values, double long_values);
    double locate_variances(double coordinates);
 };
 

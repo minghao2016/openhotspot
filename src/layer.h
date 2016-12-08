@@ -21,15 +21,23 @@
 
 #include "utils.h"
 
+#define LEARNING_RATE 0.001
+
 namespace canalysis {
 
 class Layer {
 private:
+   int _input;
+   int _hidden;
+   int _output;
 
 public:
-   Layer();
-   float feed_forward();
-   void train(float learning_rate);
+   Layer(int input,
+         int hidden,
+         int output);
+   float feedforward();
+   double predict();
+   void train();
 };
 
 }

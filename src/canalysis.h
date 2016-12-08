@@ -12,7 +12,7 @@
 #define _CANALYSIS_H_
 
 #include <iostream>
-#include <tuple>
+#include <fstream>
 
 #include "parser.h"
 #include "predict.h"
@@ -34,9 +34,7 @@ public:
              int crime_column,
              int lat_column,
              int long_column);
-   void get_version();
    void model();
-   void train_layer(float learning_rate);
 };
 
 }

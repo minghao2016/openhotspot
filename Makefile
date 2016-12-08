@@ -21,3 +21,7 @@ clean:
 	rm -r $(PROJECT).dSYM
 	# Delete later
 	rm -r $(PROJECT)
+
+# Delete later
+total-lines:
+	find . -name '*.cpp' | xargs wc -l

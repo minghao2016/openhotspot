@@ -11,8 +11,6 @@
 #ifndef _VERSION_H_
 #define _VERSION_H_
 
-#include <string>
-
 const std::string version = "Canalysis version 0.0.1";
 
 #endif

@@ -18,9 +18,14 @@ Predict::Predict()
 {
 }
 
-std::tuple<double, double> canalysis::Predict::match_coordinates(double lat_values, double long_values)
+std::pair<double, double> canalysis::Predict::match_coordinates(double lat_values, double long_values)
 {
-   return std::make_tuple(lat_values, long_values);
+   return std::make_pair(lat_values, long_values);
+}
+
+double canalysis::Predict::locate_variances(double coordinates)
+{
+   Layer layer(0, hidden_layers, max_variances);
 }
 
 }

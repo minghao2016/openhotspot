@@ -14,31 +14,35 @@
 
 namespace canalysis {
 
-Parser::Parser()
-{
-}
-
 void canalysis::Parser::get_column_fields(std::istream &csvfile)
 {
    file_data.clear();
-   std::getline(csvfile, row);
-   std::stringstream stream(row);
-   while (getline(stream, column_value)){
-      boost::escaped_list_separator<char> separator;
-      boost::tokenizer<boost::escaped_list_separator<char> > token(column_value, separator);
+   if (csvfile.good()){
+      std::getline(csvfile, row);
+      std::istringstream stream(row);
+      while (getline(stream, column_value)){
+         boost::escaped_list_separator<char> separator;
+         boost::tokenizer<boost::escaped_list_separator<char> > token(column_value, separator);
 
-      for (auto t : token){
-         file_data.push_back(t);
+         for (auto t : token){
+            file_data.push_back(t);
+         }
       }
+   } else if (!csvfile){
+      std::cout << "Error: Could not parse CSV file.\n";
    }
 }
 
 int canalysis::Parser::get_column_length(std::istream &csvfile)
 {
    file_data.clear();
-   std::getline(csvfile, row);
-   std::stringstream stream(row);
-   while (getline(stream, column_value)){
+   if (csvfile){
+      std::getline(csvfile, row);
+      std::stringstream stream(row);
+      while (getline(stream, column_value)){
+      }
+   } else if (!csvfile){
+      std::cout << "Error: Could not parse CSV file.\n";
    }
 }
 
