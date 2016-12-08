@@ -54,10 +54,10 @@ void canalysis::Canalysis::model()
          std::cout << "[!] Error: One or more fields are empty" << std::endl;
       }
 
-      double lat_values = atof(lat_c.c_str());
-      double long_values = atof(long_c.c_str());
+      float lat_values = atof(lat_c.c_str());
+      float long_values = atof(long_c.c_str());
 
-      std::pair<double, double> coordinates = predict.match_coordinates(lat_values, long_values);
+      std::pair<float, float> coordinates = predict.match_coordinates(lat_values, long_values);
    }
 }
 

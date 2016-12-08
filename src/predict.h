@@ -34,8 +34,10 @@ private:
 
 public:
    Predict();
-   std::pair<double, double> match_coordinates(double lat_values, double long_values);
+   std::pair<float, float> match_coordinates(float lat_values, float long_values);
    double locate_variances(int input_layers, int hidden_layers, double coordinates);
+
+   void test(float coordinates);
 };
 
 }
