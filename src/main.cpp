@@ -23,13 +23,13 @@ using namespace canalysis;
 void usage(){
    std::cout
    << "usage: ./olivia [--file] [--crime-column-number]\n"
-   << "                [--lat-column-number] [--long-column-number]\n"
+   << "                [--lat-column] [--long-column]\n"
    << "                [--train-model] [--version]\n\n"
    << "These are the current Canalysis commands to use:\n\n"
    << "  --file                    name of CSV file to classify\n"
-   << "  --crime-column-number     the specific crime column number\n"
-   << "  --lat-column-number       the specific lat column number\n"
-   << "  --long-column-number      the specific long column number\n"
+   << "  --crime-column            the specific crime column number\n"
+   << "  --lat-column              the specific lat column number\n"
+   << "  --long-column             the specific long column number\n"
    << "  --train-model             train the neural network model\n"
    << "  --version                 the current version of Canalysis\n"
    << std::endl;
