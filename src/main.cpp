@@ -26,14 +26,14 @@ void usage(){
    std::cout
    << "usage: ./olivia [--file] [--crime-column-number]\n"
    << "                [--lat-column-number] [--long-column-number]\n"
-   << "                [--export] [--version]\n\n"
+   << "                [--train-model] [--version]\n\n"
    << "These are the current Canalysis commands to use:\n\n"
-   << "  file                    name of CSV file to classify\n"
-   << "  crime-column-number     the specific crime column number\n"
-   << "  lat-column-number       the specific lat column number\n"
-   << "  long-column-number      the specific long column number\n"
-   << "  export                  export the predicted data into a CSV file\n"
-   << "  version                 the current version of Canalysis\n"
+   << "  --file                    name of CSV file to classify\n"
+   << "  --crime-column-number     the specific crime column number\n"
+   << "  --lat-column-number       the specific lat column number\n"
+   << "  --long-column-number      the specific long column number\n"
+   << "  --train-model             train the neural network model\n"
+   << "  --version                 the current version of Canalysis\n"
    << std::endl;
 }
 
@@ -60,6 +60,6 @@ int main(int argc, char **argv){
       get_version();
    }*/
 
-   Canalysis canalysis("test.csv", 0, 1, 2, 60, 70);
+   Canalysis canalysis("../test.csv", 0, 1, 2, 60, 70);
    canalysis.model();
 }
