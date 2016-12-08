@@ -8,6 +8,9 @@
  * information about using this program.
 */
 
+// Parts of this CSV parser were taken from stackoverflow found here:
+// http://stackoverflow.com/questions/1120140/how-can-i-read-and-parse-csv-files-in-c
+
 #ifndef _PARSER_H_
 #define _PARSER_H_
 

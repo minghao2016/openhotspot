@@ -27,14 +27,14 @@ namespace canalysis {
 
 class Layer {
 private:
-   int _input;
-   int _hidden;
-   int _output;
+   int _input_layers;
+   int _hidden_layers;
+   int _output_layers;
 
 public:
-   Layer(int input,
-         int hidden,
-         int output);
+   Layer(int input_layers,
+         int hidden_layers,
+         int output_layers);
    float feedforward();
    double predict();
    void train();

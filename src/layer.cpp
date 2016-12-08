@@ -16,13 +16,13 @@ using namespace std;
 
 namespace canalysis {
 
-Layer::Layer(int input,
-             int hidden,
-             int output)
+Layer::Layer(int input_layers,
+             int hidden_layers,
+             int output_layers)
 {
-   _input = input;
-   _hidden = hidden;
-   _output = output;
+   _input_layers = input_layers;
+   _hidden_layers = hidden_layers;
+   _output_layers = output_layers;
 }
 
 }

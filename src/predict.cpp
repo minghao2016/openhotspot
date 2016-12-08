@@ -23,9 +23,9 @@ std::pair<double, double> canalysis::Predict::match_coordinates(double lat_value
    return std::make_pair(lat_values, long_values);
 }
 
-double canalysis::Predict::locate_variances(double coordinates)
+double canalysis::Predict::locate_variances(int input_layers, int hidden_layers, double coordinates)
 {
-   Layer layer(0, hidden_layers, max_variances);
+   Layer layer(input_layers, hidden_layers, max_variances);
 }
 
 }

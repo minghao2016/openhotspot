@@ -60,6 +60,6 @@ int main(int argc, char **argv){
       get_version();
    }*/
 
-   Canalysis canalysis("test.csv", 0, 1, 2);
+   Canalysis canalysis("test.csv", 0, 1, 2, 60, 70);
    canalysis.model();
 }

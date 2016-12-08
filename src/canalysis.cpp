@@ -22,12 +22,16 @@ Predict predict;
 Canalysis::Canalysis(std::string csvfile,
                      int crime_column,
                      int lat_column,
-                     int long_column)
+                     int long_column,
+                     int input_layers,
+                     int hidden_layers)
 {
    _csvfile = csvfile;
    _crime_coloumn = crime_column;
    _lat_column = lat_column;
    _long_column = long_column;
+   _input_layers = input_layers;
+   _hidden_layers = hidden_layers;
 }
 
 std::istream &operator>>(std::istream &file, Parser &parser)
