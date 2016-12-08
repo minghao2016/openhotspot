@@ -19,7 +19,10 @@ namespace canalysis {
 Parser parser;
 Predict predict;
 
-Canalysis::Canalysis(std::string csvfile, int crime_column, int lat_column, int long_column)
+Canalysis::Canalysis(std::string csvfile,
+                     int crime_column,
+                     int lat_column,
+                     int long_column)
 {
    _csvfile = csvfile;
    _crime_coloumn = crime_column;
