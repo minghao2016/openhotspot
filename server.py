@@ -9,8 +9,7 @@ from __future__ import print_function
 
 import os
 import logging
-
-from flask import *
+import flask
 
 
 class Server(object):
