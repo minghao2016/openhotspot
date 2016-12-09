@@ -14,7 +14,7 @@
 
 namespace canalysis {
 
-void canalysis::Parser::getColumnFields(std::istream &csvfile)
+void Parser::getColumnFields(std::istream &csvfile)
 {
    file_data.clear();
    std::getline(csvfile, row);
@@ -26,15 +26,6 @@ void canalysis::Parser::getColumnFields(std::istream &csvfile)
       for (auto t : token){
          file_data.push_back(t);
       }
-   }
-}
-
-int canalysis::Parser::getColumnLength(std::istream &csvfile)
-{
-   file_data.clear();
-   std::getline(csvfile, row);
-   std::stringstream stream(row);
-   while (getline(stream, column_value)){
    }
 }
 

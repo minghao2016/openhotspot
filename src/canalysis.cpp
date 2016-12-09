@@ -17,21 +17,16 @@ using namespace std;
 namespace canalysis {
 
 Parser parser;
-Predict predict;
 
 Canalysis::Canalysis(std::string csvfile,
                      int crime_column,
                      int lat_column,
-                     int long_column,
-                     int input_layers,
-                     int hidden_layers)
+                     int long_column)
 {
    _csvfile = csvfile;
    _crime_coloumn = crime_column;
    _lat_column = lat_column;
    _long_column = long_column;
-   _input_layers = input_layers;
-   _hidden_layers = hidden_layers;
 }
 
 std::istream &operator>>(std::istream &file, Parser &parser)
@@ -40,12 +35,12 @@ std::istream &operator>>(std::istream &file, Parser &parser)
    return file;
 }
 
-void canalysis::Canalysis::model()
+void Canalysis::model()
 {
+   Predict predict(55, 35, 25);
    std::ifstream file(_csvfile);
 
    while (file >> parser){
-      int column_length = parser.getColumnLength(file);
       std::string crime_c = parser[_crime_coloumn];
       std::string lat_c = parser[_lat_column];
       std::string long_c = parser[_long_column];
@@ -59,6 +54,10 @@ void canalysis::Canalysis::model()
 
       std::pair<float, float> coordinates = predict.matchCoordinates(lat_values, long_values);
    }
+}
+
+void Canalysis::trainLayer()
+{
 }
 
 }

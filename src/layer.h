@@ -21,22 +21,23 @@
 
 #include "utils.h"
 
-#define LEARNING_RATE 0.001
+#define LEARNING_RATE 0.01f
 
 namespace canalysis {
 
 class Layer {
 private:
-   int _input_layers;
-   int _hidden_layers;
-   int _output_layers;
+   // Neurons
+   unsigned int _input_layers;
+   unsigned int _hidden_layers;
+   unsigned int _output_layers;
 
 public:
-   Layer(int input_layers,
-         int hidden_layers,
-         int output_layers);
-   float feedForward();
-   double predict();
+   Layer(unsigned int input_layers,
+         unsigned int hidden_layers,
+         unsigned int output_layers);
+   bool getWeights(float coordinates);
+   float forward();
 };
 
 }

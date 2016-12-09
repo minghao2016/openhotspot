@@ -53,11 +53,15 @@ int main(int argc, char **argv){
    if (_argv == "--long-column"){
    }
    if (_argv == "--train-model"){
+      bool train = true;
    }
    if (_argv == "--version"){
       getVersion();
    }*/
 
-   Canalysis canalysis("../test.csv", 0, 1, 2, 60, 70);
+   Canalysis canalysis("../test.csv", 0, 1, 2);
    canalysis.model();
+   //if (train == true){
+   //   canalysis.trainLayer();
+   //}
 }

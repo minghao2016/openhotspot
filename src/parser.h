@@ -34,7 +34,6 @@ private:
 public:
    std::string operator[](int column){return file_data[column];}
    void getColumnFields(std::istream &csvfile);
-   int getColumnLength(std::istream &csvfile);
 };
 
 }

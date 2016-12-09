@@ -24,21 +24,25 @@
 namespace canalysis {
 
 struct Coordinates {
-   double latitude;
-   double longitude;
+   float latitude;
+   float longitude;
 };
 
 class Predict {
 private:
-   const int max_variances = 30;
+   // Neurons
+   unsigned int _input_layers;
+   unsigned int _hidden_layers;
+
+   // Output layer
+   int _max_variances;
 
 public:
-   Predict();
+   Predict(unsigned int input_layers,
+           unsigned int hidden_layers,
+           int max_variances);
    std::pair<float, float> matchCoordinates(float lat_values, float long_values);
-   double locateVariances(int input_layers, int hidden_layers, double coordinates);
-   void trainLayer();
-
-   void test(float coordinates);
+   float locateVariances(float coordinates);
 };
 
 }

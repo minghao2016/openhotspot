@@ -25,20 +25,18 @@ namespace canalysis {
 class Canalysis {
 private:
    std::string _csvfile;
+
    int _crime_coloumn;
    int _lat_column;
    int _long_column;
-   int _input_layers;
-   int _hidden_layers;
 
 public:
    Canalysis(std::string csvfile,
              int crime_column,
              int lat_column,
-             int long_column,
-             int input_layers,
-             int hidden_layers);
+             int long_column);
    void model();
+   void trainLayer();
 };
 
 }
