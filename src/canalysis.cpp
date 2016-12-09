@@ -36,7 +36,7 @@ Canalysis::Canalysis(std::string csvfile,
 
 std::istream &operator>>(std::istream &file, Parser &parser)
 {
-   parser.get_column_fields(file);
+   parser.getColumnFields(file);
    return file;
 }
 
@@ -45,7 +45,7 @@ void canalysis::Canalysis::model()
    std::ifstream file(_csvfile);
 
    while (file >> parser){
-      int column_length = parser.get_column_length(file);
+      int column_length = parser.getColumnLength(file);
       std::string crime_c = parser[_crime_coloumn];
       std::string lat_c = parser[_lat_column];
       std::string long_c = parser[_long_column];
@@ -57,7 +57,7 @@ void canalysis::Canalysis::model()
       float lat_values = atof(lat_c.c_str());
       float long_values = atof(long_c.c_str());
 
-      std::pair<float, float> coordinates = predict.match_coordinates(lat_values, long_values);
+      std::pair<float, float> coordinates = predict.matchCoordinates(lat_values, long_values);
    }
 }
 

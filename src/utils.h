@@ -20,9 +20,9 @@
 
 namespace canalysis {
 
-void percent_conversion(std::string crime, int value, int total);
+void percentConversion(std::string crime, int value, int total);
 double sigmoid(double value);
-void get_version();
+void getVersion();
 
 }
 

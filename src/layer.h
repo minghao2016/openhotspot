@@ -35,9 +35,8 @@ public:
    Layer(int input_layers,
          int hidden_layers,
          int output_layers);
-   float feedforward();
+   float feedForward();
    double predict();
-   void train();
 };
 
 }

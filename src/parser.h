@@ -33,8 +33,8 @@ private:
 
 public:
    std::string operator[](int column){return file_data[column];}
-   void get_column_fields(std::istream &csvfile);
-   int get_column_length(std::istream &csvfile);
+   void getColumnFields(std::istream &csvfile);
+   int getColumnLength(std::istream &csvfile);
 };
 
 }

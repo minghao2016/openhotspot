@@ -14,7 +14,7 @@
 
 namespace canalysis {
 
-void percent_conversion(std::string crime, int value, int total)
+void percentConversion(std::string crime, int value, int total)
 {
    float percent = value / total * 10;
    if (ceil(percent) == 0) {
@@ -30,7 +30,7 @@ double sigmoid(double value)
    return 1 / (1 + exp(-value));
 }
 
-void get_version()
+void getVersion()
 {
    std::cout << version << std::endl;
 }

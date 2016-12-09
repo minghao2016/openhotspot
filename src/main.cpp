@@ -55,7 +55,7 @@ int main(int argc, char **argv){
    if (_argv == "--train-model"){
    }
    if (_argv == "--version"){
-      get_version();
+      getVersion();
    }*/
 
    Canalysis canalysis("../test.csv", 0, 1, 2, 60, 70);
