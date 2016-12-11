@@ -43,6 +43,7 @@ public:
            int max_variances);
    std::pair<float, float> matchCoordinates(float lat_values, float long_values);
    float locateVariances(float coordinates);
+   void exportData(char *file);
 };
 
 }
