@@ -37,7 +37,7 @@ std::istream &operator>>(std::istream &file, Parser &parser)
 
 void Canalysis::model()
 {
-   Predict predict(55, 35, 25);
+   Predict predict(0, 0, 0);
    std::ifstream file(_csvfile);
 
    while (file >> parser){
@@ -51,8 +51,7 @@ void Canalysis::model()
 
       float lat_values = atof(lat_c.c_str());
       float long_values = atof(long_c.c_str());
-
-      std::pair<float, float> coordinates = predict.matchCoordinates(lat_values, long_values);
+      float coordinates = predict.matchCoordinates(lat_values, long_values);
    }
 }
 

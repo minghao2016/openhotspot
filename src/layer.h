@@ -21,7 +21,7 @@
 
 #include "utils.h"
 
-#define LEARNING_RATE 0.01f
+#define LEARNING_RATE 0.01
 
 namespace canalysis {
 
@@ -38,6 +38,7 @@ public:
          unsigned int output_layers);
    bool getWeights(float coordinates);
    float forward();
+   float backward();
 };
 
 }

@@ -16,20 +16,24 @@ namespace canalysis {
 
 Predict::Predict(unsigned int input_layers,
                  unsigned int hidden_layers,
-                 int max_variances)
+                 unsigned int output_layers)
 {
    _input_layers = input_layers;
    _hidden_layers = hidden_layers;
-   _max_variances = max_variances;
+   _output_layers = output_layers;
 }
 
-std::pair<float, float> Predict::matchCoordinates(float lat_values, float long_values)
+float Predict::matchCoordinates(float lat_values, float long_values)
 {
 }
 
-float Predict::locateVariances(float coordinates)
+float Predict::predictedLocations(float coordinates)
 {
-   Layer layer(_input_layers, _hidden_layers, _max_variances);
+   Layer layer(_input_layers, _hidden_layers, _output_layers);
+}
+
+void Predict::exportData(char *filename)
+{
 }
 
 }

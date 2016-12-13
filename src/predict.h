@@ -33,17 +33,15 @@ private:
    // Neurons
    unsigned int _input_layers;
    unsigned int _hidden_layers;
-
-   // Output layer
-   int _max_variances;
+   unsigned int _output_layers;
 
 public:
    Predict(unsigned int input_layers,
            unsigned int hidden_layers,
-           int max_variances);
-   std::pair<float, float> matchCoordinates(float lat_values, float long_values);
-   float locateVariances(float coordinates);
-   void exportData(char *file);
+           unsigned int output_layers);
+   float matchCoordinates(float lat_values, float long_values);
+   float predictedLocations(float coordinates);
+   void exportData(char *filename);
 };
 
 }

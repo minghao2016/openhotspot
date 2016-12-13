@@ -33,4 +33,8 @@ float Layer::forward()
 {
 }
 
+float Layer::backward()
+{
+}
+
 }

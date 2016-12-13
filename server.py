@@ -8,14 +8,17 @@
 from __future__ import print_function
 
 import os
-import logging
 import flask
 
 
 class Server(object):
-    """
-    Summary:
-    """
-
     def __init__(self):
+        # variance scale of 5 miles
+        self.variance_scale = 5
+        # variance crime rate of 10 crimes or more in a single variance
+        self.variance_rate = 10
+        # a max amount of variances of 40
+        self.max_variances = 40
+
+    def variance(self):
         pass

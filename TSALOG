@@ -1,3 +1,7 @@
+Tue Dec 13
+----------
+- Added variance types to python server
+
 Fri Dec 9
 ---------
 - Updated README with a summary of the software.
@@ -9,9 +13,9 @@ Wed Dec 7
 
 Sun Dec 4
 ---------
-- Began working on neural network layer to process and sort through data.
+- Began working on neural network to process and sort through data.
 - Uploaded to Github.
-- Fixed a few issues in the code.
+- Fixed a issues in the code.
 
 Thur Dec 1
 ----------
