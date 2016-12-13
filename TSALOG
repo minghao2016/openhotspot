@@ -1,15 +1,17 @@
 Tue Dec 13
 ----------
 - Added variance types to python server
+- Updated summary of how the software works.
 
 Fri Dec 9
 ---------
-- Updated README with a summary of the software.
+- Wrote summary of how the software works.
 - Worked more on the neural network.
 
 Wed Dec 7
 ---------
 - Fixed a directory issue when compiling program.
+- Added CONTRIBUTING file
 
 Sun Dec 4
 ---------
@@ -23,4 +25,6 @@ Thur Dec 1
 - Worked on concept for predicting crime trends and possible locations of crimes.
 - Added License
 - Added README
+- Added Makefile
+- Added test.csv
 - Added server for ui display
