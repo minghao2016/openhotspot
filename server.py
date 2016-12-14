@@ -14,8 +14,9 @@ import collections
 
 
 class Server(object):
-    def __init__(self, csvfile):
+    def __init__(self, csvfile=None, port=None):
         self.csvfile = csvfile
+        self.port = port
         # variance scale of 5 miles
         self.variance_scale = 5
         # variance crime rate of 10 crimes or more in a single variance
@@ -41,3 +42,8 @@ class Server(object):
         Summary:
         """
         lat_column, long_column = self._parse_csvfile()
+
+if __name__ == '__main__':
+    server = Server(csvfile="prediction.csv",
+                    port="0.0.0.0")
+    server._variance()
