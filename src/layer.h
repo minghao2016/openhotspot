@@ -15,7 +15,6 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-#include <set>
 #include <map>
 #include <math.h>
 
@@ -32,11 +31,17 @@ private:
    unsigned int _hidden_layers;
    unsigned int _output_layers;
 
+   // Coordinates
+   float _lat_values;
+   float _long_values;
+
 public:
    Layer(unsigned int input_layers,
          unsigned int hidden_layers,
-         unsigned int output_layers);
-   bool getWeights(float coordinates);
+         unsigned int output_layers,
+         float lat_values,
+         float long_values);
+   float cluster();
    float forward();
    float backward();
 };

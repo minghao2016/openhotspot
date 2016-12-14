@@ -51,7 +51,7 @@ void Canalysis::model()
 
       float lat_values = atof(lat_c.c_str());
       float long_values = atof(long_c.c_str());
-      float coordinates = predict.matchCoordinates(lat_values, long_values);
+      predict.predictedLocations(lat_values, long_values);
    }
 }
 

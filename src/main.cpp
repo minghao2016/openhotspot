@@ -59,7 +59,7 @@ int main(int argc, char **argv){
       getVersion();
    }*/
 
-   Canalysis canalysis("../test.csv", 0, 1, 2);
+   Canalysis canalysis("../test.csv", 0, 2, 1);
    canalysis.model();
    //if (train == true){
    //   canalysis.trainLayer();

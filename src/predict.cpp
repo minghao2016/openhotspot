@@ -23,17 +23,14 @@ Predict::Predict(unsigned int input_layers,
    _output_layers = output_layers;
 }
 
-float Predict::matchCoordinates(float lat_values, float long_values)
-{
-}
-
-float Predict::predictedLocations(float coordinates)
-{
-   Layer layer(_input_layers, _hidden_layers, _output_layers);
-}
-
 void Predict::exportData(char *filename)
 {
+}
+
+float Predict::predictedLocations(float lat_values, float long_values)
+{
+   Layer layer(_input_layers, _hidden_layers, _output_layers,
+               lat_values, long_values);
 }
 
 }

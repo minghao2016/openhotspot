@@ -23,11 +23,6 @@
 
 namespace canalysis {
 
-struct Coordinates {
-   float latitude;
-   float longitude;
-};
-
 class Predict {
 private:
    // Neurons
@@ -39,9 +34,8 @@ public:
    Predict(unsigned int input_layers,
            unsigned int hidden_layers,
            unsigned int output_layers);
-   float matchCoordinates(float lat_values, float long_values);
-   float predictedLocations(float coordinates);
    void exportData(char *filename);
+   float predictedLocations(float lat_values, float long_values);
 };
 
 }
