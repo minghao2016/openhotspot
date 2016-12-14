@@ -32,7 +32,7 @@ private:
    std::vector<std::string> file_data;
 
 public:
-   std::string operator[](int column){return file_data[column];}
+   std::string operator[](unsigned int column){return file_data[column];}
    void getColumnFields(std::istream &csvfile);
 };
 

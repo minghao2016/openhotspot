@@ -12,13 +12,14 @@
 #define _CANALYSIS_H_
 
 #include <iostream>
+#include <string>
 #include <fstream>
+
+#include <boost/lexical_cast.hpp>
 
 #include "parser.h"
 #include "predict.h"
 #include "utils.h"
-
-using namespace std;
 
 namespace canalysis {
 
@@ -26,15 +27,15 @@ class Canalysis {
 private:
    std::string _csvfile;
 
-   int _crime_coloumn;
-   int _lat_column;
-   int _long_column;
+   unsigned int _crime_coloumn;
+   unsigned int _lat_column;
+   unsigned int _long_column;
 
 public:
    Canalysis(std::string csvfile,
-             int crime_column,
-             int lat_column,
-             int long_column);
+             unsigned int crime_column,
+             unsigned int lat_column,
+             unsigned int long_column);
    void model();
    void trainLayer();
 };

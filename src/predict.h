@@ -16,7 +16,6 @@
 #include <vector>
 #include <utility>
 #include <array>
-#include <stdlib.h>
 
 #include "layer.h"
 #include "utils.h"
@@ -28,14 +27,12 @@ private:
    // Neurons
    unsigned int _input_layers;
    unsigned int _hidden_layers;
-   unsigned int _output_layers;
 
 public:
    Predict(unsigned int input_layers,
-           unsigned int hidden_layers,
-           unsigned int output_layers);
-   void exportData(char *filename);
-   float predictedLocations(float lat_values, float long_values);
+           unsigned int hidden_layers);
+   void exportData(char *filename, double lat_values, double long_values);
+   std::pair<double, double> predictedLocations(double lat_values, double long_values);
 };
 
 }

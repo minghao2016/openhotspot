@@ -29,19 +29,19 @@ private:
    // Neurons
    unsigned int _input_layers;
    unsigned int _hidden_layers;
-   unsigned int _output_layers;
+
+   unsigned int output_layers;
 
    // Coordinates
-   float _lat_values;
-   float _long_values;
+   double _lat_values;
+   double _long_values;
 
 public:
    Layer(unsigned int input_layers,
          unsigned int hidden_layers,
-         unsigned int output_layers,
-         float lat_values,
-         float long_values);
-   float cluster();
+         double lat_values,
+         double long_values);
+   double cluster();
    float forward();
    float backward();
 };

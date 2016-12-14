@@ -12,16 +12,14 @@
 
 #include "canalysis.h"
 
-using namespace std;
-
 namespace canalysis {
 
 Parser parser;
 
 Canalysis::Canalysis(std::string csvfile,
-                     int crime_column,
-                     int lat_column,
-                     int long_column)
+                     unsigned int crime_column,
+                     unsigned int lat_column,
+                     unsigned int long_column)
 {
    _csvfile = csvfile;
    _crime_coloumn = crime_column;
@@ -37,7 +35,7 @@ std::istream &operator>>(std::istream &file, Parser &parser)
 
 void Canalysis::model()
 {
-   Predict predict(0, 0, 0);
+   Predict predict(0, 0);
    std::ifstream file(_csvfile);
 
    while (file >> parser){
@@ -49,9 +47,12 @@ void Canalysis::model()
          std::cout << "[!] Error: One or more fields are empty" << std::endl;
       }
 
-      float lat_values = atof(lat_c.c_str());
-      float long_values = atof(long_c.c_str());
-      predict.predictedLocations(lat_values, long_values);
+      double lat_values = atof(lat_c.c_str());
+      double long_values = atof(long_c.c_str());
+      // When making our prediction, we want as accurate of locations as possible
+      std::pair<double, double> prediction = predict.predictedLocations(boost::lexical_cast<double>(lat_values),
+                                                                        boost::lexical_cast<double>(long_values));
+      predict.exportData("../prediction.csv", prediction.first, prediction.second);
    }
 }
 

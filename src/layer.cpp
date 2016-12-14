@@ -12,24 +12,20 @@
 
 #include "layer.h"
 
-using namespace std;
-
 namespace canalysis {
 
 Layer::Layer(unsigned int input_layers,
              unsigned int hidden_layers,
-             unsigned int output_layers,
-             float lat_values,
-             float long_values)
+             double lat_values,
+             double long_values)
 {
    _input_layers = input_layers;
    _hidden_layers = hidden_layers;
-   _output_layers = output_layers;
    _lat_values = lat_values;
    _long_values = long_values;
 }
 
-float Layer::cluster()
+double Layer::cluster()
 {
 }
 

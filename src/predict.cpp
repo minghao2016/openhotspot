@@ -15,22 +15,19 @@
 namespace canalysis {
 
 Predict::Predict(unsigned int input_layers,
-                 unsigned int hidden_layers,
-                 unsigned int output_layers)
+                 unsigned int hidden_layers)
 {
    _input_layers = input_layers;
    _hidden_layers = hidden_layers;
-   _output_layers = output_layers;
 }
 
-void Predict::exportData(char *filename)
+void Predict::exportData(char *filename, double lat_values, double long_values)
 {
 }
 
-float Predict::predictedLocations(float lat_values, float long_values)
+std::pair<double, double> Predict::predictedLocations(double lat_values, double long_values)
 {
-   Layer layer(_input_layers, _hidden_layers, _output_layers,
-               lat_values, long_values);
+   Layer layer(_input_layers, _hidden_layers, lat_values, long_values);
 }
 
 }

@@ -8,11 +8,14 @@
 from __future__ import print_function
 
 import os
+import csv
 import flask
+import collections
 
 
 class Server(object):
-    def __init__(self):
+    def __init__(self, csvfile):
+        self.csvfile = csvfile
         # variance scale of 5 miles
         self.variance_scale = 5
         # variance crime rate of 10 crimes or more in a single variance
@@ -20,5 +23,21 @@ class Server(object):
         # a max amount of variances of 40
         self.max_variances = 40
 
-    def variance(self):
-        pass
+    def _parse_csvfile(self):
+        column = collections.defaultdict(list)
+
+        with open(self.csvfile, "r") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                for info, value in row.iteritems():
+                    column[info].append(value)
+
+        lat_column = column["lat"]
+        long_column = column["long"]
+        return lat_column, long_column
+
+    def _variance(self):
+        """
+        Summary:
+        """
+        lat_column, long_column = self._parse_csvfile()
