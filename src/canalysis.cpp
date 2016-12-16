@@ -14,8 +14,6 @@
 
 namespace canalysis {
 
-Parser parser;
-
 Canalysis::Canalysis(std::string csvfile,
                      unsigned int crime_column,
                      unsigned int lat_column,
@@ -27,6 +25,18 @@ Canalysis::Canalysis(std::string csvfile,
    _long_column = long_column;
 }
 
+void Canalysis::exportData(char *filename, double lat_values, double long_values)
+{
+}
+
+std::pair<double, double> Canalysis::predictedLocations(double lat_values, double long_values)
+{
+   double precise_lat = boost::lexical_cast<double>(lat_values);
+   double precise_long = boost::lexical_cast<double>(long_values);
+
+   Layer layer(precise_lat, precise_long);
+}
+
 std::istream &operator>>(std::istream &file, Parser &parser)
 {
    parser.getColumnFields(file);
@@ -35,7 +45,7 @@ std::istream &operator>>(std::istream &file, Parser &parser)
 
 void Canalysis::model()
 {
-   Predict predict(0, 0);
+   Parser parser;
    std::ifstream file(_csvfile);
 
    while (file >> parser){
@@ -43,21 +53,14 @@ void Canalysis::model()
       std::string lat_c = parser[_lat_column];
       std::string long_c = parser[_long_column];
 
-      if (crime_c.empty() || lat_c.empty() || long_c.empty()){
+      if (crime_c.empty() || lat_c.empty() || long_c.empty())
          std::cout << "[!] Error: One or more fields are empty" << std::endl;
-      }
 
       double lat_values = atof(lat_c.c_str());
       double long_values = atof(long_c.c_str());
-      // When making our prediction, we want as accurate of locations as possible
-      std::pair<double, double> prediction = predict.predictedLocations(boost::lexical_cast<double>(lat_values),
-                                                                        boost::lexical_cast<double>(long_values));
-      predict.exportData("../prediction.csv", prediction.first, prediction.second);
+      std::pair<double, double> prediction = predictedLocations(lat_values, long_values);
+      //predict.exportData("templates/data/prediction.csv", prediction.first, prediction.second);
    }
-}
-
-void Canalysis::trainLayer()
-{
 }
 
 }

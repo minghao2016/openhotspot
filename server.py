@@ -10,7 +10,10 @@ from __future__ import print_function
 import os
 import csv
 import flask
+import numpy as np
 import collections
+
+app = flask.Flask(__name__)
 
 
 class Server(object):
@@ -21,8 +24,6 @@ class Server(object):
         self.variance_scale = 5
         # variance crime rate of 10 crimes or more in a single variance
         self.variance_rate = 10
-        # a max amount of variances of 40
-        self.max_variances = 40
 
     def _parse_csvfile(self):
         column = collections.defaultdict(list)
@@ -33,17 +34,15 @@ class Server(object):
                 for info, value in row.iteritems():
                     column[info].append(value)
 
-        lat_column = column["lat"]
-        long_column = column["long"]
-        return lat_column, long_column
+        return column["lat"], column["long"]
 
+    @app.route("/")
     def _variance(self):
         """
-        Summary:
         """
         lat_column, long_column = self._parse_csvfile()
 
 if __name__ == '__main__':
-    server = Server(csvfile="prediction.csv",
+    server = Server(csvfile="src/templates/data/prediction.csv",
                     port="0.0.0.0")
     server._variance()

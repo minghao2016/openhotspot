@@ -14,11 +14,13 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <utility>
+#include <vector>
 
 #include <boost/lexical_cast.hpp>
 
 #include "parser.h"
-#include "predict.h"
+#include "layer.h"
 #include "utils.h"
 
 namespace canalysis {
@@ -27,6 +29,7 @@ class Canalysis {
 private:
    std::string _csvfile;
 
+   // CSV file data
    unsigned int _crime_coloumn;
    unsigned int _lat_column;
    unsigned int _long_column;
@@ -36,8 +39,9 @@ public:
              unsigned int crime_column,
              unsigned int lat_column,
              unsigned int long_column);
+   void exportData(char *filename, double lat_values, double long_values);
+   std::pair<double, double> predictedLocations(double lat_values, double long_values);
    void model();
-   void trainLayer();
 };
 
 }

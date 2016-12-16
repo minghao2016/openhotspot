@@ -1,30 +1,39 @@
-Tue Dec 13
-----------
-- Added variance types to python server
+Thu Dec 15, 2016
+----------------
+- Worked on web side of the framework for UI.
+
+Wed Dec 14, 2016
+----------------
+- Made revisions to layer. Possibly not going to use neural network
+- Made changes to server.
+
+Tue Dec 13, 2016
+----------------
+- Added variance types to python server.
 - Updated summary of how the software works.
 
-Fri Dec 9
----------
+Fri Dec 9, 2016
+---------------
 - Wrote summary of how the software works.
 - Worked more on the neural network.
 
-Wed Dec 7
----------
+Wed Dec 7, 2016
+---------------
 - Fixed a directory issue when compiling program.
-- Added CONTRIBUTING file
+- Added CONTRIBUTING file.
 
-Sun Dec 4
----------
+Sun Dec 4, 2016
+---------------
 - Began working on neural network to process and sort through data.
 - Uploaded to Github.
 - Fixed a issues in the code.
 
-Thur Dec 1
-----------
+Thur Dec 1, 2016
+----------------
 - Added files (layer, parser, predict, utils, version, main and canalysis)
-- Worked on concept for predicting crime trends and possible locations of crimes.
+- Worked on concept for predicting crime trends and possible locations of crimes
 - Added License
 - Added README
 - Added Makefile
 - Added test.csv
-- Added server for ui display
+- Added server for UI display

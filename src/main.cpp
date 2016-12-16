@@ -23,14 +23,12 @@ using namespace canalysis;
 void usage(){
    std::cout
    << "usage: ./olivia [--file] [--crime-column-number]\n"
-   << "                [--lat-column] [--long-column]\n"
-   << "                [--train-model] [--version]\n\n"
+   << "                [--lat-column] [--long-column] [--version]\n"
    << "These are the current Canalysis commands to use:\n\n"
    << "  --file                    name of CSV file to classify\n"
    << "  --crime-column            the specific crime column number\n"
    << "  --lat-column              the specific lat column number\n"
    << "  --long-column             the specific long column number\n"
-   << "  --train-model             train the neural network model\n"
    << "  --version                 the current version of Canalysis\n"
    << std::endl;
 }
@@ -52,16 +50,10 @@ int main(int argc, char **argv){
    }
    if (_argv == "--long-column"){
    }
-   if (_argv == "--train-model"){
-      bool train = true;
-   }
    if (_argv == "--version"){
       getVersion();
    }*/
 
    Canalysis canalysis("../test.csv", 0, 2, 1);
    canalysis.model();
-   //if (train == true){
-   //   canalysis.trainLayer();
-   //}
 }

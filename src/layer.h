@@ -20,30 +20,19 @@
 
 #include "utils.h"
 
-#define LEARNING_RATE 0.01
-
 namespace canalysis {
 
 class Layer {
 private:
-   // Neurons
-   unsigned int _input_layers;
-   unsigned int _hidden_layers;
-
-   unsigned int output_layers;
-
-   // Coordinates
    double _lat_values;
    double _long_values;
 
 public:
-   Layer(unsigned int input_layers,
-         unsigned int hidden_layers,
-         double lat_values,
+   Layer(double lat_values,
          double long_values);
-   double cluster();
-   float forward();
-   float backward();
+   double reduceLatValues();
+   double reduceLongValues();
+   std::pair<double, double> clusterValues();
 };
 
 }

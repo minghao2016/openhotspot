@@ -14,26 +14,22 @@
 
 namespace canalysis {
 
-Layer::Layer(unsigned int input_layers,
-             unsigned int hidden_layers,
-             double lat_values,
+Layer::Layer(double lat_values,
              double long_values)
 {
-   _input_layers = input_layers;
-   _hidden_layers = hidden_layers;
    _lat_values = lat_values;
    _long_values = long_values;
 }
 
-double Layer::cluster()
+double Layer::reduceLatValues()
 {
 }
 
-float Layer::forward()
+double Layer::reduceLongValues()
 {
 }
 
-float Layer::backward()
+std::pair<double, double> Layer::clusterValues()
 {
 }
 

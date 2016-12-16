@@ -14,12 +14,22 @@
 
 namespace canalysis {
 
+Parser::Parser()
+{
+}
+
+std::string Parser::operator[](unsigned int column)
+{
+   return file_data[column];
+}
+
 void Parser::getColumnFields(std::istream &csvfile)
 {
    file_data.clear();
    std::getline(csvfile, row);
    std::istringstream stream(row);
-   while (getline(stream, column_value)){
+   while (std::getline(stream, column_value)){
+      std::getline(stream,)
       boost::escaped_list_separator<char> separator;
       boost::tokenizer<boost::escaped_list_separator<char> > token(column_value, separator);
 
