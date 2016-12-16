@@ -1,7 +1,7 @@
 Canalysis (Crime Analysis)
 --------------------------
-Canalysis is a machine learning, crime analysis framework written in C++11, built for speed and scalability of pattern recognition, prediction of crime trends and possible, future locations of criminal activity.
+Canalysis is a machine learning, crime analysis framework written in C++11 which is built for speed and scalability of pattern recognition, analysis of crime trends, and predicting possible, future locations of criminal activity.
 
 About
 -----
-This project is currently in an alpha development stage. It is being worked on regularly and will have a full documentation once it is in beta. If you would like to contribute, please read the contribution file first.
+This project is currently in alpha. It is being worked on regularly and will have a full documentation once it is in beta. If you would like to contribute, please read the contribution file first.
