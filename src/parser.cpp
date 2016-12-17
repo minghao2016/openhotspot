@@ -23,16 +23,14 @@ std::string Parser::operator[](unsigned int column)
    return file_data[column];
 }
 
-void Parser::getColumnFields(std::istream &csvfile)
+std::string Parser::getColumnFields(std::istream &csvfile)
 {
    file_data.clear();
    std::getline(csvfile, row);
    std::istringstream stream(row);
-   while (std::getline(stream, column_value)){
-      std::getline(stream,)
+   while (std::getline(stream, line_values)){
       boost::escaped_list_separator<char> separator;
-      boost::tokenizer<boost::escaped_list_separator<char> > token(column_value, separator);
-
+      boost::tokenizer<boost::escaped_list_separator<char> > token(line_values, separator);
       for (auto t : token){
          file_data.push_back(t);
       }

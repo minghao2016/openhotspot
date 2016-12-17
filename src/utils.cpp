@@ -30,6 +30,11 @@ double sigmoid(double value)
    return 1 / (1 + exp(-value));
 }
 
+double mean(double sum, int total)
+{
+   return sum / total;
+}
+
 void getVersion()
 {
    std::cout << version << std::endl;

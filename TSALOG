@@ -1,3 +1,9 @@
+Fri Dec 16, 2016
+----------------
+- Worked on parser to separate values.
+- Worked on server.
+- Added writer to export the predicted CSV file.
+
 Thu Dec 15, 2016
 ----------------
 - Worked on web side of the framework for UI.

@@ -8,23 +8,10 @@
  * information about using this program.
 */
 
-#ifndef _UTILS_H_
-#define _UTILS_H_
-
 #include <iostream>
-#include <vector>
-#include <string>
-#include <math.h>
 
-#include "version.h"
+#include "writer.h"
 
 namespace canalysis {
 
-void percentConversion(std::string crime, int value, int total);
-double sigmoid(double value);
-double mean(double sum, int total);
-void getVersion();
-
 }
-
-#endif

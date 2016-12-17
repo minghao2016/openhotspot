@@ -21,6 +21,7 @@
 
 #include "parser.h"
 #include "layer.h"
+#include "writer.h"
 #include "utils.h"
 
 namespace canalysis {
@@ -39,7 +40,6 @@ public:
              unsigned int crime_column,
              unsigned int lat_column,
              unsigned int long_column);
-   void exportData(char *filename, double lat_values, double long_values);
    std::pair<double, double> predictedLocations(double lat_values, double long_values);
    void model();
 };

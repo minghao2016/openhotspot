@@ -17,16 +17,20 @@ app = flask.Flask(__name__)
 
 
 class Server(object):
-    def __init__(self, csvfile=None, port=None):
+    """
+    Summary: Parses predicted CSV file created by the C++ framework. Then displays the predicted
+    clusters on google maps.
+    """
+    def __init__(self,
+                csvfile=None,
+                port=None):
         self.csvfile = csvfile
         self.port = port
-        # variance scale of 5 miles
-        self.variance_scale = 5
-        # variance crime rate of 10 crimes or more in a single variance
-        self.variance_rate = 10
+        # minimum amount of crimes in a single variance
+        self.variance_rate = 25
 
     def _parse_csvfile(self):
-        column = collections.defaultdict(list)
+        column = collections.defaultdict(list())
 
         with open(self.csvfile, "r") as csvfile:
             reader = csv.DictReader(csvfile)
@@ -34,15 +38,26 @@ class Server(object):
                 for info, value in row.iteritems():
                     column[info].append(value)
 
-        return column["lat"], column["long"]
+        return column
 
     @app.route("/")
-    def _variance(self):
+    def _plot_variances(self):
+        """This is how the predicted CSV file template looks and how this
+        function locations the varances.
+
+        CSV File Format
+        >>> cluster1,cluster2, ...
+        >>> (lat, long),(lat, long), ...
+        >>> (lat, long),(lat, long), ...
+        >>> ...
+
+        Essentially, each column represents the variances that are going to be plotted on the UI.
+        Some columns may have more values than others in which those clusters are the variances
+        were criminal activity is most likely to occur.
         """
-        """
-        lat_column, long_column = self._parse_csvfile()
+        column = self._parse_csvfile()
 
 if __name__ == '__main__':
     server = Server(csvfile="src/templates/data/prediction.csv",
                     port="0.0.0.0")
-    server._variance()
+    server._plot_variances()

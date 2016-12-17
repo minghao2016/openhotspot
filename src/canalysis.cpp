@@ -25,16 +25,13 @@ Canalysis::Canalysis(std::string csvfile,
    _long_column = long_column;
 }
 
-void Canalysis::exportData(char *filename, double lat_values, double long_values)
-{
-}
-
 std::pair<double, double> Canalysis::predictedLocations(double lat_values, double long_values)
 {
    double precise_lat = boost::lexical_cast<double>(lat_values);
    double precise_long = boost::lexical_cast<double>(long_values);
 
    Layer layer(precise_lat, precise_long);
+   std::cout << precise_lat << std::endl;
 }
 
 std::istream &operator>>(std::istream &file, Parser &parser)
@@ -46,7 +43,8 @@ std::istream &operator>>(std::istream &file, Parser &parser)
 void Canalysis::model()
 {
    Parser parser;
-   std::ifstream file(_csvfile);
+   Writer writer;
+   std::fstream file(_csvfile);
 
    while (file >> parser){
       std::string crime_c = parser[_crime_coloumn];
@@ -59,7 +57,7 @@ void Canalysis::model()
       double lat_values = atof(lat_c.c_str());
       double long_values = atof(long_c.c_str());
       std::pair<double, double> prediction = predictedLocations(lat_values, long_values);
-      //predict.exportData("templates/data/prediction.csv", prediction.first, prediction.second);
+      //writer.exportData("templates/data/prediction.csv", prediction.first, prediction.second);
    }
 }
 

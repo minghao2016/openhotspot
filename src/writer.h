@@ -8,34 +8,19 @@
  * information about using this program.
 */
 
-#ifndef _PARSER_H_
-#define _PARSER_H_
+#ifndef _WRITER_H_
+#define _WRITER_H_
 
 #include <iostream>
 #include <string>
-#include <vector>
-#include <limits>
-#include <sstream>
 #include <fstream>
-
-#include <boost/tokenizer.hpp>
-
-#include "utils.h"
 
 namespace canalysis {
 
-class Parser {
-private:
-   std::string row;
-   std::string line_values;
-   std::vector<std::string> file_data;
-
+class Writer{
 public:
-   Parser();
-   std::string operator[](unsigned int column);
-   std::string getColumnFields(std::istream &csvfile);
+   void exportData(char *filename, double lat_values, double long_values);
+
 };
 
 }
-
-#endif
