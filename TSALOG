@@ -1,8 +1,14 @@
+Sun Dec 18, 2016
+----------------
+- Worked on CSV parser and canalysis file.
+- Worked on layer.
+- Finished summary of softwares functionality and usage.
+
 Fri Dec 16, 2016
 ----------------
 - Worked on parser to separate values.
 - Worked on server.
-- Added writer to export the predicted CSV file.
+- Added writer to export the predicted CSV files.
 
 Thu Dec 15, 2016
 ----------------
@@ -10,7 +16,7 @@ Thu Dec 15, 2016
 
 Wed Dec 14, 2016
 ----------------
-- Made revisions to layer. Possibly not going to use neural network
+- Made revisions to layer. Possibly not going to use neural network.
 - Made changes to server.
 
 Tue Dec 13, 2016

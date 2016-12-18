@@ -14,4 +14,10 @@
 
 namespace canalysis {
 
+void Writer::exportData(std::string filename,
+                        double lat_values,
+                        double long_values)
+{
+}
+
 }

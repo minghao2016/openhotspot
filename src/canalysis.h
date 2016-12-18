@@ -14,10 +14,9 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <utility>
 #include <vector>
-
-#include <boost/lexical_cast.hpp>
+#include <sstream>
+#include <list>
 
 #include "parser.h"
 #include "layer.h"
@@ -40,7 +39,8 @@ public:
              unsigned int crime_column,
              unsigned int lat_column,
              unsigned int long_column);
-   std::pair<double, double> predictedLocations(double lat_values, double long_values);
+   std::pair<double, double> predictedLocations(std::string lat_values,
+                                                std::string long_values);
    void model();
 };
 

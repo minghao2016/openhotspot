@@ -14,8 +14,8 @@
 
 namespace canalysis {
 
-Layer::Layer(double lat_values,
-             double long_values)
+Layer::Layer(std::string lat_values,
+             std::string long_values)
 {
    _lat_values = lat_values;
    _long_values = long_values;
@@ -31,6 +31,8 @@ double Layer::reduceLongValues()
 
 std::pair<double, double> Layer::clusterValues()
 {
+   double reducedLat = reduceLatValues();
+   double reducedLong = reduceLongValues();
 }
 
 }

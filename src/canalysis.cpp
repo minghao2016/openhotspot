@@ -25,13 +25,14 @@ Canalysis::Canalysis(std::string csvfile,
    _long_column = long_column;
 }
 
-std::pair<double, double> Canalysis::predictedLocations(double lat_values, double long_values)
+std::pair<double, double> Canalysis::predictedLocations(std::string lat_values,
+                                                        std::string long_values)
 {
-   double precise_lat = boost::lexical_cast<double>(lat_values);
-   double precise_long = boost::lexical_cast<double>(long_values);
-
-   Layer layer(precise_lat, precise_long);
-   std::cout << precise_lat << std::endl;
+   Layer layer(lat_values, long_values);
+   layer.reduceLatValues();
+   layer.reduceLongValues();
+   auto prediction = layer.clusterValues();
+   return std::make_pair(prediction.first, prediction.second);
 }
 
 std::istream &operator>>(std::istream &file, Parser &parser)
@@ -51,13 +52,10 @@ void Canalysis::model()
       std::string lat_c = parser[_lat_column];
       std::string long_c = parser[_long_column];
 
-      if (crime_c.empty() || lat_c.empty() || long_c.empty())
-         std::cout << "[!] Error: One or more fields are empty" << std::endl;
-
-      double lat_values = atof(lat_c.c_str());
-      double long_values = atof(long_c.c_str());
-      std::pair<double, double> prediction = predictedLocations(lat_values, long_values);
-      //writer.exportData("templates/data/prediction.csv", prediction.first, prediction.second);
+      auto prediction = predictedLocations(lat_c, long_c);
+      writer.exportData("templates/data/prediction.csv",
+                        prediction.first,
+                        prediction.second);
    }
 }
 

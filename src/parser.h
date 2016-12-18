@@ -17,6 +17,7 @@
 #include <limits>
 #include <sstream>
 #include <fstream>
+#include <list>
 
 #include <boost/tokenizer.hpp>
 
@@ -33,7 +34,7 @@ private:
 public:
    Parser();
    std::string operator[](unsigned int column);
-   std::string getColumnFields(std::istream &csvfile);
+   void getColumnFields(std::istream &csvfile);
 };
 
 }

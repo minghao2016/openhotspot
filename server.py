@@ -18,12 +18,10 @@ app = flask.Flask(__name__)
 
 class Server(object):
     """
-    Summary: Parses predicted CSV file created by the C++ framework. Then displays the predicted
-    clusters on google maps.
+    Summary: Parses predicted CSV files created by the C++ framework. Then displays the predicted
+    clusters on the UI.
     """
-    def __init__(self,
-                csvfile=None,
-                port=None):
+    def __init__(self, csvfile=None, port=None):
         self.csvfile = csvfile
         self.port = port
         # minimum amount of crimes in a single variance
@@ -42,8 +40,8 @@ class Server(object):
 
     @app.route("/")
     def _plot_variances(self):
-        """This is how the predicted CSV file template looks and how this
-        function locations the varances.
+        """Examines how the predicted CSV file template looks and how function locations
+        the varances.
 
         CSV File Format
         >>> cluster1,cluster2, ...

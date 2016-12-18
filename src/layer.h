@@ -18,18 +18,20 @@
 #include <map>
 #include <math.h>
 
+#include <boost/lexical_cast.hpp> // boost::lexical_cast<double>();
+
 #include "utils.h"
 
 namespace canalysis {
 
 class Layer {
 private:
-   double _lat_values;
-   double _long_values;
+   std::string _lat_values;
+   std::string _long_values;
 
 public:
-   Layer(double lat_values,
-         double long_values);
+   Layer(std::string lat_values,
+         std::string long_values);
    double reduceLatValues();
    double reduceLongValues();
    std::pair<double, double> clusterValues();

@@ -19,8 +19,12 @@ namespace canalysis {
 
 class Writer{
 public:
-   void exportData(char *filename, double lat_values, double long_values);
+   void exportData(std::string filename,
+                   double lat_values,
+                   double long_values);
 
 };
 
 }
+
+#endif
