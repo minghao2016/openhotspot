@@ -16,8 +16,6 @@
 #include <string>
 #include <math.h>
 
-#include "version.h"
-
 namespace canalysis {
 
 void percentConversion(const std::string, unsigned int, unsigned int);

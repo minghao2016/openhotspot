@@ -8,9 +8,11 @@
  * information about using this program.
 */
 
-#include <iostream>
-
 #include "canalysis.h"
+#include "parser.h"
+#include "layer.h"
+#include "writer.h"
+#include "utils.h"
 
 namespace canalysis {
 
@@ -19,7 +21,7 @@ Canalysis::Canalysis(std::string csvfile,
                      unsigned int lat_column,
                      unsigned int long_column)
    : _csvfile(csvfile),
-     _crime_coloumn(crime_column),
+     _crime_column(crime_column),
      _lat_column(lat_column),
      _long_column(long_column)
 {
@@ -50,7 +52,7 @@ void Canalysis::model()
    Writer writer;
    std::fstream file(_csvfile);
    while (file >> parser){
-      std::string crime_c = parser[_crime_coloumn];
+      std::string crime_c = parser[_crime_column];
       std::string lat_c = parser[_lat_column];
       std::string long_c = parser[_long_column];
       auto prediction = predictedLocations(lat_c, long_c);

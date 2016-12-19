@@ -8,8 +8,6 @@
  * information about using this program.
 */
 
-#include <iostream>
-
 #include "writer.h"
 
 namespace canalysis {

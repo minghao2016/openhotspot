@@ -19,10 +19,6 @@
 #include <fstream>
 #include <list>
 
-#include <boost/tokenizer.hpp>
-
-#include "utils.h"
-
 namespace canalysis {
 
 class Parser {

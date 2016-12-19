@@ -8,9 +8,8 @@
  * information about using this program.
 */
 
-#include <iostream>
-
 #include "utils.h"
+#include "version.h"
 
 namespace canalysis {
 

@@ -12,9 +12,9 @@
 // The file canalysis.cpp is the file that holds
 // the actual model of the framework.
 
+#include <iostream>
 #include <fstream>
 #include <sstream>
-#include <iostream>
 
 #include "canalysis.h"
 

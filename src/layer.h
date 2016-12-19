@@ -19,8 +19,6 @@
 #include <map>
 #include <math.h>
 
-#include "utils.h"
-
 namespace canalysis {
 
 class Layer {
