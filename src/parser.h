@@ -33,8 +33,8 @@ private:
 
 public:
    Parser();
-   std::string operator[](unsigned int column);
-   void getColumnFields(std::istream &csvfile);
+   std::string operator[](unsigned int);
+   void getColumnFields(std::istream&);
 };
 
 }

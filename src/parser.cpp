@@ -23,7 +23,7 @@ std::string Parser::operator[](unsigned int column)
    return file_data[column];
 }
 
-void Parser::getColumnFields(std::istream &csvfile)
+void Parser::getColumnFields(std::istream& csvfile)
 {
    file_data.clear();
    std::getline(csvfile, row);

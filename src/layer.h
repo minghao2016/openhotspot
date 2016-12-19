@@ -27,17 +27,14 @@ class Layer {
 private:
    std::string _lat_values;
    std::string _long_values;
-
-   // In km
-   int e_radius = 6371;
+   int e_radius;
 
 public:
-   Layer(std::string lat_values,
-         std::string long_values);
-   double haversine(double lat1, double long1, double lat2, double long2);
+   Layer(std::string, std::string);
+   double haversine(double, double, double, double);
    double reduceLatValues();
    double reduceLongValues();
-   std::tuple<int, double, double, int> dbscan(int eps, int min_pts);
+   std::tuple<int, double, double, int> dbscan(int, int);
 };
 
 }

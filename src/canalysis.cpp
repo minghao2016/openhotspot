@@ -49,12 +49,10 @@ void Canalysis::model()
    Parser parser;
    Writer writer;
    std::fstream file(_csvfile);
-
    while (file >> parser){
       std::string crime_c = parser[_crime_coloumn];
       std::string lat_c = parser[_lat_column];
       std::string long_c = parser[_long_column];
-
       auto prediction = predictedLocations(lat_c, long_c);
       writer.exportData("templates/data/prediction.csv",
                         std::get<0>(prediction),
