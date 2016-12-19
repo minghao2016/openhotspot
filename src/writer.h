@@ -20,7 +20,6 @@ namespace canalysis {
 class Writer{
 public:
    void exportData(std::string, unsigned int, double, double, unsigned int);
-
 };
 
 }

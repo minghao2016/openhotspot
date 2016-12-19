@@ -32,7 +32,6 @@ private:
    std::vector<std::string> file_data;
 
 public:
-   Parser();
    std::string operator[](unsigned int);
    void getColumnFields(std::istream&);
 };

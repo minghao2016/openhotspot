@@ -16,9 +16,9 @@ namespace canalysis {
 
 Layer::Layer(std::string lat_values,
              std::string long_values)
+   : _lat_values(lat_values),
+     _long_values(long_values)
 {
-   _lat_values = lat_values;
-   _long_values = long_values;
    e_radius = 6371;
 }
 

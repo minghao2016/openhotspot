@@ -14,10 +14,6 @@
 
 namespace canalysis {
 
-Parser::Parser()
-{
-}
-
 std::string Parser::operator[](unsigned int column)
 {
    return file_data[column];

@@ -42,7 +42,10 @@ class Server(object):
 
     @app.route("/")
     def _plot_variances(self):
-        """Essentially, there are 3 columns in the predicted CSV file, the amount of clusters, the radius center for those clusters, and the amount of points in the cluster. This functions iterates through the points column and compares which clusters have the highest amount of points, those clusters are then marked as a high probability for criminal activity to occur within those clusters.
+        """Essentially, there are 3 columns in the predicted CSV file, the amount of clusters,
+        the radius center for those clusters, and the amount of points in the cluster. This functions
+        iterates through the points column and compares which clusters have the highest amount of points,
+        those clusters are then marked as a high probability for criminal activity to occur within those clusters.
         """
         clusters, rad_center, points = self._parse_csvfile()
 

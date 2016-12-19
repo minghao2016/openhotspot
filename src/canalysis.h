@@ -28,8 +28,6 @@ namespace canalysis {
 class Canalysis {
 private:
    std::string _csvfile;
-   
-   // CSV file data
    unsigned int _crime_coloumn;
    unsigned int _lat_column;
    unsigned int _long_column;

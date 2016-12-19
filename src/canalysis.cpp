@@ -18,11 +18,11 @@ Canalysis::Canalysis(std::string csvfile,
                      unsigned int crime_column,
                      unsigned int lat_column,
                      unsigned int long_column)
+   : _csvfile(csvfile),
+     _crime_coloumn(crime_column),
+     _lat_column(lat_column),
+     _long_column(long_column)
 {
-   _csvfile = csvfile;
-   _crime_coloumn = crime_column;
-   _lat_column = lat_column;
-   _long_column = long_column;
 }
 
 std::tuple<int, double, double, int> Canalysis::predictedLocations(std::string lat_values,
