@@ -18,7 +18,13 @@ Layer::Layer(std::string lat_values,
              std::string long_values)
 {
    _lat_values = lat_values;
-   _long_values = long_values;
+   _long_values = long_values);
+}
+
+double haversine(double lat1, double long1, double lat2, double long2)
+{
+   double dlong = long2 - long1;
+   double dlat = lat2 - lat1;
 }
 
 double Layer::reduceLatValues()
@@ -29,7 +35,7 @@ double Layer::reduceLongValues()
 {
 }
 
-std::pair<double, double> Layer::clusterValues()
+std::tuple<int, double, double, int> Layer::dbscan(int eps, int min_pts)
 {
    double reducedLat = reduceLatValues();
    double reducedLong = reduceLongValues();

@@ -25,14 +25,17 @@ Canalysis::Canalysis(std::string csvfile,
    _long_column = long_column;
 }
 
-std::pair<double, double> Canalysis::predictedLocations(std::string lat_values,
-                                                        std::string long_values)
+std::tuple<int, double, double, int> Canalysis::predictedLocations(std::string lat_values,
+                                                                   std::string long_values)
 {
    Layer layer(lat_values, long_values);
    layer.reduceLatValues();
    layer.reduceLongValues();
-   auto prediction = layer.clusterValues();
-   return std::make_pair(prediction.first, prediction.second);
+   auto prediction = layer.dbscan(5, 20);
+   return std::make_tuple(std::get<0>(prediction),
+                          std::get<1>(prediction),
+                          std::get<2>(prediction),
+                          std::get<3>(prediction));
 }
 
 std::istream &operator>>(std::istream &file, Parser &parser)
@@ -54,8 +57,10 @@ void Canalysis::model()
 
       auto prediction = predictedLocations(lat_c, long_c);
       writer.exportData("templates/data/prediction.csv",
-                        prediction.first,
-                        prediction.second);
+                        std::get<0>(prediction),
+                        std::get<1>(prediction),
+                        std::get<2>(prediction),
+                        std::get<3>(prediction));
    }
 }
 

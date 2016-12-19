@@ -20,8 +20,10 @@ namespace canalysis {
 class Writer{
 public:
    void exportData(std::string filename,
-                   double lat_values,
-                   double long_values);
+                   unsigned int clusters,
+                   double center_lat,
+                   double center_long,
+                   unsigned int pts);
 
 };
 

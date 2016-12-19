@@ -20,9 +20,8 @@
 
 namespace canalysis {
 
-void percentConversion(std::string crime, int value, int total);
-double sigmoid(double value);
-double mean(double sum, int total);
+void percentConversion(const std::string crime, unsigned int value, unsigned int total);
+double mean(double sum, unsigned int total);
 void getVersion();
 
 }

@@ -15,10 +15,9 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <tuple>
 #include <map>
 #include <math.h>
-
-#include <boost/lexical_cast.hpp> // boost::lexical_cast<double>();
 
 #include "utils.h"
 
@@ -29,12 +28,16 @@ private:
    std::string _lat_values;
    std::string _long_values;
 
+   // In km
+   int e_radius = 6371;
+
 public:
    Layer(std::string lat_values,
          std::string long_values);
+   double haversine(double lat1, double long1, double lat2, double long2);
    double reduceLatValues();
    double reduceLongValues();
-   std::pair<double, double> clusterValues();
+   std::tuple<int, double, double, int> dbscan(int eps, int min_pts);
 };
 
 }

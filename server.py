@@ -24,8 +24,10 @@ class Server(object):
     def __init__(self, csvfile=None, port=None):
         self.csvfile = csvfile
         self.port = port
-        # minimum amount of crimes in a single variance
-        self.variance_rate = 25
+
+        # Cluster radius in miles
+        self.eps = 5
+        self.min_points = 20
 
     def _parse_csvfile(self):
         column = collections.defaultdict(list())
@@ -36,24 +38,13 @@ class Server(object):
                 for info, value in row.iteritems():
                     column[info].append(value)
 
-        return column
+        return column["clusters"], column["radius_center"], column["points"]
 
     @app.route("/")
     def _plot_variances(self):
-        """Examines how the predicted CSV file template looks and how function locations
-        the varances.
-
-        CSV File Format
-        >>> cluster1,cluster2, ...
-        >>> (lat, long),(lat, long), ...
-        >>> (lat, long),(lat, long), ...
-        >>> ...
-
-        Essentially, each column represents the variances that are going to be plotted on the UI.
-        Some columns may have more values than others in which those clusters are the variances
-        were criminal activity is most likely to occur.
+        """Essentially, there are 3 columns in the predicted CSV file, the amount of clusters, the radius center for those clusters, and the amount of points in the cluster. This functions iterates through the points column and compares which clusters have the highest amount of points, those clusters are then marked as a high probability for criminal activity to occur within those clusters.
         """
-        column = self._parse_csvfile()
+        clusters, rad_center, points = self._parse_csvfile()
 
 if __name__ == '__main__':
     server = Server(csvfile="src/templates/data/prediction.csv",

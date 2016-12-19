@@ -16,7 +16,7 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
-#include <list>
+#include <tuple>
 
 #include "parser.h"
 #include "layer.h"
@@ -39,8 +39,8 @@ public:
              unsigned int crime_column,
              unsigned int lat_column,
              unsigned int long_column);
-   std::pair<double, double> predictedLocations(std::string lat_values,
-                                                std::string long_values);
+   std::tuple<int, double, double, int> predictedLocations(std::string lat_values,
+                                                           std::string long_values);
    void model();
 };
 
