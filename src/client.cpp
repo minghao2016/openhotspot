@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * Canalysis (Crime Analysis) 0.1.0
+ * Canalysis (Crime Analysis) 0.1.1
  * Copyright (c) 2016, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -12,4 +12,4 @@
 
 namespace canalysis {
 
-}
+} // canalysis namespace

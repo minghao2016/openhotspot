@@ -8,18 +8,27 @@
  * information about using this program.
 */
 
-#ifndef _UTILS_H_
-#define _UTILS_H_
+#ifndef _REFORMAT_H_
+#define _REFORMAT_H_
 
 #include <iostream>
 #include <vector>
 #include <string>
-#include <math.h>
+#include <sstream>
+#include <fstream>
 
 namespace canalysis {
 
-void percentConversion(const std::string, unsigned int, unsigned int);
-void getVersion();
+class Reformat {
+private:
+   std::string row;
+   std::string line;
+   std::vector<std::string> column_data;
+
+public:
+   std::string operator[](unsigned int);
+   void getColumn(std::istream&);
+};
 
 }
 

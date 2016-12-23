@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * Canalysis (Crime Analysis) 0.1.0
+ * Canalysis (Crime Analysis) 0.1.1
  * Copyright (c) 2016, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -29,13 +29,8 @@ private:
    std::vector<double> lat_values;
    std::vector<double> long_values;
 
-   std::string row;
-   std::string line;
-   std::vector<std::string> csv_data;
-
 public:
-   //Canalysis(const std::string, unsigned int, unsigned int, unsigned int);
-   void reformat(const std::string, int, int);
+   void exportCSVData(const std::string, int, int);
    std::tuple<int, double, double, int> predictedLocations();
    void model(const std::string, const std::string);
 };

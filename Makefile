@@ -3,7 +3,7 @@ CXXFLAGS=-g -Wall -std=c++11
 INCLUDE=-I
 
 PROJECT=canalysis
-FILES=src/canalysis.cpp src/layer.cpp src/writer.cpp src/utils.cpp src/client.cpp
+FILES=src/canalysis.cpp src/layer.cpp src/writer.cpp src/utils.cpp src/client.cpp src/reformat.cpp
 
 .PHONY: clean
 

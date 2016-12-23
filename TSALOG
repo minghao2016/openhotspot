@@ -1,3 +1,9 @@
+Fri Dec 23, 2016
+----------------
+- Moved test data into data folder.
+- Added a CSV reformatter file to framework.
+- Updated version (0.1.1).
+
 Thu Dec 22, 2016
 ----------------
 - Removed Parser (Added to canalysis file since the file was small and was not producing desired results)

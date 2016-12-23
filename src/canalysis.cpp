@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * Canalysis (Crime Analysis) 0.1.0
+ * Canalysis (Crime Analysis) 0.1.1
  * Copyright (c) 2016, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -9,34 +9,33 @@
 */
 
 #include "canalysis.h"
+#include "reformat.h"
 #include "layer.h"
 #include "writer.h"
 #include "utils.h"
 
-#include <boost/tokenizer.hpp>
-
 namespace canalysis {
 
-//std::string Canalysis::operator[](unsigned int column)
-//{
-//   return file_data[column];
-//}
-
-void Canalysis::reformat(const std::string csv_file, int lat_column, int long_colum)
+std::istream& operator>>(std::istream& file, Reformat& reform)
 {
+   reform.getColumn(file);
+   return file;
+}
+
+void Canalysis::exportCSVData(const std::string csv_file,
+                              int lat_column, int long_column)
+{
+   Reformat reform;
    std::ifstream if_csv(csv_file);
    if (!if_csv.is_open()){
       std::cout << "Error: Could not open CSV file." << std::endl;
       exit(EXIT_FAILURE);
    } else {
-      csv_data.clear();
-      std::getline(if_csv, row);
-      std::istringstream stream(row);
-      while (std::getline(stream, line)){
-         boost::escaped_list_separator<char> delimiter;
-         boost::tokenizer<boost::escaped_list_separator<char> > token(line, delimiter);
-         for (auto t : token){
-            csv_data.push_back(t);
+      while (if_csv >> reform){
+         std::string lat_c = reform[lat_column];
+         std::string long_c = reform[long_column];
+         if (lat_c.empty() || long_c.empty()){
+            std::cout << "Error: One or more columns are empty." << std::endl;
          }
       }
    }
@@ -50,12 +49,6 @@ std::tuple<int, double, double, int> Canalysis::predictedLocations()
    return std::make_tuple(std::get<0>(cluster), std::get<1>(cluster),
                           std::get<2>(cluster), std::get<3>(cluster));
 }
-
-//std::istream& operator>>(std::istream& file, Parser& parser)
-//{
-//   parser.getColumnFields(file);
-//   return file;
-//}
 
 void Canalysis::model(const std::string lat_file, const std::string long_file)
 {
@@ -81,16 +74,6 @@ void Canalysis::model(const std::string lat_file, const std::string long_file)
    Writer writer(PFILE);
    writer.exportData(std::get<0>(prediction), std::get<1>(prediction),
                      std::get<2>(prediction), std::get<3>(prediction));
-   //Parser parser;
-   //std::fstream file(_csv_file);
-   //while (file >> parser){
-   //   std::string crime_c = parser[_crime_column];
-   //   std::string lat_c = parser[_lat_column];
-   //   std::string long_c = parser[_long_column];
-   //   if (crime_c.empty() || lat_c.empty() || long_c.empty()){
-   //      std::cout << "Error: One or more CSV column fields may be empty.\n";
-   //   }
-   //}
 }
 
-}
+} // canalysis namespace

@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * Canalysis (Crime Analysis) 0.1.0
+ * Canalysis (Crime Analysis) 0.1.1
  * Copyright (c) 2016, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -11,6 +11,6 @@
 #ifndef _VERSION_H_
 #define _VERSION_H_
 
-const std::string version = "Canalysis (Crime Analysis) 0.1.0";
+const std::string version = "Canalysis (Crime Analysis) 0.1.1";
 
 #endif
