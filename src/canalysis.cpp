@@ -9,59 +9,90 @@
 */
 
 #include "canalysis.h"
-#include "parser.h"
 #include "layer.h"
 #include "writer.h"
 #include "utils.h"
 
+#include <boost/tokenizer.hpp>
+
 namespace canalysis {
 
-Canalysis::Canalysis(std::string csvfile,
-                     unsigned int crime_column,
-                     unsigned int lat_column,
-                     unsigned int long_column)
-   : _csvfile(csvfile),
-     _crime_column(crime_column),
-     _lat_column(lat_column),
-     _long_column(long_column)
-{
-}
+//std::string Parser::operator[](unsigned int column)
+//{
+//   return file_data[column];
+//}
 
-std::tuple<int, double, double, int> Canalysis::predictedLocations(std::string lat_values,
-                                                                   std::string long_values)
+void Canalysis::reformat(const std::string csv_file, int lat_column, int long_colum)
 {
-   Layer layer(lat_values, long_values);
-   layer.reduceLatValues();
-   layer.reduceLongValues();
-   auto prediction = layer.dbscan(5, 20);
-   return std::make_tuple(std::get<0>(prediction),
-                          std::get<1>(prediction),
-                          std::get<2>(prediction),
-                          std::get<3>(prediction));
-}
-
-std::istream &operator>>(std::istream &file, Parser &parser)
-{
-   parser.getColumnFields(file);
-   return file;
-}
-
-void Canalysis::model()
-{
-   Parser parser;
-   Writer writer;
-   std::fstream file(_csvfile);
-   while (file >> parser){
-      std::string crime_c = parser[_crime_column];
-      std::string lat_c = parser[_lat_column];
-      std::string long_c = parser[_long_column];
-      auto prediction = predictedLocations(lat_c, long_c);
-      writer.exportData("templates/data/prediction.csv",
-                        std::get<0>(prediction),
-                        std::get<1>(prediction),
-                        std::get<2>(prediction),
-                        std::get<3>(prediction));
+   std::ifstream if_csv(csv_file);
+   if (!if_csv.is_open()){
+      std::cout << "Error: Could not open CSV file." << std::endl;
+      exit(EXIT_FAILURE);
+   } else {
+      csv_data.clear();
+      std::getline(if_csv, row);
+      std::istringstream stream(row);
+      while (std::getline(stream, line)){
+         boost::escaped_list_separator<char> delimiter;
+         boost::tokenizer<boost::escaped_list_separator<char> > token(line, delimiter);
+         for (auto t : token){
+            csv_data.push_back(t);
+         }
+      }
    }
+}
+
+std::tuple<int, double, double, int> Canalysis::predictedLocations()
+{
+   Layer layer;
+   layer.reduceLatValues();
+   auto cluster = layer.dbscanCluster(5, 20);
+   return std::make_tuple(std::get<0>(cluster), std::get<1>(cluster),
+                          std::get<2>(cluster), std::get<3>(cluster));
+}
+
+//std::istream& operator>>(std::istream& file, Parser& parser)
+//{
+//   parser.getColumnFields(file);
+//   return file;
+//}
+
+void Canalysis::model(const std::string lat_file, const std::string long_file)
+{
+   std::ifstream if_lat(lat_file);
+   if (!if_lat.is_open()){
+      std::cout << "Error: Could not open latitude file." << std::endl;
+      exit(EXIT_FAILURE);
+   } else {
+      while (!if_lat.eof()){
+         if_lat >> temp_lat;
+         lat_values.push_back(temp_lat);
+      }
+   }
+   std::ifstream if_long(long_file);
+   if (!if_long.is_open()){
+      std::cout << "Error: Could not open longitude file." << std::endl;
+      exit(EXIT_FAILURE);
+   } else {
+      while (!if_long.eof()){
+         if_long >> temp_long;
+         long_values.push_back(temp_long);
+      }
+   }
+   auto prediction = predictedLocations();
+   Writer writer("templates/data/prediction.csv");
+   writer.exportData(std::get<0>(prediction), std::get<1>(prediction),
+                     std::get<2>(prediction), std::get<3>(prediction));
+   //Parser parser;
+   //std::fstream file(_csv_file);
+   //while (file >> parser){
+   //   std::string crime_c = parser[_crime_column];
+   //   std::string lat_c = parser[_lat_column];
+   //   std::string long_c = parser[_long_column];
+   //   if (crime_c.empty() || lat_c.empty() || long_c.empty()){
+   //      std::cout << "Error: One or more CSV column fields may be empty.\n";
+   //   }
+   //}
 }
 
 }

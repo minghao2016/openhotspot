@@ -50,6 +50,6 @@ class Server(object):
         clusters, rad_center, points = self._parse_csvfile()
 
 if __name__ == '__main__':
-    server = Server(csvfile="src/templates/data/prediction.csv",
+    server = Server(csvfile="test.csv",
                     port="0.0.0.0")
     server._plot_variances()

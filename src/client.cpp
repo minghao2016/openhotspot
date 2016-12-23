@@ -8,19 +8,8 @@
  * information about using this program.
 */
 
-#ifndef _UTILS_H_
-#define _UTILS_H_
-
-#include <iostream>
-#include <vector>
-#include <string>
-#include <math.h>
+#include "client.h"
 
 namespace canalysis {
 
-void percentConversion(const std::string, unsigned int, unsigned int);
-void getVersion();
-
 }
-
-#endif

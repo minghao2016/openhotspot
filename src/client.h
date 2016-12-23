@@ -8,18 +8,15 @@
  * information about using this program.
 */
 
-#ifndef _UTILS_H_
-#define _UTILS_H_
-
-#include <iostream>
-#include <vector>
-#include <string>
-#include <math.h>
+#ifndef _CLIENT_H_
+#define _CLIENT_H_
 
 namespace canalysis {
 
-void percentConversion(const std::string, unsigned int, unsigned int);
-void getVersion();
+class Client {
+public:
+
+};
 
 }
 

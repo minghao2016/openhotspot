@@ -1,3 +1,17 @@
+Thu Dec 22, 2016
+----------------
+- Removed Parser (Added to canalysis file since the file was small and was not producing desired results)
+- Worked on layer and canalysis files.
+
+Web Dec 21, 2016
+----------------
+- Added client file for future implementations of web service capabilities embedded in the framework.
+- Worked on layer.
+
+Tue Dec 20, 2016
+----------------
+- Created include folder for header files to separate files.
+
 Mon Dec 19, 2016
 ----------------
 - Made some changes to the layer and server.

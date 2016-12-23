@@ -12,8 +12,11 @@
 
 namespace canalysis {
 
-void Writer::exportData(std::string filename,
-                        unsigned int clusters,
+Writer::Writer(const std::string csv_file)
+{
+}
+
+void Writer::exportData(unsigned int clusters,
                         double center_lat,
                         double center_long,
                         unsigned int pts)

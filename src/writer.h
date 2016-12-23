@@ -17,9 +17,13 @@
 
 namespace canalysis {
 
-class Writer{
+class Writer {
+private:
+   std::ofstream predicted_file;
+
 public:
-   void exportData(std::string, unsigned int, double, double, unsigned int);
+   Writer(const std::string);
+   void exportData(unsigned int, double, double, unsigned int);
 };
 
 }

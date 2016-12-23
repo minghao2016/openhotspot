@@ -15,24 +15,36 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <numeric>
 #include <tuple>
-#include <map>
+#include <sstream>
 #include <math.h>
 
 namespace canalysis {
 
+struct Haversine {
+   double lat1;
+   double long1;
+   double lat2;
+   double long2;
+};
+
 class Layer {
 private:
-   std::string _lat_values;
-   std::string _long_values;
+   std::vector<double> lat_values;
+   //std::vector<double>::iterator lat_it;
+   std::vector<double> long_values;
+   //std::vector<double>::iterator long_it;
+   double lat_avg;
+   double long_avg;
    int e_radius;
 
 public:
-   Layer(std::string, std::string);
-   double haversine(double, double, double, double);
+   Layer();
+   double haversine(Haversine&);
    double reduceLatValues();
    double reduceLongValues();
-   std::tuple<int, double, double, int> dbscan(int, int);
+   std::tuple<int, double, double, int> dbscanCluster(int, int);
 };
 
 }

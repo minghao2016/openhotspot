@@ -14,23 +14,28 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <vector>
 #include <sstream>
+#include <vector>
 #include <tuple>
 
 namespace canalysis {
 
 class Canalysis {
 private:
-   std::string _csvfile;
-   unsigned int _crime_column;
-   unsigned int _lat_column;
-   unsigned int _long_column;
+   double temp_lat;
+   double temp_long;
+   std::vector<double> lat_values;
+   std::vector<double> long_values;
+
+   std::string row;
+   std::string line;
+   std::vector<std::string> csv_data;
 
 public:
-   Canalysis(std::string csvfile, unsigned int, unsigned int, unsigned int);
-   std::tuple<int, double, double, int> predictedLocations(std::string, std::string);
-   void model();
+   //Canalysis(const std::string, unsigned int, unsigned int, unsigned int);
+   void reformat(const std::string, int, int);
+   std::tuple<int, double, double, int> predictedLocations();
+   void model(const std::string, const std::string);
 };
 
 }

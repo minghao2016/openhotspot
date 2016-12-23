@@ -24,11 +24,6 @@ void percentConversion(const std::string crime, unsigned int value, unsigned int
    }
 }
 
-double mean(double sum, unsigned int total)
-{
-   return sum / total;
-}
-
 void getVersion()
 {
    std::cout << version << std::endl;

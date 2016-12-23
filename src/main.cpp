@@ -22,18 +22,19 @@ using namespace canalysis;
 
 void usage(){
    std::cout
-   << "usage: ./olivia [--file] [--crime-column-number]\n"
-   << "                [--lat-column] [--long-column] [--version]\n"
+   << "usage: ./canalysis [--lat-file] [--long-file]\n"
+   << "                [--reformat-file] [--version]\n"
    << "These are the current Canalysis commands to use:\n\n"
-   << "  --file                    name of CSV file to classify\n"
-   << "  --crime-column            the specific crime column number\n"
-   << "  --lat-column              the specific lat column number\n"
-   << "  --long-column             the specific long column number\n"
-   << "  --version                 the current version of Canalysis\n"
+   << "  --lat-file                Reformated latitude file.\n"
+   << "  --long-file               Reformated longitude file.\n"
+   << "  --reformat-file           Reformat criminal CSV data.\n"
+   << "  --version                 Current version of Canalysis\n"
    << std::endl;
 }
 
 int main(int argc, char **argv){
+   Canalysis canalysis;
+
    /*if (argc <= 1) {
       usage();
    }
@@ -42,18 +43,15 @@ int main(int argc, char **argv){
    if (_argv == "--help"){
       usage();
    }
-   if (_argv == "--file"){
+   if (_argv == "--reformat-file"){
    }
-   if (_argv == "--crime-column"){
+   if (_argv == "--lat-file"){
    }
-   if (_argv == "--lat-column"){
-   }
-   if (_argv == "--long-column"){
+   if (_args == "--long-file"){
    }
    if (_argv == "--version"){
       getVersion();
    }*/
 
-   Canalysis canalysis("../test.csv", 0, 2, 1);
-   canalysis.model();
+   canalysis.model("../test_latitudes.txt", "../test_longitudes.txt");
 }
