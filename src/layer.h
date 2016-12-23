@@ -31,20 +31,20 @@ struct Haversine {
 
 class Layer {
 private:
-   std::vector<double> lat_values;
-   //std::vector<double>::iterator lat_it;
-   std::vector<double> long_values;
-   //std::vector<double>::iterator long_it;
-   double lat_avg;
-   double long_avg;
+   std::vector<double> _lat_values;
+   std::vector<double> _long_values;
+   std::vector<double> lat_avg;
+   std::vector<double> long_avg;
    int e_radius;
 
 public:
-   Layer();
+   Layer(std::vector<double>, std::vector<double>);
    double haversine(Haversine&);
    double reduceLatValues();
    double reduceLongValues();
-   std::tuple<int, double, double, int> dbscanCluster(int, int);
+   std::tuple<int, double, double, int> dbscanCluster(unsigned int, unsigned int);
+   double expandCluster(unsigned int, unsigned int);
+   double regionQuery(unsigned int);
 };
 
 }

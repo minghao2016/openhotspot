@@ -17,7 +17,7 @@
 
 namespace canalysis {
 
-//std::string Parser::operator[](unsigned int column)
+//std::string Canalysis::operator[](unsigned int column)
 //{
 //   return file_data[column];
 //}
@@ -44,7 +44,7 @@ void Canalysis::reformat(const std::string csv_file, int lat_column, int long_co
 
 std::tuple<int, double, double, int> Canalysis::predictedLocations()
 {
-   Layer layer;
+   Layer layer(lat_values, long_values);
    layer.reduceLatValues();
    auto cluster = layer.dbscanCluster(5, 20);
    return std::make_tuple(std::get<0>(cluster), std::get<1>(cluster),
@@ -64,8 +64,7 @@ void Canalysis::model(const std::string lat_file, const std::string long_file)
       std::cout << "Error: Could not open latitude file." << std::endl;
       exit(EXIT_FAILURE);
    } else {
-      while (!if_lat.eof()){
-         if_lat >> temp_lat;
+      while (if_lat >> temp_lat){
          lat_values.push_back(temp_lat);
       }
    }
@@ -74,13 +73,12 @@ void Canalysis::model(const std::string lat_file, const std::string long_file)
       std::cout << "Error: Could not open longitude file." << std::endl;
       exit(EXIT_FAILURE);
    } else {
-      while (!if_long.eof()){
-         if_long >> temp_long;
+      while (if_long >> temp_long){
          long_values.push_back(temp_long);
       }
    }
    auto prediction = predictedLocations();
-   Writer writer("templates/data/prediction.csv");
+   Writer writer(PFILE);
    writer.exportData(std::get<0>(prediction), std::get<1>(prediction),
                      std::get<2>(prediction), std::get<3>(prediction));
    //Parser parser;

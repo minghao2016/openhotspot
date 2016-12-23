@@ -18,6 +18,8 @@
 #include <vector>
 #include <tuple>
 
+#define PFILE "./data/prediction.csv"
+
 namespace canalysis {
 
 class Canalysis {
