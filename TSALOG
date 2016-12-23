@@ -2,6 +2,7 @@ Thu Dec 22, 2016
 ----------------
 - Removed Parser (Added to canalysis file since the file was small and was not producing desired results)
 - Worked on layer and canalysis files.
+- Got parser to finally work.
 
 Web Dec 21, 2016
 ----------------

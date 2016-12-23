@@ -53,5 +53,5 @@ int main(int argc, char **argv){
       getVersion();
    }*/
 
-   canalysis.model("../test_latitudes.txt", "../test_longitudes.txt");
+   canalysis.model("../data/test_latitudes.txt", "../data/test_longitudes.txt");
 }

@@ -18,7 +18,7 @@
 #include <vector>
 #include <tuple>
 
-#define PFILE "./data/prediction.csv"
+#define PFILE "../data/prediction.csv"
 
 namespace canalysis {
 
