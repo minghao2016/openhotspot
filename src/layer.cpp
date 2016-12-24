@@ -9,7 +9,6 @@
 */
 
 #include "layer.h"
-#include "utils.h"
 
 namespace canalysis {
 
@@ -18,20 +17,24 @@ Layer::Layer(std::vector<double> lat_values,
    : _lat_values(lat_values),
      _long_values(long_values)
 {
-   e_radius = 6371;
 }
 
 double haversine(Haversine& haver)
 {
-   double dlong = haver.long2 - haver.long1;
    double dlat = haver.lat2 - haver.lat1;
+   double dlong = haver.long2 - haver.long1;
+   double a = sin(dlat / 2) * sin(dlat / 2) + cos(haver.lat1);
+   double b = sin(dlong / 2) * sin(dlong / 2) + cos(haver.lat2);
+   double c = a * b;
+   double d = 2 * asin(sqrt(c));
+   return E_RADIUS * d;
 }
 
-double Layer::reduceLatValues()
+std::vector<double> Layer::reduceLatValues()
 {
 }
 
-double Layer::reduceLongValues()
+std::vector<double> Layer::reduceLongValues()
 {
 }
 
@@ -41,11 +44,11 @@ std::tuple<int, double, double, int> Layer::dbscanCluster(unsigned int eps,
    Haversine haver;
 }
 
-double Layer::expandCluster(unsigned int eps, unsigned int min_pts)
+std::vector<double> Layer::expandCluster(unsigned int eps, unsigned int min_pts)
 {
 }
 
-double Layer::regionQuery(unsigned int eps)
+std::vector<double> Layer::regionQuery(unsigned int eps)
 {
 }
 

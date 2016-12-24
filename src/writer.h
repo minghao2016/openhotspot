@@ -20,6 +20,7 @@ namespace canalysis {
 class Writer {
 private:
    std::ofstream prediction_file;
+   const std::string _csv_file;
 
 public:
    Writer(const std::string);

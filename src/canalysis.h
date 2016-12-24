@@ -17,8 +17,9 @@
 #include <sstream>
 #include <vector>
 #include <tuple>
+#include <math.h>
 
-#define PFILE "../data/prediction.csv"
+#define PREDICTION_FILE "../data/prediction.csv"
 
 namespace canalysis {
 

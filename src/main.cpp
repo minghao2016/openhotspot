@@ -51,7 +51,6 @@ int main(int argc, char **argv){
    if (_argv == "--reformat-file"){
    }
    if (_argv == "--version"){
-      getVersion();
    }*/
    Canalysis canalysis;
    canalysis.model("../data/test_latitudes.txt", "../data/test_longitudes.txt");

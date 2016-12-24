@@ -20,6 +20,8 @@
 #include <sstream>
 #include <math.h>
 
+#define E_RADIUS 6371
+
 namespace canalysis {
 
 struct Haversine {
@@ -33,18 +35,17 @@ class Layer {
 private:
    std::vector<double> _lat_values;
    std::vector<double> _long_values;
-   std::vector<double> lat_avg;
-   std::vector<double> long_avg;
-   int e_radius;
+   const std::vector<double> lat_avg;
+   const std::vector<double> long_avg;
 
 public:
    Layer(std::vector<double>, std::vector<double>);
    double haversine(Haversine&);
-   double reduceLatValues();
-   double reduceLongValues();
+   std::vector<double> reduceLatValues();
+   std::vector<double> reduceLongValues();
    std::tuple<int, double, double, int> dbscanCluster(unsigned int, unsigned int);
-   double expandCluster(unsigned int, unsigned int);
-   double regionQuery(unsigned int);
+   std::vector<double> expandCluster(unsigned int, unsigned int);
+   std::vector<double> regionQuery(unsigned int);
 };
 
 }

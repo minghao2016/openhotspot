@@ -12,7 +12,7 @@
 
 namespace canalysis {
 
-Writer::Writer(const std::string csv_file)
+Writer::Writer(const std::string csv_file) : _csv_file(csv_file)
 {
 }
 

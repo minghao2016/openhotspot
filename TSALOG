@@ -1,3 +1,9 @@
+Sat Dec 23, 2016
+----------------
+- Worked on layer to reduce values in lat and long vectors by discovering the mean of every 10 values while iterating through the entire file.
+- Deleted utils file since it will not be needed.
+- Deleted test folder since it was really only going to be for the parser and now it works fine.
+
 Fri Dec 23, 2016
 ----------------
 - Moved test data into data folder.
@@ -22,7 +28,7 @@ Tue Dec 20, 2016
 Mon Dec 19, 2016
 ----------------
 - Made some changes to the layer and server.
-- Fixed class constructors.
+- Fixed class constructors for all files with classes.
 - Fixed typos in files.
 
 Sun Dec 18, 2016
@@ -65,7 +71,7 @@ Sun Dec 4, 2016
 ---------------
 - Began working on neural network to process and sort through data.
 - Uploaded to Github.
-- Fixed a issues in the code.
+- Fixed bugs in code.
 
 Thur Dec 1, 2016
 ----------------
