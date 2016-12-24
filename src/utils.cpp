@@ -20,13 +20,8 @@ void percentConversion(const std::string crime, unsigned int value, unsigned int
       printf("%s - %.0f\n", crime.c_str(), percent);
    }
    else {
-      printf("%s - %.1f\n", crime.c_str(), percent);
+      printf("%s - %.2f\n", crime.c_str(), percent);
    }
-}
-
-void getVersion()
-{
-   std::cout << version << std::endl;
 }
 
 } // canalysis namespace

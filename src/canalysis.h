@@ -26,11 +26,14 @@ class Canalysis {
 private:
    double temp_lat;
    double temp_long;
+   std::string temp_crime;
    std::vector<double> lat_values;
    std::vector<double> long_values;
+   std::vector<std::string> crime_values;
 
 public:
    void exportCSVData(const std::string, int, int);
+   void crimePercentage(const std::string);
    std::tuple<int, double, double, int> predictedLocations();
    void model(const std::string, const std::string);
 };

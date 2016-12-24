@@ -23,36 +23,36 @@ using namespace canalysis;
 void usage(){
    std::cout
    << "usage: ./canalysis [--lat-file] [--long-file]\n"
-   << "                [--reformat-file] [--version]\n"
+   << "                   [--crime-file] [--reformat-file]\n"
+   << "                   [--version]\n\n"
    << "These are the current Canalysis commands to use:\n\n"
    << "  --lat-file                Reformated latitude file.\n"
    << "  --long-file               Reformated longitude file.\n"
+   << "  --crime-file              Reformated crime file.\n"
    << "  --reformat-file           Reformat criminal CSV data.\n"
    << "  --version                 Current version of Canalysis\n"
    << std::endl;
 }
 
 int main(int argc, char **argv){
-   Canalysis canalysis;
-
    /*if (argc <= 1) {
       usage();
    }
-
    std::string _argv = argv[1];
    if (_argv == "--help"){
       usage();
    }
-   if (_argv == "--reformat-file"){
-   }
    if (_argv == "--lat-file"){
    }
-   if (_args == "--long-file"){
+   if (_argv == "--long-file"){
+   }
+   if (_argv == "--crime-file"){
+   }
+   if (_argv == "--reformat-file"){
    }
    if (_argv == "--version"){
       getVersion();
    }*/
-
-   //canalysis.model("../data/test_latitudes.txt", "../data/test_longitudes.txt");
-   canalysis.exportCSVData("../data/test.csv", 9, 11);
+   Canalysis canalysis;
+   canalysis.model("../data/test_latitudes.txt", "../data/test_longitudes.txt");
 }

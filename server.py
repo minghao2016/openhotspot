@@ -21,16 +21,14 @@ class Server(object):
     Summary: Parses predicted CSV files created by the C++ framework. Then displays the predicted
     clusters on the UI.
     """
-    def __init__(self, csvfile=None, port=None):
+    def __init__(self, csvfile=None):
         self.csvfile = csvfile
-        self.port = port
 
-        # Cluster radius in miles
         self.eps = 5
         self.min_points = 20
 
     def _parse_csvfile(self):
-        column = collections.defaultdict(list())
+        column = collections.defaultdict(list)
 
         with open(self.csvfile, "r") as csvfile:
             reader = csv.DictReader(csvfile)
@@ -47,9 +45,13 @@ class Server(object):
         iterates through the points column and compares which clusters have the highest amount of points,
         those clusters are then marked as a high probability for criminal activity to occur within those clusters.
         """
-        clusters, rad_center, points = self._parse_csvfile()
+        return flask.render_template("base.html")
+
+    def main(self):
+        app.run(host="0.0.0.0",
+                port=9999,
+                debug=False)
 
 if __name__ == '__main__':
-    server = Server(csvfile="test.csv",
-                    port="0.0.0.0")
-    server._plot_variances()
+    server = Server(csvfile="")
+    server.main()

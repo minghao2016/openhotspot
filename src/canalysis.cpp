@@ -37,6 +37,33 @@ void Canalysis::exportCSVData(const std::string csv_file,
          if (lat_c.empty() || long_c.empty()){
             std::cout << "Error: One or more columns are empty." << std::endl;
          }
+         std::ofstream exported_lat("../data/latitudes.txt");
+         if (!exported_lat.is_open()){
+            std::cout << "Error: Could not write latitudes file." << std::endl;
+            exit(EXIT_FAILURE);
+         } else {
+            exported_lat << lat_c << std::endl;
+         }
+         std::ofstream exported_long("../data/longitudes.txt");
+         if (!exported_long.is_open()){
+            std::cout << "Error: Could not write longitudes file." << std::endl;
+            exit(EXIT_FAILURE);
+         } else {
+            exported_long << long_c << std::endl;
+         }
+      }
+   }
+}
+
+void Canalysis::crimePercentage(const std::string crime_file)
+{
+   std::ifstream if_crime(crime_file);
+   if (!if_crime.is_open()){
+      std::cout << "Error: Could not open crime file." << std::endl;
+      exit(EXIT_FAILURE);
+   } else {
+      while (if_crime >> temp_crime){
+         crime_values.push_back(temp_crime);
       }
    }
 }

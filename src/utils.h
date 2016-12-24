@@ -19,7 +19,6 @@
 namespace canalysis {
 
 void percentConversion(const std::string, unsigned int, unsigned int);
-void getVersion();
 
 }
 
