@@ -8,7 +8,7 @@
  * information about using this program.
 */
 
-#include "client.h"
+#include "hs_client.h"
 
 namespace hotspot {
 

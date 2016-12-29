@@ -14,7 +14,7 @@
 
 #include "hotspot.h"
 
-using namespace canalysis;
+using namespace hotspot;
 
 void usage(){
    std::cout
