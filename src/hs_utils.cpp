@@ -8,9 +8,8 @@
  * information about using this program.
 */
 
-#ifndef _VERSION_H_
-#define _VERSION_H_
+#include "hs_utils.h"
 
-const std::string version = "OpenHotSpot Framework 0.1.1";
+namespace hotspot {
 
-#endif
+} // hotspot namespace

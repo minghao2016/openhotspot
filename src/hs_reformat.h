@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * Canalysis (Crime Analysis) 0.1.1
+ * OpenHotSpot Framework 0.1.1
  * Copyright (c) 2016, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -8,8 +8,8 @@
  * information about using this program.
 */
 
-#ifndef _REFORMAT_H_
-#define _REFORMAT_H_
+#ifndef _HS_REFORMAT_H_
+#define _HS_REFORMAT_H_
 
 #include <iostream>
 #include <vector>
@@ -17,7 +17,7 @@
 #include <sstream>
 #include <fstream>
 
-namespace canalysis {
+namespace hotspot {
 
 class Reformat {
 private:

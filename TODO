@@ -1,0 +1,7 @@
+TODO
+----
+- Finish layer with complete functionality of db clustering.
+- Finish client file for embedding a web application into the framework.
+- Add a modular atmosphere to the framework with more embeddings, but with
+the use of less third parties.
+- Make framework completely UI driven (Refer to second TODO)

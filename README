@@ -1,10 +1,9 @@
-                     Canalysis (Crime Analysis)
-                     --------------------------
+                     OpenHotSpot Framework 0.1.1
+                     ===========================
 
-Canalysis is a machine learning, crime analysis framework written in
-C++11 which is built for speed and scalability of pattern recognition,
-analysis of crime trends, and predicting possible, future locations of
-criminal activity.
+OpenHotSpot is a machine learning, crime analysis framework written in C++11
+and built for speed and scalability of pattern recognition and locations based
+predicting.
 
 About
 -----

@@ -8,9 +8,16 @@
  * information about using this program.
 */
 
-#ifndef _VERSION_H_
-#define _VERSION_H_
+#ifndef _HS_CLIENT_H_
+#define _HS_CLIENT_H_
 
-const std::string version = "OpenHotSpot Framework 0.1.1";
+namespace hotspot {
+
+class Client {
+public:
+   Client();
+};
+
+}
 
 #endif

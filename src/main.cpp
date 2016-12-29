@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * Canalysis (Crime Analysis) 0.1.1
+ * OpenHotSpot Framework 0.1.1
  * Copyright (c) 2016, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -9,27 +9,24 @@
 */
 
 // main.cpp file just holds command line arguments.
-// The file canalysis.cpp is the file that holds
+// The file hotspot.cpp is the file that holds
 // the actual model of the framework.
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
-
-#include "canalysis.h"
+#include "hotspot.h"
 
 using namespace canalysis;
 
 void usage(){
    std::cout
-   << "usage: ./canalysis [--lat-file] [--long-file]\n"
-   << "                   [--crime-file] [--reformat-file]\n"
-   << "                   [--version]\n\n"
-   << "These are the current Canalysis commands to use:\n\n"
+   << "usage: ./hotspot [--lat-file] [--long-file]\n"
+   << "                 [--crime-file] [--reformat-file]\n"
+   << "                 [--version]\n\n"
+   << "These are the current OpenHotSpot commands to use:\n\n"
    << "  --lat-file                Reformated latitude file.\n"
    << "  --long-file               Reformated longitude file.\n"
    << "  --crime-file              Reformated crime file.\n"
    << "  --reformat-file           Reformat criminal CSV data.\n"
+   << "  --crime-percentage        View the percentages of crimes.\n"
    << "  --version                 Current version of Canalysis\n"
    << std::endl;
 }
@@ -52,6 +49,7 @@ int main(int argc, char **argv){
    }
    if (_argv == "--version"){
    }*/
-   Canalysis canalysis;
-   canalysis.model("../data/test_latitudes.txt", "../data/test_longitudes.txt");
+   HotSpot hotspot;
+   hotspot.model("../data/test_latitudes.txt", "../data/test_longitudes.txt");
+   //hotspot.reformat("../data/test.csv", 1, 10, 9);
 }

@@ -1,5 +1,5 @@
 # BSD 3-Clause License
-# Canalysis (Crime Analysis) 0.1.1
+# OpenHotSpot Framework 0.1.1
 # Copyright (c) 2016, Matt Perez, all rights reserved.
 #
 # This source is licensed under the BSD 3-Clause License.
@@ -36,7 +36,12 @@ class Server(object):
                 for info, value in row.iteritems():
                     column[info].append(value)
 
-        return column["clusters"], column["radius_center"], column["points"]
+        return {
+        "clusters": column["clusters"],
+        "radius_center": column["radius_center"],
+        "points": column["points"]
+        "types": column["types"]
+        }
 
     @app.route("/")
     def _plot_variances(self):

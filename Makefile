@@ -1,9 +1,11 @@
+PROJECT=hotspot
+PROJECT_DESCRIPTION=to catch some fools lurking...
+
 CXX=g++
 CXXFLAGS=-g -Wall -std=c++11
 INCLUDE=-I
 
-PROJECT=canalysis
-FILES=src/canalysis.cpp src/layer.cpp src/writer.cpp src/utils.cpp src/client.cpp src/reformat.cpp
+FILES=src/hotspot.cpp src/hs_client.cpp src/hs_export.cpp src/hs_layer.cpp src/hs_reformat.cpp src/hs_utils.cpp
 
 .PHONY: clean
 
@@ -14,3 +16,7 @@ clean:
 	find . -name '*.DS_Store' -type f -delete
 	rm -r $(PROJECT).dSYM
 	rm -r $(PROJECT)
+
+# Remove later
+total-lines:
+	find . -name '*.cpp' | xargs wc -l

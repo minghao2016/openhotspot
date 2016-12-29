@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * Canalysis (Crime Analysis) 0.1.1
+ * OpenHotSpot Framework 0.1.1
  * Copyright (c) 2016, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -8,22 +8,26 @@
  * information about using this program.
 */
 
-#ifndef _CANALYSIS_H_
-#define _CANALYSIS_H_
+#ifndef _HOTSPOT_H_
+#define _HOTSPOT_H_
 
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include <tuple>
 #include <math.h>
 
+#include "hs_utils.h"
+
+#define LATITUDES_FILE "../data/latitudes.txt"
+#define LONGITUDES_FILE "../data/longitudes.txt"
+#define CRIMES_FILE "../data/crimes.txt"
 #define PREDICTION_FILE "../data/prediction.csv"
 
-namespace canalysis {
+namespace hotspot {
 
-class Canalysis {
+class HotSpot {
 private:
    double temp_lat;
    double temp_long;
@@ -33,10 +37,11 @@ private:
    std::vector<std::string> crime_values;
 
 public:
-   void exportCSVData(const std::string, int, int);
-   void crimePercentage(const std::string);
-   std::tuple<int, double, double, int> predictedLocations();
-   void model(const std::string, const std::string);
+   void reformatCSVFile(const std::string&, unsigned int, unsigned int, unsigned int);
+   void crimePercentage(const std::string&);
+   utils_tuple predictedClusters();
+   void launchWebClient();
+   void model(const std::string&, const std::string&);
 };
 
 }

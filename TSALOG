@@ -1,8 +1,22 @@
+Thur Dec 29, 2016
+-----------------
+- Worked on clustering algorithm in layer.
+- Cleaned up files.
+- Changed name to OpenHotSpot.
+
+Sun Dec 25, 2016
+----------------
+- Worked on reducing lat and long values (Didn't get very far).
+- Cleaned up the canalysis file.
+- Added global variables to utils.
+
 Sat Dec 23, 2016
 ----------------
-- Worked on layer to reduce values in lat and long vectors by discovering the mean of every 10 values while iterating through the entire file.
-- Deleted utils file since it will not be needed.
+- Worked on layer to reduce values in lat and long vectors by discovering the mean of every 10
+values while iterating through the entire file.
 - Deleted test folder since it was really only going to be for the parser and now it works fine.
+- Added TODO file to keep track of what needs to be finished for the beta release.
+- Renamed writer to export.
 
 Fri Dec 23, 2016
 ----------------

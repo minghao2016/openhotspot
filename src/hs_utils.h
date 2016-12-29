@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * Canalysis (Crime Analysis) 0.1.1
+ * OpenHotSpot Framework 0.1.1
  * Copyright (c) 2016, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -8,8 +8,16 @@
  * information about using this program.
 */
 
-#include "client.h"
+#ifndef _HS_UTILS_H_
+#define _HS_UTILS_H_
 
-namespace canalysis {
+#include <vector>
+#include <tuple>
 
-} // canalysis namespace
+namespace hotspot {
+
+typedef std::tuple<unsigned int, double, double, unsigned int> utils_tuple;
+
+}
+
+#endif
