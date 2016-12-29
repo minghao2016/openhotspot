@@ -24,7 +24,7 @@ std::istream& operator>>(std::istream& file, Reformat& ref)
 }
 
 void HotSpot::reformatCSVFile(const std::string& csv_file, unsigned int crime_column,
-                                unsigned int lat_column, unsigned int long_column)
+                              unsigned int lat_column, unsigned int long_column)
 {
    Reformat ref;
    std::ifstream if_csv(csv_file);
