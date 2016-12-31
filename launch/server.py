@@ -24,9 +24,6 @@ class Server(object):
     def __init__(self, csvfile=None):
         self.csvfile = csvfile
 
-        self.eps = 5
-        self.min_points = 20
-
     def _parse_csvfile(self):
         column = collections.defaultdict(list)
 
@@ -58,5 +55,5 @@ class Server(object):
                 debug=False)
 
 if __name__ == '__main__':
-    server = Server(csvfile="")
+    server = Server(csvfile="data/prediction.csv")
     server.main()

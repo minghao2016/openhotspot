@@ -35,7 +35,7 @@ void Layer::reduceLongValues()
 {
 }
 
-utils_tuple Layer::dbscan(float eps, unsigned int min_pts)
+utils_tuple Layer::dbscan(float eps, unsigned int min_pts, unsigned int min_samples)
 {
    double c = 0.0;
    int dataset_size = clusters[0].lat_pts.size();

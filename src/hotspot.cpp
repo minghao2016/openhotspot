@@ -13,6 +13,7 @@
 #include "hs_layer.h"
 #include "hs_export.h"
 #include "hs_client.h"
+#include "version.h"
 
 namespace hotspot {
 
@@ -83,7 +84,8 @@ void HotSpot::crimePercentage(const std::string& crime_file)
    }
 }
 
-utils_tuple HotSpot::predictedClusters(float eps, unsigned int min_pts)
+utils_tuple HotSpot::predictedClusters(double eps, unsigned int min_pts,
+                                       unsigned int min_samples)
 {
    std::vector<Coordinates> coordinates;
    coordinates.push_back(Coordinates());
@@ -93,7 +95,7 @@ utils_tuple HotSpot::predictedClusters(float eps, unsigned int min_pts)
    Layer layer(coordinates);
    layer.reduceLatValues();
    //layer.reduceLongValues();
-   utils_tuple dbscan_results = layer.dbscan(eps, min_pts);
+   utils_tuple dbscan_results = layer.dbscan(eps, min_pts, min_samples);
    return std::make_tuple(std::get<0>(dbscan_results), std::get<1>(dbscan_results),
                           std::get<2>(dbscan_results), std::get<3>(dbscan_results));
 }
@@ -103,7 +105,7 @@ void HotSpot::launchWebClient()
 }
 
 void HotSpot::model(const std::string& lat_file, const std::string& long_file,
-                    float eps, unsigned int min_pts)
+                    double eps, unsigned int min_pts, unsigned int min_samples)
 {
    std::ifstream if_lat(lat_file);
    if (!if_lat.is_open()){
@@ -123,7 +125,7 @@ void HotSpot::model(const std::string& lat_file, const std::string& long_file,
          long_values.push_back(temp_long);
       }
    }
-   utils_tuple prediction = predictedClusters(eps, min_pts);
+   utils_tuple prediction = predictedClusters(eps, min_pts, min_samples);
    Export expt(PREDICTION_FILE);
    expt.exportPredictedData(std::get<0>(prediction), std::get<1>(prediction),
                             std::get<2>(prediction), std::get<3>(prediction));

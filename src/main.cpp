@@ -17,7 +17,8 @@
 
 using namespace hotspot;
 
-void usage(){
+void usage()
+{
    std::cout
    << "usage: ./hotspot [--lat-file] [--long-file] [--reformat-file]\n"
    << "                 [--crime-column] [--crime-column] [--lat-column]\n"
@@ -32,7 +33,8 @@ void usage(){
    << "  --long-column             CSV longitude column number.\n"
    << "\nCluster Parameters:\n"
    << "  --eps                     [default: 3.3] Distance between two points.\n"
-   << "  --min-pts                 [default: 10] Minimum points in a cluster\n"
+   << "  --min-pts                 [default: 10] Minimum points in a cluster.\n"
+   << "  --min-samples             [default: 50] Minimum number of clusters.\n"
    << "\nTerminal View:\n"
    << "  --crime-percentage        <crime filename> View the percentages of crimes.\n"
    << "  --version                 Current version of OpenHotSpot.\n"
@@ -44,7 +46,8 @@ void usage(){
    << std::endl;
 }
 
-int main(int argc, char **argv){
+int main(int argc, char **argv)
+{
    /*if (argc <= 1) {
       usage();
    }
@@ -69,6 +72,8 @@ int main(int argc, char **argv){
    }
    if (_argv == "--min-pts"){
    }
+   if (_argv == "--min-samples"){
+   }
    if (_argv == "--crime-percentage"){
    }
    if (_argv == "--version"){
@@ -76,6 +81,6 @@ int main(int argc, char **argv){
    }*/
 
    HotSpot hotspot;
-   hotspot.model("../data/test_latitudes.txt", "../data/test_longitudes.txt", 3.3, 10);
-   //hotspot.reformat("../data/test.csv", 1, 10, 9);
+   hotspot.model("../data/test_latitudes.txt", "../data/test_longitudes.txt", 3.3, 10, 50);
+   //hotspot.reformat("../data/test_sf_dataset.csv", 1, 10, 9);
 }

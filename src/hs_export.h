@@ -21,10 +21,11 @@ namespace hotspot {
 class Export {
 private:
    std::ofstream prediction_file;
-   const std::string _csv_file;
+   const std::string& csv_file;
 
 public:
    Export(const std::string&);
+   ~Export();
    void exportPredictedData(unsigned int, double, double, unsigned int);
 };
 

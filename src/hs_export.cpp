@@ -12,8 +12,12 @@
 
 namespace hotspot {
 
-Export::Export(const std::string& csv_file):
-   _csv_file(csv_file)
+Export::Export(const std::string& _csv_file):
+   csv_file(_csv_file)
+{
+}
+
+Export::~Export()
 {
 }
 

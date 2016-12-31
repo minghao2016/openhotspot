@@ -1,5 +1,4 @@
 PROJECT=hotspot
-PROJECT_DESCRIPTION=to catch some fools lurking...
 
 CXX=g++
 CXXFLAGS=-g -Wall -std=c++11

@@ -39,7 +39,7 @@ public:
 
    void reduceLatValues();
    void reduceLongValues();
-   utils_tuple dbscan(float, unsigned int);
+   utils_tuple dbscan(float, unsigned int, unsigned int);
    void expandCluster(unsigned int, double, float, unsigned int);
    double regionQuery(unsigned int, float);
 

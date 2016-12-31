@@ -45,7 +45,7 @@ void Layer::reduceLongValues()
 {
 }
 
-utils_tuple Layer::dbscan(float eps, unsigned int min_pts)
+utils_tuple Layer::dbscan(double eps, unsigned int min_pts, unsigned int min_samples)
 {
    double c = 0.0;
    // Both lat and long are the same size, so either can be used
@@ -54,11 +54,11 @@ utils_tuple Layer::dbscan(float eps, unsigned int min_pts)
    }
 }
 
-void Layer::expandCluster(unsigned int p, double c, float eps, unsigned int min_pts)
+void Layer::expandCluster(unsigned int p, double c, double eps, unsigned int min_pts)
 {
 }
 
-double Layer::regionQuery(unsigned int p, float eps)
+double Layer::regionQuery(unsigned int p, double eps)
 {
    int dataset_size = clusters[0].lat_pts.size();
    // Return all points within P's neighborhood
