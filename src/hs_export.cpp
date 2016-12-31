@@ -17,7 +17,7 @@ Export::Export(const std::string& csv_file):
 {
 }
 
-void Export::exportPredictedData(unsigned int clusters,
+void Export::exportPredictedData(unsigned int n_clusters,
                                  double center_lat,
                                  double center_long,
                                  unsigned int pts)

@@ -1,3 +1,11 @@
+Fri Dec 30, 2016
+----------------
+- Added structs to utils for vector parameters in layer file.
+- Changed some variable names in files.
+- Added test directory for future tests to framework
+- Removed euclidean metric in layer since it is not need.
+- Made launch directory for python web server.
+
 Thur Dec 29, 2016
 -----------------
 - Worked on clustering algorithm in layer.
