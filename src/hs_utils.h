@@ -16,6 +16,38 @@
 
 namespace hotspot {
 
+struct Coordinates {
+   std::vector<double> lat_pts;
+   std::vector<double> long_pts;
+};
+
+struct OutputCenters {
+   std::vector<double> lat_pts;
+   std::vector<double> long_pts;
+};
+
+struct NoisePts {
+   std::vector<double> lat_pts;
+   std::vector<double> long_pts;
+};
+
+struct NeighborPts {
+   std::vector<double> lat_pts;
+   std::vector<double> long_pts;
+};
+
+struct VistedPts {
+   std::vector<bool> lat_pts;
+   std::vector<bool> long_pts;
+};
+
+enum PriorityTypes {
+   urgent = 1,
+   high = 2,
+   medium = 3,
+   low = 4
+};
+
 typedef std::tuple<unsigned int, double, double, unsigned int> utils_tuple;
 
 }

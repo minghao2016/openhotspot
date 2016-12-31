@@ -1,15 +1,5 @@
-/*
- * BSD 3-Clause License
- * OpenHotSpot Framework 0.1.1
- * Copyright (c) 2016, Matt Perez, all rights reserved.
- *
- * This source is licensed under the BSD 3-Clause License.
- * The license can be found in the main directory for more
- * information about using this program.
-*/
-
-#ifndef _HS_LAYER_H_
-#define _HS_LAYER_H_
+#ifndef _TEST_HS_LAYER_H_
+#define _TEST_HS_LAYER_H_
 
 #include <iostream>
 #include <vector>
@@ -20,7 +10,7 @@
 #include <math.h>
 #include <map>
 
-#include "hs_utils.h"
+#include "../src/hs_utils.h"
 
 #define PI 3.14159265
 #define EARTH_RADIUS 6371

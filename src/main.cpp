@@ -13,21 +13,34 @@
 // the actual model of the framework.
 
 #include "hotspot.h"
+#include "version.h"
 
 using namespace hotspot;
 
 void usage(){
    std::cout
-   << "usage: ./hotspot [--lat-file] [--long-file]\n"
-   << "                 [--crime-file] [--reformat-file]\n"
-   << "                 [--version]\n\n"
-   << "These are the current OpenHotSpot commands to use:\n\n"
-   << "  --lat-file                Reformated latitude file.\n"
-   << "  --long-file               Reformated longitude file.\n"
-   << "  --crime-file              Reformated crime file.\n"
-   << "  --reformat-file           Reformat criminal CSV data.\n"
-   << "  --crime-percentage        View the percentages of crimes.\n"
-   << "  --version                 Current version of Canalysis\n"
+   << "usage: ./hotspot [--lat-file] [--long-file] [--reformat-file]\n"
+   << "                 [--crime-column] [--crime-column] [--lat-column]\n"
+   << "                 [--long-column] [--eps] [--min-pts] [--version]\n"
+   << "\nFile Handler:\n"
+   << "  --lat-file                <lat filename> Reformated latitude file.\n"
+   << "  --long-file               <long filename> Reformated longitude file.\n"
+   << "\nReformat Data:\n"
+   << "  --reformat-file           <csv filename> Reformat criminal CSV data.\n"
+   << "  --crime-column            CSV crime column number.\n"
+   << "  --lat-column              CSV latitude column number.\n"
+   << "  --long-column             CSV longitude column number.\n"
+   << "\nCluster Parameters:\n"
+   << "  --eps                     [default: 3.3] Distance between two points.\n"
+   << "  --min-pts                 [default: 10] Minimum points in a cluster\n"
+   << "\nTerminal View:\n"
+   << "  --crime-percentage        <crime filename> View the percentages of crimes.\n"
+   << "  --version                 Current version of OpenHotSpot.\n"
+   << "\nExample Usage:\n"
+   << "  ./hotspot --lat-file latitudes.txt --long-file longitudes.txt --crime-file crimes.txt\n"
+   << "            --eps 10 --min-pts 3\n"
+   << "  ./hotspot --reformat-file dataset.csv --crime-column 1 --lat-column 10 --long-column 9\n"
+   << "  ./hotspot --crimePercentage crimes.txt"
    << std::endl;
 }
 
@@ -35,6 +48,7 @@ int main(int argc, char **argv){
    /*if (argc <= 1) {
       usage();
    }
+
    std::string _argv = argv[1];
    if (_argv == "--help"){
       usage();
@@ -43,13 +57,25 @@ int main(int argc, char **argv){
    }
    if (_argv == "--long-file"){
    }
-   if (_argv == "--crime-file"){
-   }
    if (_argv == "--reformat-file"){
    }
+   if (_argv == "--crime-column"){
+   }
+   if (_argv == "--lat-column"){
+   }
+   if (_argv == "--long-column"){
+   }
+   if (_argv == "--eps"){
+   }
+   if (_argv == "--min-pts"){
+   }
+   if (_argv == "--crime-percentage"){
+   }
    if (_argv == "--version"){
+      std::cout << version << std::endl;
    }*/
+
    HotSpot hotspot;
-   hotspot.model("../data/test_latitudes.txt", "../data/test_longitudes.txt");
+   hotspot.model("../data/test_latitudes.txt", "../data/test_longitudes.txt", 3.3, 10);
    //hotspot.reformat("../data/test.csv", 1, 10, 9);
 }

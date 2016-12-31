@@ -39,9 +39,9 @@ private:
 public:
    void reformatCSVFile(const std::string&, unsigned int, unsigned int, unsigned int);
    void crimePercentage(const std::string&);
-   utils_tuple predictedClusters();
+   utils_tuple predictedClusters(float, unsigned int);
    void launchWebClient();
-   void model(const std::string&, const std::string&);
+   void model(const std::string&, const std::string&, float, unsigned int);
 };
 
 }
