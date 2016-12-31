@@ -76,10 +76,14 @@ void HotSpot::crimePercentage(const std::string& crime_file)
       }
       //float percent = value / crime_values.size() * 10;
       //if (ceil(percent) == 0) {
-      //   printf("%s - %.0f\n", crime_values.c_str(), percent);
+      //   for (unsigned int i = 0; i < crime_values.size(); ++i){
+      //      printf("%s - %.0f\n", crime_values[i].c_str(), percent);
+      //   }
       //}
       //else {
-      //   printf("%s - %.2f\n", crime_values.c_str(), percent);
+      //   for (unsigned int i = 0; i < crime_values.size(); ++i){
+      //      printf("%s - %.2f\n", crime_values[i].c_str(), percent);
+      //   }
       //}
    }
 }
