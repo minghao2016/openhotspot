@@ -13,7 +13,6 @@
 // the actual model of the framework.
 
 #include "hotspot.h"
-#include "version.h"
 
 using namespace hotspot;
 
@@ -32,7 +31,7 @@ void usage()
    << "  --lat-column              CSV latitude column number.\n"
    << "  --long-column             CSV longitude column number.\n"
    << "\nCluster Parameters:\n"
-   << "  --eps                     [default: 3.3] Distance between two points.\n"
+   << "  --eps                     [default: 3.3 = 3300m] Distance between two points.\n"
    << "  --min-pts                 [default: 10] Minimum points in a cluster.\n"
    << "  --min-samples             [default: 50] Minimum number of clusters.\n"
    << "\nTerminal View:\n"

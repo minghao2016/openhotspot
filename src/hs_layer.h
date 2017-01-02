@@ -16,28 +16,26 @@
 #include <string>
 #include <algorithm>
 #include <numeric>
-#include <sstream>
 #include <math.h>
 #include <map>
 
 #include "hs_utils.h"
 
-#define PI 3.14159265
-#define EARTH_RADIUS 6371
-
 namespace hotspot {
 
 class Layer {
 private:
+   const float PI = 3.14159265;
+   const int EARTH_RADIUS = 6371;
+
    std::vector<Coordinates> clusters;
 
    std::vector<NeighborPts> neighbor_pts;
+   std::vector<BorderPts> border_pts;
    std::vector<NoisePts> noise_pts;
    std::vector<VistedPts> visted_pts;
 
-   std::vector<int> output_pts;
    std::vector<OutputCenters> output_centers;
-   std::vector<std::string> output_types;
 
 public:
    Layer(std::vector<Coordinates>);
@@ -49,11 +47,11 @@ public:
 
    void reduceLatValues();
    void reduceLongValues();
+   std::vector<double> expandCluster(unsigned int, double, double,
+                                     unsigned int, unsigned int);
+   std::vector<int> regionQuery(unsigned int, double);
    utils_tuple dbscan(double, unsigned int, unsigned int);
-   void expandCluster(unsigned int, double, double, unsigned int);
-   double regionQuery(unsigned int, double);
-
-
+   std::vector<std::string> clusterType();
 };
 
 }

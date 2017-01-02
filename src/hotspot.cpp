@@ -97,7 +97,7 @@ utils_tuple HotSpot::predictedClusters(double eps, unsigned int min_pts,
    coordinates[0].lat_pts = lat_values;
    coordinates[1].long_pts = long_values;
    Layer layer(coordinates);
-   layer.reduceLatValues();
+   //layer.reduceLatValues();
    //layer.reduceLongValues();
    utils_tuple dbscan_results = layer.dbscan(eps, min_pts, min_samples);
    return std::make_tuple(std::get<0>(dbscan_results), std::get<1>(dbscan_results),

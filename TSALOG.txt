@@ -1,3 +1,11 @@
+Sun Jan 1, 2017
+---------------
+- Worked on layer (Still haven't finished).
+- Removed Makefile and added CMakeLists.txt file for installation.
+- Added ETHICS.txt file to explain the ethical usage of the software.
+- Updated cmake version from 2.6 to 3.0.0.
+- Updated TODO file.
+
 Fri Dec 30, 2016
 ----------------
 - Added structs to utils for vector parameters in layer file.

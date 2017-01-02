@@ -12,10 +12,10 @@
 #define _HOTSPOT_H_
 
 #include <iostream>
+#include <vector>
 #include <string>
 #include <fstream>
 #include <sstream>
-#include <vector>
 #include <math.h>
 
 #include "hs_utils.h"

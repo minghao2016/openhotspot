@@ -11,6 +11,10 @@
 #ifndef _HS_CLIENT_H_
 #define _HS_CLIENT_H_
 
+#include <iostream>
+#include <vector>
+#include <string>
+
 namespace hotspot {
 
 class Client {

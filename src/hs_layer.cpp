@@ -45,6 +45,29 @@ void Layer::reduceLongValues()
 {
 }
 
+std::vector<int> Layer::regionQuery(unsigned int p, double eps)
+{
+   int dataset_size = clusters[0].lat_pts.size();
+   std::vector<int> output_pts;
+   for (unsigned int i = 0; i < dataset_size; ++i){
+      // The metric here is haversine since we are working with coordinates
+      if (haversineMetric(clusters[0].lat_pts[i],
+                          clusters[1].long_pts[i],
+                          clusters[0].lat_pts[p],
+                          clusters[1].long_pts[p]) <= eps){
+         output_pts.push_back(i);
+      }
+   }
+   // Return all points within p's eps-neighborhood
+   return output_pts;
+}
+
+std::vector<double> Layer::expandCluster(unsigned int p, double c, double eps,
+                                         unsigned int min_pts, unsigned int min_samples)
+{
+   int dataset_size = clusters[0].lat_pts.size();
+}
+
 utils_tuple Layer::dbscan(double eps, unsigned int min_pts, unsigned int min_samples)
 {
    double c = 0.0;
@@ -54,19 +77,10 @@ utils_tuple Layer::dbscan(double eps, unsigned int min_pts, unsigned int min_sam
    }
 }
 
-void Layer::expandCluster(unsigned int p, double c, double eps, unsigned int min_pts)
+std::vector<std::string> Layer::clusterType()
 {
-}
-
-double Layer::regionQuery(unsigned int p, double eps)
-{
-   int dataset_size = clusters[0].lat_pts.size();
-   // Return all points within P's neighborhood
-   for (unsigned int i = 0; i < dataset_size; ++i){
-      if (haversineMetric(clusters[0].lat_pts[i], clusters[1].long_pts[i],
-                          clusters[0].lat_pts[p], clusters[1].long_pts[p]) <= eps){
-      }
-   }
+   PriorityTypes* pt;
+   std::vector<std::string> output_types;
 }
 
 } // hotspot namespace
