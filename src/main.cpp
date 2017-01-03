@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotSpot Framework 0.1.1
+ * OpenHotSpot Framework 0.1.2
  * Copyright (c) 2016, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -34,12 +34,13 @@ void usage()
    << "  --eps                     [default: 3.3 = 3300m] Distance between two points.\n"
    << "  --min-pts                 [default: 10] Minimum points in a cluster.\n"
    << "  --min-samples             [default: 50] Minimum number of clusters.\n"
+   << "  --distance-metric         [default: haversine] Metric used to calculate distance.\n"
    << "\nTerminal View:\n"
    << "  --crime-percentage        <crime filename> View the percentages of crimes.\n"
    << "  --version                 Current version of OpenHotSpot.\n"
    << "\nExample Usage:\n"
    << "  ./hotspot --lat-file latitudes.txt --long-file longitudes.txt --crime-file crimes.txt\n"
-   << "            --eps 10 --min-pts 3 --min-samples 50\n"
+   << "            --eps 10 --min-pts 3 --min-samples 50 --distance-metric haversine\n"
    << "  ./hotspot --reformat-file dataset.csv --crime-column 1 --lat-column 10 --long-column 9\n"
    << "  ./hotspot --crimePercentage crimes.txt"
    << std::endl;
@@ -73,6 +74,8 @@ int main(int argc, char **argv)
    }
    if (_argv == "--min-samples"){
    }
+   if (_argv == "--distance-metric"){
+   }
    if (_argv == "--crime-percentage"){
    }
    if (_argv == "--version"){
@@ -80,6 +83,7 @@ int main(int argc, char **argv)
    }*/
 
    HotSpot hotspot;
-   hotspot.model("../data/test_latitudes.txt", "../data/test_longitudes.txt", 3.3, 10, 50);
+   hotspot.model("../data/test_latitudes.txt", "../data/test_longitudes.txt", 3.3, 10, 50,
+                 "haversine");
    //hotspot.reformat("../data/test_sf_dataset.csv", 1, 10, 9);
 }

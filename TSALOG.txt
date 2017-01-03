@@ -1,3 +1,11 @@
+Tue Jan 3, 2017
+---------------
+- Renamed layer to proper name (DBSCAN)
+- Added empty constructor to DBSCAN.
+- Added classification file.
+- Changed layer and classifications destructors to virtual destructors.
+- Version update (0.1.2).
+
 Sun Jan 1, 2017
 ---------------
 - Worked on layer (Still haven't finished).

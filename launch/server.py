@@ -1,5 +1,5 @@
 # BSD 3-Clause License
-# OpenHotSpot Framework 0.1.1
+# OpenHotSpot Framework 0.1.2
 # Copyright (c) 2016, Matt Perez, all rights reserved.
 #
 # This source is licensed under the BSD 3-Clause License.
@@ -17,10 +17,6 @@ app = flask.Flask(__name__)
 
 
 class Server(object):
-    """
-    Summary: Parses predicted CSV files created by the C++ framework. Then displays the predicted
-    clusters on the UI.
-    """
     def __init__(self, csvfile=None):
         self.csvfile = csvfile
 
@@ -35,23 +31,22 @@ class Server(object):
 
         return {
         "clusters": column["clusters"],
-        "radius_center": column["radius_center"],
+        "cluster_centers": column["cluster_centers"],
         "points": column["points"]
-        "types": column["types"]
+        "cluster_types": column["cluster_types"]
         }
 
     @app.route("/")
     def _plot_variances(self):
-        """Essentially, there are 3 columns in the predicted CSV file, the amount of clusters,
-        the radius center for those clusters, and the amount of points in the cluster. This functions
-        iterates through the points column and compares which clusters have the highest amount of points,
-        those clusters are then marked with a high probability for criminal activity to occur.
         """
+        """
+        parsed_file = self._parse_csvfile()
+
         return flask.render_template("base.html")
 
     def main(self):
         app.run(host="0.0.0.0",
-                port=9999,
+                port=1000,
                 debug=False)
 
 if __name__ == '__main__':

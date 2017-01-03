@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotSpot Framework 0.1.1
+ * OpenHotSpot Framework 0.1.2
  * Copyright (c) 2016, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -44,12 +44,6 @@ struct BorderPts
 {
    std::vector<double> lat_pts;
    std::vector<double> long_pts;
-};
-
-struct VistedPts
-{
-   std::vector<bool> lat_pts;
-   std::vector<bool> long_pts;
 };
 
 enum PriorityTypes

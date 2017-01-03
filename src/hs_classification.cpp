@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotSpot Framework 0.1.2
+ * OpenHotSpot Framework 0.1.1
  * Copyright (c) 2016, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -8,16 +8,17 @@
  * information about using this program.
 */
 
-#include "hs_client.h"
+#include "hs_classification.cpp"
 
-namespace hotspot {
+namespace HotSpot {
 
-Client::Client()
+Classification::Classification()
 {
 }
 
-Client::~Client()
+Classification::~Classification()
 {
 }
+
 
 } // hotspot namespace
