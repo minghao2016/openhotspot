@@ -30,13 +30,14 @@ private:
 
    std::vector<Coordinates> clusters;
 
-   std::vector<NeighborPts> neighbor_pts;
-   std::vector<BorderPts> border_pts;
-   std::vector<NoisePts> noise_pts;
+   std::vector<double> neighbor_pts;
+   std::vector<double> rq_neighbor_pts;
+   std::vector<double> border_pts;
+   std::vector<double> noise_pts;
+   std::vector<bool> visted_pts;
 
    std::vector<OutputCenters> output_centers;
-
-   std::vector<bool> visted_pts;
+   std::vector<std::string> output_types;
    std::vector<int> output_pts;
 
 public:
@@ -49,13 +50,14 @@ public:
    double haversineMetric(double, double, double, double);
    double euclideanMetric(double, double, double, double);
 
-   void reduceLatValues();
-   void reduceLongValues();
-   std::vector<int> regionQuery(unsigned int, double, std::string distance_metric);
+   void reduceLatValues(unsigned int);
+   void reduceLongValues(unsigned int);
+   utils_tuple dbscan(double, unsigned int, unsigned int, std::string);
    std::vector<double> expandCluster(unsigned int, double, double,
                                      unsigned int, unsigned int);
-   utils_tuple dbscan(double, unsigned int, unsigned int, std::string);
-   std::vector<std::string> clusterType();
+   std::vector<int> regionQuery(unsigned int, double, std::string);
+   float error();
+   std::vector<std::string> clusterType(PriorityTypes*);
 };
 
 }

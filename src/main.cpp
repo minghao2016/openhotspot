@@ -40,7 +40,7 @@ void usage()
    << "  --version                 Current version of OpenHotSpot.\n"
    << "\nExample Usage:\n"
    << "  ./hotspot --lat-file latitudes.txt --long-file longitudes.txt --crime-file crimes.txt\n"
-   << "            --eps 10 --min-pts 3 --min-samples 50 --distance-metric haversine\n"
+   << "  --eps 10 --min-pts 3 --min-samples 50 --distance-metric haversine\n"
    << "  ./hotspot --reformat-file dataset.csv --crime-column 1 --lat-column 10 --long-column 9\n"
    << "  ./hotspot --crimePercentage crimes.txt"
    << std::endl;
@@ -56,34 +56,33 @@ int main(int argc, char **argv)
    if (_argv == "--help"){
       usage();
    }
-   if (_argv == "--lat-file"){
+   else if (_argv == "--lat-file"){
    }
-   if (_argv == "--long-file"){
+   else if (_argv == "--long-file"){
    }
-   if (_argv == "--reformat-file"){
+   else if (_argv == "--reformat-file"){
    }
-   if (_argv == "--crime-column"){
+   else if (_argv == "--crime-column"){
    }
-   if (_argv == "--lat-column"){
+   else if (_argv == "--lat-column"){
    }
-   if (_argv == "--long-column"){
+   else if (_argv == "--long-column"){
    }
-   if (_argv == "--eps"){
+   else if (_argv == "--eps"){
    }
-   if (_argv == "--min-pts"){
+   else if (_argv == "--min-pts"){
    }
-   if (_argv == "--min-samples"){
+   else if (_argv == "--min-samples"){
    }
-   if (_argv == "--distance-metric"){
+   else if (_argv == "--distance-metric"){
    }
-   if (_argv == "--crime-percentage"){
+   else if (_argv == "--crime-percentage"){
    }
-   if (_argv == "--version"){
+   else if (_argv == "--version"){
       std::cout << version << std::endl;
    }*/
-
    HotSpot hotspot;
-   hotspot.model("../data/test_latitudes.txt", "../data/test_longitudes.txt", 3.3, 10, 50,
-                 "haversine");
+   hotspot.model("../data/test_latitudes.txt", "../data/test_longitudes.txt",
+                 3.3, 10, 50, "haversine");
    //hotspot.reformat("../data/test_sf_dataset.csv", 1, 10, 9);
 }

@@ -50,15 +50,31 @@ double DBSCAN::euclideanMetric(double lat_v1, double lat_v2, double long_v1, dou
 {
 }
 
-void DBSCAN::reduceLatValues()
+void DBSCAN::reduceLatValues(unsigned int size)
 {
 }
 
-void DBSCAN::reduceLongValues()
+void DBSCAN::reduceLongValues(unsigned int size)
 {
 }
 
-std::vector<int> DBSCAN::regionQuery(unsigned int p, double eps, std::string distance_metric)
+utils_tuple DBSCAN::dbscan(double eps, unsigned int min_pts, unsigned int min_samples,
+                           std::string dist_metric)
+{
+   double c = 0.0;
+   // Both lat and long are the same size, so either can be used
+   int dataset_size = clusters[0].lat_pts.size();
+   for (unsigned int i = 0; i < dataset_size; ++i){
+   }
+}
+
+std::vector<double> DBSCAN::expandCluster(unsigned int p, double c, double eps,
+                                          unsigned int min_pts, unsigned int min_samples)
+{
+   int dataset_size = clusters[0].lat_pts.size();
+}
+
+std::vector<int> DBSCAN::regionQuery(unsigned int p, double eps, std::string dist_metric)
 {
    int dataset_size = clusters[0].lat_pts.size();
    if (distance_metric == "haversine"){
@@ -82,26 +98,12 @@ std::vector<int> DBSCAN::regionQuery(unsigned int p, double eps, std::string dis
    return output_pts;
 }
 
-std::vector<double> DBSCAN::expandCluster(unsigned int p, double c, double eps,
-                                         unsigned int min_pts, unsigned int min_samples)
+float DBSCAN::error()
 {
-   int dataset_size = clusters[0].lat_pts.size();
 }
 
-utils_tuple DBSCAN::dbscan(double eps, unsigned int min_pts, unsigned int min_samples,
-                           std::string distance_metric)
+std::vector<std::string> DBSCAN::clusterType(PriorityTypes* pt)
 {
-   double c = 0.0;
-   // Both lat and long are the same size, so either can be used
-   int dataset_size = clusters[0].lat_pts.size();
-   for (unsigned int i = 0; i < dataset_size; ++i){
-   }
-}
-
-std::vector<std::string> DBSCAN::clusterType()
-{
-   PriorityTypes* pt;
-   std::vector<std::string> output_types;
 }
 
 } // hotspot namespace

@@ -28,24 +28,6 @@ struct OutputCenters
    std::vector<double> long_pts;
 };
 
-struct NoisePts
-{
-   std::vector<double> lat_pts;
-   std::vector<double> long_pts;
-};
-
-struct NeighborPts
-{
-   std::vector<double> lat_pts;
-   std::vector<double> long_pts;
-};
-
-struct BorderPts
-{
-   std::vector<double> lat_pts;
-   std::vector<double> long_pts;
-};
-
 enum PriorityTypes
 {
    critical = 1,
