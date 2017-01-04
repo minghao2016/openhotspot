@@ -27,6 +27,7 @@ class DBSCAN {
 private:
    const float PI = 3.14159265;
    const int EARTH_RADIUS = 6371;
+   double c;
 
    std::vector<Coordinates> clusters;
 
@@ -53,10 +54,10 @@ public:
    void reduceLatValues(unsigned int);
    void reduceLongValues(unsigned int);
    utils_tuple dbscan(double, unsigned int, unsigned int, std::string);
-   std::vector<double> expandCluster(unsigned int, double, double,
-                                     unsigned int, unsigned int);
+   std::vector<OutputCenters> expandCluster(unsigned int, double, double,
+                                            unsigned int, unsigned int);
    std::vector<int> regionQuery(unsigned int, double, std::string);
-   float error();
+   float computeErrorRate();
    std::vector<std::string> clusterType(PriorityTypes*);
 };
 

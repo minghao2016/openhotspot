@@ -19,6 +19,7 @@ DBSCAN::DBSCAN()
 DBSCAN::DBSCAN(std::vector<Coordinates> _clusters):
    clusters(_clusters)
 {
+   c = 0.0;
 }
 
 DBSCAN::~DBSCAN()
@@ -61,23 +62,23 @@ void DBSCAN::reduceLongValues(unsigned int size)
 utils_tuple DBSCAN::dbscan(double eps, unsigned int min_pts, unsigned int min_samples,
                            std::string dist_metric)
 {
-   double c = 0.0;
-   // Both lat and long are the same size, so either can be used
    int dataset_size = clusters[0].lat_pts.size();
    for (unsigned int i = 0; i < dataset_size; ++i){
    }
 }
 
-std::vector<double> DBSCAN::expandCluster(unsigned int p, double c, double eps,
-                                          unsigned int min_pts, unsigned int min_samples)
+std::vector<OutputCenters> DBSCAN::expandCluster(unsigned int p, double c, double eps,
+                                                 unsigned int min_pts, unsigned int min_samples)
 {
    int dataset_size = clusters[0].lat_pts.size();
+   for (unsigned int i = 0; i < dataset_size; ++i){
+   }
 }
 
 std::vector<int> DBSCAN::regionQuery(unsigned int p, double eps, std::string dist_metric)
 {
    int dataset_size = clusters[0].lat_pts.size();
-   if (distance_metric == "haversine"){
+   if (dist_metric == "haversine"){
       for (unsigned int i = 0; i < dataset_size; ++i){
          double radians = haversineMetric(clusters[0].lat_pts[i], clusters[1].long_pts[i],
                                           clusters[0].lat_pts[p], clusters[1].long_pts[p]);
@@ -85,7 +86,7 @@ std::vector<int> DBSCAN::regionQuery(unsigned int p, double eps, std::string dis
             output_pts.push_back(i);
          }
       }
-   } else if (distance_metric == "euclidean"){
+   } else if (dist_metric == "euclidean"){
       for (unsigned int i = 0; i < dataset_size; ++i){
          double radians = euclideanMetric(clusters[0].lat_pts[i], clusters[1].long_pts[i],
                                           clusters[0].lat_pts[p], clusters[1].long_pts[p]);
@@ -94,11 +95,11 @@ std::vector<int> DBSCAN::regionQuery(unsigned int p, double eps, std::string dis
          }
       }
    }
-   // Return all points within p's eps-neighborhood
+   // return all points within p's eps-neighborhood
    return output_pts;
 }
 
-float DBSCAN::error()
+float DBSCAN::computeErrorRate()
 {
 }
 
