@@ -6,6 +6,7 @@ Tue Jan 3, 2017
 - Changed layer and classifications destructors to virtual destructors.
 - Version update (0.1.2).
 - Added error calculation function to dbscan.
+- Updated license version.
 
 Sun Jan 1, 2017
 ---------------
