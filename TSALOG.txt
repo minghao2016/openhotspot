@@ -1,6 +1,7 @@
 Wed Jan 4, 2017
 ---------------
-- 
+- Worked on layer (Almost finished).
+- Added third party folder.
 
 Tue Jan 3, 2017
 ---------------

@@ -1,7 +1,7 @@
 /*
  * BSD 3-Clause License
  * OpenHotSpot Framework 0.1.2
- * Copyright (c) 2016, Matt Perez, all rights reserved.
+ * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
  * The license can be found in the main directory for more
@@ -91,7 +91,7 @@ void HotSpot::crimePercentage(const std::string& crime_file)
 
 utils_tuple HotSpot::predictedClusters(double eps, unsigned int min_pts,
                                        unsigned int min_samples,
-                                       std::string dist_metric)
+                                       const std::string& dist_metric)
 {
    std::vector<Coordinates> coordinates;
    coordinates.push_back(Coordinates());
@@ -101,9 +101,9 @@ utils_tuple HotSpot::predictedClusters(double eps, unsigned int min_pts,
    DBSCAN clusters(coordinates);
    //clusters.reduceLatValues(10);
    //clusters.reduceLongValues(10);
-   utils_tuple dbscan_results = clusters.dbscan(eps, min_pts, min_samples, dist_metric);
-   return std::make_tuple(std::get<0>(dbscan_results), std::get<1>(dbscan_results),
-                          std::get<2>(dbscan_results), std::get<3>(dbscan_results));
+   //utils_tuple dbscan_results = clusters.dbscan(eps, min_pts, min_samples, dist_metric);
+   //return std::make_tuple(std::get<0>(dbscan_results), std::get<1>(dbscan_results),
+   //                       std::get<2>(dbscan_results), std::get<3>(dbscan_results));
 }
 
 utils_tuple HotSpot::classifyClusters()
@@ -116,7 +116,7 @@ void HotSpot::launchWebClient()
 
 void HotSpot::model(const std::string& lat_file, const std::string& long_file,
                     double eps, unsigned int min_pts, unsigned int min_samples,
-                    std::string dist_metric)
+                    const std::string& dist_metric)
 {
    std::ifstream if_lat(lat_file);
    if (!if_lat.is_open()){
@@ -136,7 +136,7 @@ void HotSpot::model(const std::string& lat_file, const std::string& long_file,
          long_values.push_back(temp_long);
       }
    }
-   //utils_tuple prediction = predictedClusters(eps, min_pts, min_samples, dist_metric);
+   utils_tuple prediction = predictedClusters(eps, min_pts, min_samples, dist_metric);
    //Export expt(PREDICTION_FILE);
    //expt.exportPredictedData(std::get<0>(prediction), std::get<1>(prediction),
    //                         std::get<2>(prediction), std::get<3>(prediction));
