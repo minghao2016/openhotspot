@@ -8,17 +8,26 @@
  * information about using this program.
 */
 
-#include "hs_classification.cpp"
+#ifndef _HS_MODEL_H_
+#define _HS_MODEL_H_
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cmath>
+
+#include "hs_utils.h"
 
 namespace HotSpot {
 
-Classification::Classification()
-{
+class Model {
+private:
+
+public:
+   Model();
+   virtual ~Model();
+};
+
 }
 
-Classification::~Classification()
-{
-}
-
-
-} // hotspot namespace
+#endif

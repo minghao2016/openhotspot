@@ -13,6 +13,7 @@
 
 #include <vector>
 #include <tuple>
+#include <utility>
 
 namespace hotspot {
 
@@ -34,6 +35,7 @@ enum PriorityTypes {
 };
 
 typedef std::tuple<unsigned int, double, double, unsigned int> utils_tuple;
+typedef std::pair<double, double> utils_pair;
 
 }
 

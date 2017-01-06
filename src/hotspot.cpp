@@ -11,7 +11,7 @@
 #include "hotspot.h"
 #include "hs_reformat.h"
 #include "hs_dbscan.h"
-#include "hs_classification.h"
+#include "hs_model.h"
 #include "hs_export.h"
 #include "hs_client.h"
 #include "version.h"
@@ -101,12 +101,12 @@ utils_tuple HotSpot::predictedClusters(double eps, unsigned int min_pts,
    DBSCAN clusters(coordinates);
    //clusters.reduceLatValues(10);
    //clusters.reduceLongValues(10);
-   //utils_tuple dbscan_results = clusters.dbscan(eps, min_pts, min_samples, dist_metric);
-   //return std::make_tuple(std::get<0>(dbscan_results), std::get<1>(dbscan_results),
-   //                       std::get<2>(dbscan_results), std::get<3>(dbscan_results));
+   utils_tuple dbscan_results = clusters.dbscan(eps, min_pts, min_samples, dist_metric);
+   return std::make_tuple(std::get<0>(dbscan_results), std::get<1>(dbscan_results),
+                          std::get<2>(dbscan_results), std::get<3>(dbscan_results));
 }
 
-utils_tuple HotSpot::classifyClusters()
+utils_pair HotSpot::predictedCoordinates()
 {
 }
 
@@ -114,9 +114,9 @@ void HotSpot::launchWebClient()
 {
 }
 
-void HotSpot::model(const std::string& lat_file, const std::string& long_file,
-                    double eps, unsigned int min_pts, unsigned int min_samples,
-                    const std::string& dist_metric)
+void HotSpot::loadModel(const std::string& lat_file, const std::string& long_file,
+                        double eps, unsigned int min_pts, unsigned int min_samples,
+                        const std::string& dist_metric)
 {
    std::ifstream if_lat(lat_file);
    if (!if_lat.is_open()){

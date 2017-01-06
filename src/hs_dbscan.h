@@ -28,25 +28,34 @@ struct Metric {
    double long_2;
 };
 
+enum OutputTypes {
+   border = 1,
+   noise = 2,
+   core = 3
+};
+
 namespace hotspot {
 
 class DBSCAN {
 private:
+   double c;
    const float PI = 3.14159265;
    const int EARTH_RADIUS = 6371;
-   double c;
 
-   std::vector<Coordinates> clusters;
+   std::vector<Coordinates> coordinates;
+   std::vector<std::vector<Coordinates> > clusters;
 
-   std::vector<int> neighbor_pts;
+   std::vector<int> ec_neighbor_pts;
    std::vector<int> rq_neighbor_pts;
+
+   std::vector<int> rq_pts;
+
    std::vector<int> border_pts;
    std::vector<int> noise_pts;
    std::vector<bool> visted_pts;
 
    std::vector<OutputCenters> output_centers;
-   std::vector<std::string> output_types;
-   std::vector<int> output_pts;
+   std::vector<OutputTypes> output_types;
 
 public:
    DBSCAN();
@@ -60,12 +69,15 @@ public:
 
    void reduceLatValues(unsigned int);
    void reduceLongValues(unsigned int);
-   utils_tuple dbscan(double, unsigned int, unsigned int, const std::string&);
-   std::vector<OutputCenters> expandCluster(unsigned int, double, unsigned int,
+   utils_tuple dbscan(double, unsigned int, unsigned int,
+                      const std::string&);
+   std::vector<OutputCenters> expandCluster(unsigned int, double,
+                                            unsigned int,
                                             unsigned int);
-   std::vector<int> regionQuery(unsigned int, double, const std::string&);
-   float computeErrorRate();
+   std::vector<int> regionQuery(unsigned int, unsigned int, double,
+                                const std::string&);
    std::vector<std::string> clusterType(PriorityTypes&);
+   float computeErrorRate();
 };
 
 }

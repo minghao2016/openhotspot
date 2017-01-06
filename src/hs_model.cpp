@@ -8,27 +8,8 @@
  * information about using this program.
 */
 
-#ifndef _HS_CLASSIFICATION_H_
-#define _HS_CLASSIFICATION_H_
-
-#include <iostream>
-#include <vector>
-#include <string>
-#include <cmath>
-
-#include "hs_utils.h"
+#include "hs_model.h"
 
 namespace HotSpot {
 
-class Classification {
-private:
-
-public:
-   Classification();
-   virtual ~Classification();
-
-};
-
-}
-
-#endif
+} // hotspot namespace

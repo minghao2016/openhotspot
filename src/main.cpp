@@ -1,7 +1,7 @@
 /*
  * BSD 3-Clause License
  * OpenHotSpot Framework 0.1.2
- * Copyright (c) 2016, Matt Perez, all rights reserved.
+ * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
  * The license can be found in the main directory for more
@@ -20,8 +20,9 @@ void usage()
 {
    std::cout
    << "usage: ./hotspot [--lat-file] [--long-file] [--reformat-file]\n"
-   << "                 [--crime-column] [--crime-column] [--lat-column]\n"
-   << "                 [--long-column] [--eps] [--min-pts] [--version]\n"
+   << "                 [--crime-column] [--lat-column] [--long-column]\n"
+   << "                 [--eps] [--min-pts] [--min-samples] [--distance-metric]\n"
+   << "                 [--crime-percentage] [--version]\n"
    << "\nFile Handler:\n"
    << "  --lat-file                <lat filename> Reformated latitude file.\n"
    << "  --long-file               <long filename> Reformated longitude file.\n"
@@ -82,7 +83,7 @@ int main(int argc, char **argv)
       std::cout << version << std::endl;
    }*/
    HotSpot hotspot;
-   hotspot.model("../data/test_latitudes.txt", "../data/test_longitudes.txt",
-                 3.3, 10, 50, "haversine");
+   hotspot.loadModel("../data/test_latitudes.txt", "../data/test_longitudes.txt",
+                     3.3, 10, 50, "haversine");
    //hotspot.reformat("../data/test_sf_dataset.csv", 1, 10, 9);
 }
