@@ -123,7 +123,7 @@ std::vector<int> DBSCAN::regionQuery(unsigned int d, unsigned int p,
    return rq_pts;
 }
 
-std::vector<std::string> DBSCAN::clusterType(PriorityTypes& pt)
+std::vector<std::string> DBSCAN::clusterType(OutputClusterTypes& oct)
 {
 }
 

@@ -41,7 +41,7 @@ void usage()
    << "  --version                 Current version of OpenHotSpot.\n"
    << "\nExample Usage:\n"
    << "  ./hotspot --lat-file latitudes.txt --long-file longitudes.txt --crime-file crimes.txt\n"
-   << "  --eps 10 --min-pts 3 --min-samples 50 --distance-metric haversine\n"
+   << "  --eps 3.3 --min-pts 10 --min-samples 50 --distance-metric haversine\n"
    << "  ./hotspot --reformat-file dataset.csv --crime-column 1 --lat-column 10 --long-column 9\n"
    << "  ./hotspot --crimePercentage crimes.txt"
    << std::endl;

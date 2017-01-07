@@ -22,16 +22,22 @@ struct Coordinates {
    std::vector<double> long_pts;
 };
 
-struct OutputCenters {
+struct OutputCoordinateCenters {
    std::vector<double> lat_pts;
    std::vector<double> long_pts;
 };
 
-enum PriorityTypes {
+enum ClusterPriorityTypes {
    critical = 1,
    major = 2,
    normal = 3,
    minor = 4
+};
+
+enum OutputClusterTypes {
+   border = 1,
+   noise = 2,
+   core = 3
 };
 
 typedef std::tuple<unsigned int, double, double, unsigned int> utils_tuple;

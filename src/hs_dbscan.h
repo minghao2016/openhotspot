@@ -28,12 +28,6 @@ struct Metric {
    double long_2;
 };
 
-enum OutputTypes {
-   border = 1,
-   noise = 2,
-   core = 3
-};
-
 namespace hotspot {
 
 class DBSCAN {
@@ -52,8 +46,8 @@ private:
    std::vector<int> noise_pts;
    std::vector<bool> visted_pts;
 
-   std::vector<OutputCenters> output_centers;
-   std::vector<OutputTypes> output_types;
+   std::vector<OutputCoordinateCenters> output_centers;
+   std::vector<OutputClusterTypes> output_types;
 
 public:
    DBSCAN();
@@ -72,7 +66,7 @@ public:
    std::vector<OutputCenters> expandCluster(std::vector<int>, unsigned int,
                                             double, unsigned int, unsigned int);
    std::vector<int> regionQuery(unsigned int, unsigned int, double, const std::string&);
-   std::vector<std::string> clusterType(PriorityTypes&);
+   std::vector<std::string> clusterType(OutputClusterTypes&);
    float computeErrorRate();
 };
 
