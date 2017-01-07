@@ -64,7 +64,7 @@ utils_tuple DBSCAN::dbscan(double eps, unsigned int min_pts,
                            const std::string& dist_metric)
 {
    int dataset_size = coordinates[0].lat_pts.size();
-   for (unsigned int i = 0; i < dataset_size; ++i){
+   for (unsigned int i = 0; i < dataset_size; i++){
       visted_pts.push_back(false);
       if (visted_pts[i]) {
          // continue to next point
@@ -73,56 +73,50 @@ utils_tuple DBSCAN::dbscan(double eps, unsigned int min_pts,
          // mark point p as visted
          visted_pts[i] = true;
          rq_neighbor_pts = regionQuery(i, visted_pts[i], eps, dist_metric);
+         //std::cout << rq_neighbor_pts.size() << std::endl;
          if (rq_neighbor_pts.size() < min_pts){
             // mark point p and a noise point
             noise_pts.push_back(i);
+            //std::cout << coordinates[0].lat_pts[i] << std::endl;
          } else {
-            expandCluster(i, eps, min_pts, min_samples);
+            // move to next clusters and expand
+            //expandCluster(rq_neighbor_pts, eps, min_pts, min_samples);
+            //std::cout << coordinates[0].lat_pts[i] << std::endl;
          }
       }
    }
    //return std::make_tuple();
 }
 
-std::vector<OutputCenters> DBSCAN::expandCluster(unsigned int p, double eps,
+std::vector<OutputCenters> DBSCAN::expandCluster(std::vector<int> ec_neighbor_pts,
+                                                 unsigned int p, double eps,
                                                  unsigned int min_pts,
                                                  unsigned int min_samples)
 {
    int dataset_size = coordinates[0].lat_pts.size();
-   for (unsigned int i = 0; i < dataset_size; ++i){
+   for (unsigned int i = 0; i < dataset_size; i++){
    }
 }
 
-std::vector<int> DBSCAN::regionQuery(unsigned int c_pts, unsigned int p, double eps,
-                                     const std::string& dist_metric)
+std::vector<int> DBSCAN::regionQuery(unsigned int d, unsigned int p,
+                                     double eps, const std::string& dist_metric)
 {
    Metric metric;
    if (dist_metric == "haversine"){
-      //int dataset_size = coordinates[0].lat_pts.size();
-      //for (unsigned int i = 0; i < dataset_size; ++i){
-      //   metric.lat_1 = coordinates[0].lat_pts[i];
-      //   metric.lat_2 = coordinates[0].lat_pts[p];
-      //   metric.long_1 = coordinates[1].long_pts[i];
-      //   metric.long_2 = coordinates[1].long_pts[p];
-      //   if (haversineMetric(metric) < eps){
-            // store points with an eps, smaller than the default, into a vector
-      //      rq_pts.push_back(haversineMetric(metric));
-      //   }
-      //}
-      metric.lat_1 = coordinates[0].lat_pts[c_pts];
-      metric.lat_2 = coordinates[0].lat_pts[p + 1];
-      metric.long_1 = coordinates[1].long_pts[c_pts];
-      metric.long_2 = coordinates[1].long_pts[p + 1];
-      if (haversineMetric(metric) < eps){
-         rq_pts.push_back(c_pts);
+      metric.lat_1 = coordinates[0].lat_pts[d];
+      metric.lat_2 = coordinates[0].lat_pts[p + d];
+      metric.long_1 = coordinates[1].long_pts[d];
+      metric.long_2 = coordinates[1].long_pts[p + d];
+      if (haversineMetric(metric) <= eps){
+         rq_pts.push_back(d);
       }
    } else if (dist_metric == "euclidean"){
-      metric.lat_1 = coordinates[0].lat_pts[c_pts];
-      metric.lat_2 = coordinates[0].lat_pts[p + 1];
-      metric.long_1 = coordinates[1].long_pts[c_pts];
-      metric.long_2 = coordinates[1].long_pts[p + 1];
-      if (euclideanMetric(metric) < eps){
-         rq_pts.push_back(c_pts);
+      metric.lat_1 = coordinates[0].lat_pts[d];
+      metric.lat_2 = coordinates[0].lat_pts[p + d];
+      metric.long_1 = coordinates[1].long_pts[d];
+      metric.long_2 = coordinates[1].long_pts[p + d];
+      if (euclideanMetric(metric) <= eps){
+         rq_pts.push_back(d);
       }
    }
    // return all points within point p's eps-neighborhood
