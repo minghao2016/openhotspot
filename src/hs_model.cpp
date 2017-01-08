@@ -12,4 +12,12 @@
 
 namespace HotSpot {
 
+Model::Model()
+{
+}
+
+Model::~Model()
+{
+}
+
 } // hotspot namespace

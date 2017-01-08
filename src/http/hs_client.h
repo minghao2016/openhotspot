@@ -15,6 +15,8 @@
 #include <vector>
 #include <string>
 
+#include "../hs_utils.h"
+
 namespace hotspot {
 
 class Client {

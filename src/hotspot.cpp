@@ -13,7 +13,9 @@
 #include "hs_dbscan.h"
 #include "hs_model.h"
 #include "hs_export.h"
-#include "hs_client.h"
+
+#include "http/hs_client.h"
+
 #include "version.h"
 
 namespace hotspot {
@@ -118,6 +120,8 @@ void HotSpot::loadModel(const std::string& lat_file, const std::string& long_fil
                         double eps, unsigned int min_pts, unsigned int min_samples,
                         const std::string& dist_metric)
 {
+   //DBSCAN* dbscan = new DBSCAN;
+   //Export expt(PREDICTION_FILE);
    std::ifstream if_lat(lat_file);
    if (!if_lat.is_open()){
       std::cout << "Error: Could not open latitude file." << std::endl;
@@ -137,7 +141,6 @@ void HotSpot::loadModel(const std::string& lat_file, const std::string& long_fil
       }
    }
    utils_tuple prediction = predictedClusters(eps, min_pts, min_samples, dist_metric);
-   //Export expt(PREDICTION_FILE);
    //expt.exportPredictedData(std::get<0>(prediction), std::get<1>(prediction),
    //                         std::get<2>(prediction), std::get<3>(prediction));
 }

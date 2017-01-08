@@ -56,17 +56,17 @@ public:
 
    double radiansToDegrees(double);
    double degreesToRadians(double);
-   double haversineMetric(Metric&);
-   double euclideanMetric(Metric&);
+   double haversineMetric(Metric*);
+   double euclideanMetric(Metric*);
 
    void reduceLatValues(unsigned int);
    void reduceLongValues(unsigned int);
    utils_tuple dbscan(double, unsigned int, unsigned int,
                       const std::string&);
-   std::vector<OutputCenters> expandCluster(std::vector<int>, unsigned int,
-                                            double, unsigned int, unsigned int);
+   std::vector<OutputCoordinateCenters> expandCluster(std::vector<int>, unsigned int,
+                                                      double, unsigned int, unsigned int);
    std::vector<int> regionQuery(unsigned int, unsigned int, double, const std::string&);
-   std::vector<std::string> clusterType(OutputClusterTypes&);
+   std::vector<std::string> clusterType(OutputClusterTypes*);
    float computeErrorRate();
 };
 

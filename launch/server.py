@@ -30,10 +30,11 @@ class Server(object):
                     column[info].append(value)
 
         return {
-        "clusters": column["clusters"],
-        "cluster_centers": column["cluster_centers"],
-        "points": column["points"]
-        "cluster_types": column["cluster_types"]
+            "clusters": column["clusters"],
+            "cluster_centers": column["cluster_centers"],
+            "points": column["points"]
+            "cluster_types": column["cluster_types"],
+            "priority_types": column["priority_types"]
         }
 
     @app.route("/")

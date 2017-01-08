@@ -1,3 +1,9 @@
+Sat Jan 7, 2017
+---------------
+- Made http folder for client.
+- Added cmake to src directory.
+- Changed references to pointers in dbscan functions.
+
 Fri Jan 6, 2017
 ---------------
 - Renamed classification to model.
