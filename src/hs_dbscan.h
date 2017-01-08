@@ -34,7 +34,7 @@ class DBSCAN {
 private:
    double c;
    const float PI = 3.14159265;
-   const int EARTH_RADIUS = 6371;
+   const unsigned int EARTH_RADIUS = 6371;
 
    std::vector<Coordinates> coordinates;
    std::vector<std::vector<Coordinates> > clusters;
@@ -59,15 +59,14 @@ public:
    double haversineMetric(Metric*);
    double euclideanMetric(Metric*);
 
-   void reduceLatValues(unsigned int);
-   void reduceLongValues(unsigned int);
-   utils_tuple dbscan(double, unsigned int, unsigned int,
-                      const std::string&);
+   void reduceLatValue(unsigned int);
+   void reduceLongValue(unsigned int);
+   utils_tuple dbscan(double, unsigned int, unsigned int, const std::string&);
    std::vector<OutputCoordinateCenters> expandCluster(std::vector<int>, unsigned int,
                                                       double, unsigned int, unsigned int);
-   std::vector<int> regionQuery(unsigned int, unsigned int, double, const std::string&);
+   std::vector<int> regionQuery(unsigned int, double, const std::string&);
    std::vector<std::string> clusterType(OutputClusterTypes*);
-   float computeErrorRate();
+   float computeErrorCoverage();
 };
 
 }

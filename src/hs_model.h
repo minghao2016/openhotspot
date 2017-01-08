@@ -26,6 +26,8 @@ private:
 public:
    Model();
    virtual ~Model();
+   float computeAccuracyRate();
+   float computeErrorCoverage();
 };
 
 }

@@ -32,9 +32,9 @@ void usage()
    << "  --lat-column              CSV latitude column number.\n"
    << "  --long-column             CSV longitude column number.\n"
    << "\nCluster Parameters:\n"
-   << "  --eps                     [default: 3.3 = 3300m] Distance between two points.\n"
-   << "  --min-pts                 [default: 10] Minimum points in a cluster.\n"
-   << "  --min-samples             [default: 50] Minimum number of clusters.\n"
+   << "  --eps                     [default: 1.7 = 1700m] Distance between two points to form cluster.\n"
+   << "  --min-pts                 [default: 800] Minimum points in a cluster.\n"
+   << "  --min-samples             [default: 70] Minimum number of clusters.\n"
    << "  --distance-metric         [default: haversine] Metric used to calculate distance.\n"
    << "\nTerminal View:\n"
    << "  --crime-percentage        <crime filename> View the percentages of crimes.\n"
@@ -84,6 +84,6 @@ int main(int argc, char **argv)
    }*/
    HotSpot hotspot;
    hotspot.loadModel("../data/test_latitudes.txt", "../data/test_longitudes.txt",
-                     3.3, 10, 50, "haversine");
+                     1.7, 800, 70, "haversine");
    //hotspot.reformat("../data/test_sf_dataset.csv", 1, 10, 9);
 }

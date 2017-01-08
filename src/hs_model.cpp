@@ -20,4 +20,12 @@ Model::~Model()
 {
 }
 
+float computeAccuracyRate()
+{
+}
+
+float computeErrorCoverage()
+{
+}
+
 } // hotspot namespace

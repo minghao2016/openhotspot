@@ -51,16 +51,15 @@ double DBSCAN::euclideanMetric(Metric* metric)
 {
 }
 
-void DBSCAN::reduceLatValues(unsigned int size)
+void DBSCAN::reduceLatValue(unsigned int size)
 {
 }
 
-void DBSCAN::reduceLongValues(unsigned int size)
+void DBSCAN::reduceLongValue(unsigned int size)
 {
 }
 
-utils_tuple DBSCAN::dbscan(double eps, unsigned int min_pts,
-                           unsigned int min_samples,
+utils_tuple DBSCAN::dbscan(double eps, unsigned int min_pts, unsigned int min_samples,
                            const std::string& dist_metric)
 {
    int dataset_size = coordinates[0].lat_pts.size();
@@ -72,20 +71,21 @@ utils_tuple DBSCAN::dbscan(double eps, unsigned int min_pts,
       } else {
          // mark point p as visted
          visted_pts[i] = true;
-         rq_neighbor_pts = regionQuery(i, i, eps, dist_metric);
-         //std::cout << rq_neighbor_pts.size() << std::endl;
+         rq_neighbor_pts = regionQuery(i, eps, dist_metric);
          if (rq_neighbor_pts.size() < min_pts){
-            // mark point p and a noise point
-            noise_pts.push_back(i);
-            //std::cout << coordinates[0].lat_pts[i] << std::endl;
+            // mark point p as a noise point
+            //std::cout << coordinates[0].lat_pts[rq_neighbor_pts[i]] << std::endl;
+            //std::cout << coordinates[1].long_pts[rq_neighbor_pts[i]] << std::endl;
+            noise_pts.push_back(rq_neighbor_pts[i]);
          } else {
             // move to next clusters and expand
-            //expandCluster(rq_neighbor_pts, eps, min_pts, min_samples);
-            //std::cout << coordinates[0].lat_pts[i] << std::endl;
+            //std::cout << coordinates[0].lat_pts[rq_neighbor_pts[i]] << std::endl;
+            //std::cout << coordinates[1].long_pts[rq_neighbor_pts[i]] << std::endl;
+            //expandCluster(rq_neighbor_pts, i, eps, min_pts, min_samples);
          }
       }
+      //return std::make_tuple();
    }
-   //return std::make_tuple();
 }
 
 std::vector<OutputCoordinateCenters> DBSCAN::expandCluster(std::vector<int> ec_neighbor_pts,
@@ -98,25 +98,30 @@ std::vector<OutputCoordinateCenters> DBSCAN::expandCluster(std::vector<int> ec_n
    }
 }
 
-std::vector<int> DBSCAN::regionQuery(unsigned int d, unsigned int p,
-                                     double eps, const std::string& dist_metric)
+std::vector<int> DBSCAN::regionQuery(unsigned int p, double eps,
+                                     const std::string& dist_metric)
 {
    Metric metric;
+   int dataset_size = coordinates[0].lat_pts.size();
    if (dist_metric == "haversine"){
-      metric.lat_1 = coordinates[0].lat_pts[d];
-      metric.lat_2 = coordinates[0].lat_pts[p + 1];
-      metric.long_1 = coordinates[1].long_pts[d];
-      metric.long_2 = coordinates[1].long_pts[p + 1];
-      if (haversineMetric(&metric) <= eps){
-         rq_pts.push_back(d);
+      for (unsigned int i = 0; i < dataset_size; i++){
+         metric.lat_1 = coordinates[0].lat_pts[i];
+         metric.lat_2 = coordinates[0].lat_pts[p];
+         metric.long_1 = coordinates[1].long_pts[i];
+         metric.long_2 = coordinates[1].long_pts[p];
+         if (haversineMetric(&metric) <= eps){
+            rq_pts.push_back(i);
+         }
       }
    } else if (dist_metric == "euclidean"){
-      metric.lat_1 = coordinates[0].lat_pts[d];
-      metric.lat_2 = coordinates[0].lat_pts[p + 1];
-      metric.long_1 = coordinates[1].long_pts[d];
-      metric.long_2 = coordinates[1].long_pts[p + 1];
-      if (euclideanMetric(&metric) <= eps){
-         rq_pts.push_back(d);
+      for (unsigned int i = 0; i < dataset_size; i++){
+         metric.lat_1 = coordinates[0].lat_pts[i];
+         metric.lat_2 = coordinates[0].lat_pts[p];
+         metric.long_1 = coordinates[1].long_pts[i];
+         metric.long_2 = coordinates[1].long_pts[p];
+         if (euclideanMetric(&metric) <= eps){
+            rq_pts.push_back(i);
+         }
       }
    }
    // return all points within point p's eps-neighborhood
@@ -127,7 +132,7 @@ std::vector<std::string> DBSCAN::clusterType(OutputClusterTypes* oct)
 {
 }
 
-float DBSCAN::computeErrorRate()
+float DBSCAN::computeErrorCoverage()
 {
 }
 
