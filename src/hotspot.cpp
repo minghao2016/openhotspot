@@ -100,9 +100,9 @@ utils_tuple HotSpot::predictedClusters(double eps, unsigned int min_pts,
    coordinates.push_back(Coordinates());
    coordinates[0].lat_pts = lat_values;
    coordinates[1].long_pts = long_values;
+   //coordinates.reduceLatValues(10);
+   //coordinates.reduceLongValues(10);
    DBSCAN clusters(coordinates);
-   //clusters.reduceLatValues(10);
-   //clusters.reduceLongValues(10);
    utils_tuple dbscan_results = clusters.dbscan(eps, min_pts, min_samples, dist_metric);
    return std::make_tuple(std::get<0>(dbscan_results), std::get<1>(dbscan_results),
                           std::get<2>(dbscan_results), std::get<3>(dbscan_results));
@@ -120,8 +120,7 @@ void HotSpot::loadModel(const std::string& lat_file, const std::string& long_fil
                         double eps, unsigned int min_pts, unsigned int min_samples,
                         const std::string& dist_metric)
 {
-   //DBSCAN* dbscan = new DBSCAN;
-   //Export expt(PREDICTION_FILE);
+   Export expt(PREDICTION_FILE);
    std::ifstream if_lat(lat_file);
    if (!if_lat.is_open()){
       std::cout << "Error: Could not open latitude file." << std::endl;

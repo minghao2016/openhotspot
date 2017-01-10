@@ -22,13 +22,11 @@ class Server(object):
 
     def _parse_csvfile(self):
         column = collections.defaultdict(list)
-
         with open(self.csvfile, "r") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 for info, value in row.iteritems():
                     column[info].append(value)
-
         return {
             "clusters": column["clusters"],
             "cluster_centers": column["cluster_centers"],
@@ -42,7 +40,6 @@ class Server(object):
         """
         """
         parsed_file = self._parse_csvfile()
-
         return flask.render_template("base.html")
 
     def main(self):

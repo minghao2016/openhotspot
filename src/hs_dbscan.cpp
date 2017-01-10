@@ -19,7 +19,7 @@ DBSCAN::DBSCAN()
 DBSCAN::DBSCAN(std::vector<Coordinates> _coordinates):
    coordinates(_coordinates)
 {
-   c = 0.0;
+   c = 0;
 }
 
 DBSCAN::~DBSCAN()
@@ -28,12 +28,12 @@ DBSCAN::~DBSCAN()
 
 double DBSCAN::radiansToDegrees(double radians)
 {
-   return radians * 180 / PI;
+   return radians * 180 / 3.14159;
 }
 
 double DBSCAN::degreesToRadians(double degrees)
 {
-   return degrees * PI / 180;
+   return degrees * 3.14159 / 180;
 }
 
 double DBSCAN::haversineMetric(Metric* metric)
@@ -44,22 +44,25 @@ double DBSCAN::haversineMetric(Metric* metric)
    double dlong_2 = degreesToRadians(metric->long_2);
    double a = sin((dlat_2 - dlat_1) / 2);
    double b = sin((dlong_2 - dlong_1) / 2);
-   return 2 * EARTH_RADIUS * asin(sqrt(a * a + cos(dlat_1) * cos(dlat_2) * b * b));
+   return 2 * 6371 * asin(sqrt(a * a + cos(dlat_1) * cos(dlat_2) * b * b));
 }
 
 double DBSCAN::euclideanMetric(Metric* metric)
 {
+   double dlat_1 = metric->lat_2 - metric->lat_1;
+   double dlong_1 = metric->long_2 - metric->long_1;
+   return sqrt(dlat_1 * dlat_1 + dlong_1 * dlong_1);
 }
 
-void DBSCAN::reduceLatValue(unsigned int size)
+void DBSCAN::reduceLatValues(unsigned int size)
 {
 }
 
-void DBSCAN::reduceLongValue(unsigned int size)
+void DBSCAN::reduceLongValues(unsigned int size)
 {
 }
 
-utils_tuple DBSCAN::dbscan(double eps, unsigned int min_pts, unsigned int min_samples,
+utils_tuple DBSCAN::dbscan(double eps, unsigned int min_pts,
                            const std::string& dist_metric)
 {
    int dataset_size = coordinates[0].lat_pts.size();
@@ -74,27 +77,15 @@ utils_tuple DBSCAN::dbscan(double eps, unsigned int min_pts, unsigned int min_sa
          rq_neighbor_pts = regionQuery(i, eps, dist_metric);
          if (rq_neighbor_pts.size() < min_pts){
             // mark point p as a noise point
-            //std::cout << coordinates[0].lat_pts[rq_neighbor_pts[i]] << std::endl;
-            //std::cout << coordinates[1].long_pts[rq_neighbor_pts[i]] << std::endl;
             noise_pts.push_back(rq_neighbor_pts[i]);
          } else {
             // move to next clusters and expand
-            //std::cout << coordinates[0].lat_pts[rq_neighbor_pts[i]] << std::endl;
-            //std::cout << coordinates[1].long_pts[rq_neighbor_pts[i]] << std::endl;
-            //expandCluster(rq_neighbor_pts, i, eps, min_pts, min_samples);
+            c++;
+            for (unsigned int p = 0; p < rq_neighbor_pts.size(); p++){
+            }
          }
       }
       //return std::make_tuple();
-   }
-}
-
-std::vector<OutputCoordinateCenters> DBSCAN::expandCluster(std::vector<int> ec_neighbor_pts,
-                                                           unsigned int p, double eps,
-                                                           unsigned int min_pts,
-                                                           unsigned int min_samples)
-{
-   int dataset_size = coordinates[0].lat_pts.size();
-   for (unsigned int i = 0; i < dataset_size; i++){
    }
 }
 
@@ -128,7 +119,7 @@ std::vector<int> DBSCAN::regionQuery(unsigned int p, double eps,
    return rq_pts;
 }
 
-std::vector<std::string> DBSCAN::clusterType(OutputClusterTypes* oct)
+std::vector<std::string> DBSCAN::clusterType(OutputCoordinateCenters* occ)
 {
 }
 

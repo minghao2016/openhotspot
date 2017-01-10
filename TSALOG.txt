@@ -1,8 +1,14 @@
+Tue Jan 10, 2017
+----------------
+- Removed the expandCluster function from dbscan since it can all just be
+written inside the dbscan function.
+
 Sat Jan 7, 2017
 ---------------
 - Made http folder for client.
 - Added cmake to src directory.
 - Changed references to pointers in dbscan functions.
+- Fixed value error in dbscan (Works).
 
 Fri Jan 6, 2017
 ---------------
@@ -12,7 +18,6 @@ Fri Jan 6, 2017
 Wed Jan 4, 2017
 ---------------
 - Worked on dbscan (Almost finished).
-- Added third party folder.
 
 Tue Jan 3, 2017
 ---------------

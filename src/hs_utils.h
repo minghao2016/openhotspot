@@ -15,33 +15,22 @@
 #include <tuple>
 #include <utility>
 
+#define LATITUDES_FILE "../data/latitudes.txt"
+#define LONGITUDES_FILE "../data/longitudes.txt"
+#define CRIMES_FILE "../data/crimes.txt"
+#define PREDICTION_FILE "../data/prediction.csv"
+#define BORDER_CLUSTERS 1
+#define NOISE_CLUSTERS 2
+#define CORE_CLUSTERS 3
+#define PRIORITY_CRITICAL 1
+#define PRIORITY_MAJOR 2
+#define PRIORITY_NORMA 3
+#define PRIORITY_MINOR 4
+
 namespace hotspot {
 
-struct Coordinates {
-   std::vector<double> lat_pts;
-   std::vector<double> long_pts;
-};
-
-struct OutputCoordinateCenters {
-   std::vector<double> lat_pts;
-   std::vector<double> long_pts;
-};
-
-enum ClusterPriorityTypes {
-   critical = 1,
-   major = 2,
-   normal = 3,
-   minor = 4
-};
-
-enum OutputClusterTypes {
-   border = 1,
-   noise = 2,
-   core = 3
-};
-
-typedef std::tuple<unsigned int, double, double, unsigned int> utils_tuple;
 typedef std::pair<double, double> utils_pair;
+typedef std::tuple<unsigned int, double, double, unsigned int> utils_tuple;
 
 }
 

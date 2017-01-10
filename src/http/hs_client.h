@@ -22,7 +22,7 @@ namespace hotspot {
 class Client {
 public:
    Client();
-   virtual ~Client();
+   ~Client();
 };
 
 }

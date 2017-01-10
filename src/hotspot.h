@@ -20,11 +20,6 @@
 
 #include "hs_utils.h"
 
-#define LATITUDES_FILE "../data/latitudes.txt"
-#define LONGITUDES_FILE "../data/longitudes.txt"
-#define CRIMES_FILE "../data/crimes.txt"
-#define PREDICTION_FILE "../data/prediction.csv"
-
 namespace hotspot {
 
 class HotSpot {

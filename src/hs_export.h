@@ -24,7 +24,6 @@ private:
 
 public:
    Export(const std::string&);
-   virtual ~Export();
    void exportPredictedData(unsigned int, double, double,
                             unsigned int, std::string);
 };

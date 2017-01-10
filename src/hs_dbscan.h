@@ -21,6 +21,16 @@
 
 #include "hs_utils.h"
 
+struct Coordinates {
+   std::vector<double> lat_pts;
+   std::vector<double> long_pts;
+};
+
+struct OutputCoordinateCenters {
+   std::vector<double> lat_pts;
+   std::vector<double> long_pts;
+};
+
 struct Metric {
    double lat_1;
    double lat_2;
@@ -32,9 +42,7 @@ namespace hotspot {
 
 class DBSCAN {
 private:
-   double c;
-   const float PI = 3.14159265;
-   const unsigned int EARTH_RADIUS = 6371;
+   int c;
 
    std::vector<Coordinates> coordinates;
    std::vector<std::vector<Coordinates> > clusters;
@@ -46,26 +54,24 @@ private:
    std::vector<int> noise_pts;
    std::vector<bool> visted_pts;
 
-   std::vector<OutputCoordinateCenters> output_centers;
-   std::vector<OutputClusterTypes> output_types;
+   std::vector<OutputCoordinateCenters> output_coordinates;
+   std::vector<int> output_types;
 
 public:
    DBSCAN();
    DBSCAN(std::vector<Coordinates>);
-   virtual ~DBSCAN();
+   ~DBSCAN();
 
    double radiansToDegrees(double);
    double degreesToRadians(double);
    double haversineMetric(Metric*);
    double euclideanMetric(Metric*);
 
-   void reduceLatValue(unsigned int);
-   void reduceLongValue(unsigned int);
-   utils_tuple dbscan(double, unsigned int, unsigned int, const std::string&);
-   std::vector<OutputCoordinateCenters> expandCluster(std::vector<int>, unsigned int,
-                                                      double, unsigned int, unsigned int);
+   void reduceLatValues(unsigned int);
+   void reduceLongValues(unsigned int);
+   utils_tuple dbscan(double, unsigned int, const std::string&);
    std::vector<int> regionQuery(unsigned int, double, const std::string&);
-   std::vector<std::string> clusterType(OutputClusterTypes*);
+   std::vector<std::string> clusterType(OutputCoordinateCenters*);
    float computeErrorCoverage();
 };
 
