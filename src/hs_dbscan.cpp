@@ -62,27 +62,20 @@ void DBSCAN::reduceLongValues(unsigned int size)
 {
 }
 
-utils_tuple DBSCAN::dbscan(double eps, unsigned int min_pts,
-                           const std::string& dist_metric)
+utils_tuple DBSCAN::dbscan(double eps, unsigned int min_pts, const std::string& dist_metric)
 {
    int dataset_size = coordinates[0].lat_pts.size();
    for (unsigned int i = 0; i < dataset_size; i++){
       visted_pts.push_back(false);
       if (visted_pts[i]) {
-         // continue to next point
          continue;
       } else {
-         // mark point p as visted
          visted_pts[i] = true;
          rq_neighbor_pts = regionQuery(i, eps, dist_metric);
          if (rq_neighbor_pts.size() < min_pts){
-            // mark point p as a noise point
             noise_pts.push_back(rq_neighbor_pts[i]);
          } else {
-            // move to next clusters
             c++;
-            // essentially, everything is being repeated as shown above
-            // except here we are acutally creating the clusters.
             for (unsigned int p = 0; p < rq_neighbor_pts.size(); p++){
                if (!visted_pts[p]){
                   ec_neighbor_pts = regionQuery(p, eps, dist_metric);
@@ -96,8 +89,7 @@ utils_tuple DBSCAN::dbscan(double eps, unsigned int min_pts,
    }
 }
 
-std::vector<int> DBSCAN::regionQuery(unsigned int p, double eps,
-                                     const std::string& dist_metric)
+std::vector<int> DBSCAN::regionQuery(unsigned int p, double eps, const std::string& dist_metric)
 {
    Metric metric;
    int dataset_size = coordinates[0].lat_pts.size();
