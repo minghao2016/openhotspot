@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotSpot Framework 0.1.2
+ * OpenHotSpot Framework 0.1.3
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -11,7 +11,6 @@
 #ifndef _HS_UTILS_H_
 #define _HS_UTILS_H_
 
-#include <vector>
 #include <tuple>
 #include <utility>
 

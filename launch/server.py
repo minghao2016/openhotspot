@@ -1,5 +1,5 @@
 # BSD 3-Clause License
-# OpenHotSpot Framework 0.1.2
+# OpenHotSpot Framework 0.1.3
 # Copyright (c) 2017, Matt Perez, all rights reserved.
 #
 # This source is licensed under the BSD 3-Clause License.
@@ -9,6 +9,7 @@ from __future__ import print_function
 
 import os
 import csv
+import json
 import flask
 import numpy as np
 import collections
@@ -28,7 +29,7 @@ class Server(object):
                 for info, value in row.iteritems():
                     column[info].append(value)
         return {
-            "clusters": column["clusters"],
+            "n_clusters": column["n_clusters"],
             "cluster_centers": column["cluster_centers"],
             "points": column["points"]
             "cluster_types": column["cluster_types"],
@@ -48,5 +49,5 @@ class Server(object):
                 debug=False)
 
 if __name__ == '__main__':
-    server = Server(csvfile="data/prediction.csv")
+    server = Server(csvfile="")
     server.main()

@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotSpot Framework 0.1.2
+ * OpenHotSpot Framework 0.1.3
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -11,6 +11,6 @@
 #ifndef _VERSION_H_
 #define _VERSION_H_
 
-const std::string version = "OpenHotSpot Framework 0.1.2";
+const std::string version = "OpenHotSpot Framework 0.1.3";
 
 #endif

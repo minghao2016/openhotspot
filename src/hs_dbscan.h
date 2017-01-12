@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotSpot Framework 0.1.2
+ * OpenHotSpot Framework 0.1.3
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -26,9 +26,10 @@ struct Coordinates {
    std::vector<double> long_pts;
 };
 
-struct OutputCoordinateCenters {
+struct OutputCoordinates {
    std::vector<double> lat_pts;
    std::vector<double> long_pts;
+   std::vector<int> labels;
 };
 
 struct Metric {
@@ -49,13 +50,14 @@ private:
 
    std::vector<int> rq_neighbor_pts;
    std::vector<int> rq_pts;
+   std::vector<int> ec_neighbor_pts;
 
    std::vector<int> border_pts;
    std::vector<int> noise_pts;
+   std::vector<int> core_pts;
    std::vector<bool> visted_pts;
 
-   std::vector<OutputCoordinateCenters> output_coordinates;
-   std::vector<int> output_types;
+   std::vector<OutputCoordinates> output_coordinates;
 
 public:
    DBSCAN();
@@ -71,7 +73,8 @@ public:
    void reduceLongValues(unsigned int);
    utils_tuple dbscan(double, unsigned int, const std::string&);
    std::vector<int> regionQuery(unsigned int, double, const std::string&);
-   std::vector<std::string> clusterType(OutputCoordinateCenters*);
+   std::vector<double> clusterCenter();
+   std::vector<std::string> clusterType();
    float computeErrorCoverage();
 };
 

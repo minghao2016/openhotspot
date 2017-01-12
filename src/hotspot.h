@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotSpot Framework 0.1.2
+ * OpenHotSpot Framework 0.1.3
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -36,12 +36,11 @@ public:
    void reformatCSVFile(const std::string&, unsigned int, unsigned int,
                         unsigned int);
    void crimePercentage(const std::string&);
-   utils_tuple predictedClusters(double, unsigned int, unsigned int,
-                                 const std::string&);
+   utils_tuple predictedClusters(double, unsigned int, const std::string&);
    utils_pair predictedCoordinates();
    void launchWebClient();
    void loadModel(const std::string&, const std::string&, double,
-                  unsigned int, unsigned int, const std::string&);
+                  unsigned int, const std::string&);
 };
 
 }

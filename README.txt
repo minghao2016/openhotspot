@@ -1,4 +1,4 @@
-                     OpenHotSpot Framework 0.1.2
+                     OpenHotSpot Framework 0.1.3
                      ===========================
 
 OpenHotSpot is a machine learning, crime analysis framework written in

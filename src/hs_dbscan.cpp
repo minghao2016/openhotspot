@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotSpot Framework 0.1.2
+ * OpenHotSpot Framework 0.1.3
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -79,9 +79,16 @@ utils_tuple DBSCAN::dbscan(double eps, unsigned int min_pts,
             // mark point p as a noise point
             noise_pts.push_back(rq_neighbor_pts[i]);
          } else {
-            // move to next clusters and expand
+            // move to next clusters
             c++;
+            // essentially, everything is being repeated as shown above
+            // except here we are acutally creating the clusters.
             for (unsigned int p = 0; p < rq_neighbor_pts.size(); p++){
+               if (!visted_pts[p]){
+                  ec_neighbor_pts = regionQuery(p, eps, dist_metric);
+                  if (ec_neighbor_pts.size() >= min_pts){
+                  }
+               }
             }
          }
       }
@@ -119,7 +126,11 @@ std::vector<int> DBSCAN::regionQuery(unsigned int p, double eps,
    return rq_pts;
 }
 
-std::vector<std::string> DBSCAN::clusterType(OutputCoordinateCenters* occ)
+std::vector<double> DBSCAN::clusterCenter()
+{
+}
+
+std::vector<std::string> DBSCAN::clusterType()
 {
 }
 

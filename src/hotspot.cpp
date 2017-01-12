@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotSpot Framework 0.1.2
+ * OpenHotSpot Framework 0.1.3
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -92,7 +92,6 @@ void HotSpot::crimePercentage(const std::string& crime_file)
 }
 
 utils_tuple HotSpot::predictedClusters(double eps, unsigned int min_pts,
-                                       unsigned int min_samples,
                                        const std::string& dist_metric)
 {
    std::vector<Coordinates> coordinates;
@@ -103,7 +102,7 @@ utils_tuple HotSpot::predictedClusters(double eps, unsigned int min_pts,
    //coordinates.reduceLatValues(10);
    //coordinates.reduceLongValues(10);
    DBSCAN clusters(coordinates);
-   utils_tuple dbscan_results = clusters.dbscan(eps, min_pts, min_samples, dist_metric);
+   utils_tuple dbscan_results = clusters.dbscan(eps, min_pts, dist_metric);
    return std::make_tuple(std::get<0>(dbscan_results), std::get<1>(dbscan_results),
                           std::get<2>(dbscan_results), std::get<3>(dbscan_results));
 }
@@ -117,8 +116,7 @@ void HotSpot::launchWebClient()
 }
 
 void HotSpot::loadModel(const std::string& lat_file, const std::string& long_file,
-                        double eps, unsigned int min_pts, unsigned int min_samples,
-                        const std::string& dist_metric)
+                        double eps, unsigned int min_pts, const std::string& dist_metric)
 {
    Export expt(PREDICTION_FILE);
    std::ifstream if_lat(lat_file);
@@ -139,7 +137,7 @@ void HotSpot::loadModel(const std::string& lat_file, const std::string& long_fil
          long_values.push_back(temp_long);
       }
    }
-   utils_tuple prediction = predictedClusters(eps, min_pts, min_samples, dist_metric);
+   utils_tuple prediction = predictedClusters(eps, min_pts, dist_metric);
    //expt.exportPredictedData(std::get<0>(prediction), std::get<1>(prediction),
    //                         std::get<2>(prediction), std::get<3>(prediction));
 }
