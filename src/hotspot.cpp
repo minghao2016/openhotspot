@@ -56,7 +56,7 @@ void HotSpot::reformatCSVFile(const std::string& csv_file, unsigned int crime_co
             std::cout << "Error: Could not write dates file." << std::endl;
             exit(EXIT_FAILURE);
          } else {
-            exported_crimes << date_c << std::endl;
+            exported_dates << date_c << std::endl;
          }
          std::ofstream exported_lat(LATITUDES_FILE, std::ofstream::out | std::ofstream::app);
          if (!exported_lat.is_open()){
@@ -129,7 +129,7 @@ void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_fi
                         const std::string& dist_metric)
 {
    Export expt(PREDICTION_FILE);
-   std::ifstream if_dates(lat_file);
+   std::ifstream if_dates(dates_file);
    if (!if_dates.is_open()){
       std::cout << "Error: Could not open dates file." << std::endl;
       exit(EXIT_FAILURE);
