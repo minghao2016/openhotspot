@@ -20,6 +20,11 @@ Model::~Model()
 {
 }
 
+std::vector<float> crimeFrequency(std::vector<std::vector<OutputCoordinates> > clusters)
+{
+}
+
+
 float computeAccuracyRate()
 {
 }

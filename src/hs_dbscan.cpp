@@ -22,10 +22,6 @@ DBSCAN::DBSCAN(std::vector<Coordinates> _coordinates):
    c = 0;
 }
 
-DBSCAN::~DBSCAN()
-{
-}
-
 double DBSCAN::radiansToDegrees(double radians)
 {
    return radians * 180 / 3.14159;
@@ -78,9 +74,9 @@ utils_tuple DBSCAN::dbscan(double eps, unsigned int min_pts, const std::string& 
             c++;
             for (unsigned int p = 0; p < rq_neighbor_pts.size(); p++){
                if (!visted_pts[p]){
-                  ec_neighbor_pts = regionQuery(p, eps, dist_metric);
-                  if (ec_neighbor_pts.size() >= min_pts){
-                  }
+                  //ec_neighbor_pts = regionQuery(p, eps, dist_metric);
+                  //if (ec_neighbor_pts.size() >= min_pts){
+                  //}
                }
             }
          }
@@ -114,7 +110,6 @@ std::vector<int> DBSCAN::regionQuery(unsigned int p, double eps, const std::stri
          }
       }
    }
-   // return all points within point p's eps-neighborhood
    return rq_pts;
 }
 

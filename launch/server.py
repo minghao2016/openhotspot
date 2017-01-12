@@ -18,8 +18,10 @@ app = flask.Flask(__name__)
 
 
 class Server(object):
-    def __init__(self, csvfile=None):
+    def __init__(self, csvfile=None, html_page=None, js_file=None):
         self.csvfile = csvfile
+        self.html_page = html_page
+        self.js_file = js_file
 
     def _parse_csvfile(self):
         column = collections.defaultdict(list)
@@ -36,12 +38,12 @@ class Server(object):
             "priority_types": column["priority_types"]
         }
 
-    @app.route("/")
-    def _plot_variances(self):
-        """
-        """
+    def csv_to_geojson():
         parsed_file = self._parse_csvfile()
-        return flask.render_template("base.html")
+
+    @app.route("/")
+    def _plot_clusters(self):
+        return flask.render_template(self.html_page)
 
     def main(self):
         app.run(host="0.0.0.0",
@@ -49,5 +51,7 @@ class Server(object):
                 debug=False)
 
 if __name__ == '__main__':
-    server = Server(csvfile="")
+    server = Server(csvfile="",
+                    html_page="base.html",
+                    js_file="templates/js/map_data.js")
     server.main()

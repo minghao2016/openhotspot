@@ -16,7 +16,13 @@
 #include <string>
 #include <cmath>
 
+#include "hs_dbscan.h"
 #include "hs_utils.h"
+
+struct Weights {
+   std::vector<int> date_pts;
+   std::vector<std::string> crime_names;
+};
 
 namespace HotSpot {
 
@@ -26,6 +32,7 @@ private:
 public:
    Model();
    ~Model();
+   std::vector<float> crimeFrequency(std::vector<std::vector<OutputCoordinates> >);
    float computeAccuracyRate();
    float computeErrorCoverage();
 };

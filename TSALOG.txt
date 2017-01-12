@@ -1,3 +1,7 @@
+Thur Jan 12, 2017
+-----------------
+- Made minor changes to dbscan. 
+
 Web Jan 11, 2017
 ----------------
 - Began working on expanding cluster (which actually creates the clusters) in the

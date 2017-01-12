@@ -24,22 +24,25 @@ void usage()
    << "                 [--eps] [--min-pts] [--min-samples] [--distance-metric]\n"
    << "                 [--crime-percentage] [--version]\n"
    << "\nFile Handler:\n"
-   << "  --lat-file                <lat filename> Reformated latitude file.\n"
-   << "  --long-file               <long filename> Reformated longitude file.\n"
+   << "  --crime-file              <crime filename> Reformatted crime file.\n"
+   << "  --date-column             <date filename> Reformatted date file.\n"
+   << "  --lat-file                <lat filename> Reformatted latitude file.\n"
+   << "  --long-file               <long filename> Reformatted longitude file.\n"
    << "\nReformat Data:\n"
    << "  --reformat-file           <csv filename> Reformat criminal CSV data.\n"
    << "  --crime-column            CSV crime column number.\n"
+   << "  --date-column             CSV date column number.\n"
    << "  --lat-column              CSV latitude column number.\n"
    << "  --long-column             CSV longitude column number.\n"
    << "\nCluster Parameters:\n"
    << "  --eps                     [default: 1.7 = 1700m] Distance between two points to form cluster.\n"
-   << "  --min-pts                 [default: 800] Minimum points in a cluster.\n"
+   << "  --min-pts                 [default: 1000] Minimum points in a cluster.\n"
    << "  --distance-metric         [default: haversine] Metric used to calculate distance.\n"
    << "\nTerminal View:\n"
    << "  --crime-percentage        <crime filename> View the percentages of crimes.\n"
    << "  --version                 Current version of OpenHotSpot.\n"
    << "\nExample Usage:\n"
-   << "  ./hotspot --lat-file latitudes.txt --long-file longitudes.txt --crime-file crimes.txt\n"
+   << "  ./hotspot --crime-file crimes.txt --lat-file latitudes.txt --long-file longitudes.txt\n"
    << "  --eps 3.3 --min-pts 800 --distance-metric haversine\n"
    << "  ./hotspot --reformat-file dataset.csv --crime-column 1 --lat-column 10 --long-column 9\n"
    << "  ./hotspot --crimePercentage crimes.txt"
@@ -56,6 +59,10 @@ int main(int argc, char **argv)
    if (_argv == "--help"){
       usage();
    }
+   else if (_argv == "--crime-file"){
+   }
+   else if (_argv == "--date-file"){
+   }
    else if (_argv == "--lat-file"){
    }
    else if (_argv == "--long-file"){
@@ -63,6 +70,8 @@ int main(int argc, char **argv)
    else if (_argv == "--reformat-file"){
    }
    else if (_argv == "--crime-column"){
+   }
+   else if (_argv == "--date-column"){
    }
    else if (_argv == "--lat-column"){
    }
@@ -81,6 +90,6 @@ int main(int argc, char **argv)
    }*/
    HotSpot hotspot;
    hotspot.loadModel("../data/test_latitudes.txt", "../data/test_longitudes.txt",
-                     1.7, 800, "haversine");
+                     1.7, 1000, "haversine");
    //hotspot.reformat("../data/test_sf_dataset.csv", 1, 10, 9);
 }

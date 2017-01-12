@@ -46,7 +46,7 @@ private:
    int c;
 
    std::vector<Coordinates> coordinates;
-   std::vector<std::vector<Coordinates> > clusters;
+   std::vector<std::vector<OutputCoordinates> > clusters;
 
    std::vector<int> rq_neighbor_pts;
    std::vector<int> rq_pts;
@@ -57,12 +57,9 @@ private:
    std::vector<int> core_pts;
    std::vector<bool> visted_pts;
 
-   std::vector<OutputCoordinates> output_coordinates;
-
 public:
    DBSCAN();
    DBSCAN(std::vector<Coordinates>);
-   ~DBSCAN();
 
    double radiansToDegrees(double);
    double degreesToRadians(double);
