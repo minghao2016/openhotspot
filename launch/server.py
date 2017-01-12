@@ -38,7 +38,7 @@ class Server(object):
             "priority_types": column["priority_types"]
         }
 
-    def csv_to_geojson():
+    def _csv_to_geojson():
         parsed_file = self._parse_csvfile()
 
     @app.route("/")

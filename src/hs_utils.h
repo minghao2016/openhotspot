@@ -14,9 +14,10 @@
 #include <tuple>
 #include <utility>
 
-#define LATITUDES_FILE "../data/latitudes.txt"
-#define LONGITUDES_FILE "../data/longitudes.txt"
-#define CRIMES_FILE "../data/crimes.txt"
+#define LATITUDES_FILE "../data/hs_latitudes.txt"
+#define LONGITUDES_FILE "../data/hs_longitudes.txt"
+#define CRIMES_FILE "../data/hs_crimes.txt"
+#define DATES_FILE "../data/hs_dates.txt"
 #define PREDICTION_FILE "../data/prediction.csv"
 #define BORDER_CLUSTERS 1
 #define NOISE_CLUSTERS 2

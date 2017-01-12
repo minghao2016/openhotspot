@@ -1,6 +1,7 @@
 Thur Jan 12, 2017
 -----------------
-- Made minor changes to dbscan. 
+- Made minor changes to dbscan.
+- Added dates parameter to hotspot file.
 
 Web Jan 11, 2017
 ----------------

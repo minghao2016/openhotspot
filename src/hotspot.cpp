@@ -27,7 +27,8 @@ std::istream& operator>>(std::istream& file, Reformat& ref)
 }
 
 void HotSpot::reformatCSVFile(const std::string& csv_file, unsigned int crime_column,
-                              unsigned int lat_column, unsigned int long_column)
+                              unsigned int date_column, unsigned int lat_column,
+                              unsigned int long_column)
 {
    Reformat ref;
    std::ifstream if_csv(csv_file);
@@ -37,9 +38,10 @@ void HotSpot::reformatCSVFile(const std::string& csv_file, unsigned int crime_co
    } else {
       while (if_csv >> ref){
          std::string crime_c = ref[crime_column];
+         std::string date_c = ref[date_column];
          std::string lat_c = ref[lat_column];
          std::string long_c = ref[long_column];
-         if (crime_c.empty() || lat_c.empty() || long_c.empty()){
+         if (crime_c.empty() || date_c.empty() || lat_c.empty() || long_c.empty()){
             std::cout << "Error: One or more columns are empty." << std::endl;
          }
          std::ofstream exported_crimes(CRIMES_FILE, std::ofstream::out | std::ofstream::app);
@@ -48,6 +50,13 @@ void HotSpot::reformatCSVFile(const std::string& csv_file, unsigned int crime_co
             exit(EXIT_FAILURE);
          } else {
             exported_crimes << crime_c << std::endl;
+         }
+         std::ofstream exported_dates(DATES_FILE, std::ofstream::out | std::ofstream::app);
+         if (!exported_dates.is_open()){
+            std::cout << "Error: Could not write dates file." << std::endl;
+            exit(EXIT_FAILURE);
+         } else {
+            exported_crimes << date_c << std::endl;
          }
          std::ofstream exported_lat(LATITUDES_FILE, std::ofstream::out | std::ofstream::app);
          if (!exported_lat.is_open()){
@@ -115,10 +124,20 @@ void HotSpot::launchWebClient()
 {
 }
 
-void HotSpot::loadModel(const std::string& lat_file, const std::string& long_file,
-                        double eps, unsigned int min_pts, const std::string& dist_metric)
+void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_file,
+                        const std::string& long_file, double eps, unsigned int min_pts,
+                        const std::string& dist_metric)
 {
    Export expt(PREDICTION_FILE);
+   std::ifstream if_dates(lat_file);
+   if (!if_dates.is_open()){
+      std::cout << "Error: Could not open dates file." << std::endl;
+      exit(EXIT_FAILURE);
+   } else {
+      while (if_dates >> temp_dates){
+         date_values.push_back(temp_dates);
+      }
+   }
    std::ifstream if_lat(lat_file);
    if (!if_lat.is_open()){
       std::cout << "Error: Could not open latitude file." << std::endl;
