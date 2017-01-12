@@ -4,6 +4,7 @@ Web Jan 11, 2017
 dbscan function (Almost finished).
 - Added sf_example_analysis script to test framework when finished.
 - Version update (0.1.3).
+- Removed cmake and returned back to Makefile.
 
 Tue Jan 10, 2017
 ----------------
