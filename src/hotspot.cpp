@@ -110,8 +110,10 @@ utils_tuple HotSpot::predictedClusters(double eps, unsigned int min_pts,
    coordinates[1].long_pts = long_values;
    //coordinates.reduceLatValues(10);
    //coordinates.reduceLongValues(10);
-   DBSCAN clusters(coordinates);
-   utils_tuple dbscan_results = clusters.dbscan(eps, min_pts, dist_metric);
+   DBSCAN clusters(coordinates, eps, min_pts, dist_metric);
+   utils_tuple dbscan_results = clusters.dbscan();
+   //for (unsigned int i = 0; i < coordinates[0].lat_pts.size(); i++){
+   //}
    return std::make_tuple(std::get<0>(dbscan_results), std::get<1>(dbscan_results),
                           std::get<2>(dbscan_results), std::get<3>(dbscan_results));
 }

@@ -43,14 +43,17 @@ namespace hotspot {
 
 class DBSCAN {
 private:
-   int c;
+   unsigned int c;
+   double eps;
+   unsigned int min_pts;
+   const std::string& dist_metric;
 
    std::vector<Coordinates> coordinates;
-   std::vector<std::vector<OutputCoordinates> > clusters;
+   std::vector<std::vector<Coordinates> > clusters;
 
    std::vector<int> rq_neighbor_pts;
    std::vector<int> rq_pts;
-   std::vector<int> ec_neighbor_pts;
+   std::vector<int> ec_neighbor_pts_;
 
    std::vector<int> border_pts;
    std::vector<int> noise_pts;
@@ -58,8 +61,8 @@ private:
    std::vector<bool> visted_pts;
 
 public:
-   DBSCAN();
-   DBSCAN(std::vector<Coordinates>);
+   DBSCAN(std::vector<Coordinates>, double, unsigned int, const std::string&);
+   ~DBSCAN();
 
    double radiansToDegrees(double);
    double degreesToRadians(double);
@@ -68,10 +71,11 @@ public:
 
    void reduceLatValues(unsigned int);
    void reduceLongValues(unsigned int);
-   utils_tuple dbscan(double, unsigned int, const std::string&);
-   std::vector<int> regionQuery(unsigned int, double, const std::string&);
-   std::vector<double> clusterCenter();
-   std::vector<std::string> clusterType();
+   std::vector<double> clusterCenter(std::vector<std::vector<OutputCoordinates> >);
+   std::vector<std::string> clusterType(std::vector<std::vector<OutputCoordinates> >);
+   std::vector<int> regionQuery(unsigned int);
+   void expandCluster(unsigned int, std::vector<int>, unsigned int);
+   utils_tuple dbscan();
    float computeErrorCoverage();
 };
 
