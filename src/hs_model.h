@@ -32,7 +32,7 @@ private:
 public:
    Model();
    ~Model();
-   std::vector<float> crimeFrequency(std::vector<std::vector<OutputCoordinates> >);
+   std::vector<float> crimeFrequency(std::vector<std::vector<Coordinates> >);
    float computeAccuracyRate();
    float computeErrorCoverage();
 };

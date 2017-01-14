@@ -66,11 +66,16 @@ void DBSCAN::reduceLongValues(unsigned int size)
 }
 
 
-std::vector<double> DBSCAN::clusterCenter(std::vector<std::vector<OutputCoordinates> > cc)
+std::vector<double> DBSCAN::clusterCenter(std::vector<std::vector<Coordinates> > center_coords,
+                                          unsigned int cc_size)
 {
+   for (unsigned int i = 0; i < center_coords.size(); i++){
+      for (unsigned int p = 0; p < cc_size; p++){
+      }
+   }
 }
 
-std::vector<std::string> DBSCAN::clusterType(std::vector<std::vector<OutputCoordinates> > cc)
+std::vector<std::string> DBSCAN::clusterType(std::vector<std::vector<Coordinates> > center_coords)
 {
 }
 
@@ -101,8 +106,11 @@ std::vector<int> DBSCAN::regionQuery(unsigned int p)
    return rq_pts;
 }
 
-void DBSCAN::expandCluster(unsigned int p, std::vector<int> ec_neighbor_pts, unsigned int c)
+std::vector<Coordinates> DBSCAN::expandCluster(unsigned int p, std::vector<int> ec_neighbor_pts,
+                                               unsigned int c)
 {
+   clusters.push_back(std::vector<Coordinates>());
+   //clusters[c].push_back(coordinates[0].lat_pts[rq_neighbor_pts[i]]);
    for (unsigned int i = 0; i < ec_neighbor_pts.size(); p++){
       if (!visted_pts[i]){
          //ec_neighbor_pts_ = regionQuery(rq_neighbor_pts[p]);
@@ -124,9 +132,7 @@ utils_tuple DBSCAN::dbscan()
             noise_pts.push_back(rq_neighbor_pts[i]);
          } else {
             c++;
-            clusters.push_back(std::vector<Coordinates>());
-            //clusters[c].push_back(coordinates[0].lat_pts[rq_neighbor_pts[i]]);
-            expandCluster(i, rq_neighbor_pts, c);
+            ec_pts = expandCluster(i, rq_neighbor_pts, c);
          }
       }
       //return std::make_tuple();

@@ -26,12 +26,6 @@ struct Coordinates {
    std::vector<double> long_pts;
 };
 
-struct OutputCoordinates {
-   std::vector<double> lat_pts;
-   std::vector<double> long_pts;
-   std::vector<int> labels;
-};
-
 struct Metric {
    double lat_1;
    double lat_2;
@@ -54,6 +48,7 @@ private:
    std::vector<int> rq_neighbor_pts;
    std::vector<int> rq_pts;
    std::vector<int> ec_neighbor_pts_;
+   std::vector<Coordinates> ec_pts;
 
    std::vector<int> border_pts;
    std::vector<int> noise_pts;
@@ -71,10 +66,11 @@ public:
 
    void reduceLatValues(unsigned int);
    void reduceLongValues(unsigned int);
-   std::vector<double> clusterCenter(std::vector<std::vector<OutputCoordinates> >);
-   std::vector<std::string> clusterType(std::vector<std::vector<OutputCoordinates> >);
+   std::vector<double> clusterCenter(std::vector<std::vector<Coordinates> >,
+                                     unsigned int);
+   std::vector<std::string> clusterType(std::vector<std::vector<Coordinates> >);
    std::vector<int> regionQuery(unsigned int);
-   void expandCluster(unsigned int, std::vector<int>, unsigned int);
+   std::vector<Coordinates> expandCluster(unsigned int, std::vector<int>, unsigned int);
    utils_tuple dbscan();
    float computeErrorCoverage();
 };

@@ -20,7 +20,7 @@ Model::~Model()
 {
 }
 
-std::vector<float> crimeFrequency(std::vector<std::vector<OutputCoordinates> > clusters)
+std::vector<float> crimeFrequency(std::vector<std::vector<Coordinates> > clusters)
 {
 }
 

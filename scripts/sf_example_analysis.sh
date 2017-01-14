@@ -4,4 +4,4 @@ wget -c https://data.sfgov.org/Public-Safety/SFPD-Incidents-from-1-January-2003/
 
 #./hotspot --lat-file ../data/latitudes.txt --long-file ../data/longitudes.txt --crime-file ../data/crimes.txt --eps 3.3 --min-pts 10 --distance-metric haversine
 
-python ../launch/server.py --csvfile ../data/prediction.csv
+python ../launch/server.py

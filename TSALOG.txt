@@ -2,6 +2,7 @@ Fri Jan 13, 2017
 ----------------
 - Added expand cluster again.
 - Added parameters to dbscan file constructor and removed from functions.
+- Worked on dbscan (Still not finished!).
 
 Thur Jan 12, 2017
 -----------------
