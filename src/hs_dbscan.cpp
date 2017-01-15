@@ -12,7 +12,7 @@
 
 namespace hotspot {
 
-DBSCAN::DBSCAN(std::vector<Coordinates> _coordinates, double _eps, unsigned int _min_pts,
+DBSCAN::DBSCAN(std::vector<Coordinates>& _coordinates, double _eps, unsigned int _min_pts,
                const std::string& _dist_metric):
    coordinates(_coordinates),
    eps(_eps),

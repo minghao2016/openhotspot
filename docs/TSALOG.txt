@@ -2,6 +2,8 @@ Sat Jan 14, 2017
 ----------------
 - Worked on dbscan.
 - Renamed scripts folder to tests.
+- Added docs folder.
+- Added MAINTAINERS file.
 
 Fri Jan 13, 2017
 ----------------

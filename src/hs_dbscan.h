@@ -42,7 +42,7 @@ private:
    unsigned int min_pts;
    const std::string& dist_metric;
 
-   std::vector<Coordinates> coordinates;
+   std::vector<Coordinates>& coordinates;
    std::vector<std::vector<Coordinates> > clusters;
 
    std::vector<int> rq_pts;
@@ -56,7 +56,7 @@ private:
    std::vector<bool> visted_pts;
 
 public:
-   DBSCAN(std::vector<Coordinates>, double, unsigned int, const std::string&);
+   DBSCAN(std::vector<Coordinates>&, double, unsigned int, const std::string&);
    ~DBSCAN();
 
    double radiansToDegrees(double);

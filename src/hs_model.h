@@ -24,15 +24,21 @@ struct Weights {
    std::vector<std::string> crime_names;
 };
 
+struct PredictedCoordinates {
+   std::vector<double> lat_pts;
+   std::vector<double> long_pts;
+};
+
 namespace HotSpot {
 
 class Model {
 private:
+   std::vector<std::vector<Coordinates> >& clusters;
 
 public:
-   Model();
+   Model(std::vector<std::vector<Coordinates> >&);
    ~Model();
-   std::vector<float> crimeFrequency(std::vector<std::vector<Coordinates> >&);
+   std::vector<int> crimeFrequency();
    float computeAccuracyRate();
    float computeErrorCoverage();
 };
