@@ -66,11 +66,11 @@ public:
 
    void reduceLatValues(unsigned int);
    void reduceLongValues(unsigned int);
-   std::vector<double> clusterCenter(std::vector<std::vector<Coordinates> >,
+   std::vector<double> clusterCenter(std::vector<std::vector<Coordinates> >&,
                                      unsigned int);
-   std::vector<std::string> clusterType(std::vector<std::vector<Coordinates> >);
+   std::vector<std::string> clusterType(std::vector<std::vector<Coordinates> >&);
    std::vector<int> regionQuery(unsigned int);
-   std::vector<Coordinates>& expandCluster(unsigned int, std::vector<int>*, unsigned int);
+   std::vector<Coordinates>& expandCluster(unsigned int*, std::vector<int>*, unsigned int*);
    utils_tuple dbscan();
    float computeErrorCoverage();
 };

@@ -66,7 +66,7 @@ void DBSCAN::reduceLongValues(unsigned int size)
 }
 
 
-std::vector<double> DBSCAN::clusterCenter(std::vector<std::vector<Coordinates> > center_coords,
+std::vector<double> DBSCAN::clusterCenter(std::vector<std::vector<Coordinates> >& center_coords,
                                           unsigned int cc_size)
 {
    for (unsigned int i = 0; i < center_coords.size(); i++){
@@ -75,7 +75,7 @@ std::vector<double> DBSCAN::clusterCenter(std::vector<std::vector<Coordinates> >
    }
 }
 
-std::vector<std::string> DBSCAN::clusterType(std::vector<std::vector<Coordinates> > center_coords)
+std::vector<std::string> DBSCAN::clusterType(std::vector<std::vector<Coordinates> >& center_coords)
 {
 }
 
@@ -106,11 +106,10 @@ std::vector<int> DBSCAN::regionQuery(unsigned int p)
    return rq_pts;
 }
 
-std::vector<Coordinates>& DBSCAN::expandCluster(unsigned int p, std::vector<int>* ec_neighbor_pts,
-                                                unsigned int c)
+std::vector<Coordinates>& DBSCAN::expandCluster(unsigned int* p, std::vector<int>* ec_neighbor_pts,
+                                                unsigned int* c)
 {
-   int neighbor_size = ec_neighbor_pts->size();
-   for (unsigned int i = 0; i < neighbor_size; i++){
+   for (unsigned int i = 0; i < (int)ec_neighbor_pts->size(); i++){
       if (!visted_pts[i]){
          //ec_neighbor_pts_ = regionQuery(i);
          //if (ec_neighbor_pts_.size() >= min_pts){
@@ -132,7 +131,7 @@ utils_tuple DBSCAN::dbscan()
          } else {
             c++;
             clusters.push_back(std::vector<Coordinates>());
-            std::vector<Coordinates>& ec_pts = expandCluster(i, &rq_neighbor_pts, c);
+            std::vector<Coordinates>& ec_pts = expandCluster(&i, &rq_neighbor_pts, &c);
          }
       }
       //return std::make_tuple();

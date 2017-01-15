@@ -1,6 +1,7 @@
 Sat Jan 14, 2017
 ----------------
 - Worked on dbscan.
+- Renamed scripts folder to tests.
 
 Fri Jan 13, 2017
 ----------------
