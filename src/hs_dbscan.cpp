@@ -20,9 +20,6 @@ DBSCAN::DBSCAN(std::vector<Coordinates>& _coordinates, double _eps, unsigned int
    dist_metric(_dist_metric)
 {
    c = 0;
-   for (unsigned int i = 0; i < coordinates[0].lat_pts.size(); i++){
-      visted_pts.push_back(false);
-   }
 }
 
 DBSCAN::~DBSCAN()
@@ -79,7 +76,7 @@ std::vector<std::string> DBSCAN::clusterType(std::vector<std::vector<Coordinates
 {
 }
 
-std::vector<int> DBSCAN::regionQuery(unsigned int p)
+std::vector<int> DBSCAN::regionQuery(unsigned int p, struct ClusterPoints* points)
 {
    Metric metric;
    if (dist_metric == "haversine"){
@@ -89,7 +86,7 @@ std::vector<int> DBSCAN::regionQuery(unsigned int p)
          metric.long_1 = coordinates[1].long_pts[i];
          metric.long_2 = coordinates[1].long_pts[p];
          if (haversineMetric(&metric) <= eps){
-            rq_pts.push_back(i);
+            points->rq_pts.push_back(i);
          }
       }
    } else if (dist_metric == "euclidean"){
@@ -99,46 +96,50 @@ std::vector<int> DBSCAN::regionQuery(unsigned int p)
          metric.long_1 = coordinates[1].long_pts[i];
          metric.long_2 = coordinates[1].long_pts[p];
          if (euclideanMetric(&metric) <= eps){
-            rq_pts.push_back(i);
+            points->rq_pts.push_back(i);
          }
       }
    }
-   return rq_pts;
+   return points->rq_pts;
 }
 
-std::vector<Coordinates>& DBSCAN::expandCluster(unsigned int* p, std::vector<int>* ec_neighbor_pts,
-                                                unsigned int* c)
+std::vector<Coordinates>& DBSCAN::expandCluster(unsigned int p, std::vector<int>* ec_neighbor_pts,
+                                                unsigned int* c, struct ClusterPoints* points)
 {
    for (unsigned int i = 0; i < (int)ec_neighbor_pts->size(); i++){
-      if (!visted_pts[i]){
-         //ec_neighbor_pts_ = regionQuery(i);
-         //if (ec_neighbor_pts_.size() >= min_pts){
+      points->visted_pts.push_back(false);
+      //if (!points->visted_pts[i]){
+         //std::cout << regionQuery(ec_neighbor_pts[i]).size() << std::endl;
+         //std::cout << ec_neighbor_pts[i] << std::endl;
+         //if (regionQuery(ec_neighbor_pts[i]).size() >= min_pts){
          //}
-      }
+      //}
    }
 }
 
 utils_tuple DBSCAN::dbscan()
 {
+   ClusterPoints points;
    for (unsigned int i = 0; i < coordinates[0].lat_pts.size(); i++){
-      if (visted_pts[i]) {
+      points.visted_pts.push_back(false);
+      if (points.visted_pts[i]) {
          continue;
       } else {
-         visted_pts[i] = true;
-         rq_neighbor_pts = regionQuery(i);
-         if (rq_neighbor_pts.size() < min_pts){
-            noise_pts.push_back(rq_neighbor_pts[i]);
+         points.visted_pts[i] = true;
+         points.rq_neighbor_pts = regionQuery(i, &points);
+         if (points.rq_neighbor_pts.size() < min_pts){
+            points.noise_pts.push_back(points.rq_neighbor_pts[i]);
          } else {
             c++;
             clusters.push_back(std::vector<Coordinates>());
-            std::vector<Coordinates>& ec_pts = expandCluster(&i, &rq_neighbor_pts, &c);
+            std::vector<Coordinates>& ec_pts = expandCluster(i, &points.rq_neighbor_pts, &c, &points);
          }
       }
       //return std::make_tuple();
    }
 }
 
-float DBSCAN::computeErrorCoverage()
+float DBSCAN::computeLoss()
 {
 }
 

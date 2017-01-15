@@ -1,14 +1,14 @@
-AUTOMAKE_OPTIONS=foreign
-SUBDIR=src
-
 CXX=g++
 CXXFLAGS=-g -Wall -std=c++11
 
 PROJECT=hotspot
-FILES=src/hotspot.cpp src/hs_model.cpp src/http/hs_client.cpp src/hs_dbscan.cpp src/hs_export.cpp src/hs_reformat.cpp src/main.cpp
+MAIN_FILES=src/hotspot.cpp src/hs_model.cpp
+SRC_FILES=src/hs_dbscan.cpp src/hs_export.cpp src/hs_reformat.cpp src/main.cpp
+HTTP_FILES=src/http/hs_client.cpp
 
 $(PROJECT):
-	$(CXX) $(CXXFLAGS) -o $(PROJECT) $(FILES) src/main.cpp
+	$(CXX) $(CXXFLAGS) -o $(PROJECT) $(MAIN_FILES) \
+	$(SRC_FILES) $(HTTP_FILES) src/main.cpp
 
 clean:
 	rm -f hotspot *.o

@@ -1,3 +1,7 @@
+Sun Jan 15, 2017
+----------------
+- Created struct for cluster points in dbscan.
+
 Sat Jan 14, 2017
 ----------------
 - Worked on dbscan.
