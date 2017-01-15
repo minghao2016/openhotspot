@@ -22,15 +22,11 @@
 #define BORDER_CLUSTERS 1
 #define NOISE_CLUSTERS 2
 #define CORE_CLUSTERS 3
-#define PRIORITY_CRITICAL 1
-#define PRIORITY_MAJOR 2
-#define PRIORITY_NORMA 3
-#define PRIORITY_MINOR 4
 
 namespace hotspot {
 
 typedef std::pair<double, double> utils_pair;
-typedef std::tuple<unsigned int, double, double, unsigned int> utils_tuple;
+typedef std::tuple<unsigned int, double, double, std::string> utils_tuple;
 
 }
 

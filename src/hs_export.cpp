@@ -18,8 +18,7 @@ Export::Export(const std::string& _csv_file):
 }
 
 void Export::exportPredictedData(unsigned int n_clusters, double center_lat,
-                                 double center_long, unsigned int pts,
-                                 std::string c_type)
+                                 double center_long, std::string c_type)
 {
    std::ofstream prediction_file(csv_file, std::ofstream::out | std::ofstream::app);
    if (!prediction_file.is_open()){

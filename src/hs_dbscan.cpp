@@ -39,7 +39,7 @@ double DBSCAN::degreesToRadians(double degrees)
    return degrees * 3.14159 / 180;
 }
 
-double DBSCAN::haversineMetric(Metric* metric)
+double DBSCAN::haversineMetric(struct Metric* metric)
 {
    double dlat_1 = degreesToRadians(metric->lat_1);
    double dlong_1 = degreesToRadians(metric->long_1);
@@ -50,7 +50,7 @@ double DBSCAN::haversineMetric(Metric* metric)
    return 2 * 6371 * asin(sqrt(a * a + cos(dlat_1) * cos(dlat_2) * b * b));
 }
 
-double DBSCAN::euclideanMetric(Metric* metric)
+double DBSCAN::euclideanMetric(struct Metric* metric)
 {
    double dlat_1 = metric->lat_2 - metric->lat_1;
    double dlong_1 = metric->long_2 - metric->long_1;
@@ -106,15 +106,14 @@ std::vector<int> DBSCAN::regionQuery(unsigned int p)
    return rq_pts;
 }
 
-std::vector<Coordinates> DBSCAN::expandCluster(unsigned int p, std::vector<int> ec_neighbor_pts,
-                                               unsigned int c)
+std::vector<Coordinates>& DBSCAN::expandCluster(unsigned int p, std::vector<int>* ec_neighbor_pts,
+                                                unsigned int c)
 {
-   clusters.push_back(std::vector<Coordinates>());
-   //clusters[c].push_back(coordinates[0].lat_pts[rq_neighbor_pts[i]]);
-   for (unsigned int i = 0; i < ec_neighbor_pts.size(); p++){
+   int neighbor_size = ec_neighbor_pts->size();
+   for (unsigned int i = 0; i < neighbor_size; i++){
       if (!visted_pts[i]){
-         //ec_neighbor_pts_ = regionQuery(rq_neighbor_pts[p]);
-         //if (ec_neighbor_pts.size() >= min_pts){
+         //ec_neighbor_pts_ = regionQuery(i);
+         //if (ec_neighbor_pts_.size() >= min_pts){
          //}
       }
    }
@@ -132,7 +131,8 @@ utils_tuple DBSCAN::dbscan()
             noise_pts.push_back(rq_neighbor_pts[i]);
          } else {
             c++;
-            ec_pts = expandCluster(i, rq_neighbor_pts, c);
+            clusters.push_back(std::vector<Coordinates>());
+            std::vector<Coordinates>& ec_pts = expandCluster(i, &rq_neighbor_pts, c);
          }
       }
       //return std::make_tuple();

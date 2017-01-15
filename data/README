@@ -4,7 +4,7 @@ This directory contains all of the frameworks raw criminal data used for classif
 
 Sources
 -------
-Here are a list of just a few available criminal datasets, in CSV format, to download and test on.
+Here are a list of just a few available criminal datasets in CSV format to download and test on.
 
 Chicago, IL         https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2
 San Francisco, CA   https://data.sfgov.org/Public-Safety/SFPD-Incidents-from-1-January-2003/tmnf-yvry
