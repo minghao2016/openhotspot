@@ -78,7 +78,7 @@ std::vector<std::string> DBSCAN::clusterType(std::vector<std::vector<Coordinates
 
 std::vector<int> DBSCAN::regionQuery(unsigned int p, struct ClusterPoints* points)
 {
-   Metric metric;
+   struct Metric metric;
    if (dist_metric == "haversine"){
       for (unsigned int i = 0; i < coordinates[0].lat_pts.size(); i++){
          metric.lat_1 = coordinates[0].lat_pts[i];
@@ -119,7 +119,7 @@ std::vector<Coordinates>& DBSCAN::expandCluster(unsigned int p, std::vector<int>
 
 utils_tuple DBSCAN::dbscan()
 {
-   ClusterPoints points;
+   struct ClusterPoints points;
    for (unsigned int i = 0; i < coordinates[0].lat_pts.size(); i++){
       points.visted_pts.push_back(false);
       if (points.visted_pts[i]) {

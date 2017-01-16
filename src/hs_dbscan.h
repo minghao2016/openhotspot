@@ -31,6 +31,7 @@ struct ClusterPoints {
    std::vector<int> border_pts;
    std::vector<int> noise_pts;
    std::vector<int> core_pts;
+
    std::vector<int> rq_pts;
    std::vector<int> rq_neighbor_pts;
    std::vector<int> ec_neighbor_pts_;

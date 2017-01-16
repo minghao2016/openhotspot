@@ -10,42 +10,30 @@ from __future__ import print_function
 import os
 import csv
 import json
-import flask
-import numpy as np
 import collections
+import numpy as np
+from flask import Flask, render_template
 
-app = flask.Flask(__name__)
+app = Flask(__name__)
 
+def _parse_csvfile(self):
+    column = collections.defaultdict(list)
+    with open(self.csvfile, "r") as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            for info, value in row.iteritems():
+                column[info].append(value)
+    return {
+        "n_clusters": column["n_clusters"],
+        "cluster_lat": column["cluster_lat"],
+        "cluster_long": column["cluster_long"],
+        "cluster_types": column["cluster_types"]
+    }
 
-class Server(object):
-    def __init__(self, csvfile=None, html_page=None):
-        self.csvfile = csvfile
-        self.html_page = html_page
-
-    def _parse_csvfile(self):
-        column = collections.defaultdict(list)
-        with open(self.csvfile, "r") as csvfile:
-            reader = csv.DictReader(csvfile)
-            for row in reader:
-                for info, value in row.iteritems():
-                    column[info].append(value)
-        return {
-            "n_clusters": column["n_clusters"],
-            "cluster_lat": column["cluster_lat"],
-            "cluster_long": column["cluster_long"]
-            "cluster_types": column["cluster_types"],
-        }
-
-    @app.route("/")
-    def _plot_clusters(self):
-        return flask.render_template(self.html_page)
-
-    def main(self):
-        app.run(host="0.0.0.0",
-                port=1000,
-                debug=False)
+@app.route('/')
+def _plot_clusters():
+    csvfile = "../data/prediction.csv"
+    return render_template("base.html")
 
 if __name__ == '__main__':
-    server = Server(csvfile="../data/prediction.csv",
-                    html_page="base.html")
-    server.main()
+    app.run()

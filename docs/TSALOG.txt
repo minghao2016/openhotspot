@@ -1,6 +1,7 @@
 Sun Jan 15, 2017
 ----------------
 - Created struct for cluster points in dbscan.
+- Made some changes to the server.
 
 Sat Jan 14, 2017
 ----------------
