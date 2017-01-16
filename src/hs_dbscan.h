@@ -32,6 +32,7 @@ struct ClusterPoints {
    std::vector<int> noise_pts;
    std::vector<int> core_pts;
 
+   std::vector<int> neighbor_pts;
    std::vector<int> rq_pts;
    std::vector<int> rq_neighbor_pts;
    std::vector<int> ec_neighbor_pts_;
@@ -53,11 +54,11 @@ private:
    unsigned int min_pts;
    const std::string& dist_metric;
 
-   std::vector<Coordinates>& coordinates;
+   std::vector<Coordinates> coordinates;
    std::vector<std::vector<Coordinates> > clusters;
 
 public:
-   DBSCAN(std::vector<Coordinates>&, double, unsigned int, const std::string&);
+   DBSCAN(std::vector<Coordinates>, double, unsigned int, const std::string&);
    ~DBSCAN();
 
    double radiansToDegrees(double);
@@ -67,12 +68,12 @@ public:
 
    void reduceLatValues(unsigned int);
    void reduceLongValues(unsigned int);
-   std::vector<double> clusterCenter(std::vector<std::vector<Coordinates> >&,
+   std::vector<double> clusterCenter(std::vector<std::vector<Coordinates> >,
                                      unsigned int);
-   std::vector<std::string> clusterType(std::vector<std::vector<Coordinates> >&);
-   std::vector<int> regionQuery(unsigned int, struct ClusterPoints*);
+   std::vector<std::string> clusterType(std::vector<std::vector<Coordinates> >);
+   std::vector<int> regionQuery(unsigned int, struct ClusterPoints&);
    std::vector<Coordinates>& expandCluster(unsigned int, std::vector<int>*, unsigned int*,
-                                           struct ClusterPoints*);
+                                           struct ClusterPoints&);
    utils_tuple dbscan();
    float computeLoss();
 };

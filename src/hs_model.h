@@ -33,12 +33,13 @@ namespace HotSpot {
 
 class Model {
 private:
-   std::vector<std::vector<Coordinates> >& clusters;
+   std::vector<std::vector<Coordinates> > clusters;
 
 public:
-   Model(std::vector<std::vector<Coordinates> >&);
+   Model(std::vector<std::vector<Coordinates> >);
    ~Model();
    std::vector<int> crimeFrequency();
+   std::vector<PredictedCoordinates> prediction();
    float computeAccuracyRate();
    float computeErrorCoverage();
 };

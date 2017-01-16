@@ -12,7 +12,7 @@
 
 namespace HotSpot {
 
-Model::Model(std::vector<std::vector<Coordinates> >& _clusters):
+Model::Model(std::vector<std::vector<Coordinates> > _clusters):
    clusters(_clusters)
 {
 }
@@ -21,15 +21,19 @@ Model::~Model()
 {
 }
 
-std::vector<int> crimeFrequency()
+std::vector<int> Model::crimeFrequency()
 {
 }
 
-float computeAccuracyRate()
+std::vector<PredictedCoordinates> Model::prediction()
 {
 }
 
-float computeErrorCoverage()
+float Model::computeAccuracyRate()
+{
+}
+
+float Model::computeErrorCoverage()
 {
 }
 
