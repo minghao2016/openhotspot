@@ -32,6 +32,8 @@ struct ClusterPoints {
    std::vector<int> noise_pts;
    std::vector<int> core_pts;
 
+   std::vector<bool> clustered_pts;
+
    std::vector<int> neighbor_pts;
    std::vector<int> rq_pts;
    std::vector<int> rq_neighbor_pts;
@@ -70,7 +72,6 @@ public:
    void reduceLongValues(unsigned int);
    std::vector<double> clusterCenter(std::vector<std::vector<Coordinates> >,
                                      unsigned int);
-   std::vector<std::string> clusterType(std::vector<std::vector<Coordinates> >);
    std::vector<int> regionQuery(unsigned int, struct ClusterPoints&);
    std::vector<Coordinates>& expandCluster(unsigned int, std::vector<int>*, unsigned int*,
                                            struct ClusterPoints&);

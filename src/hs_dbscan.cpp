@@ -54,25 +54,21 @@ double DBSCAN::euclideanMetric(struct Metric* metric)
    return sqrt(dlat_1 * dlat_1 + dlong_1 * dlong_1);
 }
 
-void DBSCAN::reduceLatValues(unsigned int size)
+void DBSCAN::reduceLatValues(unsigned int r_size)
 {
 }
 
-void DBSCAN::reduceLongValues(unsigned int size)
+void DBSCAN::reduceLongValues(unsigned int r_size)
 {
 }
 
-std::vector<double> DBSCAN::clusterCenter(std::vector<std::vector<Coordinates> > center_coords,
+std::vector<double> DBSCAN::clusterCenter(std::vector<std::vector<Coordinates> > clusters_coordinates,
                                           unsigned int cc_size)
 {
-   for (unsigned int i = 0; i < center_coords.size(); i++){
+   for (unsigned int i = 0; i < clusters_coordinates.size(); i++){
       for (unsigned int p = 0; p < cc_size; p++){
       }
    }
-}
-
-std::vector<std::string> DBSCAN::clusterType(std::vector<std::vector<Coordinates> > center_coords)
-{
 }
 
 std::vector<int> DBSCAN::regionQuery(unsigned int p, struct ClusterPoints& points)
@@ -105,13 +101,17 @@ std::vector<int> DBSCAN::regionQuery(unsigned int p, struct ClusterPoints& point
 std::vector<Coordinates>& DBSCAN::expandCluster(unsigned int p, std::vector<int>* ec_neighbor_pts,
                                                 unsigned int* c, struct ClusterPoints& points)
 {
+   points.clustered_pts.push_back(false);
    for (unsigned int i = 0; i < (int)ec_neighbor_pts->size(); i++){
       points.visted_pts.push_back(false);
       if (!points.visted_pts[i]){
          points.visted_pts[i] = true;
-         //std::cout << ec_neighbor_pts->at(i) << std::endl;
          points.ec_neighbor_pts_ = regionQuery(i, points);
          if (points.ec_neighbor_pts_.size() >= min_pts){
+            ec_neighbor_pts->insert(ec_neighbor_pts->end(), points.ec_neighbor_pts_.begin(),
+                                    points.ec_neighbor_pts_.end());
+         }
+         if (points.clustered_pts[ec_neighbor_pts->at(i)]){
          }
       }
    }
