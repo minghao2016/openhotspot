@@ -18,6 +18,7 @@
 #include <sstream>
 #include <cmath>
 
+#include "hs_dbscan.h"
 #include "hs_utils.h"
 
 namespace hotspot {
@@ -33,6 +34,8 @@ private:
    std::vector<double> long_values;
    std::vector<std::string> crime_values;
    std::vector<int> date_values;
+
+   std::vector<std::vector<Coordinates> > clusters;
 
 public:
    void reformatCSVFile(const std::string&, unsigned int, unsigned int,
