@@ -36,30 +36,22 @@ double DBSCAN::degreesToRadians(double degrees)
    return degrees * 3.14159 / 180;
 }
 
-double DBSCAN::haversineMetric(Metric* metric)
+double DBSCAN::haversineMetric(Metric& metric)
 {
-   double dlat_1 = degreesToRadians(metric->lat_1);
-   double dlong_1 = degreesToRadians(metric->long_1);
-   double dlat_2 = degreesToRadians(metric->lat_2);
-   double dlong_2 = degreesToRadians(metric->long_2);
+   double dlat_1 = degreesToRadians(metric.lat_1);
+   double dlong_1 = degreesToRadians(metric.long_1);
+   double dlat_2 = degreesToRadians(metric.lat_2);
+   double dlong_2 = degreesToRadians(metric.long_2);
    double a = sin((dlat_2 - dlat_1) / 2);
    double b = sin((dlong_2 - dlong_1) / 2);
    return 2 * 6371 * asin(sqrt(a * a + cos(dlat_1) * cos(dlat_2) * b * b));
 }
 
-double DBSCAN::euclideanMetric(Metric* metric)
+double DBSCAN::euclideanMetric(Metric& metric)
 {
-   double dlat_1 = metric->lat_2 - metric->lat_1;
-   double dlong_1 = metric->long_2 - metric->long_1;
+   double dlat_1 = metric.lat_2 - metric.lat_1;
+   double dlong_1 = metric.long_2 - metric.long_1;
    return sqrt(dlat_1 * dlat_1 + dlong_1 * dlong_1);
-}
-
-void DBSCAN::reduceLatValues(unsigned int r_size)
-{
-}
-
-void DBSCAN::reduceLongValues(unsigned int r_size)
-{
 }
 
 std::vector<double> DBSCAN::clusterCenter(std::vector<std::vector<Coordinates> > clusters_coordinates,
@@ -80,7 +72,7 @@ std::vector<int> DBSCAN::regionQuery(unsigned int p)
          metric.lat_2 = coordinates[0].lat_pts[p];
          metric.long_1 = coordinates[1].long_pts[i];
          metric.long_2 = coordinates[1].long_pts[p];
-         if (haversineMetric(&metric) <= eps){
+         if (haversineMetric(metric) <= eps){
             rq_pts.push_back(i);
          }
       }
@@ -90,7 +82,7 @@ std::vector<int> DBSCAN::regionQuery(unsigned int p)
          metric.lat_2 = coordinates[0].lat_pts[p];
          metric.long_1 = coordinates[1].long_pts[i];
          metric.long_2 = coordinates[1].long_pts[p];
-         if (euclideanMetric(&metric) <= eps){
+         if (euclideanMetric(metric) <= eps){
             rq_pts.push_back(i);
          }
       }
@@ -106,16 +98,16 @@ std::vector<Coordinates>& DBSCAN::expandCluster(unsigned int p, std::vector<int>
          visted_pts[i] = true;
          ec_neighbor_pts_ = regionQuery(i);
          if (ec_neighbor_pts_.size() >= min_pts){
-            //ec_neighbor_pts->insert(ec_neighbor_pts->end(), ec_neighbor_pts_.begin(),
-            //                        ec_neighbor_pts_.end());
+            ec_neighbor_pts->insert(ec_neighbor_pts->end(), ec_neighbor_pts_.begin(),
+                                    ec_neighbor_pts_.end());
          }
-         clustered_pts.push_back(false);
-         if (!clustered_pts[ec_neighbor_pts->at(i)]){
-            clusters[*c_clusters].push_back(ec_neighbor_pts->at(i));
-         }
+         //clustered_pts.push_back(false);
+         //if (!clustered_pts[ec_neighbor_pts->at(i)]){
+            //clusters[*c_clusters].push_back(ec_neighbor_pts->at(i));
+         //}
       }
    }
-   return clusters;
+   //return clusters;
 }
 
 utils_tuple DBSCAN::dbscan()

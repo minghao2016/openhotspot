@@ -1,3 +1,7 @@
+Wed Jan 18, 2017
+----------------
+- Removed reduceValues function in dbscan.
+
 Tue Jan 17, 2017
 ----------------
 - Need to fix memory leak in dbscan.

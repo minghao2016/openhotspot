@@ -40,9 +40,9 @@ private:
    unsigned int min_pts;
    const std::string& dist_metric;
 
-   std::vector<bool> visted_pts;
-   std::vector<int> noise_pts;
    std::vector<int> core_pts;
+   std::vector<int> noise_pts;
+   std::vector<bool> visted_pts;
 
    std::vector<bool> clustered_pts;
 
@@ -60,13 +60,12 @@ public:
 
    double radiansToDegrees(double);
    double degreesToRadians(double);
-   double haversineMetric(Metric*);
-   double euclideanMetric(Metric*);
+   double haversineMetric(Metric&);
+   double euclideanMetric(Metric&);
 
    void reduceLatValues(unsigned int);
    void reduceLongValues(unsigned int);
-   std::vector<double> clusterCenter(std::vector<std::vector<Coordinates> >,
-                                     unsigned int);
+   std::vector<double> clusterCenter(std::vector<std::vector<Coordinates> >, unsigned int);
    std::vector<int> regionQuery(unsigned int);
    std::vector<Coordinates>& expandCluster(unsigned int, std::vector<int>*, unsigned int*);
    utils_tuple dbscan();

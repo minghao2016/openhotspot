@@ -41,7 +41,7 @@ public:
    std::vector<int> crimeFrequency();
    std::vector<PredictedCoordinates> predict();
    float computeAccuracyRate();
-   float computeErrorCoverage();
+   float computeLoss();
 };
 
 }
