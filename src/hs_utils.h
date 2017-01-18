@@ -19,9 +19,8 @@
 #define CRIMES_FILE "../data/hs_crimes.txt"
 #define DATES_FILE "../data/hs_dates.txt"
 #define PREDICTION_FILE "../data/prediction.csv"
-#define BORDER_CLUSTERS 1
+#define CORE_CLUSTERS 1
 #define NOISE_CLUSTERS 2
-#define CORE_CLUSTERS 3
 
 namespace hotspot {
 

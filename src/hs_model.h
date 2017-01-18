@@ -39,7 +39,7 @@ public:
    Model(std::vector<std::vector<Coordinates> >);
    ~Model();
    std::vector<int> crimeFrequency();
-   std::vector<PredictedCoordinates> prediction();
+   std::vector<PredictedCoordinates> predict();
    float computeAccuracyRate();
    float computeErrorCoverage();
 };

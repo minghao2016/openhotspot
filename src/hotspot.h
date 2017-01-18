@@ -40,7 +40,7 @@ private:
 public:
    void reformatCSVFile(const std::string&, unsigned int, unsigned int,
                         unsigned int, unsigned int);
-   void crimePercentage(const std::string&);
+   void crimeRate(const std::string&);
    utils_tuple predictedClusters(double, unsigned int, const std::string&);
    utils_pair predictedCoordinates();
    void launchWebClient();

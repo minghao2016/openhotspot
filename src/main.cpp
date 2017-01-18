@@ -39,7 +39,7 @@ void usage()
    << "  --min-pts                 [default: 1000] Minimum points in a cluster.\n"
    << "  --distance-metric         [default: haversine] Metric used to calculate distance.\n"
    << "\nTerminal View:\n"
-   << "  --crime-percentage        <crime filename> View the percentages of crimes.\n"
+   << "  --crime-rate              <crime filename> View the percentages of crimes.\n"
    << "  --version                 Current version of OpenHotSpot.\n"
    << "\nExample Usage:\n"
    << "  ./hotspot --crime-file crimes.txt --lat-file latitudes.txt --long-file longitudes.txt\n"
@@ -83,7 +83,7 @@ int main(int argc, char **argv)
    }
    else if (_argv == "--distance-metric"){
    }
-   else if (_argv == "--crime-percentage"){
+   else if (_argv == "--crime-rate"){
    }
    else if (_argv == "--version"){
       std::cout << version << std::endl;

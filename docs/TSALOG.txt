@@ -1,6 +1,8 @@
 Tue Jan 17, 2017
 ----------------
 - Need to fix memory leak in dbscan.
+- Removed ClusterPoints struct from dbscan.
+- Made some minor fixes.
 
 Mon Jan 16, 2017
 ----------------

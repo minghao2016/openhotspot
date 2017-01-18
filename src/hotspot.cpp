@@ -19,9 +19,9 @@
 
 namespace hotspot {
 
-std::istream& operator>>(std::istream& file, Reformat& ref)
+std::istream& operator>>(std::istream& file, Reformat& reformat)
 {
-   ref.getColumn(file);
+   reformat.getColumn(file);
    return file;
 }
 
@@ -29,17 +29,17 @@ void HotSpot::reformatCSVFile(const std::string& csv_file, unsigned int crime_co
                               unsigned int date_column, unsigned int lat_column,
                               unsigned int long_column)
 {
-   Reformat ref;
+   Reformat reformat;
    std::ifstream if_csv(csv_file);
    if (!if_csv.is_open()){
       std::cout << "Error: Could not open CSV file." << std::endl;
       exit(EXIT_FAILURE);
    } else {
-      while (if_csv >> ref){
-         std::string crime_c = ref[crime_column];
-         std::string date_c = ref[date_column];
-         std::string lat_c = ref[lat_column];
-         std::string long_c = ref[long_column];
+      while (if_csv >> reformat){
+         std::string crime_c = reformat[crime_column];
+         std::string date_c = reformat[date_column];
+         std::string lat_c = reformat[lat_column];
+         std::string long_c = reformat[long_column];
          if (crime_c.empty() || date_c.empty() || lat_c.empty() || long_c.empty()){
             std::cout << "Error: One or more columns are empty." << std::endl;
          }
@@ -75,7 +75,7 @@ void HotSpot::reformatCSVFile(const std::string& csv_file, unsigned int crime_co
    }
 }
 
-void HotSpot::crimePercentage(const std::string& crime_file)
+void HotSpot::crimeRate(const std::string& crime_file)
 {
    std::ifstream if_crime(crime_file);
    if (!if_crime.is_open()){
@@ -85,17 +85,17 @@ void HotSpot::crimePercentage(const std::string& crime_file)
       while (if_crime >> temp_crime){
          crime_values.push_back(temp_crime);
       }
-      //float percent = value / crime_values.size() * 10;
-      //if (ceil(percent) == 0) {
-      //   for (unsigned int i = 0; i < crime_values.size(); ++i){
-      //      printf("%s - %.0f\n", crime_values[i].c_str(), percent);
-      //   }
-      //}
-      //else {
-      //   for (unsigned int i = 0; i < crime_values.size(); ++i){
-      //      printf("%s - %.2f\n", crime_values[i].c_str(), percent);
-      //   }
-      //}
+      /*float percent = value / crime_values.size() * 10;
+      if (ceil(percent) == 0) {
+         for (unsigned int i = 0; i < crime_values.size(); i++){
+            printf("%s - %.0f\n", crime_values[i].c_str(), percent);
+         }
+      }
+      else {
+         for (unsigned int i = 0; i < crime_values.size(); i++){
+            printf("%s - %.2f\n", crime_values[i].c_str(), percent);
+         }
+      }*/
    }
 }
 

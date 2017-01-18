@@ -25,7 +25,7 @@ std::vector<int> Model::crimeFrequency()
 {
 }
 
-std::vector<PredictedCoordinates> Model::prediction()
+std::vector<PredictedCoordinates> Model::predict()
 {
 }
 
