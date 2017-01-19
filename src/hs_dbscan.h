@@ -51,11 +51,11 @@ private:
    std::vector<int> rq_neighbor_pts;
    std::vector<int> ec_neighbor_pts_;
 
-   std::vector<Coordinates> coordinates;
-   std::vector<std::vector<Coordinates> > clusters;
+   std::vector<Coordinates*> coordinates;
+   std::vector<std::vector<Coordinates*> > clusters;
 
 public:
-   DBSCAN(std::vector<Coordinates>, double, unsigned int, const std::string&);
+   DBSCAN(std::vector<Coordinates*>, double, unsigned int, const std::string&);
    ~DBSCAN();
 
    double radiansToDegrees(double);
@@ -65,9 +65,9 @@ public:
 
    void reduceLatValues(unsigned int);
    void reduceLongValues(unsigned int);
-   std::vector<double> clusterCenter(std::vector<std::vector<Coordinates> >, unsigned int);
+   std::vector<double> clusterCenter(std::vector<std::vector<Coordinates*> >, unsigned int);
    std::vector<int> regionQuery(unsigned int);
-   std::vector<Coordinates>& expandCluster(unsigned int, std::vector<int>*, unsigned int*);
+   std::vector<Coordinates*>& expandCluster(unsigned int, std::vector<int>*, unsigned int*);
    utils_tuple dbscan();
    float computeLoss();
 };

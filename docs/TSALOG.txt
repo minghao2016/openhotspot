@@ -1,6 +1,7 @@
 Wed Jan 18, 2017
 ----------------
 - Removed reduceValues function in dbscan.
+- Added pointers to the coordinate vector variables in dbscan.
 
 Tue Jan 17, 2017
 ----------------
