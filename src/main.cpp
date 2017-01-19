@@ -19,10 +19,10 @@ using namespace hotspot;
 void usage()
 {
    std::cout
-   << "usage: ./hotspot [--lat-file] [--long-file] [--reformat-file]\n"
-   << "                 [--crime-column] [--lat-column] [--long-column]\n"
-   << "                 [--eps] [--min-pts] [--min-samples] [--distance-metric]\n"
-   << "                 [--crime-percentage] [--version]\n"
+   << "usage: ./hotspot [--crime-file] [--date-column] [--lat-file] [--long-file]\n"
+   << "                 [--reformat-file] [--crime-column] [--date-column] [--lat-column]\n"
+   << "                 [--long-column] [--eps] [--min-pts] [--distance-metric] [--crime-rate]\n"
+   << "                 [--version]\n"
    << "\nFile Handler:\n"
    << "  --crime-file              <crime filename> Reformatted crime file.\n"
    << "  --date-column             <date filename> Reformatted date file.\n"

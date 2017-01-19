@@ -75,9 +75,9 @@ void HotSpot::reformatCSVFile(const std::string& csv_file, unsigned int crime_co
    }
 }
 
-void HotSpot::crimeRate(const std::string& crime_file)
+void HotSpot::crimeRate(const std::string& crimes_file)
 {
-   std::ifstream if_crime(crime_file);
+   std::ifstream if_crime(crimes_file);
    if (!if_crime.is_open()){
       std::cout << "Error: Could not open crime file." << std::endl;
       exit(EXIT_FAILURE);
@@ -106,7 +106,7 @@ utils_tuple HotSpot::predictedClusters(double eps, unsigned int min_pts, const s
    coordinates->lat_pts = lat_values;
    coordinates->long_pts = long_values;
    c_coordinates.push_back(coordinates);
-   delete coordinates;
+   //delete coordinates;
    DBSCAN clusters(c_coordinates, eps, min_pts, dist_metric);
    utils_tuple dbscan_results = clusters.dbscan();
    return std::make_tuple(std::get<0>(dbscan_results), std::get<1>(dbscan_results),
