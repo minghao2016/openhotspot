@@ -91,5 +91,4 @@ int main(int argc, char **argv)
    HotSpot hotspot;
    hotspot.loadModel("../data/test_dates.txt", "../data/test_latitudes.txt",
                      "../data/test_longitudes.txt", 1.7, 1000, "haversine");
-   //hotspot.reformat("../data/test_sf_dataset.csv", 1, 10, 9);
 }

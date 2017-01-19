@@ -44,8 +44,8 @@ public:
    utils_tuple predictedClusters(double, unsigned int, const std::string&);
    utils_pair predictedCoordinates();
    void launchWebClient();
-   void loadModel(const std::string&, const std::string&, const std::string&,
-                  double, unsigned int, const std::string&);
+   void loadModel(const std::string&, const std::string&, const std::string&, double,
+                  unsigned int, const std::string&);
 };
 
 }

@@ -12,12 +12,8 @@
 
 namespace hotspot {
 
-DBSCAN::DBSCAN(std::vector<Coordinates*> _coordinates, double _eps, unsigned int _min_pts,
-               const std::string& _dist_metric):
-   coordinates(_coordinates),
-   eps(_eps),
-   min_pts(_min_pts),
-   dist_metric(_dist_metric)
+DBSCAN::DBSCAN(std::vector<Coordinates*> _coordinates):
+   coordinates(_coordinates)
 {
    c_clusters = 0;
 }
@@ -63,26 +59,26 @@ std::vector<double> DBSCAN::clusterCenter(std::vector<std::vector<Coordinates*> 
    }
 }
 
-std::vector<int> DBSCAN::regionQuery(unsigned int p)
+std::vector<int> DBSCAN::regionQuery(unsigned int p, const ClusterWeights& cluster_weights)
 {
    Metric metric;
-   if (dist_metric == "haversine"){
+   if (cluster_weights.dist_metric == "haversine"){
       for (unsigned int i = 0; i < coordinates[0]->lat_pts.size(); i++){
          metric.lat_1 = coordinates[0]->lat_pts[i];
          metric.lat_2 = coordinates[0]->lat_pts[p];
          metric.long_1 = coordinates[1]->long_pts[i];
          metric.long_2 = coordinates[1]->long_pts[p];
-         if (haversineMetric(metric) <= eps){
+         if (haversineMetric(metric) <= cluster_weights.eps){
             rq_pts.push_back(i);
          }
       }
-   } else if (dist_metric == "euclidean"){
+   } else if (cluster_weights.dist_metric == "euclidean"){
       for (unsigned int i = 0; i < coordinates[0]->lat_pts.size(); i++){
          metric.lat_1 = coordinates[0]->lat_pts[i];
          metric.lat_2 = coordinates[0]->lat_pts[p];
          metric.long_1 = coordinates[1]->long_pts[i];
          metric.long_2 = coordinates[1]->long_pts[p];
-         if (euclideanMetric(metric) <= eps){
+         if (euclideanMetric(metric) <= cluster_weights.eps){
             rq_pts.push_back(i);
          }
       }
@@ -90,27 +86,27 @@ std::vector<int> DBSCAN::regionQuery(unsigned int p)
    return rq_pts;
 }
 
-std::vector<Coordinates*>& DBSCAN::expandCluster(unsigned int p, std::vector<int>* ec_neighbor_pts,
-                                                 unsigned int* c_clusters)
+std::vector<Coordinates*> DBSCAN::expandCluster(unsigned int p, std::vector<int>* ec_neighbor_pts,
+                                                unsigned int* c_clusters, const ClusterWeights& cluster_weights)
 {
    for (unsigned int i = 0; i < (int)ec_neighbor_pts->size(); i++){
       if (visted_pts[i]){
          visted_pts[i] = true;
-         //ec_neighbor_pts_ = regionQuery(i);
-         //if (ec_neighbor_pts_.size() >= min_pts){
-            //ec_neighbor_pts->insert(ec_neighbor_pts->end(), ec_neighbor_pts_.begin(),
-            //                        ec_neighbor_pts_.end());
-         //}
-         //clustered_pts.push_back(false);
-         //if (!clustered_pts[ec_neighbor_pts->at(i)]){
-            //clusters[*c_clusters].push_back(ec_neighbor_pts->at(i));
-         //}
+         ec_neighbor_pts_ = regionQuery(i, cluster_weights);
+         if (ec_neighbor_pts_.size() >= cluster_weights.min_pts){
+            ec_neighbor_pts->insert(ec_neighbor_pts->end(), ec_neighbor_pts_.begin(),
+                                    ec_neighbor_pts_.end());
+         }
+         clustered_pts.push_back(false);
+         if (!clustered_pts[ec_neighbor_pts->at(i)]){
+         //   clusters[*c_clusters].push_back(ec_neighbor_pts->at(i));
+         }
       }
    }
    //return clusters;
 }
 
-utils_tuple DBSCAN::dbscan()
+utils_tuple DBSCAN::dbscan(const ClusterWeights& cluster_weights)
 {
    for (unsigned int i = 0; i < coordinates[0]->lat_pts.size(); i++){
       visted_pts.push_back(false);
@@ -118,19 +114,20 @@ utils_tuple DBSCAN::dbscan()
          continue;
       } else {
          visted_pts[i] = true;
-         rq_neighbor_pts = regionQuery(i);
-         if (rq_neighbor_pts.size() < min_pts){
+         /*rq_neighbor_pts = regionQuery(i, cluster_weights);
+         if (rq_neighbor_pts.size() < cluster_weights.min_pts){
+            //std::cout << coordinates[0]->lat_pts[rq_neighbor_pts[i]] << std::endl;
             noise_pts.push_back(rq_neighbor_pts[i]);
          } else {
             c_clusters++;
             clusters.push_back(std::vector<Coordinates*>());
-            std::vector<Coordinates*>& ec_pts = expandCluster(i, &rq_neighbor_pts, &c_clusters);
-         }
+            std::vector<Coordinates*> ec_pts = expandCluster(i, &rq_neighbor_pts, &c_clusters, cluster_weights);
+         }*/
       }
    }
 }
 
-float DBSCAN::computeLoss()
+float DBSCAN::iterationTime()
 {
 }
 

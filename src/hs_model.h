@@ -19,7 +19,7 @@
 #include "hs_dbscan.h"
 #include "hs_utils.h"
 
-struct Weights {
+struct ModelWeights {
    std::vector<int> date_pts;
    std::vector<std::string> crime_names;
 };

@@ -88,12 +88,11 @@ void HotSpot::crimeRate(const std::string& crimes_file)
       /*float percent = value / crime_values.size() * 10;
       if (ceil(percent) == 0) {
          for (unsigned int i = 0; i < crime_values.size(); i++){
-            printf("%s - %.0f\n", crime_values[i].c_str(), percent);
+            std::cout << crime_values[i] << "-" << "0%" << std::endl;
          }
-      }
-      else {
+      } else {
          for (unsigned int i = 0; i < crime_values.size(); i++){
-            printf("%s - %.2f\n", crime_values[i].c_str(), percent);
+            std::cout << crime_values[i] << "-" << percent << "%" << std::endl;
          }
       }*/
    }
@@ -106,9 +105,13 @@ utils_tuple HotSpot::predictedClusters(double eps, unsigned int min_pts, const s
    coordinates->lat_pts = lat_values;
    coordinates->long_pts = long_values;
    c_coordinates.push_back(coordinates);
-   //delete coordinates;
-   DBSCAN clusters(c_coordinates, eps, min_pts, dist_metric);
-   utils_tuple dbscan_results = clusters.dbscan();
+   DBSCAN clusters(c_coordinates);
+   ClusterWeights cluster_weights;
+   cluster_weights.eps = eps;
+   cluster_weights.min_pts = min_pts;
+   cluster_weights.dist_metric = dist_metric;
+   utils_tuple dbscan_results = clusters.dbscan(cluster_weights);
+   delete coordinates;
    return std::make_tuple(std::get<0>(dbscan_results), std::get<1>(dbscan_results),
                           std::get<2>(dbscan_results), std::get<3>(dbscan_results));
 }

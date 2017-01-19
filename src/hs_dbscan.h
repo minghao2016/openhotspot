@@ -24,6 +24,12 @@ struct Coordinates {
    std::vector<double> long_pts;
 };
 
+struct ClusterWeights {
+   double eps;
+   unsigned int min_pts;
+   std::string dist_metric;
+};
+
 struct Metric {
    double lat_1;
    double lat_2;
@@ -36,9 +42,6 @@ namespace hotspot {
 class DBSCAN {
 private:
    unsigned int c_clusters;
-   double eps;
-   unsigned int min_pts;
-   const std::string& dist_metric;
 
    std::vector<int> core_pts;
    std::vector<int> noise_pts;
@@ -55,7 +58,7 @@ private:
    std::vector<std::vector<Coordinates*> > clusters;
 
 public:
-   DBSCAN(std::vector<Coordinates*>, double, unsigned int, const std::string&);
+   DBSCAN(std::vector<Coordinates*>);
    ~DBSCAN();
 
    double radiansToDegrees(double);
@@ -66,10 +69,11 @@ public:
    void reduceLatValues(unsigned int);
    void reduceLongValues(unsigned int);
    std::vector<double> clusterCenter(std::vector<std::vector<Coordinates*> >, unsigned int);
-   std::vector<int> regionQuery(unsigned int);
-   std::vector<Coordinates*>& expandCluster(unsigned int, std::vector<int>*, unsigned int*);
-   utils_tuple dbscan();
-   float computeLoss();
+   std::vector<int> regionQuery(unsigned int, const ClusterWeights&);
+   std::vector<Coordinates*> expandCluster(unsigned int, std::vector<int>*, unsigned int*,
+                                           const ClusterWeights&);
+   utils_tuple dbscan(const ClusterWeights&);
+   float iterationTime();
 };
 
 }
