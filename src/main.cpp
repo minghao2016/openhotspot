@@ -19,13 +19,13 @@ using namespace hotspot;
 void usage()
 {
    std::cout
-   << "usage: ./hotspot [--crime-file] [--date-column] [--lat-file] [--long-file]\n"
+   << "usage: ./hotspot [--crime-file] [--date-file] [--lat-file] [--long-file]\n"
    << "                 [--reformat-file] [--crime-column] [--date-column] [--lat-column]\n"
    << "                 [--long-column] [--eps] [--min-pts] [--distance-metric] [--crime-rate]\n"
    << "                 [--version]\n"
    << "\nFile Handler:\n"
    << "  --crime-file              <crime filename> Reformatted crime file.\n"
-   << "  --date-column             <date filename> Reformatted date file.\n"
+   << "  --date-file             <date filename> Reformatted date file.\n"
    << "  --lat-file                <lat filename> Reformatted latitude file.\n"
    << "  --long-file               <long filename> Reformatted longitude file.\n"
    << "\nReformat Data:\n"
@@ -42,10 +42,10 @@ void usage()
    << "  --crime-rate              <crime filename> View the percentages of crimes.\n"
    << "  --version                 Current version of OpenHotSpot.\n"
    << "\nExample Usage:\n"
-   << "  ./hotspot --crime-file crimes.txt --lat-file latitudes.txt --long-file longitudes.txt\n"
-   << "  --eps 3.3 --min-pts 800 --distance-metric haversine\n"
-   << "  ./hotspot --reformat-file dataset.csv --crime-column 1 --lat-column 10 --long-column 9\n"
-   << "  ./hotspot --crimePercentage crimes.txt"
+   << "  ./hotspot --reformat-file dataset.csv --crime-column 1 --date-column 2 --lat-column 4 --long-column 3\n"
+   << "  ./hotspot --crime-file crimes.txt --dates-file dates.txt --lat-file latitudes.txt \
+         --long-file longitudes.txt --eps 1.7 --min-pts 1000 --distance-metric haversine\n"
+   << "  ./hotspot --crime-rate crimes.txt"
    << std::endl;
 }
 

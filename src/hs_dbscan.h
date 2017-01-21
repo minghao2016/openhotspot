@@ -46,8 +46,8 @@ private:
 
    std::vector<int> core_pts;
    std::vector<int> noise_pts;
-   std::vector<bool> visted_pts;
 
+   std::vector<bool> visted_pts;
    std::vector<bool> clustered_pts;
 
    std::vector<int> neighbor_pts;
@@ -58,10 +58,8 @@ private:
    std::vector<std::shared_ptr<Coordinates> > coordinates;
    std::vector<std::vector<Coordinates*> > clusters;
 
-   const ClusterWeights& cluster_weights;
-
 public:
-   DBSCAN(std::vector<std::shared_ptr<Coordinates> >, const ClusterWeights&);
+   DBSCAN(std::vector<std::shared_ptr<Coordinates> >);
    ~DBSCAN();
 
    double radiansToDegrees(double);
@@ -72,10 +70,9 @@ public:
    void reduceLatValues(unsigned int);
    void reduceLongValues(unsigned int);
    std::vector<double> clusterCenter(std::vector<std::vector<Coordinates*> >, unsigned int);
-   std::vector<int> regionQuery(unsigned int);
-   std::vector<std::shared_ptr<Coordinates> > expandCluster(unsigned int, std::vector<int>*,
-                                                            unsigned int*);
-   utils_tuple dbscan();
+   std::vector<int> regionQuery(unsigned int, const ClusterWeights&);
+   std::vector<std::vector<Coordinates*> > expandCluster(unsigned int, std::vector<int>*, unsigned int*,                                                 const ClusterWeights&);
+   utils_tuple dbscan(const ClusterWeights&);
    float iterationTime();
 };
 
