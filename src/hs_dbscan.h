@@ -16,6 +16,7 @@
 #include <string>
 #include <algorithm>
 #include <cmath>
+#include <memory>
 
 #include "hs_utils.h"
 
@@ -54,11 +55,13 @@ private:
    std::vector<int> rq_neighbor_pts;
    std::vector<int> ec_neighbor_pts_;
 
-   std::vector<Coordinates*> coordinates;
+   std::vector<std::shared_ptr<Coordinates> > coordinates;
    std::vector<std::vector<Coordinates*> > clusters;
 
+   const ClusterWeights& cluster_weights;
+
 public:
-   DBSCAN(std::vector<Coordinates*>);
+   DBSCAN(std::vector<std::shared_ptr<Coordinates> >, const ClusterWeights&);
    ~DBSCAN();
 
    double radiansToDegrees(double);
@@ -69,10 +72,10 @@ public:
    void reduceLatValues(unsigned int);
    void reduceLongValues(unsigned int);
    std::vector<double> clusterCenter(std::vector<std::vector<Coordinates*> >, unsigned int);
-   std::vector<int> regionQuery(unsigned int, const ClusterWeights&);
-   std::vector<Coordinates*> expandCluster(unsigned int, std::vector<int>*, unsigned int*,
-                                           const ClusterWeights&);
-   utils_tuple dbscan(const ClusterWeights&);
+   std::vector<int> regionQuery(unsigned int);
+   std::vector<std::shared_ptr<Coordinates> > expandCluster(unsigned int, std::vector<int>*,
+                                                            unsigned int*);
+   utils_tuple dbscan();
    float iterationTime();
 };
 

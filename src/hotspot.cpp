@@ -100,18 +100,17 @@ void HotSpot::crimeRate(const std::string& crimes_file)
 
 utils_tuple HotSpot::predictedClusters(double eps, unsigned int min_pts, const std::string& dist_metric)
 {
-   std::vector<Coordinates*> c_coordinates;
-   Coordinates* coordinates = new Coordinates;
+   std::vector<std::shared_ptr<Coordinates> > c_coordinates;
+   std::shared_ptr<Coordinates> coordinates (new Coordinates);
+   ClusterWeights cluster_weights;
    coordinates->lat_pts = lat_values;
    coordinates->long_pts = long_values;
-   c_coordinates.push_back(coordinates);
-   DBSCAN clusters(c_coordinates);
-   ClusterWeights cluster_weights;
    cluster_weights.eps = eps;
    cluster_weights.min_pts = min_pts;
    cluster_weights.dist_metric = dist_metric;
-   utils_tuple dbscan_results = clusters.dbscan(cluster_weights);
-   delete coordinates;
+   c_coordinates.push_back(std::move(coordinates));
+   DBSCAN clusters(c_coordinates, cluster_weights);
+   utils_tuple dbscan_results = clusters.dbscan();
    return std::make_tuple(std::get<0>(dbscan_results), std::get<1>(dbscan_results),
                           std::get<2>(dbscan_results), std::get<3>(dbscan_results));
 }

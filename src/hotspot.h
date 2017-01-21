@@ -17,6 +17,7 @@
 #include <fstream>
 #include <sstream>
 #include <cmath>
+#include <memory>
 
 #include "hs_dbscan.h"
 #include "hs_utils.h"

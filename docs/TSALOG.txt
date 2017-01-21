@@ -1,3 +1,7 @@
+Fri Jan 20, 2017
+----------------
+- Changed dbscan pointers to shared pointers.
+
 Wed Jan 18, 2017
 ----------------
 - Removed reduceValues function in dbscan.
