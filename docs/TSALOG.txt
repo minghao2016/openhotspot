@@ -1,6 +1,7 @@
 Fri Jan 20, 2017
 ----------------
 - Changed dbscan pointers to shared pointers.
+- Added example folder.
 
 Wed Jan 18, 2017
 ----------------
