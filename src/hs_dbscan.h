@@ -53,7 +53,7 @@ private:
    std::vector<int> neighbor_pts;
    std::vector<int> rq_pts;
    std::vector<int> rq_neighbor_pts;
-   std::vector<int> ec_neighbor_pts_;
+   std::vector<int64_t> ec_neighbor_pts_;
 
    std::vector<std::shared_ptr<Coordinates> > coordinates;
    std::vector<std::vector<Coordinates*> > clusters;
@@ -69,11 +69,11 @@ public:
 
    void reduceLatValues(unsigned int);
    void reduceLongValues(unsigned int);
+   float iterationTime();
    std::vector<double> clusterCenter(std::vector<std::vector<Coordinates*> >, unsigned int);
    std::vector<int> regionQuery(unsigned int, const ClusterWeights&);
    std::vector<std::vector<Coordinates*> > expandCluster(unsigned int, std::vector<int>*, unsigned int*,                                                 const ClusterWeights&);
    utils_tuple dbscan(const ClusterWeights&);
-   float iterationTime();
 };
 
 }

@@ -50,6 +50,10 @@ double DBSCAN::euclideanMetric(Metric& metric)
    return sqrt(dlat_1 * dlat_1 + dlong_1 * dlong_1);
 }
 
+float DBSCAN::iterationTime()
+{
+}
+
 std::vector<double> DBSCAN::clusterCenter(std::vector<std::vector<Coordinates*> > c_coordinates,
                                           unsigned int c_size)
 {
@@ -93,10 +97,10 @@ DBSCAN::expandCluster(unsigned int p, std::vector<int>* ec_neighbor_pts, unsigne
    for (unsigned int i = 0; i < (int)ec_neighbor_pts->size(); i++){
       if (visted_pts[i]){
          visted_pts[i] = true;
-         //ec_neighbor_pts_ = regionQuery(i, cluster_weights);
+         //ec_neighbor_pts_ = regionQuery(p, cluster_weights);
          /*if (ec_neighbor_pts_.size() >= cluster_weights.min_pts){
-            //ec_neighbor_pts->insert(ec_neighbor_pts->end(), ec_neighbor_pts_.begin(),
-            //                        ec_neighbor_pts_.end());
+            ec_neighbor_pts->insert(ec_neighbor_pts->end(), ec_neighbor_pts_.begin(),
+                                    ec_neighbor_pts_.end());
          }
          clustered_pts.push_back(false);
          if (!clustered_pts[ec_neighbor_pts->at(i)]){
@@ -124,10 +128,6 @@ utils_tuple DBSCAN::dbscan(const ClusterWeights& cluster_weights)
          }
       }
    }
-}
-
-float DBSCAN::iterationTime()
-{
 }
 
 } // hotspot namespace
