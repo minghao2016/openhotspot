@@ -27,7 +27,6 @@ std::vector<int> Model::crimeFrequency()
 
 std::vector<PredictedCoordinates> Model::predict()
 {
-   std::vector<PredictedCoordinates> predicted_coordinates;
 }
 
 float Model::computeAccuracyRate()

@@ -2,14 +2,12 @@ CXX=g++
 CXXFLAGS=-g -Wall -std=c++11
 
 PROJECT=hotspot
-MAIN_FILES=src/hotspot.cpp src/hs_model.cpp
-SRC_FILES=src/hs_dbscan.cpp src/hs_export.cpp src/hs_reformat.cpp src/main.cpp
-HTTP_FILES=src/http/hs_client.cpp
+SRC_FILES=src/hs_dbscan.cpp src/hs_export.cpp src/hs_reformat.cpp src/main.cpp src/http/hs_client.cpp
+OBJ=src/hs_dbscan.o src/hs_export.o src/hs_reformat.o src/main.o src/http/hs_client.o
 
-$(PROJECT):
-	$(CXX) $(CXXFLAGS) -o $(PROJECT) $(MAIN_FILES) \
-	$(SRC_FILES) $(HTTP_FILES) src/main.cpp
+$(PROJECT): $(OBJ)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(PROJECT) $(SRC_FILES) src/main.cpp
 
 clean:
-	rm -f hotspot *.o
+	rm -rf *.o hotspot
 	rm -r $(PROJECT).dSYM

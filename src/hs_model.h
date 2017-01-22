@@ -15,6 +15,7 @@
 #include <vector>
 #include <string>
 #include <cmath>
+#include <memory>
 
 #include "hs_dbscan.h"
 #include "hs_utils.h"

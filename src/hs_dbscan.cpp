@@ -63,7 +63,7 @@ std::vector<double> DBSCAN::clusterCenter(std::vector<std::vector<Coordinates*> 
    }
 }
 
-std::vector<int> DBSCAN::regionQuery(unsigned int p, const ClusterWeights& cluster_weights)
+std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p, const ClusterWeights& cluster_weights)
 {
    Metric metric;
    if (cluster_weights.dist_metric == "haversine"){
@@ -87,22 +87,23 @@ std::vector<int> DBSCAN::regionQuery(unsigned int p, const ClusterWeights& clust
          }
       }
    }
+   // All points within the eps neighborhood
    return rq_pts;
 }
 
-std::vector<std::vector<Coordinates*> >
-DBSCAN::expandCluster(unsigned int p, std::vector<int>* ec_neighbor_pts, unsigned int* c_clusters,
-                      const ClusterWeights& cluster_weights)
+void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts, unsigned int* c_clusters, const ClusterWeights& cluster_weights)
 {
-   for (unsigned int i = 0; i < (int)ec_neighbor_pts->size(); i++){
+   for (uint32_t i = 0; i < (uint32_t)ec_neighbor_pts->size(); i++){
       if (visted_pts[i]){
+         // Mark point p as visited
          visted_pts[i] = true;
-         //ec_neighbor_pts_ = regionQuery(p, cluster_weights);
+         //ec_neighbor_pts_ = regionQuery(ec_neighbor_pts->at(i), cluster_weights);
          /*if (ec_neighbor_pts_.size() >= cluster_weights.min_pts){
             ec_neighbor_pts->insert(ec_neighbor_pts->end(), ec_neighbor_pts_.begin(),
                                     ec_neighbor_pts_.end());
          }
-         clustered_pts.push_back(false);
+         clustered_pts[i] = true;
+         // Add any other points that haven't been clustered
          if (!clustered_pts[ec_neighbor_pts->at(i)]){
          //   clusters[*c_clusters].push_back(ec_neighbor_pts->at(i));
          }*/
@@ -113,18 +114,22 @@ DBSCAN::expandCluster(unsigned int p, std::vector<int>* ec_neighbor_pts, unsigne
 utils_tuple DBSCAN::dbscan(const ClusterWeights& cluster_weights)
 {
    for (unsigned int i = 0; i < coordinates[0]->lat_pts.size(); i++){
+      // Mark points
       visted_pts.push_back(false);
+      clustered_pts.push_back(false);
       if (visted_pts[i]) {
          continue;
       } else {
+         // Mark point p as visited
          visted_pts[i] = true;
          rq_neighbor_pts = regionQuery(i, cluster_weights);
          if (rq_neighbor_pts.size() < cluster_weights.min_pts){
             noise_pts.push_back(rq_neighbor_pts[i]);
          } else {
             c_clusters++;
-            //clusters.push_back(std::vector<std::shared_ptr<Coordinates> >());
-            std::vector<std::vector<Coordinates*> > ec_pts = expandCluster(i, &rq_neighbor_pts, &c_clusters, cluster_weights);
+            // Mark point p as clustered so that it only shows up once in clusters
+            clustered_pts[i] = true;
+            expandCluster(i, &rq_neighbor_pts, &c_clusters, cluster_weights);
          }
       }
    }

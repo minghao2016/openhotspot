@@ -14,10 +14,7 @@
 
 namespace hotspot {
 
-std::string Reformat::operator[](unsigned int column)
-{
-   return column_data[column];
-}
+std::string Reformat::operator[](unsigned int column) { return column_data[column]; }
 
 void Reformat::getColumn(std::istream& file)
 {
