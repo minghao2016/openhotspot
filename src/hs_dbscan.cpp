@@ -16,6 +16,11 @@ DBSCAN::DBSCAN(std::vector<std::shared_ptr<Coordinates> > _coordinates):
    coordinates(_coordinates)
 {
    c_clusters = 0;
+   for (unsigned int i = 0; i < coordinates[0]->lat_pts.size(); i++){
+      // Mark points
+      visted_pts.push_back(false);
+      clustered_pts.push_back(false);
+   }
 }
 
 DBSCAN::~DBSCAN()
@@ -54,8 +59,7 @@ float DBSCAN::iterationTime()
 {
 }
 
-std::vector<double> DBSCAN::clusterCenter(std::vector<std::vector<Coordinates*> > c_coordinates,
-                                          unsigned int c_size)
+std::vector<double> DBSCAN::clusterCenter(std::vector<std::vector<Coordinates*> > c_coordinates, unsigned int c_size)
 {
    for (unsigned int i = 0; i < c_coordinates.size(); i++){
       for (unsigned int p = 0; p < c_size; p++){
@@ -91,22 +95,23 @@ std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p, const ClusterWeights& clus
    return rq_pts;
 }
 
-void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts, unsigned int* c_clusters, const ClusterWeights& cluster_weights)
+void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts,
+                           unsigned int* c_clusters, const ClusterWeights& cluster_weights)
 {
    for (uint32_t i = 0; i < (uint32_t)ec_neighbor_pts->size(); i++){
-      if (visted_pts[i]){
+      if (!visted_pts[ec_neighbor_pts->at(i)]){
          // Mark point p as visited
-         visted_pts[i] = true;
-         //ec_neighbor_pts_ = regionQuery(ec_neighbor_pts->at(i), cluster_weights);
-         /*if (ec_neighbor_pts_.size() >= cluster_weights.min_pts){
+         visted_pts[ec_neighbor_pts->at(i)] = true;
+         ec_neighbor_pts_ = regionQuery(ec_neighbor_pts->at(i), cluster_weights);
+         if (ec_neighbor_pts_.size() >= cluster_weights.min_pts){
             ec_neighbor_pts->insert(ec_neighbor_pts->end(), ec_neighbor_pts_.begin(),
                                     ec_neighbor_pts_.end());
          }
-         clustered_pts[i] = true;
+         clustered_pts[ec_neighbor_pts->at(i)] = true;
          // Add any other points that haven't been clustered
          if (!clustered_pts[ec_neighbor_pts->at(i)]){
          //   clusters[*c_clusters].push_back(ec_neighbor_pts->at(i));
-         }*/
+         }
       }
    }
 }
@@ -114,9 +119,6 @@ void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts, u
 utils_tuple DBSCAN::dbscan(const ClusterWeights& cluster_weights)
 {
    for (unsigned int i = 0; i < coordinates[0]->lat_pts.size(); i++){
-      // Mark points
-      visted_pts.push_back(false);
-      clustered_pts.push_back(false);
       if (visted_pts[i]) {
          continue;
       } else {
