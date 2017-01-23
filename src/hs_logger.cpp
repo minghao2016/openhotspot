@@ -8,17 +8,4 @@
  * information about using this program.
 */
 
-#ifndef _HS_DEBUG_H_
-#define _HS_DEBUG_H_
-
-#include <iostream>
-#include <vector>
-#include <string>
-#include <fstream>
-
-class Debug {
-public:
-
-};
-
-#endif
+#include "hs_logger.h"

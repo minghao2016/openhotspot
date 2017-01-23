@@ -1,6 +1,6 @@
 Sun Jan 22, 2017
 ----------------
-- Added debug file to framework.
+- Added logger file to framework.
 
 Sat Jan 21, 2017
 ----------------

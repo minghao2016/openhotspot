@@ -12,7 +12,7 @@
 #include "hs_reformat.h"
 #include "hs_model.h"
 #include "hs_export.h"
-#include "hs_debug.h"
+#include "hs_logger.h"
 
 #include "http/hs_client.h"
 

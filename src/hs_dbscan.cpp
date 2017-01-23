@@ -9,6 +9,7 @@
 */
 
 #include "hs_dbscan.h"
+#include "hs_logger.h"
 
 namespace hotspot {
 

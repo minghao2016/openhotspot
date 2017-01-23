@@ -9,6 +9,7 @@
 */
 
 #include "hs_export.h"
+#include "hs_logger.h"
 
 namespace hotspot {
 

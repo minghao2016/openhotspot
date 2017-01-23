@@ -25,7 +25,7 @@ void usage()
    << "                 [--version]\n"
    << "\nFile Handler:\n"
    << "  --crime-file              <crime filename> Reformatted crime file.\n"
-   << "  --date-file             <date filename> Reformatted date file.\n"
+   << "  --date-file               <date filename> Reformatted date file.\n"
    << "  --lat-file                <lat filename> Reformatted latitude file.\n"
    << "  --long-file               <long filename> Reformatted longitude file.\n"
    << "\nReformat Data:\n"
