@@ -76,7 +76,7 @@ std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p, const ClusterWeights& clus
          metric.lat_2 = coordinates[0]->lat_pts[p];
          metric.long_1 = coordinates[0]->long_pts[i];
          metric.long_2 = coordinates[0]->long_pts[p];
-         if (haversineMetric(metric) < cluster_weights.eps){
+         if (haversineMetric(metric) <= cluster_weights.eps){
             rq_pts.push_back(i);
          }
       }
@@ -86,7 +86,7 @@ std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p, const ClusterWeights& clus
          metric.lat_2 = coordinates[0]->lat_pts[p];
          metric.long_1 = coordinates[0]->long_pts[i];
          metric.long_2 = coordinates[0]->long_pts[p];
-         if (euclideanMetric(metric) < cluster_weights.eps){
+         if (euclideanMetric(metric) <= cluster_weights.eps){
             rq_pts.push_back(i);
          }
       }

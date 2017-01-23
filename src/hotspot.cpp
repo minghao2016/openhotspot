@@ -12,6 +12,7 @@
 #include "hs_reformat.h"
 #include "hs_model.h"
 #include "hs_export.h"
+#include "hs_debug.h"
 
 #include "http/hs_client.h"
 
@@ -85,10 +86,11 @@ void HotSpot::crimeRate(const std::string& crimes_file)
       while (if_crime >> temp_crime){
          crime_values.push_back(temp_crime);
       }
-      /*float percent = value / crime_values.size() * 10;
+      /*unsigned int value;
+      float percent = value / crime_values.size() * 10;
       if (ceil(percent) == 0) {
          for (unsigned int i = 0; i < crime_values.size(); i++){
-            std::cout << crime_values[i] << "-" << "0%" << std::endl;
+            std::cout << crime_values[i] << "-" << "0.0%" << std::endl;
          }
       } else {
          for (unsigned int i = 0; i < crime_values.size(); i++){
