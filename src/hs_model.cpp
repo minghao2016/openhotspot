@@ -22,20 +22,4 @@ Model::~Model()
 {
 }
 
-std::vector<int> Model::crimeFrequency()
-{
-}
-
-std::vector<PredictedCoordinates> Model::predict()
-{
-}
-
-float Model::computeAccuracyRate()
-{
-}
-
-float Model::computeLoss()
-{
-}
-
 } // hotspot namespace

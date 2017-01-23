@@ -16,9 +16,16 @@
 #include <string>
 #include <fstream>
 
+enum logLevel {
+   ERROR,
+   WARNING,
+   INFO,
+   DEBUG,
+   TRACE
+};
+
 class Logger {
 public:
-
 };
 
 #endif
