@@ -70,7 +70,7 @@ public:
    void reduceLatValues(unsigned int);
    void reduceLongValues(unsigned int);
    float iterationTime();
-   std::vector<double> clusterCenter(std::vector<std::vector<Coordinates*> >, unsigned int);
+   void clusterCenter(std::vector<std::vector<Coordinates*> >, unsigned int);
    std::vector<uint32_t> regionQuery(uint32_t, const ClusterWeights&);
    void expandCluster(uint32_t, std::vector<uint32_t>*, unsigned int*, const ClusterWeights&);
    utils_tuple dbscan(const ClusterWeights&);

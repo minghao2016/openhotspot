@@ -60,7 +60,7 @@ float DBSCAN::iterationTime()
 {
 }
 
-std::vector<double> DBSCAN::clusterCenter(std::vector<std::vector<Coordinates*> > c_coordinates, unsigned int c_size)
+void DBSCAN::clusterCenter(std::vector<std::vector<Coordinates*> > c_coordinates, unsigned int c_size)
 {
    for (unsigned int i = 0; i < c_coordinates.size(); i++){
       for (unsigned int p = 0; p < c_size; p++){
@@ -133,6 +133,7 @@ utils_tuple DBSCAN::dbscan(const ClusterWeights& cluster_weights)
             // Mark point p as clustered so that it only shows up once in clusters
             clustered_pts[i] = true;
             expandCluster(i, &rq_neighbor_pts, &c_clusters, cluster_weights);
+            //clusterCenter(clusters);
          }
       }
    }
