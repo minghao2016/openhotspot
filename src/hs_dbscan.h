@@ -42,10 +42,10 @@ namespace hotspot {
 
 class DBSCAN {
 private:
-   unsigned int c_clusters;
+   uint32_t n_clusters;
 
-   std::vector<int> core_pts;
-   std::vector<int> noise_pts;
+   std::vector<uint32_t> core_pts;
+   std::vector<uint32_t> noise_pts;
 
    std::vector<bool> visted_pts;
    std::vector<bool> clustered_pts;
@@ -67,12 +67,10 @@ public:
    double haversineMetric(Metric&);
    double euclideanMetric(Metric&);
 
-   void reduceLatValues(unsigned int);
-   void reduceLongValues(unsigned int);
    float iterationTime();
    void clusterCenter(std::vector<std::vector<Coordinates*> >, unsigned int);
    std::vector<uint32_t> regionQuery(uint32_t, const ClusterWeights&);
-   void expandCluster(uint32_t, std::vector<uint32_t>*, unsigned int*, const ClusterWeights&);
+   void expandCluster(uint32_t, std::vector<uint32_t>*, uint32_t*, const ClusterWeights&);
    utils_tuple dbscan(const ClusterWeights&);
 };
 

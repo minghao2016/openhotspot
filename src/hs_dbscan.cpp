@@ -16,7 +16,7 @@ namespace hotspot {
 DBSCAN::DBSCAN(std::vector<std::shared_ptr<Coordinates> > _coordinates):
    coordinates(_coordinates)
 {
-   c_clusters = 0;
+   n_clusters = 0;
    for (unsigned int i = 0; i < coordinates[0]->lat_pts.size(); i++){
       // Mark points
       visted_pts.push_back(false);
@@ -62,7 +62,7 @@ float DBSCAN::iterationTime()
 
 void DBSCAN::clusterCenter(std::vector<std::vector<Coordinates*> > c_coordinates, unsigned int c_size)
 {
-   for (unsigned int i = 0; i < c_coordinates.size(); i++){
+   for (uint32_t i = 0; i < c_coordinates.size(); i++){
       for (unsigned int p = 0; p < c_size; p++){
       }
    }
@@ -97,7 +97,7 @@ std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p, const ClusterWeights& clus
 }
 
 void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts,
-                           unsigned int* c_clusters, const ClusterWeights& cluster_weights)
+                           uint32_t* n_clusters, const ClusterWeights& cluster_weights)
 {
    for (uint32_t i = 0; i < (uint32_t)ec_neighbor_pts->size(); i++){
       if (!visted_pts[ec_neighbor_pts->at(i)]){
@@ -119,7 +119,7 @@ void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts,
 
 utils_tuple DBSCAN::dbscan(const ClusterWeights& cluster_weights)
 {
-   for (unsigned int i = 0; i < coordinates[0]->lat_pts.size(); i++){
+   for (uint32_t i = 0; i < coordinates[0]->lat_pts.size(); i++){
       if (visted_pts[i]) {
          continue;
       } else {
@@ -129,10 +129,10 @@ utils_tuple DBSCAN::dbscan(const ClusterWeights& cluster_weights)
          if (rq_neighbor_pts.size() < cluster_weights.min_pts){
             noise_pts.push_back(rq_neighbor_pts[i]);
          } else {
-            c_clusters++;
+            n_clusters++;
             // Mark point p as clustered so that it only shows up once in clusters
             clustered_pts[i] = true;
-            expandCluster(i, &rq_neighbor_pts, &c_clusters, cluster_weights);
+            expandCluster(i, &rq_neighbor_pts, &n_clusters, cluster_weights);
             //clusterCenter(clusters);
          }
       }
