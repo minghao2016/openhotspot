@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title>Hotspot Server 0.1.4</title>
+   <title>OpenHotspot - Server</title>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css">
    <script type="text/javascript" charset="utf-8"></script>
+   <script src="http://d3js.org/d3.v3.min.js"></script>
    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
    <script type="text/javascript" src="{{ url_for('static', filename='map.js') }}"></script>
 </head>
-<body onload="init()">
+<body onload="mapView()">
    <div class="wrapper">
-      <div class="view">
-      </div>
+      <div id="map"></div>
       <div class="side-bar">
       </div>
    </div>

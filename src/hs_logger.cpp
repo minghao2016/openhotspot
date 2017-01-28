@@ -14,16 +14,17 @@ namespace hotspot {
 
 std::string Logger::logLevel(Level& level)
 {
+   time_t now = time(0);
    if (level == ERROR_LOG){
-      std::cout << "";
+      std::cout << ctime(&now) << "[ERROR]:";
    } else if (level == WARNING_LOG){
-      std::cout << "";
+      std::cout << ctime(&now) << "[WARNING]:";
    } else if (level == INFO_LOG){
-      std::cout << "";
+      std::cout << ctime(&now) << "[INFO]:";
    } else if (level == DEBUG_LOG) {
-      std::cout << "";
+      std::cout << ctime(&now) << "[DEBUG]:";
    } else if (level == TRACE_LOG) {
-      std::cout << "";
+      std::cout << ctime(&now) << "[TRACE]:";
    }
 }
 

@@ -17,7 +17,7 @@ DBSCAN::DBSCAN(std::vector<std::shared_ptr<Coordinates> > _coordinates):
    coordinates(_coordinates)
 {
    n_clusters = 0;
-   for (unsigned int i = 0; i < coordinates[0]->lat_pts.size(); i++){
+   for (uint32_t i = 0; i < coordinates[0]->lat_pts.size(); i++){
       // Mark points
       visted_pts.push_back(false);
       clustered_pts.push_back(false);

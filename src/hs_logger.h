@@ -15,6 +15,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <ctime>
 
 enum Level {
    ERROR_LOG,
