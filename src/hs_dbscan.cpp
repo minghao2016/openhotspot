@@ -28,6 +28,21 @@ DBSCAN::~DBSCAN()
 {
 }
 
+std::vector<uint32_t> DBSCAN::core_pts_()
+{
+   return core_pts;
+}
+
+std::vector<uint32_t> DBSCAN::noise_pts_()
+{
+   return noise_pts;
+}
+
+uint32_t DBSCAN::n_clusters_()
+{
+   return n_clusters;
+}
+
 double DBSCAN::radiansToDegrees(double radians)
 {
    return radians * 180 / 3.14159;
@@ -54,10 +69,6 @@ double DBSCAN::euclideanMetric(Metric& metric)
    double dlat_1 = metric.lat_2 - metric.lat_1;
    double dlong_1 = metric.long_2 - metric.long_1;
    return sqrt(dlat_1 * dlat_1 + dlong_1 * dlong_1);
-}
-
-float DBSCAN::iterationTime()
-{
 }
 
 void DBSCAN::clusterCenter(std::vector<std::vector<Coordinates*> > c_coordinates, unsigned int c_size)

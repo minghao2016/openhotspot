@@ -15,34 +15,29 @@ using namespace hotspot;
 void usage()
 {
    std::cout
-   << "usage: ./hotspot [--crime-file] [--date-file] [--lat-file] [--long-file]\n"
-   << "                 [--reformat-file] [--crime-column] [--date-column] [--lat-column]\n"
-   << "                 [--long-column] [--eps] [--min-pts] [--distance-metric] [--crime-rate]\n"
-   << "                 [--version]\n"
+   << "usage: ./hotspot [--crime-file] [--date-file] [--lat-file]\n"
+   << "                 [--long-file] [--reformat-file] [--crime-column]\n"
+   << "                 [--date-column] [--lat-column] [--long-column]\n"
+   << "                 [--eps] [--min-pts] [--distance-metric] [--crime-rate]\n"
    << "\nFile Handler:\n"
    << "  --crime-file              <crime filename> Reformatted crime file.\n"
    << "  --date-file               <date filename> Reformatted date file.\n"
    << "  --lat-file                <lat filename> Reformatted latitude file.\n"
    << "  --long-file               <long filename> Reformatted longitude file.\n"
-   << "\nReformat Data:\n"
+   << "Reformat Data:\n"
    << "  --reformat-file           <csv filename> Reformat criminal CSV data.\n"
    << "  --crime-column            CSV crime column number.\n"
    << "  --date-column             CSV date column number.\n"
    << "  --lat-column              CSV latitude column number.\n"
    << "  --long-column             CSV longitude column number.\n"
-   << "\nCluster Weights:\n"
+   << "Cluster Weights:\n"
    << "  --eps                     [default: 1.7 = 1700m] Distance between two points to form cluster.\n"
    << "  --min-pts                 [default: 1000] Minimum points in a cluster.\n"
    << "  --distance-metric         [default: haversine] Metric used to calculate distance.\n"
-   << "\nModel Weights:\n"
-   << "\nTerminal View:\n"
+   << "Model Weights:\n"
+   << "Terminal View:\n"
    << "  --crime-rate              <crime filename> View the percentages of crimes.\n"
-   << "  --version                 Current version of OpenHotSpot.\n"
-   << "\nExample Usage:\n"
-   << "  ./hotspot --reformat-file dataset.csv --crime-column 1 --date-column 2 --lat-column 4 --long-column 3\n"
-   << "  ./hotspot --crime-file crimes.txt --dates-file dates.txt --lat-file latitudes.txt \
-         --long-file longitudes.txt --eps 1.7 --min-pts 1000 --distance-metric haversine\n"
-   << "  ./hotspot --crime-rate crimes.txt"
+   << "  --version                 Current version of OpenHotspot."
    << std::endl;
 }
 

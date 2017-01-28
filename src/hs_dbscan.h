@@ -62,12 +62,15 @@ public:
    DBSCAN(std::vector<std::shared_ptr<Coordinates> >);
    ~DBSCAN();
 
+   std::vector<uint32_t> core_pts_();
+   std::vector<uint32_t> noise_pts_();
+   uint32_t n_clusters_();
+
    double radiansToDegrees(double);
    double degreesToRadians(double);
    double haversineMetric(Metric&);
    double euclideanMetric(Metric&);
 
-   float iterationTime();
    void clusterCenter(std::vector<std::vector<Coordinates*> >, unsigned int);
    std::vector<uint32_t> regionQuery(uint32_t, const ClusterWeights&);
    void expandCluster(uint32_t, std::vector<uint32_t>*, uint32_t*, const ClusterWeights&);
