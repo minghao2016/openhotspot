@@ -1,16 +1,12 @@
 /*
  * BSD 3-Clause License
- * OpenHotSpot Framework 0.1.3
+ * OpenHotspot Framework 0.1.4
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
  * The license can be found in the main directory for more
  * information about using this program.
 */
-
-// main.cpp file just holds command line arguments.
-// The file hotspot.cpp is the file that holds
-// the actual model of the framework.
 
 #include "hotspot.h"
 

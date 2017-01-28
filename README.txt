@@ -1,9 +1,9 @@
-                     OpenHotSpot Framework 0.1.3
+                     OpenHotspot Framework 0.1.4
                      ===========================
 
-OpenHotSpot is a machine learning, crime analysis framework written in
-C++11 and built for speed and scalability of pattern recognition, hot
-spot detection and locations based crime predicting.
+OpenHotspot is a machine learning, crime analysis framework written in
+C++11 and built for speed and scalability of pattern recognition, hotspot
+detection and locations based, crime predicting.
 
 About
 -----

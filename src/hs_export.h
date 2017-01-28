@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotSpot Framework 0.1.3
+ * OpenHotspot Framework 0.1.4
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -24,7 +24,7 @@ private:
 
 public:
    Export(const std::string&);
-   void exportPredictedData(unsigned int, double, double, std::string);
+   void exportData(unsigned int, double, double, std::string);
 };
 
 }

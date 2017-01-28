@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotSpot Framework 0.1.3
+ * OpenHotspot Framework 0.1.4
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -100,7 +100,7 @@ void HotSpot::crimeRate(const std::string& crimes_file)
    }
 }
 
-utils_tuple HotSpot::predictedClusters(double eps, unsigned int min_pts, const std::string& dist_metric)
+utils_tuple HotSpot::predictedCoordinates(double eps, unsigned int min_pts, const std::string& dist_metric)
 {
    std::vector<std::shared_ptr<Coordinates> > c_coordinates;
    std::shared_ptr<Coordinates> coordinates(new Coordinates);
@@ -117,10 +117,6 @@ utils_tuple HotSpot::predictedClusters(double eps, unsigned int min_pts, const s
                           std::get<2>(dbscan_results), std::get<3>(dbscan_results));
 }
 
-utils_pair HotSpot::predictedCoordinates()
-{
-}
-
 void HotSpot::launchWebClient()
 {
 }
@@ -129,7 +125,7 @@ void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_fi
                         const std::string& long_file, double eps, unsigned int min_pts,
                         const std::string& dist_metric)
 {
-   Export expt(PREDICTION_FILE);
+   Export export(PREDICTION_FILE);
    std::ifstream if_dates(dates_file);
    if (!if_dates.is_open()){
       std::cout << "Error: Could not open dates file." << std::endl;
@@ -157,9 +153,9 @@ void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_fi
          long_values.push_back(temp_long);
       }
    }
-   utils_tuple predicted_clusters = predictedClusters(eps, min_pts, dist_metric);
-   //expt.exportPredictedData(std::get<0>(prediction), std::get<1>(prediction),
-   //                         std::get<2>(prediction), std::get<3>(prediction));
+   utils_tuple predicted_coordinates = predictedCoordinates(eps, min_pts, dist_metric);
+   //export.exportData(std::get<0>(predicted_coordinates), std::get<1>(predicted_coordinates),
+   //                  std::get<2>(predicted_coordinates), std::get<3>(predicted_coordinates));
 }
 
 } // hotspot namespace

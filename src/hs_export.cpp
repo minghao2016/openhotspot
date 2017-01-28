@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotSpot Framework 0.1.3
+ * OpenHotspot Framework 0.1.4
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -18,8 +18,8 @@ Export::Export(const std::string& _csv_file):
 {
 }
 
-void Export::exportPredictedData(unsigned int n_clusters, double center_lat,
-                                 double center_long, std::string c_type)
+void Export::exportData(unsigned int n_clusters, double center_lat, double center_long,
+                        std::string cluster_types)
 {
    std::ofstream prediction_file(csv_file, std::ofstream::out | std::ofstream::app);
    if (!prediction_file.is_open()){

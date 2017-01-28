@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotSpot Framework 0.1.3
+ * OpenHotspot Framework 0.1.4
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -99,6 +99,7 @@ std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p, const ClusterWeights& clus
 void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts,
                            uint32_t* n_clusters, const ClusterWeights& cluster_weights)
 {
+   //clusters[].push_back();
    for (uint32_t i = 0; i < (uint32_t)ec_neighbor_pts->size(); i++){
       if (!visted_pts[ec_neighbor_pts->at(i)]){
          // Mark point p as visited

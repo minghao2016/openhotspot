@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotSpot Framework 0.1.3
+ * OpenHotspot Framework 0.1.4
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -17,6 +17,7 @@
 #include <fstream>
 #include <sstream>
 #include <cmath>
+#include <ctime>
 #include <memory>
 
 #include "hs_dbscan.h"
@@ -36,14 +37,11 @@ private:
    std::vector<std::string> crime_values;
    std::vector<int> date_values;
 
-   std::vector<std::vector<Coordinates> > clusters;
-
 public:
-   void reformatCSVFile(const std::string&, unsigned int, unsigned int,
-                        unsigned int, unsigned int);
+   void reformatCSVFile(const std::string&, unsigned int, unsigned int, unsigned int,
+                        unsigned int);
    void crimeRate(const std::string&);
-   utils_tuple predictedClusters(double, unsigned int, const std::string&);
-   utils_pair predictedCoordinates();
+   utils_tuple predicted_coordinates(double, unsigned int, const std::string&);
    void launchWebClient();
    void loadModel(const std::string&, const std::string&, const std::string&, double,
                   unsigned int, const std::string&);

@@ -1,7 +1,8 @@
-Fri Jan 26, 2017
+Fri Jan 27, 2017
 -----------------
 - Deleted the docs folder since it is not needed currently.
 - Trying to finish DBSCAN and then proceeding to work on the model.
+- Added dashboard html/css files and a js stats file to launch.
 
 Sun Jan 22, 2017
 ----------------

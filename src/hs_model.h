@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotSpot Framework 0.1.3
+ * OpenHotspot Framework 0.1.4
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -20,9 +20,19 @@
 #include "hs_dbscan.h"
 #include "hs_utils.h"
 
+enum CrimeTypes {
+   ASSAULT_CRIME,
+   THEFT_CRIME,
+   DRUG_CRIME,
+   VANDALISM_CRIME,
+   BURGLARY_CRIME,
+   RAPE_CRIME,
+   OTHER_CRIME
+};
+
 struct ModelWeights {
-   std::vector<int> date_pts;
-   std::vector<std::string> crime_names;
+   std::vector<int> crime_dates;
+   std::vector<std::string> crime_types;
 };
 
 struct PredictedCoordinates {
@@ -39,7 +49,7 @@ private:
 public:
    Model(std::vector<std::vector<Coordinates> >);
    ~Model();
-   std::vector<int> crimeFrequency();
+   std::vector<int> crimeFrequency(ModelWeights& weights);
    std::vector<PredictedCoordinates> predict();
    float computeAccuracyRate();
    float computeLoss();
