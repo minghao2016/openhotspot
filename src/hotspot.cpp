@@ -125,7 +125,7 @@ void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_fi
                         const std::string& long_file, double eps, unsigned int min_pts,
                         const std::string& dist_metric)
 {
-   Export export(PREDICTION_FILE);
+   Export csv_export(PREDICTION_FILE);
    std::ifstream if_dates(dates_file);
    if (!if_dates.is_open()){
       std::cout << "Error: Could not open dates file." << std::endl;
@@ -154,8 +154,8 @@ void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_fi
       }
    }
    utils_tuple predicted_coordinates = predictedCoordinates(eps, min_pts, dist_metric);
-   //export.exportData(std::get<0>(predicted_coordinates), std::get<1>(predicted_coordinates),
-   //                  std::get<2>(predicted_coordinates), std::get<3>(predicted_coordinates));
+   //csv_export.exportData(std::get<0>(predicted_coordinates), std::get<1>(predicted_coordinates),
+   //                      std::get<2>(predicted_coordinates), std::get<3>(predicted_coordinates));
 }
 
 } // hotspot namespace

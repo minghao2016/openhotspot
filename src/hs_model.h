@@ -31,7 +31,7 @@ enum CrimeTypes {
 };
 
 struct ModelWeights {
-   std::vector<int> crime_dates;
+   std::vector<uint32_t> crime_dates;
    std::vector<std::string> crime_types;
 };
 

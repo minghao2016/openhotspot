@@ -30,18 +30,18 @@ private:
    double temp_lat;
    double temp_long;
    std::string temp_crime;
-   int temp_dates;
+   uint32_t temp_dates;
 
    std::vector<double> lat_values;
    std::vector<double> long_values;
    std::vector<std::string> crime_values;
-   std::vector<int> date_values;
+   std::vector<uint32_t> date_values;
 
 public:
    void reformatCSVFile(const std::string&, unsigned int, unsigned int, unsigned int,
                         unsigned int);
    void crimeRate(const std::string&);
-   utils_tuple predicted_coordinates(double, unsigned int, const std::string&);
+   utils_tuple predictedCoordinates(double, unsigned int, const std::string&);
    void launchWebClient();
    void loadModel(const std::string&, const std::string&, const std::string&, double,
                   unsigned int, const std::string&);
