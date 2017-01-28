@@ -17,7 +17,7 @@
 #include <cmath>
 #include <memory>
 
-#include "hs_utils.h"
+#include "hs_types.h"
 
 struct Coordinates {
    std::vector<double> lat_pts;
@@ -25,7 +25,7 @@ struct Coordinates {
 };
 
 struct ClusterWeights {
-   double eps;
+   float eps;
    unsigned int min_pts;
    std::string dist_metric;
 };
@@ -45,6 +45,7 @@ private:
 
    std::vector<uint32_t> core_pts;
    std::vector<uint32_t> noise_pts;
+   std::vector<std::vector<uint32_t> > cluseter_pts;
 
    std::vector<bool> visted_pts;
    std::vector<bool> clustered_pts;
@@ -55,7 +56,7 @@ private:
    std::vector<uint32_t> ec_neighbor_pts_;
 
    std::vector<std::shared_ptr<Coordinates> > coordinates;
-   std::vector<std::vector<Coordinates*> > clusters;
+   std::vector<std::vector<Coordinates> > clusters;
 
 public:
    DBSCAN(std::vector<std::shared_ptr<Coordinates> >);
@@ -70,7 +71,7 @@ public:
    void clusterCenter(std::vector<std::vector<Coordinates*> >, unsigned int);
    std::vector<uint32_t> regionQuery(uint32_t, const ClusterWeights&);
    void expandCluster(uint32_t, std::vector<uint32_t>*, uint32_t*, const ClusterWeights&);
-   utils_tuple dbscan(const ClusterWeights&);
+   std::vector<std::vector<Coordinates> > dbscan(const ClusterWeights&);
 };
 
 }

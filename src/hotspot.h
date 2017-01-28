@@ -21,7 +21,7 @@
 #include <memory>
 
 #include "hs_dbscan.h"
-#include "hs_utils.h"
+#include "hs_types.h"
 
 namespace hotspot {
 
@@ -41,9 +41,9 @@ public:
    void reformatCSVFile(const std::string&, unsigned int, unsigned int, unsigned int,
                         unsigned int);
    void crimeRate(const std::string&);
-   utils_tuple predictedCoordinates(double, unsigned int, const std::string&);
+   utils_tuple predictedCoordinates(float, unsigned int, const std::string&);
    void launchWebClient();
-   void loadModel(const std::string&, const std::string&, const std::string&, double,
+   void loadModel(const std::string&, const std::string&, const std::string&, float,
                   unsigned int, const std::string&);
 };
 

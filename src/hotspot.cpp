@@ -100,7 +100,7 @@ void HotSpot::crimeRate(const std::string& crimes_file)
    }
 }
 
-utils_tuple HotSpot::predictedCoordinates(double eps, unsigned int min_pts, const std::string& dist_metric)
+utils_tuple HotSpot::predictedCoordinates(float eps, unsigned int min_pts, const std::string& dist_metric)
 {
    std::vector<std::shared_ptr<Coordinates> > c_coordinates;
    std::shared_ptr<Coordinates> coordinates(new Coordinates);
@@ -112,9 +112,10 @@ utils_tuple HotSpot::predictedCoordinates(double eps, unsigned int min_pts, cons
    cluster_weights.dist_metric = dist_metric;
    c_coordinates.push_back(std::move(coordinates));
    DBSCAN clusters(c_coordinates);
-   utils_tuple dbscan_results = clusters.dbscan(cluster_weights);
-   return std::make_tuple(std::get<0>(dbscan_results), std::get<1>(dbscan_results),
-                          std::get<2>(dbscan_results), std::get<3>(dbscan_results));
+   std::vector<std::vector<Coordinates> > dbscan_results = clusters.dbscan(cluster_weights);
+   //std::cout << dbscan_results.size() << std::endl;
+   //return std::make_tuple(std::get<0>(dbscan_results), std::get<1>(dbscan_results),
+   //                       std::get<2>(dbscan_results), std::get<3>(dbscan_results));
 }
 
 void HotSpot::launchWebClient()
@@ -122,7 +123,7 @@ void HotSpot::launchWebClient()
 }
 
 void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_file,
-                        const std::string& long_file, double eps, unsigned int min_pts,
+                        const std::string& long_file, float eps, unsigned int min_pts,
                         const std::string& dist_metric)
 {
    Export csv_export(PREDICTION_FILE);

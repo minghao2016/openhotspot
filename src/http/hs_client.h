@@ -15,7 +15,7 @@
 #include <vector>
 #include <string>
 
-#include "../hs_utils.h"
+#include "../hs_types.h"
 
 namespace hotspot {
 

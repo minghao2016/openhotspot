@@ -25,7 +25,7 @@
 namespace hotspot {
 
 typedef std::pair<double, double> utils_pair;
-typedef std::tuple<unsigned int, double, double, std::string> utils_tuple;
+typedef std::tuple<uint32_t, double, double, std::string> utils_tuple;
 
 }
 

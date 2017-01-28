@@ -18,7 +18,7 @@
 #include <memory>
 
 #include "hs_dbscan.h"
-#include "hs_utils.h"
+#include "hs_types.h"
 
 enum CrimeTypes {
    ASSAULT_CRIME,
