@@ -19,12 +19,9 @@
 #define CRIMES_FILE "../data/crimes.txt"
 #define DATES_FILE "../data/dates.txt"
 #define PREDICTION_FILE "../data/prediction.csv"
-#define CORE_CLUSTERS 1
-#define NOISE_CLUSTERS 2
 
 namespace hotspot {
 
-typedef std::pair<double, double> utils_pair;
 typedef std::tuple<uint32_t, double, double, std::string> utils_tuple;
 
 }

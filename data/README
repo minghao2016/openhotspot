@@ -1,8 +1,8 @@
 Data
 ----
-This directory contains all of the frameworks raw criminal data used for classification and prediction.
-
-Below is a list of just a few of the available criminal datasets, in CSV format, to download and test on.
+This directory contains all of the frameworks raw criminal data used
+for classification and prediction. Below is a list of just a few of
+the available criminal datasets, in CSV format, to download and test on.
 
 Chicago, IL         https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2
 San Francisco, CA   https://data.sfgov.org/Public-Safety/SFPD-Incidents-from-1-January-2003/tmnf-yvry
@@ -10,3 +10,7 @@ Seattle, WA         https://data.seattle.gov/Public-Safety/Seattle-Police-Depart
 Albuquerque, NM     http://data.cabq.gov/publicsafety/policeincidents/
 Austin, TX          https://data.austintexas.gov/Public-Safety/APD-Incident-Extract-YTD/b4y9-5x39
 Louisville, KY      https://data.louisvilleky.gov/dataset/crime-data
+Philadelphia        https://www.kaggle.com/mchirico/philadelphiacrimedata
+Minneapolis, MN     https://www.kaggle.com/mrisdal/minneapolis-incidents-crime
+Salt Lake City      https://www.kaggle.com/foenix/slc-crime
+Washington, D.C.    https://www.kaggle.com/vinchinzu/dc-metro-crime-data

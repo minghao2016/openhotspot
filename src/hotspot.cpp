@@ -100,6 +100,10 @@ void HotSpot::crimeRate(const std::string& crimes_file)
    }
 }
 
+std::vector<std::string> test(){
+   std::cout << "test" << std::endl;
+}
+
 utils_tuple HotSpot::predictedCoordinates(float eps, unsigned int min_pts, const std::string& dist_metric)
 {
    std::vector<std::shared_ptr<Coordinates> > c_coordinates;
@@ -112,8 +116,7 @@ utils_tuple HotSpot::predictedCoordinates(float eps, unsigned int min_pts, const
    cluster_weights.dist_metric = dist_metric;
    c_coordinates.push_back(std::move(coordinates));
    DBSCAN clusters(c_coordinates);
-   std::vector<std::vector<Coordinates> > dbscan_results = clusters.dbscan(cluster_weights);
-   //std::cout << dbscan_results.size() << std::endl;
+   std::vector<std::vector<uint32_t> > dbscan_results = clusters.dbscan(cluster_weights);
    //return std::make_tuple(std::get<0>(dbscan_results), std::get<1>(dbscan_results),
    //                       std::get<2>(dbscan_results), std::get<3>(dbscan_results));
 }

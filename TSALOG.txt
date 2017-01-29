@@ -2,6 +2,7 @@ Sat Jan 28, 2017
 ----------------
 - Changed hs_utils file to hs_types.
 - Changed eps to float.
+- Added more datasets to data folder.
 
 Fri Jan 27, 2017
 -----------------

@@ -45,7 +45,7 @@ private:
 
    std::vector<uint32_t> core_pts;
    std::vector<uint32_t> noise_pts;
-   std::vector<std::vector<uint32_t> > cluseter_pts;
+   std::vector<std::vector<uint32_t> > cluster_pts;
 
    std::vector<bool> visted_pts;
    std::vector<bool> clustered_pts;
@@ -74,7 +74,7 @@ public:
    void clusterCenter(std::vector<std::vector<Coordinates*> >, unsigned int);
    std::vector<uint32_t> regionQuery(uint32_t, const ClusterWeights&);
    void expandCluster(uint32_t, std::vector<uint32_t>*, uint32_t*, const ClusterWeights&);
-   std::vector<std::vector<Coordinates> > dbscan(const ClusterWeights&);
+   std::vector<std::vector<uint32_t> > dbscan(const ClusterWeights&);
 };
 
 }
