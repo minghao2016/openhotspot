@@ -41,40 +41,39 @@ namespace hotspot {
 
 class DBSCAN {
 private:
-   uint32_t n_clusters;
+   std::vector<std::shared_ptr<Coordinates> > coordinates;
 
-   std::vector<uint32_t> core_pts;
-   std::vector<uint32_t> noise_pts;
-   std::vector<std::vector<uint32_t> > cluster_pts;
+   uint32_t n_clusters_;
 
-   std::vector<bool> visted_pts;
+   std::vector<uint32_t> core_pts_;
+   std::vector<uint32_t> noise_pts_;
+
+   std::vector<bool> visited_pts;
    std::vector<bool> clustered_pts;
 
-   std::vector<uint32_t> neighbor_pts;
    std::vector<uint32_t> rq_pts;
    std::vector<uint32_t> rq_neighbor_pts;
-   std::vector<uint32_t> ec_neighbor_pts_;
 
-   std::vector<std::shared_ptr<Coordinates> > coordinates;
    std::vector<std::vector<Coordinates> > clusters;
+   std::vector<std::vector<uint32_t> > cluster_pts;
 
 public:
    DBSCAN(std::vector<std::shared_ptr<Coordinates> >);
    ~DBSCAN();
 
-   std::vector<uint32_t> core_pts_();
-   std::vector<uint32_t> noise_pts_();
-   uint32_t n_clusters_();
+   std::vector<uint32_t> core_pts();
+   std::vector<uint32_t> noise_pts();
+   uint32_t n_clusters();
 
    double radiansToDegrees(double);
    double degreesToRadians(double);
    double haversineMetric(Metric&);
    double euclideanMetric(Metric&);
 
-   void clusterCenter(std::vector<std::vector<Coordinates*> >, unsigned int);
+   void clusterCenter(std::vector<std::vector<Coordinates> >);
    std::vector<uint32_t> regionQuery(uint32_t, const ClusterWeights&);
    void expandCluster(uint32_t, std::vector<uint32_t>*, uint32_t*, const ClusterWeights&);
-   std::vector<std::vector<uint32_t> > dbscan(const ClusterWeights&);
+   std::vector<std::vector<Coordinates> > dbscan(const ClusterWeights&);
 };
 
 }
