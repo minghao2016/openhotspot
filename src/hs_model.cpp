@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotspot Framework 0.1.4
+ * OpenHotSpot Framework 0.1.4
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -13,7 +13,7 @@
 
 namespace HotSpot {
 
-Model::Model(std::vector<std::vector<Coordinates> > _clusters):
+Model::Model(std::vector<Coordinates> _clusters):
    clusters(_clusters)
 {
 }

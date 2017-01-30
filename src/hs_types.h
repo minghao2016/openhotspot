@@ -22,7 +22,7 @@
 
 namespace hotspot {
 
-typedef std::tuple<uint32_t, double, double, std::string> utils_tuple;
+typedef std::tuple<double, double, std::string> utils_tuple;
 
 }
 

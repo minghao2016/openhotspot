@@ -24,7 +24,7 @@ private:
 
 public:
    Export(const std::string&);
-   void exportData(unsigned int, double, double, std::string);
+   void exportData(double, double, std::string);
 };
 
 }

@@ -116,9 +116,8 @@ utils_tuple HotSpot::predictedCoordinates(float eps, unsigned int min_pts, const
    cluster_weights.dist_metric = dist_metric;
    c_coordinates.push_back(std::move(coordinates));
    DBSCAN clusters(c_coordinates);
-   std::vector<std::vector<Coordinates> > dbscan_results = clusters.dbscan(cluster_weights);
-   //return std::make_tuple(std::get<0>(dbscan_results), std::get<1>(dbscan_results),
-   //                       std::get<2>(dbscan_results), std::get<3>(dbscan_results));
+   std::vector<Coordinates*> dbscan_results = clusters.dbscan(cluster_weights);
+   //return std::make_tuple();
 }
 
 void HotSpot::launchWebClient()
@@ -159,7 +158,7 @@ void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_fi
    }
    utils_tuple predicted_coordinates = predictedCoordinates(eps, min_pts, dist_metric);
    //csv_export.exportData(std::get<0>(predicted_coordinates), std::get<1>(predicted_coordinates),
-   //                      std::get<2>(predicted_coordinates), std::get<3>(predicted_coordinates));
+   //                      std::get<2>(predicted_coordinates));
 }
 
 } // hotspot namespace

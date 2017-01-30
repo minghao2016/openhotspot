@@ -1,3 +1,7 @@
+Sun Jan 29, 2017
+----------------
+- Fixed some typos throughout files.
+
 Sat Jan 28, 2017
 ----------------
 - Changed hs_utils file to hs_types.

@@ -24,9 +24,8 @@ def _parse_csvfile(self):
             for info, value in row.iteritems():
                 column[info].append(value)
     return {
-        "n_clusters": column["n_clusters"],
-        "cluster_lat": column["cluster_lat"],
-        "cluster_long": column["cluster_long"],
+        "center_lat": column["center_lat"],
+        "center_long": column["center_long"],
         "cluster_types": column["cluster_types"]
     }
 

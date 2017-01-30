@@ -38,16 +38,6 @@ std::vector<uint32_t> DBSCAN::noise_pts()
    return noise_pts_;
 }
 
-uint32_t DBSCAN::n_clusters()
-{
-   return n_clusters_;
-}
-
-double DBSCAN::radiansToDegrees(double radians)
-{
-   return radians * 180 / 3.14159;
-}
-
 double DBSCAN::degreesToRadians(double degrees)
 {
    return degrees * 3.14159 / 180;
@@ -71,10 +61,11 @@ double DBSCAN::euclideanMetric(Metric& metric)
    return sqrt(dlat_1 * dlat_1 + dlong_1 * dlong_1);
 }
 
-void DBSCAN::clusterCenter(std::vector<std::vector<Coordinates> > output_clusters)
+void DBSCAN::clusterCenter()
 {
-   for (uint32_t i = 0; i < output_clusters.size(); i++){
-      for (unsigned int p = 0; p < output_clusters[i].size(); p++){
+   for (uint32_t i = 0; i < cluster_pts.size(); i++){
+      for (unsigned int p = 0; p < cluster_pts[i].size(); p++){
+         // Added cluster points to clusters
       }
    }
 }
@@ -130,7 +121,7 @@ void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts,
    }
 }
 
-std::vector<std::vector<Coordinates> > DBSCAN::dbscan(const ClusterWeights& cluster_weights)
+std::vector<Coordinates*> DBSCAN::dbscan(const ClusterWeights& cluster_weights)
 {
    for (uint32_t i = 0; i < coordinates[0]->lat_pts.size(); i++){
       if (visited_pts[i]) {
@@ -138,16 +129,17 @@ std::vector<std::vector<Coordinates> > DBSCAN::dbscan(const ClusterWeights& clus
       } else {
          // Mark point p as visited
          visited_pts[i] = true;
-         rq_neighbor_pts = regionQuery(i, cluster_weights);
+         std::vector<uint32_t> rq_neighbor_pts = regionQuery(i, cluster_weights);
          if (rq_neighbor_pts.size() < cluster_weights.min_pts){
             noise_pts_.push_back(rq_neighbor_pts[i]);
          } else {
+            //std::cout << coordinates[0]->lat_pts[rq_neighbor_pts[i]] << std::endl;
             core_pts_.push_back(rq_neighbor_pts[i]);
             n_clusters_++;
             // Mark point p as clustered so that it only shows up once in clusters
             clustered_pts[i] = true;
             expandCluster(i, &rq_neighbor_pts, &n_clusters_, cluster_weights);
-            //clusterCenter(clusters);
+            clusterCenter();
          }
       }
    }
