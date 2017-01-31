@@ -65,7 +65,7 @@ void DBSCAN::clusterCenter()
 {
    for (uint32_t i = 0; i < cluster_pts.size(); i++){
       for (unsigned int p = 0; p < cluster_pts[i].size(); p++){
-         // Added cluster points to clusters
+         // Set cluster points equal to cluster coordinates
       }
    }
 }

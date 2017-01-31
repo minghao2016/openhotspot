@@ -7,16 +7,15 @@
 # information about using this program.
 from __future__ import print_function
 
-import os
 import csv
-import json
 import collections
 import numpy as np
 from flask import Flask, render_template
 
 app = Flask(__name__)
+csvfile = "../data/prediction.csv"
 
-def _parse_csvfile(self):
+def _parse_csvfile():
     column = collections.defaultdict(list)
     with open(self.csvfile, "r") as csvfile:
         reader = csv.DictReader(csvfile)
@@ -31,8 +30,16 @@ def _parse_csvfile(self):
 
 @app.route('/')
 def _plot_clusters():
-    csvfile = "../data/prediction.csv"
-    return render_template("base.html")
+    #parsed_file = _parse_csvfile()
+    #for x in parsed_file["center_lat"]:
+    #    pass
+    #for y in parsed_file["center_long"]:
+    #    pass
+    return render_template("base.html",
+                            core_clusters_x=[],
+                            core_clusters_y=[],
+                            noise_clusters_x=[],
+                            noise_clusters_y=[])
 
 if __name__ == '__main__':
     app.run()

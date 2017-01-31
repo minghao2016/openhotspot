@@ -44,10 +44,10 @@ namespace HotSpot {
 
 class Model {
 private:
-   std::vector<Coordinates> clusters;
+   std::vector<Coordinates*> clusters;
 
 public:
-   Model(std::vector<Coordinates>);
+   Model(std::vector<Coordinates*>);
    ~Model();
    std::vector<int> crimeFrequency(ModelWeights& weights);
    std::vector<PredictedCoordinates> predict();

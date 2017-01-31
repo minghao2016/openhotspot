@@ -13,7 +13,7 @@
 
 namespace HotSpot {
 
-Model::Model(std::vector<Coordinates> _clusters):
+Model::Model(std::vector<Coordinates*> _clusters):
    clusters(_clusters)
 {
 }

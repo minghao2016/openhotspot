@@ -1,3 +1,7 @@
+Tue Jan 31, 2017
+----------------
+- Made some changes to launch.
+
 Sun Jan 29, 2017
 ----------------
 - Fixed some typos throughout files.
