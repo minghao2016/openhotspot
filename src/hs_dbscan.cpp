@@ -10,6 +10,7 @@
 
 #include "hs_dbscan.h"
 #include "hs_logger.h"
+#include "hs_types.h"
 
 namespace hotspot {
 
@@ -26,11 +27,6 @@ DBSCAN::DBSCAN(std::vector<std::shared_ptr<Coordinates> > _coordinates):
 
 DBSCAN::~DBSCAN()
 {
-}
-
-std::vector<uint32_t> DBSCAN::core_pts()
-{
-   return core_pts_;
 }
 
 std::vector<uint32_t> DBSCAN::noise_pts()
@@ -133,8 +129,6 @@ std::vector<Coordinates*> DBSCAN::dbscan(const ClusterWeights& cluster_weights)
          if (rq_neighbor_pts.size() < cluster_weights.min_pts){
             noise_pts_.push_back(rq_neighbor_pts[i]);
          } else {
-            //std::cout << coordinates[0]->lat_pts[rq_neighbor_pts[i]] << std::endl;
-            core_pts_.push_back(rq_neighbor_pts[i]);
             n_clusters_++;
             // Mark point p as clustered so that it only shows up once in clusters
             clustered_pts[i] = true;

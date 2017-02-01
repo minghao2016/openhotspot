@@ -11,8 +11,8 @@
 #include "hotspot.h"
 #include "hs_reformat.h"
 #include "hs_model.h"
-#include "hs_export.h"
 #include "hs_logger.h"
+#include "hs_types.h"
 
 #include "http/hs_client.h"
 
@@ -100,24 +100,27 @@ void HotSpot::crimeRate(const std::string& crimes_file)
    }
 }
 
-std::vector<std::string> test(){
-   std::cout << "test" << std::endl;
-}
-
-utils_tuple HotSpot::predictedCoordinates(float eps, unsigned int min_pts, const std::string& dist_metric)
+PredictionData HotSpot::prediction(float eps, unsigned int min_pts, const std::string& dist_metric)
 {
    std::vector<std::shared_ptr<Coordinates> > c_coordinates;
    std::shared_ptr<Coordinates> coordinates(new Coordinates);
-   ClusterWeights cluster_weights;
    coordinates->lat_pts = lat_values;
    coordinates->long_pts = long_values;
+   ClusterWeights cluster_weights;
    cluster_weights.eps = eps;
    cluster_weights.min_pts = min_pts;
    cluster_weights.dist_metric = dist_metric;
    c_coordinates.push_back(std::move(coordinates));
    DBSCAN clusters(c_coordinates);
    std::vector<Coordinates*> dbscan_results = clusters.dbscan(cluster_weights);
-   //return std::make_tuple();
+   PredictionData p_data;
+   //p_data.core_lat = dbscan_results[0]->lat_pts;
+   //p_data.core_long = dbscan_results[0]->long_pts;
+   //for (unsigned int i = 0; i < coordinates->lat_pts.size(); i++){
+   //   p_data.noise_lat = coordinates->lat_pts[clusters.noise_pts()];
+   //   p_data.noise_long = coordinates->long_pts[clusters.noise_pts()];
+   //}
+   return p_data;
 }
 
 void HotSpot::launchWebClient()
@@ -156,9 +159,8 @@ void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_fi
          long_values.push_back(temp_long);
       }
    }
-   utils_tuple predicted_coordinates = predictedCoordinates(eps, min_pts, dist_metric);
-   //csv_export.exportData(std::get<0>(predicted_coordinates), std::get<1>(predicted_coordinates),
-   //                      std::get<2>(predicted_coordinates));
+   PredictionData predicted_coordinates = prediction(eps, min_pts, dist_metric);
+   //csv_export.exportData(predicted_coordinates);
 }
 
 } // hotspot namespace

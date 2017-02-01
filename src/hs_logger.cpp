@@ -12,7 +12,7 @@
 
 namespace hotspot {
 
-std::string Logger::logLevel(Level& level)
+void Logger::logLevel(Level& level)
 {
    time_t now = time(0);
    if (level == ERROR_LOG){

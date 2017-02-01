@@ -17,8 +17,6 @@
 #include <cmath>
 #include <memory>
 
-#include "hs_types.h"
-
 struct Coordinates {
    std::vector<double> lat_pts;
    std::vector<double> long_pts;
@@ -60,7 +58,6 @@ public:
    DBSCAN(std::vector<std::shared_ptr<Coordinates> >);
    ~DBSCAN();
 
-   std::vector<uint32_t> core_pts();
    std::vector<uint32_t> noise_pts();
 
    double degreesToRadians(double);

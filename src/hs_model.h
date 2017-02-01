@@ -18,7 +18,6 @@
 #include <memory>
 
 #include "hs_dbscan.h"
-#include "hs_types.h"
 
 enum CrimeTypes {
    ASSAULT_CRIME,
@@ -50,7 +49,6 @@ public:
    Model(std::vector<Coordinates*>);
    ~Model();
    std::vector<int> crimeFrequency(ModelWeights& weights);
-   std::vector<PredictedCoordinates> predict();
    float computeAccuracyRate();
    float computeLoss();
 };

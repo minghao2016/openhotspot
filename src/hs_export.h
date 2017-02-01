@@ -16,6 +16,13 @@
 #include <string>
 #include <fstream>
 
+struct PredictionData {
+   std::vector<double> core_lat;
+   std::vector<double> core_long;
+   std::vector<double> noise_lat;
+   std::vector<double> noise_long;
+};
+
 namespace hotspot {
 
 class Export {
@@ -24,7 +31,7 @@ private:
 
 public:
    Export(const std::string&);
-   void exportData(double, double, std::string);
+   void exportData(PredictionData&);
 };
 
 }

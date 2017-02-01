@@ -20,8 +20,7 @@
 #include <ctime>
 #include <memory>
 
-#include "hs_dbscan.h"
-#include "hs_types.h"
+#include "hs_export.h"
 
 namespace hotspot {
 
@@ -38,13 +37,12 @@ private:
    std::vector<uint32_t> date_values;
 
 public:
-   void reformatCSVFile(const std::string&, unsigned int, unsigned int, unsigned int,
-                        unsigned int);
+   void reformatCSVFile(const std::string&, unsigned int, unsigned int, unsigned int, unsigned int);
    void crimeRate(const std::string&);
-   utils_tuple predictedCoordinates(float, unsigned int, const std::string&);
+   PredictionData prediction(float, unsigned int, const std::string&);
    void launchWebClient();
-   void loadModel(const std::string&, const std::string&, const std::string&, float,
-                  unsigned int, const std::string&);
+   void loadModel(const std::string&, const std::string&, const std::string&, float, unsigned int,
+                  const std::string&);
 };
 
 }

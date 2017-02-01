@@ -22,11 +22,6 @@ def _parse_csvfile():
         for row in reader:
             for info, value in row.iteritems():
                 column[info].append(value)
-    return {
-        "center_lat": column["center_lat"],
-        "center_long": column["center_long"],
-        "cluster_types": column["cluster_types"]
-    }
 
 @app.route('/')
 def _plot_clusters():

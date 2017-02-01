@@ -20,10 +20,4 @@
 #define DATES_FILE "../data/dates.txt"
 #define PREDICTION_FILE "../data/prediction.csv"
 
-namespace hotspot {
-
-typedef std::tuple<double, double, std::string> utils_tuple;
-
-}
-
 #endif

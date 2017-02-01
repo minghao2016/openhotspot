@@ -29,7 +29,7 @@ namespace hotspot {
 
 class Logger {
 public:
-   std::string logLevel(Level& level);
+   void logLevel(Level& level);
 };
 
 }
