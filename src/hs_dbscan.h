@@ -52,7 +52,7 @@ private:
    std::vector<uint32_t> rq_pts;
 
    std::vector<std::vector<uint32_t> > cluster_pts;
-   std::vector<Coordinates*> clusters;
+   std::vector<std::shared_ptr<Coordinates> > clusters;
 
 public:
    DBSCAN(std::vector<std::shared_ptr<Coordinates> >);
@@ -67,7 +67,7 @@ public:
    void clusterCenter();
    std::vector<uint32_t> regionQuery(uint32_t, const ClusterWeights&);
    void expandCluster(uint32_t, std::vector<uint32_t>*, uint32_t*, const ClusterWeights&);
-   std::vector<Coordinates*> dbscan(const ClusterWeights&);
+   std::vector<std::shared_ptr<Coordinates> > dbscan(const ClusterWeights&);
 };
 
 }

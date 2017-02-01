@@ -106,19 +106,24 @@ PredictionData HotSpot::prediction(float eps, unsigned int min_pts, const std::s
    std::shared_ptr<Coordinates> coordinates(new Coordinates);
    coordinates->lat_pts = lat_values;
    coordinates->long_pts = long_values;
+
    ClusterWeights cluster_weights;
    cluster_weights.eps = eps;
    cluster_weights.min_pts = min_pts;
    cluster_weights.dist_metric = dist_metric;
+
    c_coordinates.push_back(std::move(coordinates));
+
    DBSCAN clusters(c_coordinates);
-   std::vector<Coordinates*> dbscan_results = clusters.dbscan(cluster_weights);
+   std::vector<std::shared_ptr<Coordinates> > dbscan_results = clusters.dbscan(cluster_weights);
+
    PredictionData p_data;
    //p_data.core_lat = dbscan_results[0]->lat_pts;
    //p_data.core_long = dbscan_results[0]->long_pts;
+   //std::vector<uint32_t> noise_pts = clusters.noise_pts();
    //for (unsigned int i = 0; i < coordinates->lat_pts.size(); i++){
-   //   p_data.noise_lat = coordinates->lat_pts[clusters.noise_pts()];
-   //   p_data.noise_long = coordinates->long_pts[clusters.noise_pts()];
+   //   p_data.noise_lat = coordinates->lat_pts[noise_pts[i]];
+   //   p_data.noise_long = coordinates->long_pts[noise_pts[i]];
    //}
    return p_data;
 }

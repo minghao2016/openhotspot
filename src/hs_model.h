@@ -50,7 +50,7 @@ public:
    ~Model();
    std::vector<int> crimeFrequency(ModelWeights& weights);
    float computeAccuracyRate();
-   float computeLoss();
+   float computeError();
 };
 
 }

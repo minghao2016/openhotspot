@@ -11,6 +11,11 @@
 #ifndef _HS_VERSION_H_
 #define _HS_VERSION_H_
 
+#define VERSION_MAJOR 0
+#define VERSION_MINOR 1
+#define VERSION_REVISION 4
+#define VERSION_BUILD 0
+
 const std::string version = "OpenHotspot Framework 0.1.4";
 
 #endif
