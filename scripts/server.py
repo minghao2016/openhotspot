@@ -30,11 +30,7 @@ def _plot_clusters():
     #    pass
     #for y in parsed_file["center_long"]:
     #    pass
-    return render_template("base.html",
-                            core_clusters_x=[],
-                            core_clusters_y=[],
-                            noise_clusters_x=[],
-                            noise_clusters_y=[])
+    return render_template("base.html")
 
 if __name__ == '__main__':
     app.run()

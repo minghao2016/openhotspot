@@ -1,3 +1,7 @@
+Wed Feb 1, 2017
+---------------
+- Made some directory changes to the framework.
+
 Tue Jan 31, 2017
 ----------------
 - Made some changes to launch.
