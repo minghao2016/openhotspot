@@ -86,17 +86,14 @@ void HotSpot::crimeRate(const std::string& crimes_file)
       while (if_crime >> temp_crime){
          crime_values.push_back(temp_crime);
       }
-      /*unsigned int value;
-      float percent = value / crime_values.size() * 10;
-      if (ceil(percent) == 0) {
-         for (unsigned int i = 0; i < crime_values.size(); i++){
-            std::cout << crime_values[i] << "-" << "0.0%" << std::endl;
-         }
-      } else {
-         for (unsigned int i = 0; i < crime_values.size(); i++){
-            std::cout << crime_values[i] << "-" << percent << "%" << std::endl;
-         }
-      }*/
+      std::set<std::string> unique_words(crime_values.begin(), crime_values.end());
+      std::cout << "Crime Percentages" << std::endl;
+      std::cout << "-----------------" << std::endl;
+      for (auto words : unique_words){
+         int crime_vectors = count(crime_values.begin(), crime_values.end(), words);
+         double percentage = (double)crime_vectors / (double)crime_values.size() * 100;
+         std::cout << std::setprecision(3) << words << ": " << percentage << "%" << std::endl;
+      }
    }
 }
 

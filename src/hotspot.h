@@ -16,9 +16,12 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 #include <cmath>
 #include <ctime>
 #include <memory>
+#include <set>
+#include <iomanip>
 
 #include "hs_export.h"
 
