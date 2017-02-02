@@ -1,5 +1,3 @@
 Contributing
 ------------
-Currently, contributions are not being accepted due to the fact that this project
-is part of a software competition that will take place in early March. Once it
-has past, I will then accept contributions from other developers.
+Currently, contributions to OpenHotspot are not being accepted be it that this project is part of a software development competition taking place in early March. Once the competition has past, contributions will begin to be accepted be it that you follow the rules and guidelines that will be made in future.

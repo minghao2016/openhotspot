@@ -63,7 +63,7 @@ public:
    double haversineMetric(Metric&);
    double euclideanMetric(Metric&);
 
-   void clusterCenter();
+   void clusterCenter(std::vector<Coordinates*>);
    std::vector<uint32_t> regionQuery(uint32_t, const ClusterWeights&);
    void expandCluster(uint32_t, std::vector<uint32_t>*, uint32_t*, const ClusterWeights&);
    std::vector<Coordinates*> dbscan(const ClusterWeights&);
