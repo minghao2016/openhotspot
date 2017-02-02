@@ -39,7 +39,7 @@ struct PredictedCoordinates {
    std::vector<double> long_pts;
 };
 
-namespace HotSpot {
+namespace hotSpot {
 
 class Model {
 private:
@@ -48,7 +48,7 @@ private:
 public:
    Model(std::vector<Coordinates*>);
    ~Model();
-   std::vector<int> crimeFrequency(ModelWeights& weights);
+   std::vector<int> getCrimeFrequency(ModelWeights& weights);
    float computeAccuracyRate();
    float computeError();
 };

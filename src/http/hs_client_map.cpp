@@ -8,18 +8,15 @@
  * information about using this program.
 */
 
-#include "hs_client.h"
 #include "hs_client_map.h"
-#include "../hs_logger.h"
-#include "../hs_types.h"
 
 namespace hotspot {
 
-Client::Client()
+ClientMap::ClientMap()
 {
 }
 
-Client::~Client()
+ClientMap::~ClientMap()
 {
 }
 

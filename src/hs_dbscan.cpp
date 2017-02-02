@@ -14,7 +14,7 @@
 
 namespace hotspot {
 
-DBSCAN::DBSCAN(std::vector<std::shared_ptr<Coordinates> > _coordinates):
+DBSCAN::DBSCAN(std::vector<Coordinates*> _coordinates):
    coordinates(_coordinates)
 {
    n_clusters_ = 0;
@@ -61,7 +61,7 @@ void DBSCAN::clusterCenter()
 {
    for (uint32_t i = 0; i < cluster_pts.size(); i++){
       for (unsigned int p = 0; p < cluster_pts[i].size(); p++){
-         // Set cluster points equal to cluster coordinates
+         // Set averaged cluster points equal to cluster coordinates
       }
    }
 }
@@ -105,8 +105,7 @@ void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts,
          visited_pts[ec_neighbor_pts->at(i)] = true;
          std::vector<uint32_t> ec_neighbor_pts_ = regionQuery(ec_neighbor_pts->at(i), cluster_weights);
          if (ec_neighbor_pts_.size() >= cluster_weights.min_pts){
-            ec_neighbor_pts->insert(ec_neighbor_pts->end(), ec_neighbor_pts_.begin(),
-                                    ec_neighbor_pts_.end());
+            ec_neighbor_pts->insert(ec_neighbor_pts->end(), ec_neighbor_pts_.begin(), ec_neighbor_pts_.end());
          }
          clustered_pts[ec_neighbor_pts->at(i)] = true;
          // Add any other points that haven't been clustered
@@ -117,8 +116,9 @@ void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts,
    }
 }
 
-std::vector<std::shared_ptr<Coordinates> > DBSCAN::dbscan(const ClusterWeights& cluster_weights)
+std::vector<Coordinates*> DBSCAN::dbscan(const ClusterWeights& cluster_weights)
 {
+   std::vector<Coordinates*> clusters;
    for (uint32_t i = 0; i < coordinates[0]->lat_pts.size(); i++){
       if (visited_pts[i]) {
          continue;
@@ -130,7 +130,7 @@ std::vector<std::shared_ptr<Coordinates> > DBSCAN::dbscan(const ClusterWeights& 
             noise_pts_.push_back(rq_neighbor_pts[i]);
          } else {
             n_clusters_++;
-            // Mark point p as clustered so that it only shows up once in clusters
+            // Mark point p as clustered so that it only shows up once
             clustered_pts[i] = true;
             expandCluster(i, &rq_neighbor_pts, &n_clusters_, cluster_weights);
             clusterCenter();

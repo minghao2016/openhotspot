@@ -8,8 +8,8 @@
  * information about using this program.
 */
 
-#ifndef _HS_UTILS_H_
-#define _HS_UTILS_H_
+#ifndef _HS_TYPES_H_
+#define _HS_TYPES_H_
 
 #include <tuple>
 #include <utility>

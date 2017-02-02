@@ -41,7 +41,7 @@ private:
 
 public:
    void reformatCSVFile(const std::string&, unsigned int, unsigned int, unsigned int, unsigned int);
-   void crimeRate(const std::string&);
+   void printCrimeRate(const std::string&);
    PredictionData prediction(float, unsigned int, const std::string&);
    void launchWebClient();
    void loadModel(const std::string&, const std::string&, const std::string&, float, unsigned int,

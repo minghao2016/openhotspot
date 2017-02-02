@@ -12,7 +12,7 @@
 #include "hs_logger.h"
 #include "hs_types.h"
 
-namespace HotSpot {
+namespace hotSpot {
 
 Model::Model(std::vector<Coordinates*> _clusters):
    clusters(_clusters)

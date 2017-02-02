@@ -30,8 +30,8 @@ struct ClusterWeights {
 
 struct Metric {
    double lat_1;
-   double lat_2;
    double long_1;
+   double lat_2;
    double long_2;
 };
 
@@ -39,7 +39,7 @@ namespace hotspot {
 
 class DBSCAN {
 private:
-   std::vector<std::shared_ptr<Coordinates> > coordinates;
+   std::vector<Coordinates*> coordinates;
 
    uint32_t n_clusters_;
 
@@ -52,10 +52,9 @@ private:
    std::vector<uint32_t> rq_pts;
 
    std::vector<std::vector<uint32_t> > cluster_pts;
-   std::vector<std::shared_ptr<Coordinates> > clusters;
 
 public:
-   DBSCAN(std::vector<std::shared_ptr<Coordinates> >);
+   DBSCAN(std::vector<Coordinates*>);
    ~DBSCAN();
 
    std::vector<uint32_t> noise_pts();
@@ -67,7 +66,7 @@ public:
    void clusterCenter();
    std::vector<uint32_t> regionQuery(uint32_t, const ClusterWeights&);
    void expandCluster(uint32_t, std::vector<uint32_t>*, uint32_t*, const ClusterWeights&);
-   std::vector<std::shared_ptr<Coordinates> > dbscan(const ClusterWeights&);
+   std::vector<Coordinates*> dbscan(const ClusterWeights&);
 };
 
 }

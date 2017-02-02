@@ -1,11 +1,18 @@
 CXX=g++
 CXXFLAGS=-g -Wall -std=c++11
 
-SRC=src/hs_dbscan.cpp src/hs_export.cpp src/hs_logger.cpp src/hs_reformat.cpp src/main.cpp src/http/hs_client.cpp
-OBJ=src/hs_dbscan.o src/hs_export.o src/hs_logger.o src/hs_reformat.o src/main.o src/http/hs_client.o
+SRC=src/hotspot.cpp 	\
+	 src/hs_dbscan.cpp \
+	 src/hs_export.cpp \
+	 src/hs_logger.cpp \
+	 src/hs_model.cpp \
+	 src/hs_reformat.cpp \
+	 src/http/hs_client.cpp \
 
-hotspot: $(OBJ)
-	$(CXX) $(CXXFLAGS) $(OBJ) -o $(PROJECT) $(SRC) src/main.cpp
+hotspot: $(SRC)
+	$(CXX) $(CXXFLAGS) -o $(PROJECT) $(SRC) src/main.cpp
+
+.PHONY: clean
 
 clean:
 	rm -rf *.o hotspot

@@ -76,7 +76,7 @@ void HotSpot::reformatCSVFile(const std::string& csv_file, unsigned int crime_co
    }
 }
 
-void HotSpot::crimeRate(const std::string& crimes_file)
+void HotSpot::printCrimeRate(const std::string& crimes_file)
 {
    std::ifstream if_crime(crimes_file);
    if (!if_crime.is_open()){
@@ -86,33 +86,34 @@ void HotSpot::crimeRate(const std::string& crimes_file)
       while (if_crime >> temp_crime){
          crime_values.push_back(temp_crime);
       }
-      std::set<std::string> unique_words(crime_values.begin(), crime_values.end());
       std::cout << "Crime Percentages" << std::endl;
       std::cout << "-----------------" << std::endl;
-      for (auto words : unique_words){
-         int crime_vectors = count(crime_values.begin(), crime_values.end(), words);
+      std::set<std::string> unique_crimes(crime_values.begin(), crime_values.end());
+      for (auto crimes : unique_crimes){
+         int crime_vectors = count(crime_values.begin(), crime_values.end(), crimes);
          double percentage = (double)crime_vectors / (double)crime_values.size() * 100;
-         std::cout << std::setprecision(3) << words << ": " << percentage << "%" << std::endl;
+         std::cout << std::setprecision(3) << crimes << ": " << percentage << "%" << std::endl;
       }
    }
 }
 
 PredictionData HotSpot::prediction(float eps, unsigned int min_pts, const std::string& dist_metric)
 {
-   std::vector<std::shared_ptr<Coordinates> > c_coordinates;
-   std::shared_ptr<Coordinates> coordinates(new Coordinates);
+   std::vector<Coordinates*> cluster_coordinates;
+   Coordinates* coordinates = new Coordinates;
    coordinates->lat_pts = lat_values;
    coordinates->long_pts = long_values;
+
+   cluster_coordinates.push_back(coordinates);
 
    ClusterWeights cluster_weights;
    cluster_weights.eps = eps;
    cluster_weights.min_pts = min_pts;
    cluster_weights.dist_metric = dist_metric;
 
-   c_coordinates.push_back(std::move(coordinates));
-
-   DBSCAN clusters(c_coordinates);
-   std::vector<std::shared_ptr<Coordinates> > dbscan_results = clusters.dbscan(cluster_weights);
+   DBSCAN clusters(cluster_coordinates);
+   delete coordinates;
+   std::vector<Coordinates*> dbscan_results = clusters.dbscan(cluster_weights);
 
    PredictionData p_data;
    //p_data.core_lat = dbscan_results[0]->lat_pts;

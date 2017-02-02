@@ -1,6 +1,12 @@
+Thur Feb 2, 2017
+----------------
+- Changed shared_ptr back to normal pointer.
+
 Wed Feb 1, 2017
 ---------------
 - Made some directory changes to the framework.
+- Fixed crime rate function.
+- Added client map file to http.
 
 Tue Jan 31, 2017
 ----------------
