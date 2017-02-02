@@ -1,6 +1,7 @@
 Thur Feb 2, 2017
 ----------------
 - Changed shared_ptr back to normal pointer.
+- Moved some files into docs/source dir.
 
 Wed Feb 1, 2017
 ---------------
@@ -82,16 +83,14 @@ Thur Jan 12, 2017
 
 Web Jan 11, 2017
 ----------------
-- Began working on expanding cluster (which actually creates the clusters) in the
-dbscan function (Almost finished).
+- Began working on expanding cluster (which actually creates the clusters) in the dbscan function (Almost finished).
 - Added sf_example_analysis script to test framework when finished.
 - Version update (0.1.3).
 - Removed cmake and returned back to Makefile.
 
 Tue Jan 10, 2017
 ----------------
-- Removed the expandCluster function from dbscan since it can all just be
-written inside the dbscan function.
+- Removed the expandCluster function from dbscan since it can all just be written inside the dbscan function.
 - Removed min-samples variable from dbscan.
 
 Sat Jan 7, 2017
@@ -150,8 +149,7 @@ Sun Dec 25, 2016
 
 Sat Dec 23, 2016
 ----------------
-- Worked on layer to reduce values in lat and long vectors by discovering the mean of every 10
-values while iterating through the entire file.
+- Worked on layer to reduce values in lat and long vectors by discovering the mean of every 10 values while iterating through the entire file.
 - Deleted test folder since it was really only going to be for the parser and now it works fine.
 - Added TODO file to keep track of what needs to be finished for the beta release.
 - Renamed writer to export.
