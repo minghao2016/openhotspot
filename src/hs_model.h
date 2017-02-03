@@ -49,7 +49,7 @@ public:
    Model(std::vector<Coordinates*>);
    ~Model();
    std::vector<int> getCrimeFrequency(ModelWeights& weights);
-   float computeAccuracyRate();
+   float computeAccuracy();
    float computeError();
 };
 

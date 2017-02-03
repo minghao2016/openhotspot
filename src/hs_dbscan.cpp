@@ -97,7 +97,7 @@ std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p, const ClusterWeights& clus
 void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts,
                            uint32_t* n_clusters, const ClusterWeights& cluster_weights)
 {
-   //cluster_pts.push_back(std::vector<uint32_t>());
+   cluster_pts.push_back(std::vector<uint32_t>());
    //cluster_pts[*n_clusters].push_back(p);
    for (uint32_t i = 0; i < (uint32_t)ec_neighbor_pts->size(); i++){
       if (!visited_pts[ec_neighbor_pts->at(i)]){

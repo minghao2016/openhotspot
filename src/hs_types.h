@@ -11,9 +11,6 @@
 #ifndef _HS_TYPES_H_
 #define _HS_TYPES_H_
 
-#include <tuple>
-#include <utility>
-
 #define LATITUDES_FILE "../data/latitudes.txt"
 #define LONGITUDES_FILE "../data/longitudes.txt"
 #define CRIMES_FILE "../data/crimes.txt"

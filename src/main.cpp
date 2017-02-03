@@ -78,7 +78,7 @@ int main(int argc, char **argv)
    else if (_argv == "--crime-rate"){
    }
    else if (_argv == "--version"){
-      std::cout << version << std::endl;
+      std::cout << VERSION_DESCRIPTION << std::endl;
    }*/
    HotSpot hotspot;
    hotspot.loadModel("../data/test_dates.txt", "../data/test_latitudes.txt",
