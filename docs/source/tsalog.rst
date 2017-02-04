@@ -1,6 +1,7 @@
 Fri Feb 3, 2017
 ---------------
 - Added destructor to export file class.
+- Removed logger.
 
 Thur Feb 2, 2017
 ----------------

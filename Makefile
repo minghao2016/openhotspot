@@ -6,7 +6,6 @@ TARGET=hotspot
 SRC=src/hotspot.cpp 	\
 	 src/hs_dbscan.cpp \
 	 src/hs_export.cpp \
-	 src/hs_logger.cpp \
 	 src/hs_model.cpp \
 	 src/hs_reformat.cpp \
 	 src/http/hs_client.cpp \

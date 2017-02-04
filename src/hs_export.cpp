@@ -9,7 +9,6 @@
 */
 
 #include "hs_export.h"
-#include "hs_logger.h"
 
 namespace hotspot {
 
@@ -22,7 +21,7 @@ Export::Export(const std::string& _csv_file):
 Export::~Export()
 {
    if (!prediction_file.is_open()){
-      std::cout << "Error: Could not write prediction file." << std::endl;
+      std::printf("ERROR: Could not write prediction file.\n");
       exit(EXIT_FAILURE);
    }
 }

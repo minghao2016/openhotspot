@@ -9,7 +9,6 @@
 */
 
 #include "hs_model.h"
-#include "hs_logger.h"
 #include "hs_types.h"
 
 namespace hotSpot {

@@ -11,7 +11,6 @@
 #include "hotspot.h"
 #include "hs_reformat.h"
 #include "hs_model.h"
-#include "hs_logger.h"
 #include "hs_types.h"
 
 #include "http/hs_client.h"
@@ -33,7 +32,7 @@ void HotSpot::reformatCSVFile(const std::string& csv_file, unsigned int crime_co
    Reformat reformat;
    std::ifstream if_csv(csv_file);
    if (!if_csv.is_open()){
-      std::cout << "Error: Could not open CSV file." << std::endl;
+      std::printf("ERROR: Could not open CSV file.\n");
       exit(EXIT_FAILURE);
    } else {
       while (if_csv >> reformat){
@@ -42,32 +41,32 @@ void HotSpot::reformatCSVFile(const std::string& csv_file, unsigned int crime_co
          std::string lat_c = reformat[lat_column];
          std::string long_c = reformat[long_column];
          if (crime_c.empty() || date_c.empty() || lat_c.empty() || long_c.empty()){
-            std::cout << "Error: One or more columns are empty." << std::endl;
+            std::printf("ERROR: One or more columns are empty.\n");
          }
          std::ofstream exported_crimes(CRIMES_FILE, std::ofstream::out | std::ofstream::app);
          if (!exported_crimes.is_open()){
-            std::cout << "Error: Could not write crimes file." << std::endl;
+            std::printf("ERROR: Could not write crimes file.\n");
             exit(EXIT_FAILURE);
          } else {
             exported_crimes << crime_c << std::endl;
          }
          std::ofstream exported_dates(DATES_FILE, std::ofstream::out | std::ofstream::app);
          if (!exported_dates.is_open()){
-            std::cout << "Error: Could not write dates file." << std::endl;
+            std::printf("ERROR: Could not write dates file.\n");
             exit(EXIT_FAILURE);
          } else {
             exported_dates << date_c << std::endl;
          }
          std::ofstream exported_lat(LATITUDES_FILE, std::ofstream::out | std::ofstream::app);
          if (!exported_lat.is_open()){
-            std::cout << "Error: Could not write latitudes file." << std::endl;
+            std::printf("ERROR: Could not write latitudes file.\n");
             exit(EXIT_FAILURE);
          } else {
             exported_lat << lat_c << std::endl;
          }
          std::ofstream exported_long(LONGITUDES_FILE, std::ofstream::out | std::ofstream::app);
          if (!exported_long.is_open()){
-            std::cout << "Error: Could not write longitudes file." << std::endl;
+            std::printf("ERROR: Could not write longitudes file.\n");
             exit(EXIT_FAILURE);
          } else {
             exported_long << long_c << std::endl;
@@ -80,7 +79,7 @@ void HotSpot::printCrimeRate(const std::string& crimes_file)
 {
    std::ifstream if_crime(crimes_file);
    if (!if_crime.is_open()){
-      std::cout << "Error: Could not open crime file." << std::endl;
+      std::printf("ERROR: Could not open crime file.\n");
       exit(EXIT_FAILURE);
    } else {
       while (if_crime >> temp_crime){
@@ -138,7 +137,7 @@ void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_fi
 {
    std::ifstream if_dates(dates_file);
    if (!if_dates.is_open()){
-      std::cout << "Error: Could not open dates file." << std::endl;
+      std::printf("ERROR: Could not open dates file.\n");
       exit(EXIT_FAILURE);
    } else {
       while (if_dates >> temp_dates){
@@ -147,7 +146,7 @@ void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_fi
    }
    std::ifstream if_lat(lat_file);
    if (!if_lat.is_open()){
-      std::cout << "Error: Could not open latitude file." << std::endl;
+      std::printf("ERROR: Could not open latitude file.\n");
       exit(EXIT_FAILURE);
    } else {
       while (if_lat >> temp_lat){
@@ -156,7 +155,7 @@ void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_fi
    }
    std::ifstream if_long(long_file);
    if (!if_long.is_open()){
-      std::cout << "Error: Could not open longitude file." << std::endl;
+      std::printf("ERROR: Could not open longitude file.\n");
       exit(EXIT_FAILURE);
    } else {
       while (if_long >> temp_long){
@@ -164,7 +163,7 @@ void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_fi
       }
    }
    PredictionData predicted_coordinates = prediction(eps, min_pts, dist_metric);
-
+   std::printf("INFO: Saving predicted cluster to '%s'.\n", PREDICTION_FILE);
    //Export csv_export(PREDICTION_FILE);
    //csv_export.exportData(predicted_coordinates);
 }
