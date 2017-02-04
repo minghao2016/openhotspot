@@ -103,7 +103,6 @@ PredictionData HotSpot::prediction(float eps, unsigned int min_pts, const std::s
    Coordinates* coordinates = new Coordinates;
    coordinates->lat_pts = lat_values;
    coordinates->long_pts = long_values;
-
    cluster_coordinates.push_back(coordinates);
 
    DBSCAN clusters(cluster_coordinates);
@@ -137,7 +136,6 @@ void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_fi
                         const std::string& long_file, float eps, unsigned int min_pts,
                         const std::string& dist_metric)
 {
-   Export csv_export(PREDICTION_FILE);
    std::ifstream if_dates(dates_file);
    if (!if_dates.is_open()){
       std::cout << "Error: Could not open dates file." << std::endl;
@@ -166,6 +164,8 @@ void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_fi
       }
    }
    PredictionData predicted_coordinates = prediction(eps, min_pts, dist_metric);
+
+   //Export csv_export(PREDICTION_FILE);
    //csv_export.exportData(predicted_coordinates);
 }
 

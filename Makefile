@@ -1,7 +1,7 @@
 CXX=g++
 CXXFLAGS=-g -Wall -std=c++11
 
-PROJECT_NAME=hotspot
+TARGET=hotspot
 
 SRC=src/hotspot.cpp 	\
 	 src/hs_dbscan.cpp \
@@ -12,11 +12,13 @@ SRC=src/hotspot.cpp 	\
 	 src/http/hs_client.cpp \
 	 src/main.cpp
 
-hotspot: $(SRC)
-	$(CXX) $(CXXFLAGS) -o $(PROJECT_NAME) $(SRC)
+all: $(TARGET)
+
+$(TARGET): $(SRC)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRC)
 
 .PHONY: clean
 
 clean:
-	rm -rf *.o hotspot
-	rm -r hotspot.dSYM
+	rm -rf *.o $(TARGET)
+	rm -r $(TARGET).dSYM

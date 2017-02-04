@@ -1,3 +1,7 @@
+Fri Feb 3, 2017
+---------------
+- Added destructor to export file class.
+
 Thur Feb 2, 2017
 ----------------
 - Changed shared_ptr back to normal pointer.

@@ -14,18 +14,21 @@
 namespace hotspot {
 
 Export::Export(const std::string& _csv_file):
-   csv_file(_csv_file)
+   csv_file(_csv_file),
+   prediction_file(csv_file, std::ofstream::out | std::ofstream::app)
 {
+}
+
+Export::~Export()
+{
+   if (!prediction_file.is_open()){
+      std::cout << "Error: Could not write prediction file." << std::endl;
+      exit(EXIT_FAILURE);
+   }
 }
 
 void Export::exportData(PredictionData& p_data)
 {
-   std::ofstream prediction_file(csv_file, std::ofstream::out | std::ofstream::app);
-   if (!prediction_file.is_open()){
-      std::cout << "Error: Could not write prediction file." << std::endl;
-      exit(EXIT_FAILURE);
-   } else {
-   }
 }
 
 } // hotspot namespace
