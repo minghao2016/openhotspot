@@ -4,6 +4,7 @@ Fri Feb 3, 2017
 - Removed logger.
 - Deleted http folder and just placed those files in the src dir.
 - Changed README to markdown
+- Added setup.rst file.
 
 Thur Feb 2, 2017
 ----------------

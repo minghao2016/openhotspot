@@ -6,4 +6,4 @@ detection and locations based, crime predicting.
 ##About
 This project is currently in alpha. It is being worked on regularly and
 will have a full documentation once it is in beta. If you would like to
-contribute, please read the contribution file first.
+contribute, please read the [contribution](https://github.com/ozylol/openhotspot/blob/master/docs/source/contributing.rst) file first.

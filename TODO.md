@@ -1,5 +1,4 @@
 #TODO
-----
 - Finish dbscan with complete functionality of density based clustering.
 - Finish client file for embedding a web application into the framework.
 This also refers to making the framework completely UI driven.
