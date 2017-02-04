@@ -40,17 +40,6 @@ public:
    * More Information: https://en.wikipedia.org/wiki/Euclidean_distance
    */
    double euclideanDistanceMetric(MetricCoordinates&);
-   /*
-   * The distance between two points in a grid based on a strictly horizontal and/or
-   * vertical path.
-   * More Information: https://en.wiktionary.org/wiki/Manhattan_distance
-   */
-   double manhattanDistanceMetric(MetricCoordinates&);
-   /*
-   * Is a measure of the distance between a point P and a distribution D.
-   * More Information: https://en.wikipedia.org/wiki/Mahalanobis_distance
-   */
-   double mahalanobisDistanceMetric(MetricCoordinates&);
 };
 
 }

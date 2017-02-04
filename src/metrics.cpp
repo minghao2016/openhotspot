@@ -36,12 +36,4 @@ double Metrics::euclideanDistanceMetric(MetricCoordinates& _mc)
    return sqrt(dlat_1 * dlat_1 + dlong_1 * dlong_1);
 }
 
-double Metrics::manhattanDistanceMetric(MetricCoordinates& _mc)
-{
-}
-
-double Metrics::mahalanobisDistanceMetric(MetricCoordinates& _mc)
-{
-}
-
 } // hotspot namespace

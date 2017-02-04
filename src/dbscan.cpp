@@ -68,26 +68,6 @@ std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p, const ClusterWeights& clus
             rq_pts.push_back(i);
          }
       }
-   } else if (cluster_weights.dist_metric == "manhattan"){
-      for (unsigned int i = 0; i < coordinates[0]->lat_pts.size(); i++){
-         _mc.lat_1 = coordinates[0]->lat_pts[i];
-         _mc.lat_2 = coordinates[0]->lat_pts[p];
-         _mc.long_1 = coordinates[0]->long_pts[i];
-         _mc.long_2 = coordinates[0]->long_pts[p];
-         if (metrics.manhattanDistanceMetric(_mc) <= cluster_weights.eps){
-            rq_pts.push_back(i);
-         }
-      }
-   } else if (cluster_weights.dist_metric == "mahalanobis"){
-      for (unsigned int i = 0; i < coordinates[0]->lat_pts.size(); i++){
-         _mc.lat_1 = coordinates[0]->lat_pts[i];
-         _mc.lat_2 = coordinates[0]->lat_pts[p];
-         _mc.long_1 = coordinates[0]->long_pts[i];
-         _mc.long_2 = coordinates[0]->long_pts[p];
-         if (metrics.mahalanobisDistanceMetric(_mc) <= cluster_weights.eps){
-            rq_pts.push_back(i);
-         }
-      }
    }
    // All points within the eps neighborhood
    return rq_pts;
