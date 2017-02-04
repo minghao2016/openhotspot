@@ -5,6 +5,7 @@ Fri Feb 3, 2017
 - Deleted http folder and just placed those files in the src dir.
 - Changed README to markdown
 - Added setup.rst file.
+- Added a hs_spatial_autocorrelation file for analysis of the predicted clusters.
 
 Thur Feb 2, 2017
 ----------------

@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotSpot Framework 0.1.4
+ * OpenHotspot Framework 0.1.4
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -8,19 +8,16 @@
  * information about using this program.
 */
 
-#include "hs_model.h"
-#include "hs_types.h"
 #include "hs_spatial_autocorrelation.h"
 
 namespace hotspot
 {
 
-Model::Model(std::vector<Coordinates*> _clusters):
-   clusters(_clusters)
+SpatialAutocorrelation::SpatialAutocorrelation()
 {
 }
 
-Model::~Model()
+SpatialAutocorrelation::~SpatialAutocorrelation()
 {
 }
 

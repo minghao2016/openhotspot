@@ -10,6 +10,7 @@ SRC=src/hotspot.cpp \
 	src/hs_reformat.cpp \
 	src/hs_client.cpp \
 	src/hs_client_map.cpp \
+	hs_spatial_autocorrelation.cpp \
 	src/main.cpp
 
 all: $(TARGET)

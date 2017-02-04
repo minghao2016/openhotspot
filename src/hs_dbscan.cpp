@@ -57,7 +57,7 @@ double DBSCAN::euclideanMetric(Metric& metric)
    return sqrt(dlat_1 * dlat_1 + dlong_1 * dlong_1);
 }
 
-void DBSCAN::clusterCenter(std::vector<Coordinates*> clusters)
+void DBSCAN::getClusterCenterPoint(std::vector<Coordinates*> clusters)
 {
    for (uint32_t i = 0; i < cluster_pts.size(); i++){
       for (unsigned int p = 0; p < cluster_pts[i].size(); p++){
@@ -132,9 +132,8 @@ std::vector<Coordinates*> DBSCAN::dbscan(const ClusterWeights& cluster_weights)
             n_clusters_++;
             // Mark point p as clustered so that it only shows up once
             clustered_pts[i] = true;
-            std::cout << i << std::endl;
             expandCluster(i, &rq_neighbor_pts, &n_clusters_, cluster_weights);
-            clusterCenter(clusters);
+            getClusterCenterPoint(clusters);
          }
       }
    }
