@@ -132,8 +132,9 @@ std::vector<Coordinates*> DBSCAN::dbscan(const ClusterWeights& cluster_weights)
             n_clusters_++;
             // Mark point p as clustered so that it only shows up once
             clustered_pts[i] = true;
-            //expandCluster(i, &rq_neighbor_pts, &n_clusters_, cluster_weights);
-            //clusterCenter(clusters);
+            std::cout << i << std::endl;
+            expandCluster(i, &rq_neighbor_pts, &n_clusters_, cluster_weights);
+            clusterCenter(clusters);
          }
       }
    }
