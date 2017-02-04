@@ -8,21 +8,17 @@
  * information about using this program.
 */
 
-#ifndef _HS_CLIENT_H_
-#define _HS_CLIENT_H_
+#include "hs_client_map.h"
 
-#include <iostream>
-#include <vector>
-#include <string>
+namespace hotspot
+{
 
-namespace hotspot {
-
-class Client {
-public:
-   Client();
-   ~Client();
-};
-
+ClientMap::ClientMap()
+{
 }
 
-#endif
+ClientMap::~ClientMap()
+{
+}
+
+} // hotspot namespace

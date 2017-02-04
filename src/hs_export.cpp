@@ -10,7 +10,8 @@
 
 #include "hs_export.h"
 
-namespace hotspot {
+namespace hotspot
+{
 
 Export::Export(const std::string& _csv_file):
    csv_file(_csv_file),

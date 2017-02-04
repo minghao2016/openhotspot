@@ -8,17 +8,20 @@
  * information about using this program.
 */
 
-#ifndef _HS_CLIENT_MAP_H_
-#define _HS_CLIENT_MAP_H_
+#ifndef _HS_CLIENT_H_
+#define _HS_CLIENT_H_
 
-namespace hotspot {
+#include <iostream>
+#include <vector>
+#include <string>
 
-class ClientMap {
+namespace hotspot
+{
+
+class Client {
 public:
-   ClientMap();
-   ~ClientMap();
-   void createMapJavaScript();
-   void createDashboardJavaScript();
+   Client();
+   ~Client();
 };
 
 }

@@ -25,7 +25,8 @@
 
 #include "hs_export.h"
 
-namespace hotspot {
+namespace hotspot
+{
 
 class HotSpot {
 private:

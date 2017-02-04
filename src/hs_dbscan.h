@@ -35,7 +35,8 @@ struct Metric {
    double long_2;
 };
 
-namespace hotspot {
+namespace hotspot
+{
 
 class DBSCAN {
 private:
@@ -48,8 +49,6 @@ private:
 
    std::vector<bool> visited_pts;
    std::vector<bool> clustered_pts;
-
-   std::vector<uint32_t> rq_pts;
 
    std::vector<std::vector<uint32_t> > cluster_pts;
 

@@ -11,7 +11,8 @@
 #include "hs_dbscan.h"
 #include "hs_types.h"
 
-namespace hotspot {
+namespace hotspot
+{
 
 DBSCAN::DBSCAN(std::vector<Coordinates*> _coordinates):
    coordinates(_coordinates)
@@ -68,6 +69,7 @@ void DBSCAN::clusterCenter(std::vector<Coordinates*> clusters)
 std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p, const ClusterWeights& cluster_weights)
 {
    Metric metric;
+   std::vector<uint32_t> rq_pts;
    if (cluster_weights.dist_metric == "haversine"){
       for (unsigned int i = 0; i < coordinates[0]->lat_pts.size(); i++){
          metric.lat_1 = coordinates[0]->lat_pts[i];

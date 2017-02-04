@@ -17,7 +17,8 @@
 #include <sstream>
 #include <fstream>
 
-namespace hotspot {
+namespace hotspot
+{
 
 class Reformat {
 private:

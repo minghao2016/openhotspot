@@ -23,7 +23,8 @@ struct PredictionData {
    std::vector<double> noise_long;
 };
 
-namespace hotspot {
+namespace hotspot
+{
 
 class Export {
 private:

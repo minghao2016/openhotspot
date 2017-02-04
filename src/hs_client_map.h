@@ -8,16 +8,24 @@
  * information about using this program.
 */
 
-#include "hs_client_map.h"
+#ifndef _HS_CLIENT_MAP_H_
+#define _HS_CLIENT_MAP_H_
 
-namespace hotspot {
+#include <iostream>
+#include <vector>
+#include <string>
 
-ClientMap::ClientMap()
+namespace hotspot
 {
+
+class ClientMap {
+public:
+   ClientMap();
+   ~ClientMap();
+   void createMapJavaScript();
+   void createDashboardJavaScript();
+};
+
 }
 
-ClientMap::~ClientMap()
-{
-}
-
-} // hotspot namespace
+#endif

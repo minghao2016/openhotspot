@@ -11,7 +11,8 @@
 #include "hs_model.h"
 #include "hs_types.h"
 
-namespace hotSpot {
+namespace hotspot
+{
 
 Model::Model(std::vector<Coordinates*> _clusters):
    clusters(_clusters)

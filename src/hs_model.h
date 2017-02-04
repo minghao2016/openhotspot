@@ -39,7 +39,8 @@ struct PredictedCoordinates {
    std::vector<double> long_pts;
 };
 
-namespace hotSpot {
+namespace hotspot
+{
 
 class Model {
 private:

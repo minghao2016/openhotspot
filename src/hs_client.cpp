@@ -10,9 +10,10 @@
 
 #include "hs_client.h"
 #include "hs_client_map.h"
-#include "../hs_types.h"
+#include "hs_types.h"
 
-namespace hotspot {
+namespace hotspot
+{
 
 Client::Client()
 {

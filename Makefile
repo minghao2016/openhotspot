@@ -8,7 +8,8 @@ SRC=src/hotspot.cpp 	\
 	 src/hs_export.cpp \
 	 src/hs_model.cpp \
 	 src/hs_reformat.cpp \
-	 src/http/hs_client.cpp \
+	 src/hs_client.cpp \
+	 src/hs_client_map.cpp \
 	 src/main.cpp
 
 all: $(TARGET)

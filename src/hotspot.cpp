@@ -12,12 +12,10 @@
 #include "hs_reformat.h"
 #include "hs_model.h"
 #include "hs_types.h"
+#include "hs_client.h"
 
-#include "http/hs_client.h"
-
-#include "version.h"
-
-namespace hotspot {
+namespace hotspot
+{
 
 std::istream& operator>>(std::istream& file, Reformat& reformat)
 {
