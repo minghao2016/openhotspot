@@ -2,7 +2,8 @@ Fri Feb 3, 2017
 ---------------
 - Added destructor to export file class.
 - Removed logger.
-- Deleted http folder and just placed those files in the src dir. 
+- Deleted http folder and just placed those files in the src dir.
+- Changed README to markdown
 
 Thur Feb 2, 2017
 ----------------

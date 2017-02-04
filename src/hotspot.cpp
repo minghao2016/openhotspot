@@ -161,7 +161,7 @@ void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_fi
       }
    }
    PredictionData predicted_coordinates = prediction(eps, min_pts, dist_metric);
-   std::printf("INFO: Saving predicted cluster to '%s'.\n", PREDICTION_FILE);
+   //std::printf("INFO: Saving predicted cluster to '%s'.\n", PREDICTION_FILE);
    //Export csv_export(PREDICTION_FILE);
    //csv_export.exportData(predicted_coordinates);
 }

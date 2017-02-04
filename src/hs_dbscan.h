@@ -44,6 +44,8 @@ private:
 
    uint32_t n_clusters_;
 
+   std::vector<uint32_t> rq_pts;
+
    std::vector<uint32_t> core_pts_;
    std::vector<uint32_t> noise_pts_;
 

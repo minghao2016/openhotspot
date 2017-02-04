@@ -1,4 +1,4 @@
-TODO
+#TODO
 ----
 - Finish dbscan with complete functionality of density based clustering.
 - Finish client file for embedding a web application into the framework.
