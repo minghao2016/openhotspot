@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotspot Framework 0.1.4
+ * OpenHotspot Framework 0.1.5
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -8,7 +8,7 @@
  * information about using this program.
 */
 
-#include "hs_client_map.h"
+#include "client_map.h"
 
 namespace hotspot
 {

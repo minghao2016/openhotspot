@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotspot Framework 0.1.4
+ * OpenHotspot Framework 0.1.5
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -8,22 +8,20 @@
  * information about using this program.
 */
 
-#ifndef _HS_CLIENT_H_
-#define _HS_CLIENT_H_
-
-#include <iostream>
-#include <vector>
-#include <string>
+#include "model.h"
+#include "types.h"
+#include "spatial_autocorrelation.h"
 
 namespace hotspot
 {
 
-class Client {
-public:
-   Client();
-   ~Client();
-};
-
+Model::Model(std::vector<Coordinates*> _clusters):
+   clusters(_clusters)
+{
 }
 
-#endif
+Model::~Model()
+{
+}
+
+} // hotspot namespace

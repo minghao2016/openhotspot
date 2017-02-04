@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotspot Framework 0.1.4
+ * OpenHotspot Framework 0.1.5
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -8,14 +8,13 @@
  * information about using this program.
 */
 
-#ifndef _HS_DBSCAN_H_
-#define _HS_DBSCAN_H_
+#ifndef _DBSCAN_H_
+#define _DBSCAN_H_
 
 #include <iostream>
 #include <vector>
 #include <string>
 #include <cmath>
-#include <memory>
 
 struct Coordinates {
    std::vector<double> lat_pts;
@@ -26,13 +25,6 @@ struct ClusterWeights {
    float eps;
    unsigned int min_pts;
    std::string dist_metric;
-};
-
-struct Metric {
-   double lat_1;
-   double long_1;
-   double lat_2;
-   double long_2;
 };
 
 namespace hotspot
@@ -59,11 +51,6 @@ public:
    ~DBSCAN();
 
    std::vector<uint32_t> noise_pts();
-
-   double degreesToRadians(double);
-   double haversineMetric(Metric&);
-   double euclideanMetric(Metric&);
-
    void getClusterCenterPoint(std::vector<Coordinates*>);
    std::vector<uint32_t> regionQuery(uint32_t, const ClusterWeights&);
    void expandCluster(uint32_t, std::vector<uint32_t>*, uint32_t*, const ClusterWeights&);

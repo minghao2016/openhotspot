@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotspot Framework 0.1.4
+ * OpenHotspot Framework 0.1.5
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -8,7 +8,7 @@
  * information about using this program.
 */
 
-#include "hs_export.h"
+#include "export.h"
 
 namespace hotspot
 {
@@ -27,7 +27,7 @@ Export::~Export()
    }
 }
 
-void Export::exportData(PredictionData& p_data)
+void Export::exportData(PredictedData& p_data)
 {
 }
 

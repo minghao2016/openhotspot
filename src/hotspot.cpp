@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotspot Framework 0.1.4
+ * OpenHotspot Framework 0.1.5
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -9,10 +9,12 @@
 */
 
 #include "hotspot.h"
-#include "hs_reformat.h"
-#include "hs_model.h"
-#include "hs_types.h"
-#include "hs_client.h"
+#include "dbscan.h"
+#include "reformat.h"
+#include "model.h"
+#include "client.h"
+#include "types.h"
+#include "version.h"
 
 namespace hotspot
 {
@@ -94,7 +96,7 @@ void HotSpot::printCrimeRate(const std::string& crimes_file)
    }
 }
 
-PredictionData HotSpot::prediction(float eps, unsigned int min_pts, const std::string& dist_metric)
+PredictedData HotSpot::prediction(float eps, unsigned int min_pts, const std::string& dist_metric)
 {
    std::vector<Coordinates*> cluster_coordinates;
    Coordinates* coordinates = new Coordinates;
@@ -114,7 +116,7 @@ PredictionData HotSpot::prediction(float eps, unsigned int min_pts, const std::s
    //model_weights.crime_dates = date_values;
    //model_weights.crime_types = crime_values;
 
-   PredictionData p_data;
+   PredictedData p_data;
    //p_data.core_lat = dbscan_results[0]->lat_pts;
    //p_data.core_long = dbscan_results[0]->long_pts;
    std::vector<uint32_t> noise_pts = clusters.noise_pts();
@@ -160,7 +162,7 @@ void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_fi
          long_values.push_back(temp_long);
       }
    }
-   PredictionData predicted_coordinates = prediction(eps, min_pts, dist_metric);
+   PredictedData predicted_coordinates = prediction(eps, min_pts, dist_metric);
    //std::printf("INFO: Saving predicted cluster to '%s'.\n", PREDICTION_FILE);
    //Export csv_export(PREDICTION_FILE);
    //csv_export.exportData(predicted_coordinates);

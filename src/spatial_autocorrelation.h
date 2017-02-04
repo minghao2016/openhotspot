@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotspot Framework 0.1.4
+ * OpenHotspot Framework 0.1.5
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -8,27 +8,25 @@
  * information about using this program.
 */
 
-#ifndef _HS_REFORMAT_H_
-#define _HS_REFORMAT_H_
+#ifndef _HS_SPATIAL_AUTOCORRELATION_H_
+#define _HS_SPATIAL_AUTOCORRELATION_H_
 
 #include <iostream>
 #include <vector>
 #include <string>
-#include <sstream>
-#include <fstream>
+
+#include "dbscan.h"
 
 namespace hotspot
 {
 
-class Reformat {
+class SpatialAutocorrelation {
 private:
-   std::string row;
-   std::string line;
-   std::vector<std::string> column_data;
+   std::vector<Coordinates*> clusters;
 
 public:
-   std::string operator[](unsigned int);
-   void getColumn(std::istream&);
+   SpatialAutocorrelation(std::vector<Coordinates*>);
+   ~SpatialAutocorrelation();
 };
 
 }

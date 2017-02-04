@@ -6,6 +6,8 @@ Fri Feb 3, 2017
 - Changed README to markdown
 - Added setup.rst file.
 - Added a hs_spatial_autocorrelation file for analysis of the predicted clusters.
+- Removed 'hs' from all files.
+- Added distance metrics file.
 
 Thur Feb 2, 2017
 ----------------

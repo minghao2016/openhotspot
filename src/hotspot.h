@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotspot Framework 0.1.4
+ * OpenHotspot Framework 0.1.5
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -23,7 +23,7 @@
 #include <set>
 #include <iomanip>
 
-#include "hs_export.h"
+#include "export.h"
 
 namespace hotspot
 {
@@ -43,7 +43,7 @@ private:
 public:
    void reformatCSVFile(const std::string&, unsigned int, unsigned int, unsigned int, unsigned int);
    void printCrimeRate(const std::string&);
-   PredictionData prediction(float, unsigned int, const std::string&);
+   PredictedData prediction(float, unsigned int, const std::string&);
    void launchWebClient();
    void loadModel(const std::string&, const std::string&, const std::string&, float, unsigned int,
                   const std::string&);

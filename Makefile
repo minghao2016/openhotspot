@@ -3,15 +3,8 @@ CXXFLAGS=-g -Wall -std=c++11
 
 TARGET=hotspot
 
-SRC=src/hotspot.cpp \
-	src/hs_dbscan.cpp \
-	src/hs_export.cpp \
-	src/hs_model.cpp \
-	src/hs_reformat.cpp \
-	src/hs_client.cpp \
-	src/hs_client_map.cpp \
-	hs_spatial_autocorrelation.cpp \
-	src/main.cpp
+SOURCES=$(shell find . -name *.cpp)
+SRC=$(SOURCES:%.cpp=%.o)
 
 all: $(TARGET)
 

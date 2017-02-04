@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotspot Framework 0.1.4
+ * OpenHotspot Framework 0.1.5
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -8,8 +8,8 @@
  * information about using this program.
 */
 
-#ifndef _HS_MODEL_H_
-#define _HS_MODEL_H_
+#ifndef _MODEL_H_
+#define _MODEL_H_
 
 #include <iostream>
 #include <vector>
@@ -17,7 +17,7 @@
 #include <cmath>
 #include <memory>
 
-#include "hs_dbscan.h"
+#include "dbscan.h"
 
 enum CrimeTypes {
    ASSAULT_CRIME,

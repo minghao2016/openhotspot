@@ -1,6 +1,6 @@
 /*
  * BSD 3-Clause License
- * OpenHotspot Framework 0.1.4
+ * OpenHotspot Framework 0.1.5
  * Copyright (c) 2017, Matt Perez, all rights reserved.
  *
  * This source is licensed under the BSD 3-Clause License.
@@ -8,8 +8,9 @@
  * information about using this program.
 */
 
-#include "hs_dbscan.h"
-#include "hs_types.h"
+#include "dbscan.h"
+#include "metrics.h"
+#include "types.h"
 
 namespace hotspot
 {
@@ -34,29 +35,6 @@ std::vector<uint32_t> DBSCAN::noise_pts()
    return noise_pts_;
 }
 
-double DBSCAN::degreesToRadians(double degrees)
-{
-   return degrees * 3.14159 / 180;
-}
-
-double DBSCAN::haversineMetric(Metric& metric)
-{
-   double dlat_1 = degreesToRadians(metric.lat_1);
-   double dlong_1 = degreesToRadians(metric.long_1);
-   double dlat_2 = degreesToRadians(metric.lat_2);
-   double dlong_2 = degreesToRadians(metric.long_2);
-   double a = sin((dlat_2 - dlat_1) / 2);
-   double b = sin((dlong_2 - dlong_1) / 2);
-   return 2 * 6371 * asin(sqrt(a * a + cos(dlat_1) * cos(dlat_2) * b * b));
-}
-
-double DBSCAN::euclideanMetric(Metric& metric)
-{
-   double dlat_1 = metric.lat_2 - metric.lat_1;
-   double dlong_1 = metric.long_2 - metric.long_1;
-   return sqrt(dlat_1 * dlat_1 + dlong_1 * dlong_1);
-}
-
 void DBSCAN::getClusterCenterPoint(std::vector<Coordinates*> clusters)
 {
    for (uint32_t i = 0; i < cluster_pts.size(); i++){
@@ -68,24 +46,45 @@ void DBSCAN::getClusterCenterPoint(std::vector<Coordinates*> clusters)
 
 std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p, const ClusterWeights& cluster_weights)
 {
-   Metric metric;
+   Metrics metrics;
+   MetricCoordinates _mc;
    if (cluster_weights.dist_metric == "haversine"){
       for (unsigned int i = 0; i < coordinates[0]->lat_pts.size(); i++){
-         metric.lat_1 = coordinates[0]->lat_pts[i];
-         metric.lat_2 = coordinates[0]->lat_pts[p];
-         metric.long_1 = coordinates[0]->long_pts[i];
-         metric.long_2 = coordinates[0]->long_pts[p];
-         if (haversineMetric(metric) <= cluster_weights.eps){
+         _mc.lat_1 = coordinates[0]->lat_pts[i];
+         _mc.lat_2 = coordinates[0]->lat_pts[p];
+         _mc.long_1 = coordinates[0]->long_pts[i];
+         _mc.long_2 = coordinates[0]->long_pts[p];
+         if (metrics.haversineDistanceMetric(_mc) <= cluster_weights.eps){
             rq_pts.push_back(i);
          }
       }
    } else if (cluster_weights.dist_metric == "euclidean"){
       for (unsigned int i = 0; i < coordinates[0]->lat_pts.size(); i++){
-         metric.lat_1 = coordinates[0]->lat_pts[i];
-         metric.lat_2 = coordinates[0]->lat_pts[p];
-         metric.long_1 = coordinates[0]->long_pts[i];
-         metric.long_2 = coordinates[0]->long_pts[p];
-         if (euclideanMetric(metric) <= cluster_weights.eps){
+         _mc.lat_1 = coordinates[0]->lat_pts[i];
+         _mc.lat_2 = coordinates[0]->lat_pts[p];
+         _mc.long_1 = coordinates[0]->long_pts[i];
+         _mc.long_2 = coordinates[0]->long_pts[p];
+         if (metrics.euclideanDistanceMetric(_mc) <= cluster_weights.eps){
+            rq_pts.push_back(i);
+         }
+      }
+   } else if (cluster_weights.dist_metric == "manhattan"){
+      for (unsigned int i = 0; i < coordinates[0]->lat_pts.size(); i++){
+         _mc.lat_1 = coordinates[0]->lat_pts[i];
+         _mc.lat_2 = coordinates[0]->lat_pts[p];
+         _mc.long_1 = coordinates[0]->long_pts[i];
+         _mc.long_2 = coordinates[0]->long_pts[p];
+         if (metrics.manhattanDistanceMetric(_mc) <= cluster_weights.eps){
+            rq_pts.push_back(i);
+         }
+      }
+   } else if (cluster_weights.dist_metric == "mahalanobis"){
+      for (unsigned int i = 0; i < coordinates[0]->lat_pts.size(); i++){
+         _mc.lat_1 = coordinates[0]->lat_pts[i];
+         _mc.lat_2 = coordinates[0]->lat_pts[p];
+         _mc.long_1 = coordinates[0]->long_pts[i];
+         _mc.long_2 = coordinates[0]->long_pts[p];
+         if (metrics.mahalanobisDistanceMetric(_mc) <= cluster_weights.eps){
             rq_pts.push_back(i);
          }
       }
