@@ -44,7 +44,7 @@ void usage()
 int main(int argc, char **argv)
 {
    /*if (argc <= 1) usage();
-   HotSpot hotspot;
+   Hotspot hotspot;
    std::string _argv = argv[1];
    if (_argv == "--help"){
       usage();
@@ -77,13 +77,13 @@ int main(int argc, char **argv)
       Columns columns;
    }
    else if (_argv == "--eps"){
-      float eps = _argv[1];
+      ClusterWeights cluster_weights;
    }
    else if (_argv == "--min-pts"){
-      unsigned int min_pts = _argv[1];
+      ClusterWeights cluster_weights;
    }
    else if (_argv == "--distance-metric"){
-      std::string dist_metric = _argv[1];
+      ClusterWeights cluster_weights;
    }
    else if (_argv == "--crime-rate"){
       Files files;
@@ -98,6 +98,10 @@ int main(int argc, char **argv)
    files.dates_file = "../data/test_dates.txt";
    files.lat_file = "../data/test_latitudes.txt";
    files.long_file = "../data/test_longitudes.txt";
-   HotSpot hotspot;
-   hotspot.loadModel(files, 1.7, 1000, "haversine");
+   ClusterWeights cluster_weights;
+   cluster_weights.eps = 1.7;
+   cluster_weights.min_pts = 1000;
+   cluster_weights.dist_metric = "haversine";
+   Hotspot hotspot;
+   hotspot.prediction(files, cluster_weights);
 }

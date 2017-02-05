@@ -23,6 +23,8 @@
 #include <set>
 #include <iomanip>
 
+#include "dbscan.h"
+#include "model.h"
 #include "export.h"
 
 struct Files {
@@ -43,7 +45,7 @@ struct Columns {
 namespace hotspot
 {
 
-class HotSpot {
+class Hotspot {
 private:
    double temp_lat;
    double temp_long;
@@ -55,12 +57,20 @@ private:
    std::vector<std::string> crime_values;
    std::vector<uint32_t> date_values;
 
+   std::vector<Coordinates*> cluster_coordinates;
+
 public:
    void reformatCSVFile(const Files&, Columns);
    void printCrimeRate(const Files&);
-   PredictedData prediction(float, unsigned int, const std::string&);
+
+   //PredictedData prediction(float, unsigned int, const std::string&);
+   Coordinates* addCoordinates();
+   DBSCAN addClusterWeights(const ClusterWeights& cluster_weights);
+   Model addModelWeights();
+   PredictedData addPredictedData(Coordinates* coordinates, DBSCAN clusters);
+
    void launchWebClient();
-   void loadModel(const Files&, float, unsigned int, const std::string&);
+   void prediction(const Files& files, const ClusterWeights& cluster_weights);
 };
 
 }

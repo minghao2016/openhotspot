@@ -9,9 +9,7 @@
 */
 
 #include "hotspot.h"
-#include "dbscan.h"
 #include "reformat.h"
-#include "model.h"
 #include "client.h"
 #include "types.h"
 #include "version.h"
@@ -25,7 +23,7 @@ std::istream& operator>>(std::istream& file, Reformat& reformat)
    return file;
 }
 
-void HotSpot::reformatCSVFile(const Files& files, Columns columns)
+void Hotspot::reformatCSVFile(const Files& files, Columns columns)
 {
    Reformat reformat;
    std::ifstream if_csv(files.csv_file);
@@ -73,7 +71,7 @@ void HotSpot::reformatCSVFile(const Files& files, Columns columns)
    }
 }
 
-void HotSpot::printCrimeRate(const Files& files)
+void Hotspot::printCrimeRate(const Files& files)
 {
    std::ifstream if_crime(files.crimes_file);
    if (!if_crime.is_open()){
@@ -94,31 +92,38 @@ void HotSpot::printCrimeRate(const Files& files)
    }
 }
 
-PredictedData HotSpot::prediction(float eps, unsigned int min_pts, const std::string& dist_metric)
+Coordinates* Hotspot::addCoordinates()
 {
-   std::vector<Coordinates*> cluster_coordinates;
    Coordinates* coordinates = new Coordinates;
    coordinates->lat_pts = lat_values;
    coordinates->long_pts = long_values;
    cluster_coordinates.push_back(coordinates);
+   return coordinates;
+}
 
-   DBSCAN clusters(cluster_coordinates);
-   ClusterWeights cluster_weights;
-   cluster_weights.eps = eps;
-   cluster_weights.min_pts = min_pts;
-   cluster_weights.dist_metric = dist_metric;
-   clusters.performClusterSearch(cluster_weights);
-   clusters.getClusterCenterPoint();
+DBSCAN Hotspot::addClusterWeights(const ClusterWeights& cluster_weights)
+{
+   DBSCAN dbscan(cluster_coordinates);
+   dbscan.performClusterSearch(cluster_weights);
+   dbscan.getClusterCenterPoint();
+   return dbscan;
+}
 
+Model Hotspot::addModelWeights()
+{
    Model model(cluster_coordinates);
    ModelWeights model_weights;
    model_weights.crime_dates = date_values;
    model_weights.crime_types = crime_values;
+   return model;
+}
 
+PredictedData Hotspot::addPredictedData(Coordinates* coordinates, DBSCAN dbscan)
+{
    PredictedData p_data;
    p_data.core_lat = coordinates->lat_pts;
    p_data.core_long = coordinates->lat_pts;
-   std::vector<uint32_t> noise_pts = clusters.noise_pts();
+   std::vector<uint32_t> noise_pts = dbscan.noise_pts();
    //for (uint32_t i = 0; i < coordinates->lat_pts.size(); i++){
    //   p_data.noise_lat[i] = coordinates->lat_pts[i];
    //   p_data.noise_long[i] = coordinates->long_pts[i];
@@ -126,11 +131,11 @@ PredictedData HotSpot::prediction(float eps, unsigned int min_pts, const std::st
    return p_data;
 }
 
-void HotSpot::launchWebClient()
+void Hotspot::launchWebClient()
 {
 }
 
-void HotSpot::loadModel(const Files& files, float eps, unsigned int min_pts, const std::string& dist_metric)
+void Hotspot::prediction(const Files& files, const ClusterWeights& cluster_weights)
 {
    std::ifstream if_dates(files.dates_file);
    if (!if_dates.is_open()){
@@ -159,7 +164,10 @@ void HotSpot::loadModel(const Files& files, float eps, unsigned int min_pts, con
          long_values.push_back(temp_long);
       }
    }
-   PredictedData predicted_coordinates = prediction(eps, min_pts, dist_metric);
+   Coordinates* coordinates = addCoordinates();
+   DBSCAN dbscan = addClusterWeights(cluster_weights);
+   Model model = addModelWeights();
+   PredictedData prediction = addPredictedData(coordinates, dbscan);
    //Export csv_export(PREDICTION_FILE);
    //std::printf("INFO: Saving predicted cluster to '%s'.\n", PREDICTION_FILE);
    //csv_export.save(predicted_coordinates);

@@ -53,7 +53,7 @@ void DBSCAN::getClusterCenterPoint()
    assert(cluster_size != 0);
    for (uint32_t i = 0; i < cluster_size; i++){
       for (unsigned int p = 0; p < cluster_pts[i].size(); p++){
-         // set averaged cluster points equal to cluster coordinates
+         // set averaged cluster coordinates equal to cluster points
       }
    }
 }
