@@ -1,6 +1,7 @@
 Sat Feb 4, 2017
 ---------------
 - Removed manhattan and mahalanobis distance functions.
+- Added .travis.yml file.
 
 Fri Feb 3, 2017
 ---------------
