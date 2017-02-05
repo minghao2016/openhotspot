@@ -25,6 +25,21 @@
 
 #include "export.h"
 
+struct Files {
+   std::string dates_file;
+   std::string lat_file;
+   std::string long_file;
+   std::string crimes_file;
+   std::string csv_file;
+};
+
+struct Columns {
+   unsigned int dates_column;
+   unsigned int lat_column;
+   unsigned int long_column;
+   unsigned int crimes_column;
+};
+
 namespace hotspot
 {
 
@@ -41,12 +56,11 @@ private:
    std::vector<uint32_t> date_values;
 
 public:
-   void reformatCSVFile(const std::string&, unsigned int, unsigned int, unsigned int, unsigned int);
-   void printCrimeRate(const std::string&);
+   void reformatCSVFile(const Files&, Columns);
+   void printCrimeRate(const Files&);
    PredictedData prediction(float, unsigned int, const std::string&);
    void launchWebClient();
-   void loadModel(const std::string&, const std::string&, const std::string&, float, unsigned int,
-                  const std::string&);
+   void loadModel(const Files&, float, unsigned int, const std::string&);
 };
 
 }

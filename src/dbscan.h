@@ -53,10 +53,10 @@ public:
    uint32_t n_clusters();
    std::vector<uint32_t> noise_pts();
 
-   void getClusterCenterPoint(std::vector<Coordinates*>);
+   void getClusterCenterPoint();
    std::vector<uint32_t> regionQuery(uint32_t, const ClusterWeights&);
    void expandCluster(uint32_t, std::vector<uint32_t>*, uint32_t*, const ClusterWeights&);
-   std::vector<Coordinates*> dbscan(const ClusterWeights&);
+   void performClusterSearch(const ClusterWeights&);
    float computeError();
 };
 

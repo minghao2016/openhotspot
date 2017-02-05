@@ -25,21 +25,19 @@ std::istream& operator>>(std::istream& file, Reformat& reformat)
    return file;
 }
 
-void HotSpot::reformatCSVFile(const std::string& csv_file, unsigned int crime_column,
-                              unsigned int date_column, unsigned int lat_column,
-                              unsigned int long_column)
+void HotSpot::reformatCSVFile(const Files& files, Columns columns)
 {
    Reformat reformat;
-   std::ifstream if_csv(csv_file);
+   std::ifstream if_csv(files.csv_file);
    if (!if_csv.is_open()){
       std::printf("ERROR: Could not open CSV file.\n");
       exit(EXIT_FAILURE);
    } else {
       while (if_csv >> reformat){
-         std::string crime_c = reformat[crime_column];
-         std::string date_c = reformat[date_column];
-         std::string lat_c = reformat[lat_column];
-         std::string long_c = reformat[long_column];
+         std::string crime_c = reformat[columns.crimes_column];
+         std::string date_c = reformat[columns.dates_column];
+         std::string lat_c = reformat[columns.lat_column];
+         std::string long_c = reformat[columns.long_column];
          if (crime_c.empty() || date_c.empty() || lat_c.empty() || long_c.empty()){
             std::printf("ERROR: One or more columns are empty.\n");
          }
@@ -75,9 +73,9 @@ void HotSpot::reformatCSVFile(const std::string& csv_file, unsigned int crime_co
    }
 }
 
-void HotSpot::printCrimeRate(const std::string& crimes_file)
+void HotSpot::printCrimeRate(const Files& files)
 {
-   std::ifstream if_crime(crimes_file);
+   std::ifstream if_crime(files.crimes_file);
    if (!if_crime.is_open()){
       std::printf("ERROR: Could not open crime file.\n");
       exit(EXIT_FAILURE);
@@ -109,20 +107,20 @@ PredictedData HotSpot::prediction(float eps, unsigned int min_pts, const std::st
    cluster_weights.eps = eps;
    cluster_weights.min_pts = min_pts;
    cluster_weights.dist_metric = dist_metric;
-   std::vector<Coordinates*> dbscan_results = clusters.dbscan(cluster_weights);
+   clusters.performClusterSearch(cluster_weights);
 
    //Model model(dbscan_results);
-   //ModelWeights model_weights;
-   //model_weights.crime_dates = date_values;
-   //model_weights.crime_types = crime_values;
+   ModelWeights model_weights;
+   model_weights.crime_dates = date_values;
+   model_weights.crime_types = crime_values;
 
    PredictedData p_data;
-   //p_data.core_lat = dbscan_results[0]->lat_pts;
-   //p_data.core_long = dbscan_results[0]->long_pts;
-   //std::vector<uint32_t> noise_pts = clusters.noise_pts();
+   p_data.core_lat = coordinates->lat_pts;
+   p_data.core_long = coordinates->lat_pts;
+   std::vector<uint32_t> noise_pts = clusters.noise_pts();
    //for (uint32_t i = 0; i < coordinates->lat_pts.size(); i++){
-   //   p_data.noise_lat = coordinates->lat_pts[noise_pts[i]];
-   //   p_data.noise_long = coordinates->long_pts[noise_pts[i]];
+   //   p_data.noise_lat[i] = coordinates->lat_pts[i];
+   //   p_data.noise_long[i] = coordinates->long_pts[i];
    //}
    return p_data;
 }
@@ -131,11 +129,9 @@ void HotSpot::launchWebClient()
 {
 }
 
-void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_file,
-                        const std::string& long_file, float eps, unsigned int min_pts,
-                        const std::string& dist_metric)
+void HotSpot::loadModel(const Files& files, float eps, unsigned int min_pts, const std::string& dist_metric)
 {
-   std::ifstream if_dates(dates_file);
+   std::ifstream if_dates(files.dates_file);
    if (!if_dates.is_open()){
       std::printf("ERROR: Could not open dates file.\n");
       exit(EXIT_FAILURE);
@@ -144,7 +140,7 @@ void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_fi
          date_values.push_back(temp_dates);
       }
    }
-   std::ifstream if_lat(lat_file);
+   std::ifstream if_lat(files.lat_file);
    if (!if_lat.is_open()){
       std::printf("ERROR: Could not open latitude file.\n");
       exit(EXIT_FAILURE);
@@ -153,7 +149,7 @@ void HotSpot::loadModel(const std::string& dates_file, const std::string& lat_fi
          lat_values.push_back(temp_lat);
       }
    }
-   std::ifstream if_long(long_file);
+   std::ifstream if_long(files.long_file);
    if (!if_long.is_open()){
       std::printf("ERROR: Could not open longitude file.\n");
       exit(EXIT_FAILURE);

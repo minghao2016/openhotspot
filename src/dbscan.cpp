@@ -40,7 +40,7 @@ std::vector<uint32_t> DBSCAN::noise_pts()
    return noise_pts_;
 }
 
-void DBSCAN::getClusterCenterPoint(std::vector<Coordinates*> clusters)
+void DBSCAN::getClusterCenterPoint()
 {
    /*for (uint32_t i = 0; i < cluster_pts.size(); i++){
       std::cout << "---------" << i << "---------" << std::endl;
@@ -108,9 +108,8 @@ void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts,
    }
 }
 
-std::vector<Coordinates*> DBSCAN::dbscan(const ClusterWeights& cluster_weights)
+void DBSCAN::performClusterSearch(const ClusterWeights& cluster_weights)
 {
-   std::vector<Coordinates*> clusters;
    for (uint32_t i = 0; i < coordinates[0]->lat_pts.size(); i++){
       if (visited_pts[i]) {
          continue;
@@ -125,11 +124,10 @@ std::vector<Coordinates*> DBSCAN::dbscan(const ClusterWeights& cluster_weights)
             // mark point p as clustered
             clustered_pts[i] = true;
             expandCluster(i, &rq_neighbor_pts, &n_clusters_, cluster_weights);
-            getClusterCenterPoint(clusters);
+            getClusterCenterPoint();
          }
       }
    }
-   return clusters;
 }
 
 float DBSCAN::computeError()

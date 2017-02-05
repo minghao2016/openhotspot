@@ -46,41 +46,60 @@ int main(int argc, char **argv)
    /*if (argc <= 1) {
       usage();
    }
-
+   HotSpot hotspot;
    std::string _argv = argv[1];
    if (_argv == "--help"){
       usage();
    }
    else if (_argv == "--crime-file"){
+      Files files;
    }
    else if (_argv == "--date-file"){
+      Files files;
    }
    else if (_argv == "--lat-file"){
+      Files files;
    }
    else if (_argv == "--long-file"){
+      Files files;
    }
    else if (_argv == "--reformat-file"){
+      Files files;
    }
    else if (_argv == "--crime-column"){
+      Columns columns;
    }
    else if (_argv == "--date-column"){
+      Columns columns;
    }
    else if (_argv == "--lat-column"){
+      Columns columns;
    }
    else if (_argv == "--long-column"){
+      Columns columns;
    }
    else if (_argv == "--eps"){
+      float eps = _argv[1];
    }
    else if (_argv == "--min-pts"){
+      unsigned int min_pts = _argv[1];
    }
    else if (_argv == "--distance-metric"){
+      std::string dist_metric = _argv[1];
    }
    else if (_argv == "--crime-rate"){
+      Files files;
+      files.crimes_file = _argv[1];
+      hotspot.printCrimeRate(files);
    }
    else if (_argv == "--version"){
       std::cout << VERSION_DESCRIPTION << std::endl;
    }*/
+
+   Files files;
+   files.dates_file = "../data/test_dates.txt";
+   files.lat_file = "../data/test_latitudes.txt";
+   files.long_file = "../data/test_longitudes.txt";
    HotSpot hotspot;
-   hotspot.loadModel("../data/test_dates.txt", "../data/test_latitudes.txt",
-                     "../data/test_longitudes.txt", 1.7, 1000, "haversine");
+   hotspot.loadModel(files, 1.7, 1000, "haversine");
 }
