@@ -15,7 +15,7 @@
 #include <vector>
 #include <string>
 #include <cmath>
-#include <memory>
+#include <assert.h>
 
 #include "dbscan.h"
 

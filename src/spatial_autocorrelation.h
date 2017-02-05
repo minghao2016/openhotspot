@@ -14,6 +14,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <assert.h>
 
 #include "dbscan.h"
 

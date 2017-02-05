@@ -33,6 +33,8 @@ namespace hotspot
 
 class DBSCAN {
 private:
+   const ClusterWeights& cluster_weights;
+
    std::vector<Coordinates*> coordinates;
 
    int32_t n_clusters_;
@@ -46,16 +48,19 @@ private:
    std::vector<std::vector<int32_t> > cluster_pts;
 
 public:
-   DBSCAN(std::vector<Coordinates*>);
+   DBSCAN(std::vector<Coordinates*>, const ClusterWeights&);
    ~DBSCAN();
 
    uint32_t n_clusters();
    std::vector<uint32_t> noise_pts();
 
+   void epsEstimation();
+   void minptsEstimation();
+
    void getClusterCenterPoint();
-   std::vector<uint32_t> regionQuery(uint32_t, const ClusterWeights&);
-   void expandCluster(uint32_t, std::vector<uint32_t>*, int32_t*, const ClusterWeights&);
-   void performClusterSearch(const ClusterWeights&);
+   std::vector<uint32_t> regionQuery(uint32_t);
+   void expandCluster(uint32_t, std::vector<uint32_t>*, int32_t*);
+   void performClusterSearch();
    float computeError();
 };
 

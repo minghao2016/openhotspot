@@ -103,8 +103,10 @@ Coordinates* Hotspot::addCoordinates()
 
 DBSCAN Hotspot::addClusterWeights(const ClusterWeights& cluster_weights)
 {
-   DBSCAN dbscan(cluster_coordinates);
-   dbscan.performClusterSearch(cluster_weights);
+   DBSCAN dbscan(cluster_coordinates, cluster_weights);
+   //dbscan.epsEstimation();
+   //dbscan.minptsEstimation();
+   dbscan.performClusterSearch();
    dbscan.getClusterCenterPoint();
    return dbscan;
 }
@@ -170,7 +172,7 @@ void Hotspot::prediction(const Files& files, const ClusterWeights& cluster_weigh
    PredictedData prediction = addPredictedData(coordinates, dbscan);
    //Export csv_export(PREDICTION_FILE);
    //std::printf("INFO: Saving predicted cluster to '%s'.\n", PREDICTION_FILE);
-   //csv_export.save(predicted_coordinates);
+   //csv_export.save(prediction);
 }
 
 } // hotspot namespace
