@@ -119,8 +119,8 @@ PredictedData HotSpot::prediction(float eps, unsigned int min_pts, const std::st
    PredictedData p_data;
    //p_data.core_lat = dbscan_results[0]->lat_pts;
    //p_data.core_long = dbscan_results[0]->long_pts;
-   std::vector<uint32_t> noise_pts = clusters.noise_pts();
-   //for (unsigned int i = 0; i < coordinates->lat_pts.size(); i++){
+   //std::vector<uint32_t> noise_pts = clusters.noise_pts();
+   //for (uint32_t i = 0; i < coordinates->lat_pts.size(); i++){
    //   p_data.noise_lat = coordinates->lat_pts[noise_pts[i]];
    //   p_data.noise_long = coordinates->long_pts[noise_pts[i]];
    //}
