@@ -56,14 +56,14 @@ void DBSCAN::minptsEstimation()
 
 void DBSCAN::getClusterCenterPoint()
 {
-   //uint32_t cluster_size = cluster_pts.size();
-   //for (uint32_t i = 0; i < cluster_size; i++){
-   //   std::cout << "---------" << i << "---------" << std::endl;
-   //   for (unsigned int p = 0; p < cluster_pts[i].size(); p++){
-   //      std::cout << coordinates[0]->lat_pts[cluster_pts[i][p]] << std::endl;
-   //      std::cout << coordinates[0]->long_pts[cluster_pts[i][p]] << std::endl;
-   //   }
-   //}
+   /*uint32_t cluster_size = cluster_pts.size();
+   for (uint32_t i = 0; i < cluster_size; i++){
+      std::cout << "---------" << i << "---------" << std::endl;
+      for (unsigned int p = 0; p < cluster_pts[i].size(); p++){
+         std::cout << coordinates[0]->lat_pts[cluster_pts[i][p]] << std::endl;
+         std::cout << coordinates[0]->long_pts[cluster_pts[i][p]] << std::endl;
+      }
+   }*/
    uint32_t cluster_size = cluster_pts.size();
    assert(cluster_size != 0);
    for (uint32_t i = 0; i < cluster_size; i++){
@@ -115,7 +115,6 @@ void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts, i
          visited_pts[ec_neighbor_pts->at(i)] = true;
          std::vector<uint32_t> ec_neighbor_pts_ = regionQuery(ec_neighbor_pts->at(i));
          if (ec_neighbor_pts_.size() >= cluster_weights.min_pts){
-            //std::cout << ec_neighbor_pts->at(i) << std::endl;
             ec_neighbor_pts->insert(ec_neighbor_pts->end(), ec_neighbor_pts_.begin(), ec_neighbor_pts_.end());
          }
          // mark point p as clustered
