@@ -2,4 +2,8 @@ sudo: false
 
 language: cpp
 
+<<<<<<< HEAD
 compiler: g++
+=======
+compiler: gcc
+>>>>>>> origin/master
