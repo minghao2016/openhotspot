@@ -43,9 +43,7 @@ void usage()
 
 int main(int argc, char **argv)
 {
-   /*if (argc <= 1) {
-      usage();
-   }
+   /*if (argc <= 1) usage();
    HotSpot hotspot;
    std::string _argv = argv[1];
    if (_argv == "--help"){

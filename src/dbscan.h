@@ -15,6 +15,7 @@
 #include <vector>
 #include <string>
 #include <cmath>
+#include <assert.h>
 
 struct Coordinates {
    std::vector<double> lat_pts;
@@ -34,17 +35,15 @@ class DBSCAN {
 private:
    std::vector<Coordinates*> coordinates;
 
-   uint32_t n_clusters_;
+   int32_t n_clusters_;
 
    std::vector<uint32_t> rq_pts;
-
-   std::vector<uint32_t> core_pts_;
    std::vector<uint32_t> noise_pts_;
 
    std::vector<bool> visited_pts;
    std::vector<bool> clustered_pts;
 
-   std::vector<std::vector<uint32_t> > cluster_pts;
+   std::vector<std::vector<int32_t> > cluster_pts;
 
 public:
    DBSCAN(std::vector<Coordinates*>);
@@ -55,7 +54,7 @@ public:
 
    void getClusterCenterPoint();
    std::vector<uint32_t> regionQuery(uint32_t, const ClusterWeights&);
-   void expandCluster(uint32_t, std::vector<uint32_t>*, uint32_t*, const ClusterWeights&);
+   void expandCluster(uint32_t, std::vector<uint32_t>*, int32_t*, const ClusterWeights&);
    void performClusterSearch(const ClusterWeights&);
    float computeError();
 };

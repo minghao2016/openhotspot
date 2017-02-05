@@ -10,17 +10,16 @@
 
 #include "dbscan.h"
 #include "metrics.h"
-#include "types.h"
 
 namespace hotspot
 {
 
 DBSCAN::DBSCAN(std::vector<Coordinates*> _coordinates):
-   coordinates(_coordinates)
+   coordinates(_coordinates),
+   n_clusters_(-1)
 {
-   n_clusters_ = -1;
    for (uint32_t i = 0; i < coordinates[0]->lat_pts.size(); i++){
-      // mark points
+      // mark origin points as false
       visited_pts.push_back(false);
       clustered_pts.push_back(false);
    }
@@ -42,13 +41,17 @@ std::vector<uint32_t> DBSCAN::noise_pts()
 
 void DBSCAN::getClusterCenterPoint()
 {
-   /*for (uint32_t i = 0; i < cluster_pts.size(); i++){
-      std::cout << "---------" << i << "---------" << std::endl;
-      for (unsigned int p = 0; p < cluster_pts[i].size(); p++){
-         std::cout << coordinates[0]->lat_pts[cluster_pts[i][p]] << std::endl;
-      }
-   }*/
-   for (uint32_t i = 0; i < cluster_pts.size(); i++){
+   //uint32_t cluster_size = cluster_pts.size();
+   //for (uint32_t i = 0; i < cluster_size; i++){
+   //   std::cout << "---------" << i << "---------" << std::endl;
+   //   for (unsigned int p = 0; p < cluster_pts[i].size(); p++){
+   //      std::cout << coordinates[0]->lat_pts[cluster_pts[i][p]] << std::endl;
+   //      std::cout << coordinates[0]->long_pts[cluster_pts[i][p]] << std::endl;
+   //   }
+   //}
+   uint32_t cluster_size = cluster_pts.size();
+   assert(cluster_size != 0);
+   for (uint32_t i = 0; i < cluster_size; i++){
       for (unsigned int p = 0; p < cluster_pts[i].size(); p++){
          // set averaged cluster points equal to cluster coordinates
       }
@@ -59,8 +62,9 @@ std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p, const ClusterWeights& clus
 {
    Metrics metrics;
    MetricCoordinates _mc;
+   uint32_t coordinates_size = coordinates[0]->lat_pts.size();
    if (cluster_weights.dist_metric == "haversine"){
-      for (uint32_t i = 0; i < coordinates[0]->lat_pts.size(); i++){
+      for (uint32_t i = 0; i < coordinates_size; i++){
          _mc.lat_1 = coordinates[0]->lat_pts[i];
          _mc.lat_2 = coordinates[0]->lat_pts[p];
          _mc.long_1 = coordinates[0]->long_pts[i];
@@ -70,7 +74,7 @@ std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p, const ClusterWeights& clus
          }
       }
    } else if (cluster_weights.dist_metric == "euclidean"){
-      for (uint32_t i = 0; i < coordinates[0]->lat_pts.size(); i++){
+      for (uint32_t i = 0; i < coordinates_size; i++){
          _mc.lat_1 = coordinates[0]->lat_pts[i];
          _mc.lat_2 = coordinates[0]->lat_pts[p];
          _mc.long_1 = coordinates[0]->long_pts[i];
@@ -85,11 +89,13 @@ std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p, const ClusterWeights& clus
 }
 
 void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts,
-                           uint32_t* n_clusters, const ClusterWeights& cluster_weights)
+                           int32_t* n_clusters, const ClusterWeights& cluster_weights)
 {
-   cluster_pts.push_back(std::vector<uint32_t>());
+   cluster_pts.push_back(std::vector<int32_t>());
    cluster_pts[*n_clusters].push_back(p);
-   for (uint32_t i = 0; i < (uint32_t)ec_neighbor_pts->size(); i++){
+   uint32_t ec_neighbors_size = ec_neighbor_pts->size();
+   assert(ec_neighbors_size != 0);
+   for (uint32_t i = 0; i < ec_neighbors_size; i++){
       if (!visited_pts[ec_neighbor_pts->at(i)]){
          // mark point p as visited
          visited_pts[ec_neighbor_pts->at(i)] = true;
@@ -110,7 +116,8 @@ void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts,
 
 void DBSCAN::performClusterSearch(const ClusterWeights& cluster_weights)
 {
-   for (uint32_t i = 0; i < coordinates[0]->lat_pts.size(); i++){
+   uint32_t coordinates_size = coordinates[0]->lat_pts.size();
+   for (uint32_t i = 0; i < coordinates_size; i++){
       if (visited_pts[i]) {
          continue;
       } else {
@@ -124,7 +131,6 @@ void DBSCAN::performClusterSearch(const ClusterWeights& cluster_weights)
             // mark point p as clustered
             clustered_pts[i] = true;
             expandCluster(i, &rq_neighbor_pts, &n_clusters_, cluster_weights);
-            getClusterCenterPoint();
          }
       }
    }

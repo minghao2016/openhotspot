@@ -27,7 +27,7 @@ Export::~Export()
    }
 }
 
-void Export::exportData(PredictedData& p_data)
+void Export::save(PredictedData& p_data)
 {
 }
 

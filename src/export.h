@@ -34,7 +34,7 @@ private:
 public:
    Export(const std::string&);
    ~Export();
-   void exportData(PredictedData&);
+   void save(PredictedData&);
 };
 
 }

@@ -108,8 +108,9 @@ PredictedData HotSpot::prediction(float eps, unsigned int min_pts, const std::st
    cluster_weights.min_pts = min_pts;
    cluster_weights.dist_metric = dist_metric;
    clusters.performClusterSearch(cluster_weights);
+   clusters.getClusterCenterPoint();
 
-   //Model model(dbscan_results);
+   Model model(cluster_coordinates);
    ModelWeights model_weights;
    model_weights.crime_dates = date_values;
    model_weights.crime_types = crime_values;
@@ -159,9 +160,9 @@ void HotSpot::loadModel(const Files& files, float eps, unsigned int min_pts, con
       }
    }
    PredictedData predicted_coordinates = prediction(eps, min_pts, dist_metric);
-   //std::printf("INFO: Saving predicted cluster to '%s'.\n", PREDICTION_FILE);
    //Export csv_export(PREDICTION_FILE);
-   //csv_export.exportData(predicted_coordinates);
+   //std::printf("INFO: Saving predicted cluster to '%s'.\n", PREDICTION_FILE);
+   //csv_export.save(predicted_coordinates);
 }
 
 } // hotspot namespace
