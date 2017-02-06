@@ -93,7 +93,6 @@ int main(int argc, char **argv)
    else if (_argv == "--version"){
       std::cout << VERSION_DESCRIPTION << std::endl;
    }*/
-
    Files files;
    files.dates_file = "../data/test_dates.txt";
    files.lat_file = "../data/test_latitudes.txt";

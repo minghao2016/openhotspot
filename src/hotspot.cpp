@@ -104,8 +104,8 @@ Coordinates* Hotspot::addCoordinates()
 DBSCAN Hotspot::addClusterWeights(const ClusterWeights& cluster_weights)
 {
    DBSCAN dbscan(cluster_coordinates, cluster_weights);
-   //dbscan.epsEstimation();
-   //dbscan.minptsEstimation();
+   dbscan.epsEstimation();
+   dbscan.minptsEstimation();
    dbscan.performClusterSearch();
    dbscan.getClusterCenterPoint();
    return dbscan;

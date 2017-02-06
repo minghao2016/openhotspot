@@ -42,8 +42,30 @@ std::vector<uint32_t> DBSCAN::noise_pts()
 
 void DBSCAN::epsEstimation()
 {
+   Metrics metrics;
+   MetricCoordinates _mc;
+   std::vector<double> eps_estimate;
    uint32_t coordinates_size = coordinates[0]->lat_pts.size();
-   for (uint32_t i = 0; i < coordinates_size; i++){
+   if (cluster_weights.dist_metric == "haversine"){
+      for (uint32_t i = 0; i < coordinates_size; i++){
+         _mc.lat_1 = coordinates[0]->lat_pts[i];
+         _mc.lat_2 = coordinates[0]->lat_pts[i + 1];
+         _mc.long_1 = coordinates[0]->long_pts[i];
+         _mc.long_2 = coordinates[0]->long_pts[i + 1];
+         eps_estimate.push_back(metrics.haversineDistanceMetric(_mc));
+         double eps_sum = std::accumulate(eps_estimate.begin(), eps_estimate.end(), 0.0);
+         double eps_mean = eps_sum / eps_estimate.size();
+      }
+   } else if (cluster_weights.dist_metric == "euclidean") {
+      for (uint32_t i = 0; i < coordinates_size; i++){
+         _mc.lat_1 = coordinates[0]->lat_pts[i];
+         _mc.lat_2 = coordinates[0]->lat_pts[i + 1];
+         _mc.long_1 = coordinates[0]->long_pts[i];
+         _mc.long_2 = coordinates[0]->long_pts[i + 1];
+         eps_estimate.push_back(metrics.euclideanDistanceMetric(_mc));
+         double eps_sum = std::accumulate(eps_estimate.begin(), eps_estimate.end(), 0.0);
+         double eps_mean = eps_sum / eps_estimate.size();
+      }
    }
 }
 
@@ -56,14 +78,6 @@ void DBSCAN::minptsEstimation()
 
 void DBSCAN::getClusterCenterPoint()
 {
-   /*uint32_t cluster_size = cluster_pts.size();
-   for (uint32_t i = 0; i < cluster_size; i++){
-      std::cout << "---------" << i << "---------" << std::endl;
-      for (unsigned int p = 0; p < cluster_pts[i].size(); p++){
-         std::cout << coordinates[0]->lat_pts[cluster_pts[i][p]] << std::endl;
-         std::cout << coordinates[0]->long_pts[cluster_pts[i][p]] << std::endl;
-      }
-   }*/
    uint32_t cluster_size = cluster_pts.size();
    assert(cluster_size != 0);
    for (uint32_t i = 0; i < cluster_size; i++){
@@ -73,7 +87,7 @@ void DBSCAN::getClusterCenterPoint()
    }
 }
 
-std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p)
+std::vector<uint32_t> DBSCAN::regionQuery(uint32_t point)
 {
    Metrics metrics;
    MetricCoordinates _mc;
@@ -81,9 +95,9 @@ std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p)
    if (cluster_weights.dist_metric == "haversine"){
       for (uint32_t i = 0; i < coordinates_size; i++){
          _mc.lat_1 = coordinates[0]->lat_pts[i];
-         _mc.lat_2 = coordinates[0]->lat_pts[p];
+         _mc.lat_2 = coordinates[0]->lat_pts[point];
          _mc.long_1 = coordinates[0]->long_pts[i];
-         _mc.long_2 = coordinates[0]->long_pts[p];
+         _mc.long_2 = coordinates[0]->long_pts[point];
          if (metrics.haversineDistanceMetric(_mc) <= cluster_weights.eps){
             rq_pts.push_back(i);
          }
@@ -91,9 +105,9 @@ std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p)
    } else if (cluster_weights.dist_metric == "euclidean"){
       for (uint32_t i = 0; i < coordinates_size; i++){
          _mc.lat_1 = coordinates[0]->lat_pts[i];
-         _mc.lat_2 = coordinates[0]->lat_pts[p];
+         _mc.lat_2 = coordinates[0]->lat_pts[point];
          _mc.long_1 = coordinates[0]->long_pts[i];
-         _mc.long_2 = coordinates[0]->long_pts[p];
+         _mc.long_2 = coordinates[0]->long_pts[point];
          if (metrics.euclideanDistanceMetric(_mc) <= cluster_weights.eps){
             rq_pts.push_back(i);
          }
@@ -103,10 +117,10 @@ std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p)
    return rq_pts;
 }
 
-void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts, int32_t* n_clusters)
+void DBSCAN::expandCluster(uint32_t point, std::vector<uint32_t>* ec_neighbor_pts, int32_t* n_clusters)
 {
    cluster_pts.push_back(std::vector<int32_t>());
-   cluster_pts[*n_clusters].push_back(p);
+   cluster_pts[*n_clusters].push_back(point);
    uint32_t ec_neighbors_size = ec_neighbor_pts->size();
    assert(ec_neighbors_size != 0);
    for (uint32_t i = 0; i < ec_neighbors_size; i++){

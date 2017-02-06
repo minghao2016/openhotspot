@@ -15,6 +15,7 @@
 #include <vector>
 #include <string>
 #include <cmath>
+#include <numeric>
 #include <assert.h>
 
 struct Coordinates {
