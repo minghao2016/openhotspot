@@ -2,6 +2,7 @@ Sun Feb 5, 2017
 ---------------
 - Added functions for hotspot classes and structures in hotspot file.
 - Added cluster weights estimation functions to dbscan
+- Added average mean to eps estimation.
 
 Sat Feb 4, 2017
 ---------------

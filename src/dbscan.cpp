@@ -55,6 +55,12 @@ void DBSCAN::epsEstimation()
          eps_estimate.push_back(metrics.haversineDistanceMetric(_mc));
          double eps_sum = std::accumulate(eps_estimate.begin(), eps_estimate.end(), 0.0);
          double eps_mean = eps_sum / eps_estimate.size();
+         // set upper and lower bound for eps
+         double max_eps = eps_mean + 2;
+         double min_eps = eps_mean - 2;
+         //if (cluster_weights.eps > max_eps || cluster_weights.eps < min_eps){
+         //   cluster_weights.eps = eps_mean;
+         //}
       }
    } else if (cluster_weights.dist_metric == "euclidean") {
       for (uint32_t i = 0; i < coordinates_size; i++){
@@ -65,6 +71,12 @@ void DBSCAN::epsEstimation()
          eps_estimate.push_back(metrics.euclideanDistanceMetric(_mc));
          double eps_sum = std::accumulate(eps_estimate.begin(), eps_estimate.end(), 0.0);
          double eps_mean = eps_sum / eps_estimate.size();
+         // set upper and lower bound for eps
+         double max_eps = eps_mean + 2;
+         double min_eps = eps_mean - 2;
+         //if (cluster_weights.eps > max_eps || cluster_weights.eps < min_eps){
+         //   cluster_weights.eps = eps_mean;
+         //}
       }
    }
 }
