@@ -3,16 +3,19 @@ CXXFLAGS=-g -Wall -std=c++11
 
 TARGET=hotspot
 
-SOURCES=$(shell find . -name *.cpp)
+INCLUDES=-I /usr/local/include
+LDFLAGS=-L /usr/local/lib
+
+SOURCES=$(shell find src -name *.cpp)
 SRC=$(SOURCES:%.cpp=%.o)
 
 all: $(TARGET)
 
 $(TARGET): $(SRC)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRC)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRC) \
+	$(INCLUDES) $(LDFLAGS)
 
 .PHONY: clean
 
 clean:
 	rm -rf *.o $(TARGET)
-	rm -r $(TARGET).dSYM

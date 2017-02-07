@@ -7,7 +7,6 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-
 #include "reformat.h"
 
 #include <boost/tokenizer.hpp>

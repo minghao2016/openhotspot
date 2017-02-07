@@ -7,7 +7,6 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-
 #ifndef _HS_TYPES_H_
 #define _HS_TYPES_H_
 
@@ -16,5 +15,8 @@
 #define CRIMES_FILE "../data/crimes.txt"
 #define DATES_FILE "../data/dates.txt"
 #define PREDICTION_FILE "../data/prediction.csv"
+
+#define MAP_CSS "ui/map_ui.css"
+#define DASHBOARD_CSS "ui/dashboard_ui.css"
 
 #endif

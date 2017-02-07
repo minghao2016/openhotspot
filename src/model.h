@@ -7,7 +7,6 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-
 #ifndef _MODEL_H_
 #define _MODEL_H_
 
@@ -42,7 +41,8 @@ struct PredictedCoordinates {
 namespace hotspot
 {
 
-class Model {
+class Model
+{
 private:
    std::vector<Coordinates*> clusters;
 

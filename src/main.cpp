@@ -7,7 +7,6 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-
 #include "hotspot.h"
 
 using namespace hotspot;
@@ -100,7 +99,7 @@ int main(int argc, char **argv)
    ClusterWeights cluster_weights;
    cluster_weights.eps = 1.7;
    cluster_weights.min_pts = 1000;
-   cluster_weights.dist_metric = "haversine";
+   cluster_weights.dist_metric = "euclidean";
    Hotspot hotspot;
    hotspot.prediction(files, cluster_weights);
 }

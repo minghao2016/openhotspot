@@ -7,7 +7,6 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-
 #include "hotspot.h"
 #include "reformat.h"
 #include "client.h"
@@ -101,11 +100,11 @@ Coordinates* Hotspot::addCoordinates()
    return coordinates;
 }
 
-DBSCAN Hotspot::addClusterWeights(const ClusterWeights& cluster_weights)
+DBSCAN Hotspot::addClusterWeights(ClusterWeights& cluster_weights)
 {
    DBSCAN dbscan(cluster_coordinates, cluster_weights);
    dbscan.epsEstimation();
-   dbscan.minptsEstimation();
+   //dbscan.minptsEstimation();
    dbscan.performClusterSearch();
    dbscan.getClusterCenterPoint();
    return dbscan;
@@ -137,7 +136,7 @@ void Hotspot::launchWebClient()
 {
 }
 
-void Hotspot::prediction(const Files& files, const ClusterWeights& cluster_weights)
+void Hotspot::prediction(const Files& files, ClusterWeights& cluster_weights)
 {
    std::ifstream if_dates(files.dates_file);
    if (!if_dates.is_open()){

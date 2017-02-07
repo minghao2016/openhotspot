@@ -7,14 +7,13 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-
 #include "dbscan.h"
 #include "metrics.h"
 
 namespace hotspot
 {
 
-DBSCAN::DBSCAN(std::vector<Coordinates*> _coordinates, const ClusterWeights& _cluster_weights):
+DBSCAN::DBSCAN(std::vector<Coordinates*> _coordinates, ClusterWeights& _cluster_weights):
    coordinates(_coordinates),
    cluster_weights(_cluster_weights),
    n_clusters_(-1)
@@ -26,9 +25,7 @@ DBSCAN::DBSCAN(std::vector<Coordinates*> _coordinates, const ClusterWeights& _cl
    }
 }
 
-DBSCAN::~DBSCAN()
-{
-}
+DBSCAN::~DBSCAN() {}
 
 uint32_t DBSCAN::n_clusters()
 {
@@ -53,14 +50,14 @@ void DBSCAN::epsEstimation()
          _mc.long_1 = coordinates[0]->long_pts[i];
          _mc.long_2 = coordinates[0]->long_pts[i + 1];
          eps_estimate.push_back(metrics.haversineDistanceMetric(_mc));
-         double eps_sum = std::accumulate(eps_estimate.begin(), eps_estimate.end(), 0.0);
-         double eps_mean = eps_sum / eps_estimate.size();
-         // set upper and lower bound for eps
-         double max_eps = eps_mean + 2;
-         double min_eps = eps_mean - 2;
-         //if (cluster_weights.eps > max_eps || cluster_weights.eps < min_eps){
-         //   cluster_weights.eps = eps_mean;
-         //}
+      }
+      double eps_sum = std::accumulate(eps_estimate.begin(), eps_estimate.end(), 0.0);
+      double eps_mean = eps_sum / eps_estimate.size();
+      // set upper and lower bounds for eps
+      double max_eps = eps_mean + 2;
+      double min_eps = eps_mean - 2;
+      if (cluster_weights.eps < max_eps || cluster_weights.eps > min_eps){
+         cluster_weights.eps = eps_mean;
       }
    } else if (cluster_weights.dist_metric == "euclidean") {
       for (uint32_t i = 0; i < coordinates_size; i++){
@@ -69,23 +66,21 @@ void DBSCAN::epsEstimation()
          _mc.long_1 = coordinates[0]->long_pts[i];
          _mc.long_2 = coordinates[0]->long_pts[i + 1];
          eps_estimate.push_back(metrics.euclideanDistanceMetric(_mc));
-         double eps_sum = std::accumulate(eps_estimate.begin(), eps_estimate.end(), 0.0);
-         double eps_mean = eps_sum / eps_estimate.size();
-         // set upper and lower bound for eps
-         double max_eps = eps_mean + 2;
-         double min_eps = eps_mean - 2;
-         //if (cluster_weights.eps > max_eps || cluster_weights.eps < min_eps){
-         //   cluster_weights.eps = eps_mean;
-         //}
+      }
+      double eps_sum = std::accumulate(eps_estimate.begin(), eps_estimate.end(), 0.0);
+      double eps_mean = eps_sum / eps_estimate.size();
+      // set upper and lower bounds for eps
+      // use 1 as the min/max bound because euclidean measurements are smaller than haversine's
+      double max_eps = eps_mean + 1;
+      double min_eps = eps_mean - 1;
+      if (cluster_weights.eps < max_eps || cluster_weights.eps > min_eps){
+         cluster_weights.eps = eps_mean;
       }
    }
 }
 
 void DBSCAN::minptsEstimation()
 {
-   uint32_t coordinates_size = coordinates[0]->lat_pts.size();
-   for (uint32_t i = 0; i < coordinates_size; i++){
-   }
 }
 
 void DBSCAN::getClusterCenterPoint()

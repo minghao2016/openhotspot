@@ -7,7 +7,6 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-
 #ifndef _HOTSPOT_H_
 #define _HOTSPOT_H_
 
@@ -45,7 +44,8 @@ struct Columns {
 namespace hotspot
 {
 
-class Hotspot {
+class Hotspot
+{
 private:
    double temp_lat;
    double temp_long;
@@ -65,12 +65,12 @@ public:
 
    //PredictedData prediction(float, unsigned int, const std::string&);
    Coordinates* addCoordinates();
-   DBSCAN addClusterWeights(const ClusterWeights& cluster_weights);
+   DBSCAN addClusterWeights(ClusterWeights& cluster_weights);
    Model addModelWeights();
    PredictedData addPredictedData(Coordinates* coordinates, DBSCAN clusters);
 
    void launchWebClient();
-   void prediction(const Files& files, const ClusterWeights& cluster_weights);
+   void prediction(const Files& files, ClusterWeights& cluster_weights);
 };
 
 }

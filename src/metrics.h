@@ -26,18 +26,21 @@ struct MetricCoordinates {
 namespace hotspot
 {
 
-class Metrics {
+class Metrics
+{
 public:
    double degreesToRadians(double);
    /*
-   * Determines the great-circle distance between two points on a sphere given
-   * their longitudes and latitudes.
+   * @brief Determines the great-circle distance between two points on a sphere given
+   * their longitudes and latitudes
    * More Information: https://en.wikipedia.org/wiki/Haversine_formula
+   * @param _mc MetricCoordinates struct containing lat/long values
    */
    double haversineDistanceMetric(MetricCoordinates&);
    /*
-   * Is the ordinary -- straight line -- distance between two points in Euclidean space.
+   * @brief Is the ordinary -- straight line -- distance between two points in Euclidean space
    * More Information: https://en.wikipedia.org/wiki/Euclidean_distance
+   * @param _mc MetricCoordinates struct containing lat/long values
    */
    double euclideanDistanceMetric(MetricCoordinates&);
 };

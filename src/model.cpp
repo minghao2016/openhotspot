@@ -7,7 +7,6 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-
 #include "model.h"
 #include "types.h"
 #include "spatial_autocorrelation.h"
@@ -20,8 +19,6 @@ Model::Model(std::vector<Coordinates*> _clusters):
 {
 }
 
-Model::~Model()
-{
-}
+Model::~Model() {}
 
 } // hotspot namespace

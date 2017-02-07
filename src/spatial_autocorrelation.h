@@ -7,7 +7,6 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-
 #ifndef _HS_SPATIAL_AUTOCORRELATION_H_
 #define _HS_SPATIAL_AUTOCORRELATION_H_
 
@@ -21,7 +20,8 @@
 namespace hotspot
 {
 
-class SpatialAutocorrelation {
+class SpatialAutocorrelation
+{
 private:
    std::vector<Coordinates*> clusters;
 

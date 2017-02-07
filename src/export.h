@@ -7,7 +7,6 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-
 #ifndef _HS_EXPORT_H_
 #define _HS_EXPORT_H_
 
@@ -26,7 +25,8 @@ struct PredictedData {
 namespace hotspot
 {
 
-class Export {
+class Export
+{
 private:
    const std::string& csv_file;
    std::ofstream prediction_file;

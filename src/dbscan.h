@@ -7,7 +7,6 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-
 #ifndef _DBSCAN_H_
 #define _DBSCAN_H_
 
@@ -32,9 +31,10 @@ struct ClusterWeights {
 namespace hotspot
 {
 
-class DBSCAN {
+class DBSCAN
+{
 private:
-   const ClusterWeights& cluster_weights;
+   ClusterWeights& cluster_weights;
 
    std::vector<Coordinates*> coordinates;
 
@@ -49,7 +49,7 @@ private:
    std::vector<std::vector<int32_t> > cluster_pts;
 
 public:
-   DBSCAN(std::vector<Coordinates*>, const ClusterWeights&);
+   DBSCAN(std::vector<Coordinates*>, ClusterWeights&);
    ~DBSCAN();
 
    uint32_t n_clusters();
