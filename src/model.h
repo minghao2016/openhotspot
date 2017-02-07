@@ -18,7 +18,8 @@
 
 #include "dbscan.h"
 
-enum CrimeTypes {
+enum CrimeTypes
+{
    ASSAULT_CRIME,
    THEFT_CRIME,
    DRUG_CRIME,
@@ -28,12 +29,14 @@ enum CrimeTypes {
    OTHER_CRIME
 };
 
-struct ModelWeights {
+struct ModelWeights
+{
    std::vector<uint32_t> crime_dates;
    std::vector<std::string> crime_types;
 };
 
-struct PredictedCoordinates {
+struct PredictedCoordinates
+{
    std::vector<double> lat_pts;
    std::vector<double> long_pts;
 };
@@ -49,7 +52,7 @@ private:
 public:
    Model(std::vector<Coordinates*>);
    ~Model();
-   std::vector<int> getCrimeFrequency(ModelWeights& weights);
+   std::vector<uint32_t> getCrimeFrequency(ModelWeights& weights);
    float computeAccuracy();
    float computeError();
 };

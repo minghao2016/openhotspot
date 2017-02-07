@@ -18,8 +18,6 @@ Client::Client()
 {
 }
 
-Client::~Client()
-{
-}
+Client::~Client() {}
 
 } // hotspot namespace

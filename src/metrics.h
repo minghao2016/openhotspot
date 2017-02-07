@@ -16,7 +16,8 @@
 #include <string>
 #include <cmath>
 
-struct MetricCoordinates {
+struct MetricCoordinates
+{
    double lat_1;
    double long_1;
    double lat_2;
@@ -29,16 +30,19 @@ namespace hotspot
 class Metrics
 {
 public:
+   /*
+   * @brief Degrees to radians conversion
+   * @param degrees double Number of degrees to be converted
+   */
    double degreesToRadians(double);
    /*
    * @brief Determines the great-circle distance between two points on a sphere given
-   * their longitudes and latitudes
-   * More Information: https://en.wikipedia.org/wiki/Haversine_formula
+   * their longitudes and latitudes; More Information: https://en.wikipedia.org/wiki/Haversine_formula
    * @param _mc MetricCoordinates struct containing lat/long values
    */
    double haversineDistanceMetric(MetricCoordinates&);
    /*
-   * @brief Is the ordinary -- straight line -- distance between two points in Euclidean space
+   * @brief Is the ordinary -- straight line -- distance between two points in the Euclidean space
    * More Information: https://en.wikipedia.org/wiki/Euclidean_distance
    * @param _mc MetricCoordinates struct containing lat/long values
    */

@@ -16,6 +16,7 @@
 #include <fstream>
 
 struct PredictedData {
+   int32_t n_clusters;
    std::vector<double> core_lat;
    std::vector<double> core_long;
    std::vector<double> noise_lat;

@@ -36,7 +36,7 @@ void Hotspot::reformatCSVFile(const Files& files, Columns columns)
          std::string lat_c = reformat[columns.lat_column];
          std::string long_c = reformat[columns.long_column];
          if (crime_c.empty() || date_c.empty() || lat_c.empty() || long_c.empty()){
-            std::printf("ERROR: One or more columns are empty.\n");
+            std::printf("WARNING: One or more columns are empty.\n");
          }
          std::ofstream exported_crimes(CRIMES_FILE, std::ofstream::out | std::ofstream::app);
          if (!exported_crimes.is_open()){
@@ -103,7 +103,7 @@ Coordinates* Hotspot::addCoordinates()
 DBSCAN Hotspot::addClusterWeights(ClusterWeights& cluster_weights)
 {
    DBSCAN dbscan(cluster_coordinates, cluster_weights);
-   dbscan.epsEstimation();
+   //dbscan.epsEstimation();
    //dbscan.minptsEstimation();
    dbscan.performClusterSearch();
    dbscan.getClusterCenterPoint();
@@ -122,6 +122,7 @@ Model Hotspot::addModelWeights()
 PredictedData Hotspot::addPredictedData(Coordinates* coordinates, DBSCAN dbscan)
 {
    PredictedData p_data;
+   p_data.n_clusters = dbscan.n_clusters();
    p_data.core_lat = coordinates->lat_pts;
    p_data.core_long = coordinates->lat_pts;
    std::vector<uint32_t> noise_pts = dbscan.noise_pts();
@@ -167,7 +168,6 @@ void Hotspot::prediction(const Files& files, ClusterWeights& cluster_weights)
    }
    Coordinates* coordinates = addCoordinates();
    DBSCAN dbscan = addClusterWeights(cluster_weights);
-   Model model = addModelWeights();
    PredictedData prediction = addPredictedData(coordinates, dbscan);
    //Export csv_export(PREDICTION_FILE);
    //std::printf("INFO: Saving predicted cluster to '%s'.\n", PREDICTION_FILE);

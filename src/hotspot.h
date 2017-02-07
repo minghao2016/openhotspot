@@ -26,7 +26,8 @@
 #include "model.h"
 #include "export.h"
 
-struct Files {
+struct Files
+{
    std::string dates_file;
    std::string lat_file;
    std::string long_file;
@@ -34,7 +35,8 @@ struct Files {
    std::string csv_file;
 };
 
-struct Columns {
+struct Columns
+{
    unsigned int dates_column;
    unsigned int lat_column;
    unsigned int long_column;
@@ -63,14 +65,13 @@ public:
    void reformatCSVFile(const Files&, Columns);
    void printCrimeRate(const Files&);
 
-   //PredictedData prediction(float, unsigned int, const std::string&);
    Coordinates* addCoordinates();
-   DBSCAN addClusterWeights(ClusterWeights& cluster_weights);
+   DBSCAN addClusterWeights(ClusterWeights&);
    Model addModelWeights();
-   PredictedData addPredictedData(Coordinates* coordinates, DBSCAN clusters);
+   PredictedData addPredictedData(Coordinates*, DBSCAN);
 
    void launchWebClient();
-   void prediction(const Files& files, ClusterWeights& cluster_weights);
+   void prediction(const Files&, ClusterWeights&);
 };
 
 }

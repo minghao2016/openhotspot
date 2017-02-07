@@ -16,8 +16,6 @@ ClientMap::ClientMap()
 {
 }
 
-ClientMap::~ClientMap()
-{
-}
+ClientMap::~ClientMap() {}
 
 } // hotspot namespace

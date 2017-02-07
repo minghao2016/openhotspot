@@ -1,5 +1,7 @@
 ##Mon Feb 6, 2017
 - Deleted different language docs for right now until the actual README is finished.
+- Added headers for client files.
+- Small change to eps estimate.
 
 ##Sun Feb 5, 2017
 - Added functions for hotspot classes and structures in hotspot file.

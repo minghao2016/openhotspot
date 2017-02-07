@@ -18,8 +18,6 @@ SpatialAutocorrelation::SpatialAutocorrelation(std::vector<Coordinates*> _cluste
 {
 }
 
-SpatialAutocorrelation::~SpatialAutocorrelation()
-{
-}
+SpatialAutocorrelation::~SpatialAutocorrelation() {}
 
 } // hotspot namespace

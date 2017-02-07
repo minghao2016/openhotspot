@@ -18,11 +18,6 @@ def _parse_csvfile():
 
 @app.route('/')
 def _plot_clusters():
-    #parsed_file = _parse_csvfile()
-    #for x in parsed_file["center_lat"]:
-    #    pass
-    #for y in parsed_file["center_long"]:
-    #    pass
     return render_template("base.html")
 
 if __name__ == '__main__':
