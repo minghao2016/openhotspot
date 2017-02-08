@@ -9,8 +9,7 @@
 */
 #include "client_map.h"
 
-namespace hotspot
-{
+namespace hotspot {
 
 ClientMap::ClientMap()
 {

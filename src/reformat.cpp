@@ -11,16 +11,14 @@
 
 #include <boost/tokenizer.hpp>
 
-namespace hotspot
-{
+namespace hotspot {
 /*
 * See: http://stackoverflow.com/questions/1120140/how-can-i-read-and-parse-csv-files-in-c/1120224#1120224
 * For more information on this source.
 */
 std::string Reformat::operator[](unsigned int column) { return column_data[column]; }
 
-void Reformat::getColumn(std::istream& file)
-{
+void Reformat::getColumn(std::istream& file) {
    column_data.clear();
    std::getline(file, row);
    std::istringstream stream(row);

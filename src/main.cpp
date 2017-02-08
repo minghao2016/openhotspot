@@ -11,8 +11,7 @@
 
 using namespace hotspot;
 
-void usage()
-{
+void usage() {
    std::cout
    << "usage: ./hotspot [--crime-file] [--date-file] [--lat-file]\n"
    << "                 [--long-file] [--reformat-file] [--crime-column]\n"
@@ -40,8 +39,7 @@ void usage()
    << std::endl;
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
    /*if (argc <= 1) usage();
    Hotspot hotspot;
    std::string _argv = argv[1];

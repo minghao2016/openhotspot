@@ -11,12 +11,10 @@
 #include "types.h"
 #include "spatial_autocorrelation.h"
 
-namespace hotspot
-{
+namespace hotspot {
 
 Model::Model(std::vector<Coordinates*> _clusters):
-   clusters(_clusters)
-{
+   clusters(_clusters) {
 }
 
 Model::~Model() {}

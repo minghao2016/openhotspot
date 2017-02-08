@@ -26,8 +26,7 @@
 #include "model.h"
 #include "export.h"
 
-struct Files
-{
+struct Files {
    std::string dates_file;
    std::string lat_file;
    std::string long_file;
@@ -35,19 +34,16 @@ struct Files
    std::string csv_file;
 };
 
-struct Columns
-{
+struct Columns {
    unsigned int dates_column;
    unsigned int lat_column;
    unsigned int long_column;
    unsigned int crimes_column;
 };
 
-namespace hotspot
-{
+namespace hotspot {
 
-class Hotspot
-{
+class Hotspot {
 private:
    double temp_lat;
    double temp_long;

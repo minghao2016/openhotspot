@@ -1,3 +1,8 @@
+##Wed Feb 8, 2017
+- Fixed euclidean distance metric.
+- Made some indentation changes to the framework.
+- Fixed templates in scripts.
+
 ##Mon Feb 6, 2017
 - Deleted different language docs for right now until the actual README is finished.
 - Added headers for client files.

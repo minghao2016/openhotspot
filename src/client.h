@@ -21,11 +21,9 @@
 #include <Wt/WText>
 #include <Wt/WTable>
 
-namespace hotspot
-{
+namespace hotspot {
 
-class Client
-{
+class Client {
 private:
 public:
    Client();

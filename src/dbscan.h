@@ -17,24 +17,20 @@
 #include <numeric>
 #include <assert.h>
 
-struct Coordinates
-{
+struct Coordinates {
    std::vector<double> lat_pts;
    std::vector<double> long_pts;
 };
 
-struct ClusterWeights
-{
+struct ClusterWeights {
    float eps;
    unsigned int min_pts;
    std::string dist_metric;
 };
 
-namespace hotspot
-{
+namespace hotspot {
 
-class DBSCAN
-{
+class DBSCAN {
 private:
    std::vector<Coordinates*> coordinates;
 
@@ -47,7 +43,6 @@ private:
 
    std::vector<bool> visited_pts;
    std::vector<bool> clustered_pts;
-
    std::vector<std::vector<int32_t> > cluster_pts;
 
 public:
@@ -57,7 +52,7 @@ public:
    uint32_t n_clusters();
    std::vector<uint32_t> noise_pts();
 
-   void epsEstimation();
+   void epsEstimation(uint32_t p);
    void minptsEstimation();
 
    void getClusterCenterPoint();

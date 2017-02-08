@@ -18,13 +18,10 @@
 #include <Wt/WString>
 #include <Wt/WJavaScript>
 
-namespace hotspot
-{
+namespace hotspot {
 
-class ClientMap
-{
+class ClientMap {
 private:
-
 public:
    ClientMap();
    ~ClientMap();

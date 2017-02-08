@@ -17,11 +17,9 @@
 #include <sstream>
 #include <fstream>
 
-namespace hotspot
-{
+namespace hotspot {
 
-class Reformat
-{
+class Reformat {
 private:
    std::string row;
    std::string line;

@@ -14,8 +14,7 @@ namespace hotspot
 {
 
 SpatialAutocorrelation::SpatialAutocorrelation(std::vector<Coordinates*> _clusters):
-   clusters(_clusters)
-{
+   clusters(_clusters) {
 }
 
 SpatialAutocorrelation::~SpatialAutocorrelation() {}

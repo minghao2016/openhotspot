@@ -16,19 +16,16 @@
 #include <string>
 #include <cmath>
 
-struct MetricCoordinates
-{
+struct MetricCoordinates {
    double lat_1;
    double long_1;
    double lat_2;
    double long_2;
 };
 
-namespace hotspot
-{
+namespace hotspot {
 
-class Metrics
-{
+class Metrics {
 public:
    /*
    * @brief Degrees to radians conversion

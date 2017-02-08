@@ -23,11 +23,9 @@ struct PredictedData {
    std::vector<double> noise_long;
 };
 
-namespace hotspot
-{
+namespace hotspot {
 
-class Export
-{
+class Export {
 private:
    const std::string& csv_file;
    std::ofstream prediction_file;

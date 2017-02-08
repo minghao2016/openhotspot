@@ -17,11 +17,9 @@
 
 #include "dbscan.h"
 
-namespace hotspot
-{
+namespace hotspot {
 
-class SpatialAutocorrelation
-{
+class SpatialAutocorrelation {
 private:
    std::vector<Coordinates*> clusters;
 

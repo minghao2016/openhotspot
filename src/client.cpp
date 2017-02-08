@@ -11,8 +11,7 @@
 #include "client_map.h"
 #include "types.h"
 
-namespace hotspot
-{
+namespace hotspot {
 
 Client::Client()
 {

@@ -9,22 +9,19 @@
 */
 #include "export.h"
 
-namespace hotspot
-{
+namespace hotspot {
 
 Export::Export(const std::string& _csv_file):
    csv_file(_csv_file),
-   prediction_file(csv_file, std::ofstream::out | std::ofstream::app)
-{
+   prediction_file(csv_file, std::ofstream::out | std::ofstream::app) {
 }
 
-Export::~Export()
-{
+Export::~Export() {
    if (!prediction_file.is_open()){
       std::printf("ERROR: Could not write prediction file.\n");
       exit(EXIT_FAILURE);
    }
-}
+} 
 
 void Export::save(PredictedData& p_data)
 {
