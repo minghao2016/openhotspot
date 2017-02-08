@@ -50,7 +50,6 @@ void DBSCAN::epsEstimation(uint32_t p) {
       }
       double eps_sum = std::accumulate(eps_estimate.begin(), eps_estimate.end(), 0.0);
       double eps_mean = eps_sum / eps_estimate.size();
-      std::cout << eps_mean << std::endl;
       // set upper and lower bounds for eps
       double max_eps = eps_mean + 2;
       double min_eps = eps_mean - 2;
