@@ -7,26 +7,29 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-#ifndef _HS_CLIENT_H_
-#define _HS_CLIENT_H_
+#ifndef _CLIENT_H_
+#define _CLIENT_H_
 
 #include <iostream>
 #include <vector>
 #include <string>
 
-#include <Wt/WApplication>
-#include <Wt/WBreak>
-#include <Wt/WContainerWidget>
-#include <Wt/WPushButton>
-#include <Wt/WText>
-#include <Wt/WTable>
+#include <QMainWindow>
+
+namespace Ui {
+   class Client;
+}
 
 namespace hotspot {
 
-class Client {
+class Client : public QMainWindow {
+   Q_OBJECT
+
 private:
+   Ui::Client *ui;
+
 public:
-   Client();
+   explicit Client(QWidget *parent = 0);
    ~Client();
 };
 

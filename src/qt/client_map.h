@@ -7,16 +7,12 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-#ifndef _HS_CLIENT_MAP_H_
-#define _HS_CLIENT_MAP_H_
+#ifndef _CLIENT_MAP_H_
+#define _CLIENT_MAP_H_
 
 #include <iostream>
 #include <vector>
 #include <string>
-
-#include <Wt/WObject>
-#include <Wt/WString>
-#include <Wt/WJavaScript>
 
 namespace hotspot {
 

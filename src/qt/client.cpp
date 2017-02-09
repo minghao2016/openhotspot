@@ -9,14 +9,20 @@
 */
 #include "client.h"
 #include "client_map.h"
-#include "types.h"
+#include "ui_client.h"
 
 namespace hotspot {
 
-Client::Client()
+Client::Client(QWidget *parent):
+   QMainWindow(parent),
+   ui(new Ui::Client)
 {
+   ui->setupUi(this);
 }
 
-Client::~Client() {}
+Client::~Client()
+{
+   delete ui;
+}
 
 } // hotspot namespace

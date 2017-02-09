@@ -132,8 +132,12 @@ PredictedData Hotspot::addPredictedData(Coordinates* coordinates, DBSCAN dbscan)
    return p_data;
 }
 
-void Hotspot::launchWebClient()
+QApplication Hotspot::launchClient()
 {
+   QApplication qa;
+   Client client;
+   client.show();
+   return qa.exec();
 }
 
 void Hotspot::prediction(const Files& files, ClusterWeights& cluster_weights)

@@ -1,3 +1,6 @@
+##Thur Feb 9, 2017
+- Began working on Qt GUI.
+
 ##Wed Feb 8, 2017
 - Fixed euclidean distance metric.
 - Made some indentation changes to the framework.

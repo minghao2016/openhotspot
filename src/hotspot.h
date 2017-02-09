@@ -22,6 +22,8 @@
 #include <set>
 #include <iomanip>
 
+#include <QApplication>
+
 #include "dbscan.h"
 #include "model.h"
 
@@ -61,8 +63,8 @@ public:
    DBSCAN addClusterWeights(ClusterWeights&);
    Model addModelWeights();
    PredictedData addPredictedData(Coordinates*, DBSCAN);
+   QApplication launchWebClient();
 
-   void launchWebClient();
    void prediction(const Files&, ClusterWeights&);
 };
 
