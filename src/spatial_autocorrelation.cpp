@@ -10,8 +10,7 @@
 #include "spatial_autocorrelation.h"
 #include "metrics.h"
 
-namespace hotspot
-{
+namespace hotspot {
 
 SpatialAutocorrelation::SpatialAutocorrelation(std::vector<Coordinates*> _clusters):
    clusters(_clusters)
