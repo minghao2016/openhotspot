@@ -2,6 +2,7 @@
 - Fixed euclidean distance metric.
 - Made some indentation changes to the framework.
 - Fixed templates in scripts.
+- Created utils folder for files that are "not as important".
 
 ##Mon Feb 6, 2017
 - Deleted different language docs for right now until the actual README is finished.

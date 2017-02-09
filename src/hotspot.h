@@ -24,10 +24,11 @@
 
 #include "dbscan.h"
 #include "model.h"
-#include "export.h"
+
+#include "utils/export.h"
 
 struct Files {
-   std::string dates_file;
+   std::string days_file;
    std::string lat_file;
    std::string long_file;
    std::string crimes_file;
@@ -35,7 +36,7 @@ struct Files {
 };
 
 struct Columns {
-   unsigned int dates_column;
+   unsigned int days_column;
    unsigned int lat_column;
    unsigned int long_column;
    unsigned int crimes_column;
@@ -45,15 +46,10 @@ namespace hotspot {
 
 class Hotspot {
 private:
-   double temp_lat;
-   double temp_long;
-   std::string temp_crime;
-   uint32_t temp_dates;
-
    std::vector<double> lat_values;
    std::vector<double> long_values;
    std::vector<std::string> crime_values;
-   std::vector<uint32_t> date_values;
+   std::vector<std::string> day_values;
 
    std::vector<Coordinates*> cluster_coordinates;
 

@@ -19,18 +19,17 @@
 #include "dbscan.h"
 
 enum CrimeTypes {
-   ASSAULT_CRIME,
-   THEFT_CRIME,
-   DRUG_CRIME,
-   VANDALISM_CRIME,
-   BURGLARY_CRIME,
-   RAPE_CRIME,
-   OTHER_CRIME
+   AssaultCrime,
+   TheftCrime,
+   DrugCrime,
+   VandalismCrime,
+   BurglaryCrime,
+   RapeCrime,
+   OtherCrime
 };
 
 struct ModelWeights {
-   std::vector<uint32_t> crime_dates;
-   std::vector<std::string> crime_types;
+   std::vector<std::string> c_dates;
 };
 
 struct PredictedCoordinates {
@@ -48,6 +47,7 @@ public:
    Model(std::vector<Coordinates*>);
    ~Model();
    std::vector<uint32_t> getCrimeFrequency(ModelWeights& weights);
+   std::vector<PredictedCoordinates> modelPrediction();
    float computeAccuracy();
    float computeError();
 };

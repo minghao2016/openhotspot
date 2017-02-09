@@ -15,7 +15,8 @@ namespace hotspot {
 DBSCAN::DBSCAN(std::vector<Coordinates*> _coordinates, ClusterWeights& _cluster_weights):
    coordinates(_coordinates),
    cluster_weights(_cluster_weights),
-   n_clusters_(-1) {
+   n_clusters_(-1)
+{
    for (uint32_t i = 0; i < coordinates[0]->lat_pts.size(); i++) {
       //epsEstimation(i);
       //minptsEstimation();
@@ -27,15 +28,18 @@ DBSCAN::DBSCAN(std::vector<Coordinates*> _coordinates, ClusterWeights& _cluster_
 
 DBSCAN::~DBSCAN() {}
 
-uint32_t DBSCAN::n_clusters() {
+uint32_t DBSCAN::n_clusters()
+{
    return n_clusters_;
 }
 
-std::vector<uint32_t> DBSCAN::noise_pts() {
+std::vector<uint32_t> DBSCAN::noise_pts()
+{
    return noise_pts_;
 }
 
-void DBSCAN::epsEstimation(uint32_t p) {
+void DBSCAN::epsEstimation(uint32_t p)
+{
    Metrics metrics;
    MetricCoordinates _mc;
    std::vector<double> eps_estimate;
@@ -80,7 +84,8 @@ void DBSCAN::minptsEstimation()
 {
 }
 
-void DBSCAN::getClusterCenterPoint() {
+void DBSCAN::getClusterCenterPoint()
+{
    uint32_t cluster_size = cluster_pts.size();
    assert(cluster_size != 0);
    for (uint32_t i = 0; i < cluster_size; i++) {
@@ -90,7 +95,8 @@ void DBSCAN::getClusterCenterPoint() {
    }
 }
 
-std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p) {
+std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p)
+{
    Metrics metrics;
    MetricCoordinates _mc;
    uint32_t coordinates_size = coordinates[0]->lat_pts.size();
@@ -119,7 +125,8 @@ std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p) {
    return rq_pts;
 }
 
-void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts, int32_t* n_clusters) {
+void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts, int32_t* n_clusters)
+{
    cluster_pts.push_back(std::vector<int32_t>());
    cluster_pts[*n_clusters].push_back(p);
    uint32_t ec_neighbors_size = ec_neighbor_pts->size();
@@ -142,7 +149,8 @@ void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts, i
    }
 }
 
-void DBSCAN::performClusterSearch() {
+void DBSCAN::performClusterSearch()
+{
    uint32_t coordinates_size = coordinates[0]->lat_pts.size();
    for (uint32_t i = 0; i < coordinates_size; i++) {
       if (visited_pts[i]) {

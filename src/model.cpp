@@ -14,7 +14,8 @@
 namespace hotspot {
 
 Model::Model(std::vector<Coordinates*> _clusters):
-   clusters(_clusters) {
+   clusters(_clusters)
+{
 }
 
 Model::~Model() {}

@@ -8,19 +8,23 @@
  * information about using this program.
 */
 #include "hotspot.h"
-#include "reformat.h"
 #include "client.h"
 #include "types.h"
+
+#include "utils/reformat.h"
+
 #include "version.h"
 
 namespace hotspot {
 
-std::istream& operator>>(std::istream& file, Reformat& reformat) {
+std::istream& operator>>(std::istream& file, Reformat& reformat)
+{
    reformat.getColumn(file);
    return file;
 }
 
-void Hotspot::reformatCSVFile(const Files& files, Columns columns) {
+void Hotspot::reformatCSVFile(const Files& files, Columns columns)
+{
    Reformat reformat;
    std::ifstream if_csv(files.csv_file);
    if (!if_csv.is_open()) {
@@ -28,11 +32,11 @@ void Hotspot::reformatCSVFile(const Files& files, Columns columns) {
       exit(EXIT_FAILURE);
    } else {
       while (if_csv >> reformat) {
-         std::string crime_c = reformat[columns.crimes_column];
-         std::string date_c = reformat[columns.dates_column];
-         std::string lat_c = reformat[columns.lat_column];
-         std::string long_c = reformat[columns.long_column];
-         if (crime_c.empty() || date_c.empty() || lat_c.empty() || long_c.empty()) {
+         std::string crimes_column = reformat[columns.crimes_column];
+         std::string days_column = reformat[columns.days_column];
+         std::string lat_column = reformat[columns.lat_column];
+         std::string long_column = reformat[columns.long_column];
+         if (crimes_column.empty() || days_column.empty() || lat_column.empty() || long_column.empty()) {
             std::printf("WARNING: One or more columns are empty.\n");
          }
          std::ofstream exported_crimes(CRIMES_FILE, std::ofstream::out | std::ofstream::app);
@@ -40,39 +44,41 @@ void Hotspot::reformatCSVFile(const Files& files, Columns columns) {
             std::printf("ERROR: Could not write crimes file.\n");
             exit(EXIT_FAILURE);
          } else {
-            exported_crimes << crime_c << std::endl;
+            exported_crimes << crimes_column << std::endl;
          }
-         std::ofstream exported_dates(DATES_FILE, std::ofstream::out | std::ofstream::app);
-         if (!exported_dates.is_open()) {
-            std::printf("ERROR: Could not write dates file.\n");
+         std::ofstream exported_days(C_DAYS_FILE, std::ofstream::out | std::ofstream::app);
+         if (!exported_days.is_open()) {
+            std::printf("ERROR: Could not write c_dates file.\n");
             exit(EXIT_FAILURE);
          } else {
-            exported_dates << date_c << std::endl;
+            exported_days << days_column << std::endl;
          }
-         std::ofstream exported_lat(LATITUDES_FILE, std::ofstream::out | std::ofstream::app);
+         std::ofstream exported_lat(C_LATITUDES_FILE, std::ofstream::out | std::ofstream::app);
          if (!exported_lat.is_open()) {
-            std::printf("ERROR: Could not write latitudes file.\n");
+            std::printf("ERROR: Could not write c_latitudes file.\n");
             exit(EXIT_FAILURE);
          } else {
-            exported_lat << lat_c << std::endl;
+            exported_lat << lat_column << std::endl;
          }
-         std::ofstream exported_long(LONGITUDES_FILE, std::ofstream::out | std::ofstream::app);
+         std::ofstream exported_long(C_LONGITUDES_FILE, std::ofstream::out | std::ofstream::app);
          if (!exported_long.is_open()) {
-            std::printf("ERROR: Could not write longitudes file.\n");
+            std::printf("ERROR: Could not write c_longitudes file.\n");
             exit(EXIT_FAILURE);
          } else {
-            exported_long << long_c << std::endl;
+            exported_long << long_column << std::endl;
          }
       }
    }
 }
 
-void Hotspot::printCrimeRate(const Files& files) {
+void Hotspot::printCrimeRate(const Files& files)
+{
    std::ifstream if_crime(files.crimes_file);
    if (!if_crime.is_open()) {
-      std::printf("ERROR: Could not open crime file.\n");
+      std::printf("ERROR: Could not open crimes file.\n");
       exit(EXIT_FAILURE);
    } else {
+      std::string temp_crime;
       while (if_crime >> temp_crime) {
          crime_values.push_back(temp_crime);
       }
@@ -87,7 +93,8 @@ void Hotspot::printCrimeRate(const Files& files) {
    }
 }
 
-Coordinates* Hotspot::addCoordinates() {
+Coordinates* Hotspot::addCoordinates()
+{
    Coordinates* coordinates = new Coordinates;
    coordinates->lat_pts = lat_values;
    coordinates->long_pts = long_values;
@@ -95,22 +102,24 @@ Coordinates* Hotspot::addCoordinates() {
    return coordinates;
 }
 
-DBSCAN Hotspot::addClusterWeights(ClusterWeights& cluster_weights) {
+DBSCAN Hotspot::addClusterWeights(ClusterWeights& cluster_weights)
+{
    DBSCAN dbscan(cluster_coordinates, cluster_weights);
    dbscan.performClusterSearch();
    dbscan.getClusterCenterPoint();
    return dbscan;
 }
 
-Model Hotspot::addModelWeights() {
+Model Hotspot::addModelWeights()
+{
    Model model(cluster_coordinates);
    ModelWeights model_weights;
-   model_weights.crime_dates = date_values;
-   model_weights.crime_types = crime_values;
+   model_weights.c_dates = day_values;
    return model;
 }
 
-PredictedData Hotspot::addPredictedData(Coordinates* coordinates, DBSCAN dbscan) {
+PredictedData Hotspot::addPredictedData(Coordinates* coordinates, DBSCAN dbscan)
+{
    PredictedData p_data;
    p_data.n_clusters = dbscan.n_clusters();
    p_data.core_lat = coordinates->lat_pts;
@@ -127,30 +136,34 @@ void Hotspot::launchWebClient()
 {
 }
 
-void Hotspot::prediction(const Files& files, ClusterWeights& cluster_weights) {
-   std::ifstream if_dates(files.dates_file);
-   if (!if_dates.is_open()) {
-      std::printf("ERROR: Could not open dates file.\n");
+void Hotspot::prediction(const Files& files, ClusterWeights& cluster_weights)
+{
+   std::ifstream if_days(files.days_file);
+   if (!if_days.is_open()) {
+      std::printf("ERROR: Could not open c_days file.\n");
       exit(EXIT_FAILURE);
    } else {
-      while (if_dates >> temp_dates) {
-         date_values.push_back(temp_dates);
+      std::string temp_days;
+      while (if_days >> temp_days) {
+         day_values.push_back(temp_days);
       }
    }
    std::ifstream if_lat(files.lat_file);
    if (!if_lat.is_open()) {
-      std::printf("ERROR: Could not open latitude file.\n");
+      std::printf("ERROR: Could not open c_latitudes file.\n");
       exit(EXIT_FAILURE);
    } else {
+      double temp_lat;
       while (if_lat >> temp_lat) {
          lat_values.push_back(temp_lat);
       }
    }
    std::ifstream if_long(files.long_file);
    if (!if_long.is_open()) {
-      std::printf("ERROR: Could not open longitude file.\n");
+      std::printf("ERROR: Could not open c_longitudes file.\n");
       exit(EXIT_FAILURE);
    } else {
+      double temp_long;
       while (if_long >> temp_long) {
          long_values.push_back(temp_long);
       }

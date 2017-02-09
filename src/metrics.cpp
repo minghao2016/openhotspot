@@ -13,7 +13,8 @@ namespace hotspot {
 
 double Metrics::degreesToRadians(double degrees) {return degrees * 3.14159 / 180;}
 
-double Metrics::haversineDistanceMetric(MetricCoordinates& _mc) {
+double Metrics::haversineDistanceMetric(MetricCoordinates& _mc)
+{
    double dlat_1 = degreesToRadians(_mc.lat_1);
    double dlong_1 = degreesToRadians(_mc.long_1);
    double dlat_2 = degreesToRadians(_mc.lat_2);
@@ -23,7 +24,8 @@ double Metrics::haversineDistanceMetric(MetricCoordinates& _mc) {
    return 2 * 6371 * asin(sqrt(a * a + cos(dlat_1) * cos(dlat_2) * b * b));
 }
 
-double Metrics::euclideanDistanceMetric(MetricCoordinates& _mc) {
+double Metrics::euclideanDistanceMetric(MetricCoordinates& _mc)
+{
    double dlat_1 = pow(_mc.lat_2 - _mc.lat_1, 2.0);
    double dlong_1 = pow(_mc.long_2 - _mc.long_1, 2.0);
    return sqrt(dlat_1 + dlong_1);

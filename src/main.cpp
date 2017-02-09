@@ -40,60 +40,47 @@ void usage() {
 }
 
 int main(int argc, char **argv) {
-   /*if (argc <= 1) usage();
-   Hotspot hotspot;
+   /*Hotspot hotspot;
+   Files files;
+   Columns columns;
+   ClusterWeights cluster_weights;
+   if (argc <= 1 || _argv == "--help") usage();
    std::string _argv = argv[1];
-   if (_argv == "--help"){
-      usage();
+   else if (_argv == "-crime-file" || _argv == "--crime-file") {
    }
-   else if (_argv == "--crime-file"){
-      Files files;
+   else if (_argv == "-date-file" || _argv == "--date-file") {
    }
-   else if (_argv == "--date-file"){
-      Files files;
+   else if (_argv == "-lat-file" || _argv == "--lat-file") {
    }
-   else if (_argv == "--lat-file"){
-      Files files;
+   else if (_argv == "-long-file" || _argv == "--long-file") {
    }
-   else if (_argv == "--long-file"){
-      Files files;
+   else if (_argv == "-reformat-file" || _argv == "--reformat-file") {
    }
-   else if (_argv == "--reformat-file"){
-      Files files;
+   else if (_argv == "-crime-column" || _argv == "--crime-column") {
    }
-   else if (_argv == "--crime-column"){
-      Columns columns;
+   else if (_argv == "-date-column" || _argv == "--date-column") {
    }
-   else if (_argv == "--date-column"){
-      Columns columns;
+   else if (_argv == "-lat-column" || _argv == "--lat-column") {
    }
-   else if (_argv == "--lat-column"){
-      Columns columns;
+   else if (_argv == "-long-column" || _argv == "--long-column") {
    }
-   else if (_argv == "--long-column"){
-      Columns columns;
+   else if (_argv == "-eps" || _argv == "--eps") {
    }
-   else if (_argv == "--eps"){
-      ClusterWeights cluster_weights;
+   else if (_argv == "-min-pts" || _argv == "--min-pts") {
    }
-   else if (_argv == "--min-pts"){
-      ClusterWeights cluster_weights;
+   else if (_argv == "-distance-metric" || _argv == "--distance-metric") {
    }
-   else if (_argv == "--distance-metric"){
-      ClusterWeights cluster_weights;
-   }
-   else if (_argv == "--crime-rate"){
-      Files files;
+   else if (_argv == "-crime-rate" || _argv == "--crime-rate") {
       files.crimes_file = _argv[1];
       hotspot.printCrimeRate(files);
    }
-   else if (_argv == "--version"){
+   else if (_argv == "-version" || (_argv == "--version") {
       std::cout << VERSION_DESCRIPTION << std::endl;
    }*/
    Files files;
-   files.dates_file = "../data/test_dates.txt";
-   files.lat_file = "../data/test_latitudes.txt";
-   files.long_file = "../data/test_longitudes.txt";
+   files.days_file = "../data/test_c_days.txt";
+   files.lat_file = "../data/test_c_latitudes.txt";
+   files.long_file = "../data/test_c_longitudes.txt";
    ClusterWeights cluster_weights;
    cluster_weights.eps = 1.7;
    cluster_weights.min_pts = 1000;
