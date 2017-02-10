@@ -8,12 +8,16 @@
  * information about using this program.
 */
 #include "client.h"
-#include "client_map.h"
+#include "dashboard.h"
+#include "trending.h"
+
 #include "ui_client.h"
+
+#include "../types.h"
 
 namespace hotspot {
 
-Client::Client(QWidget *parent):
+Client::Client(QWidget* parent):
    QMainWindow(parent),
    ui(new Ui::Client)
 {

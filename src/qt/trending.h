@@ -7,30 +7,26 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-#ifndef _CLIENT_H_
-#define _CLIENT_H_
+#ifndef _TRENDING_H_
+#define _TRENDING_H_
 
-#include <iostream>
-#include <vector>
-#include <string>
-
-#include <QMainWindow>
+#include <QWidget>
 
 namespace Ui {
-   class Client;
+   class Trending;
 }
 
 namespace hotspot {
 
-class Client : public QMainWindow {
+class Trending : public QWidget {
    Q_OBJECT
 
 private:
-   Ui::Client* ui;
+   Ui::Trending* ui;
 
 public:
-   explicit Client(QWidget*);
-   ~Client();
+   explicit Trending(QWidget* parent);
+   ~Trending();
 };
 
 }

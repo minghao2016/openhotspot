@@ -7,30 +7,26 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-#ifndef _CLIENT_H_
-#define _CLIENT_H_
+#ifndef _DASHBOARD_H_
+#define _DASHBOARD_H_
 
-#include <iostream>
-#include <vector>
-#include <string>
-
-#include <QMainWindow>
+#include <QWidget>
 
 namespace Ui {
-   class Client;
+   class Dashboard;
 }
 
 namespace hotspot {
 
-class Client : public QMainWindow {
+class Dashboard : public QWidget {
    Q_OBJECT
 
 private:
-   Ui::Client* ui;
+   Ui::Dashboard* ui;
 
 public:
-   explicit Client(QWidget*);
-   ~Client();
+   explicit Dashboard(QWidget*);
+   ~Dashboard();
 };
 
 }

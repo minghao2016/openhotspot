@@ -1,5 +1,6 @@
 ##Thur Feb 9, 2017
 - Began working on Qt GUI.
+- Removed dashboard since the launch should be simply to display the predicted clusters.
 
 ##Wed Feb 8, 2017
 - Fixed euclidean distance metric.

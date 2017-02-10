@@ -7,14 +7,23 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-#include "client_map.h"
+#include "trending.h"
+#include "ui_trending.h"
+
+#include "../types.h"
 
 namespace hotspot {
 
-ClientMap::ClientMap()
+Trending::Trending(QWidget* parent):
+   QWidget(parent),
+   ui(new Ui::Trending)
 {
+   ui->setupUi(this);
 }
 
-ClientMap::~ClientMap() {}
+Trending::~Trending()
+{
+   delete ui;
+}
 
 } // hotspot namespace

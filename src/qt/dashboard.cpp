@@ -7,24 +7,23 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-#ifndef _CLIENT_MAP_H_
-#define _CLIENT_MAP_H_
+#include "dashboard.h"
+#include "ui_dashboard.h"
 
-#include <iostream>
-#include <vector>
-#include <string>
+#include "../types.h"
 
 namespace hotspot {
 
-class ClientMap {
-private:
-public:
-   ClientMap();
-   ~ClientMap();
-   void createMapJS();
-   void createDashboardJS();
-};
-
+Dashboard::Dashboard(QWidget* parent):
+   QWidget(parent),
+   ui(new Ui::Dashboard)
+{
+   ui->setupUi(this);
 }
 
-#endif
+Dashboard::~Dashboard()
+{
+   delete ui;
+}
+
+} // hotspot namespace

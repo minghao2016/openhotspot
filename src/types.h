@@ -10,14 +10,15 @@
 #ifndef _HS_TYPES_H_
 #define _HS_TYPES_H_
 
+#define CRIMES_FILE "../data/crimes.txt"
 #define C_LATITUDES_FILE "../data/c_latitudes.txt"
 #define C_LONGITUDES_FILE "../data/c_longitudes.txt"
-#define CRIMES_FILE "../data/crimes.txt"
 #define C_DAYS_FILE "../data/c_days.txt"
 
 #define PREDICTION_FILE "../data/prediction.csv"
 
-#define MAP_CSS "qt/ui/map_ui.css"
-#define DASHBOARD_CSS "qt/ui/dashboard_ui.css"
+#define MAP_JS "qt/js/client.js"
+#define DASHBOARD_JS "qt/js/dashboard.js"
+#define TRENDING_JS "qt/js/trending.js"
 
 #endif
