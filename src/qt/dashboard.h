@@ -13,21 +13,25 @@
 #include <QWidget>
 
 namespace Ui {
-   class Dashboard;
+  class Dashboard;
 }
 
 namespace hotspot {
 
+namespace qt {
+
 class Dashboard : public QWidget {
-   Q_OBJECT
+  Q_OBJECT
 
 private:
-   Ui::Dashboard* ui;
+  Ui::Dashboard* ui;
 
 public:
-   explicit Dashboard(QWidget*);
-   ~Dashboard();
+  explicit Dashboard(QWidget*);
+  ~Dashboard();
 };
+
+}
 
 }
 

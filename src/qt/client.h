@@ -15,23 +15,29 @@
 #include <string>
 
 #include <QMainWindow>
+#include <QWebFrame>
+#include <QWebView>
 
 namespace Ui {
-   class Client;
+  class Client;
 }
 
 namespace hotspot {
 
+namespace qt {
+
 class Client : public QMainWindow {
-   Q_OBJECT
+  Q_OBJECT
 
 private:
-   Ui::Client* ui;
+  Ui::Client* ui;
 
 public:
-   explicit Client(QWidget*);
-   ~Client();
+  explicit Client(QWidget*);
+  ~Client();
 };
+
+}
 
 }
 

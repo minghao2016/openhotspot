@@ -7,6 +7,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+
 def _parse_csvfile(csvfile):
     column = collections.defaultdict(list)
     with open(self.csvfile, "r") as csvfile:
@@ -27,6 +28,6 @@ def _plot_clusters():
                             core_long=float(parser["core_long"]),
                             noise_lat=float(parser["noise_lat"]),
                             noise_long=float(parser["noise_long"]))
-
+                            
 if __name__ == '__main__':
     app.run(port=8080)

@@ -21,11 +21,11 @@ namespace hotspot {
 
 class SpatialAutocorrelation {
 private:
-   std::vector<Coordinates*> clusters;
+  std::vector<Coordinates*> clusters;
 
 public:
-   SpatialAutocorrelation(std::vector<Coordinates*>);
-   ~SpatialAutocorrelation();
+  SpatialAutocorrelation(std::vector<Coordinates*>);
+  ~SpatialAutocorrelation();
 };
 
 }

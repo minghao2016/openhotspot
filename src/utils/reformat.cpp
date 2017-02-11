@@ -20,16 +20,16 @@ std::string Reformat::operator[](unsigned int column) { return column_data[colum
 
 void Reformat::getColumn(std::istream& file)
 {
-   column_data.clear();
-   std::getline(file, row);
-   std::istringstream stream(row);
-   while (std::getline(stream, line)){
-      boost::escaped_list_separator<char> delimiter;
-      boost::tokenizer<boost::escaped_list_separator<char> > token(line, delimiter);
-      for (auto t : token){
-         column_data.push_back(t);
-      }
-   }
+  column_data.clear();
+  std::getline(file, row);
+  std::istringstream stream(row);
+  while (std::getline(stream, line)){
+    boost::escaped_list_separator<char> delimiter;
+    boost::tokenizer<boost::escaped_list_separator<char> > token(line, delimiter);
+    for (auto t : token){
+      column_data.push_back(t);
+    }
+  }
 }
 
 } // hotspot namespace

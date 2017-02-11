@@ -21,13 +21,13 @@ namespace hotspot {
 
 class Reformat {
 private:
-   std::string row;
-   std::string line;
-   std::vector<std::string> column_data;
+  std::string row;
+  std::string line;
+  std::vector<std::string> column_data;
 
 public:
-   std::string operator[](unsigned int);
-   void getColumn(std::istream&);
+  std::string operator[](unsigned int);
+  void getColumn(std::istream&);
 };
 
 }

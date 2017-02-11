@@ -8,22 +8,27 @@
  * information about using this program.
 */
 #include "trending.h"
+
 #include "ui_trending.h"
 
 #include "../types.h"
 
 namespace hotspot {
 
+namespace qt {
+
 Trending::Trending(QWidget* parent):
-   QWidget(parent),
-   ui(new Ui::Trending)
+  QWidget(parent),
+  ui(new Ui::Trending)
 {
-   ui->setupUi(this);
+  ui->setupUi(this);
 }
 
 Trending::~Trending()
 {
-   delete ui;
+  delete ui;
 }
+
+} // qt namespace
 
 } // hotspot namespace

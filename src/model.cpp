@@ -8,13 +8,13 @@
  * information about using this program.
 */
 #include "model.h"
-#include "types.h"
+#include "vector.h"
 #include "spatial_autocorrelation.h"
 
 namespace hotspot {
 
 Model::Model(std::vector<Coordinates*> _clusters):
-   clusters(_clusters)
+  clusters(_clusters)
 {
 }
 

@@ -9,7 +9,7 @@ SRC=$(SOURCES:%.cpp=%.o)
 all: $(TARGET)
 
 $(TARGET): $(SRC)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRC) 
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRC)
 
 .PHONY: clean
 

@@ -19,37 +19,36 @@
 #include "dbscan.h"
 
 enum CrimeTypes {
-   AssaultCrime,
-   TheftCrime,
-   DrugCrime,
-   VandalismCrime,
-   BurglaryCrime,
-   RapeCrime,
-   OtherCrime
+  AssaultCrime,
+  TheftCrime,
+  DrugCrime,
+  VandalismCrime,
+  BurglaryCrime,
+  RapeCrime,
+  OtherCrime
 };
 
 struct ModelWeights {
-   std::vector<std::string> c_dates;
+  std::vector<std::string> c_days;
 };
 
 struct PredictedCoordinates {
-   std::vector<double> lat_pts;
-   std::vector<double> long_pts;
+  std::vector<double> lat_pts;
+  std::vector<double> long_pts;
 };
 
 namespace hotspot {
 
 class Model {
 private:
-   std::vector<Coordinates*> clusters;
+  std::vector<Coordinates*> clusters;
 
 public:
-   Model(std::vector<Coordinates*>);
-   ~Model();
-   std::vector<uint32_t> getCrimeFrequency(ModelWeights& weights);
-   std::vector<PredictedCoordinates> modelPrediction();
-   float computeAccuracy();
-   float computeError();
+  Model(std::vector<Coordinates*>);
+  ~Model();
+  std::vector<uint32_t> getCrimeFrequency(ModelWeights& weights);
+  void meanAbsoluteError();
+  std::vector<PredictedCoordinates> modelPrediction();
 };
 
 }

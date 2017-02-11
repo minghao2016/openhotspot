@@ -7,30 +7,25 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-#include "client.h"
-#include "dashboard.h"
-#include "trending.h"
+#ifndef _VECTOR_H_
+#define _VECTOR_H_
 
-#include "ui_client.h"
-
-#include "../types.h"
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cmath>
 
 namespace hotspot {
 
-namespace qt {
+class Vector {
+private:
+public:
+  Vector();
+  ~Vector();
+  float computeAccuracy();
+  float computeError();
+};
 
-Client::Client(QWidget* parent):
-  QMainWindow(parent),
-  ui(new Ui::Client)
-{
-  ui->setupUi(this);
 }
 
-Client::~Client()
-{
-  delete ui;
-}
-
-} // qt namespace
-
-} // hotspot namespace
+#endif

@@ -1,3 +1,7 @@
+##Fri Feb 10, 2017
+- Added vector file to compute error and accuracy of predictions.
+- Made an indentation change.
+
 ##Thur Feb 9, 2017
 - Began working on Qt GUI.
 - Removed dashboard since the launch should be simply to display the predicted clusters.

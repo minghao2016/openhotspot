@@ -16,24 +16,24 @@
 #include <fstream>
 
 struct PredictedData {
-   int32_t n_clusters;
-   std::vector<double> core_lat;
-   std::vector<double> core_long;
-   std::vector<double> noise_lat;
-   std::vector<double> noise_long;
+  int32_t n_clusters;
+  std::vector<double> core_lat;
+  std::vector<double> core_long;
+  std::vector<double> noise_lat;
+  std::vector<double> noise_long;
 };
 
 namespace hotspot {
 
 class Export {
 private:
-   const std::string& csv_file;
-   std::ofstream prediction_file;
+  const std::string& csv_file;
+  std::ofstream prediction_file;
 
 public:
-   Export(const std::string&);
-   ~Export();
-   void save(PredictedData&);
+  Export(const std::string&);
+  ~Export();
+  void save(PredictedData&);
 };
 
 }

@@ -13,21 +13,25 @@
 #include <QWidget>
 
 namespace Ui {
-   class Trending;
+  class Trending;
 }
 
 namespace hotspot {
 
+namespace qt {
+
 class Trending : public QWidget {
-   Q_OBJECT
+  Q_OBJECT
 
 private:
-   Ui::Trending* ui;
+  Ui::Trending* ui;
 
 public:
-   explicit Trending(QWidget* parent);
-   ~Trending();
+  explicit Trending(QWidget* parent);
+  ~Trending();
 };
+
+}
 
 }
 

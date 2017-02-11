@@ -18,48 +18,49 @@
 #include <assert.h>
 
 struct Coordinates {
-   std::vector<double> lat_pts;
-   std::vector<double> long_pts;
+  std::vector<double> lat_pts;
+  std::vector<double> long_pts;
 };
 
 struct ClusterWeights {
-   float eps;
-   unsigned int min_pts;
-   std::string dist_metric;
+  float eps;
+  unsigned int min_pts;
+  std::string dist_metric;
 };
 
 namespace hotspot {
 
 class DBSCAN {
 private:
-   std::vector<Coordinates*> coordinates;
+  std::vector<Coordinates*> coordinates;
 
-   ClusterWeights& cluster_weights;
+  ClusterWeights& cluster_weights;
 
-   int32_t n_clusters_;
+  int32_t n_clusters_;
 
-   std::vector<uint32_t> rq_pts;
-   std::vector<uint32_t> noise_pts_;
+  std::vector<uint32_t> rq_pts;
+  std::vector<uint32_t> noise_pts_;
 
-   std::vector<bool> visited_pts;
-   std::vector<bool> clustered_pts;
-   std::vector<std::vector<int32_t> > cluster_pts;
+  std::vector<bool> visited_pts;
+  std::vector<bool> clustered_pts;
+  std::vector<std::vector<int32_t> > cluster_pts;
 
 public:
-   DBSCAN(std::vector<Coordinates*>, ClusterWeights&);
-   ~DBSCAN();
+  DBSCAN(std::vector<Coordinates*>, ClusterWeights&);
+  ~DBSCAN();
 
-   uint32_t n_clusters();
-   std::vector<uint32_t> noise_pts();
+  float error();
+  uint32_t n_clusters();
+  std::vector<uint32_t> noise_pts();
 
-   void epsEstimation(uint32_t p);
-   void minptsEstimation();
+  void epsEstimation(uint32_t p);
+  void minptsEstimation();
 
-   void getClusterCenterPoint();
-   std::vector<uint32_t> regionQuery(uint32_t);
-   void expandCluster(uint32_t, std::vector<uint32_t>*, int32_t*);
-   void performClusterSearch();
-   float computeError();
+  void getClusterCenterPoint();
+  std::vector<uint32_t> regionQuery(uint32_t);
+  void expandCluster(uint32_t, std::vector<uint32_t>*, int32_t*);
+  void performClusterSearch();
+  float computeError();
 };
 
 }

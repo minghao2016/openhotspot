@@ -8,22 +8,27 @@
  * information about using this program.
 */
 #include "dashboard.h"
+
 #include "ui_dashboard.h"
 
 #include "../types.h"
 
 namespace hotspot {
 
+namespace qt {
+
 Dashboard::Dashboard(QWidget* parent):
-   QWidget(parent),
-   ui(new Ui::Dashboard)
+  QWidget(parent),
+  ui(new Ui::Dashboard)
 {
-   ui->setupUi(this);
+  ui->setupUi(this);
 }
 
 Dashboard::~Dashboard()
 {
-   delete ui;
+  delete ui;
 }
+
+} // qt namespace
 
 } // hotspot namespace

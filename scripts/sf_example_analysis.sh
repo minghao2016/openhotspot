@@ -1,9 +1,9 @@
 #!/bin/sh
-.././hotspot --reformat-file sf_dataset_1k.csv --crime-column 1 \
---date-column 4 --lat-column 10 --long-column 9
+.././hotspot --reformat-file sf_dataset_1k.csv --crime-column 1 --days-column 3 \
+--lat-column 10 --long-column 9
 
-.././hotspot --crime-file ../data/crimes.txt --dates-file \
-../data/dates.txt --lat-file ../data/latitudes.txt --long-file \
-../data/longitudes.txt --eps 1.7 --min-pts 1000 --distance-metric haversine
+.././hotspot --crime-file ../data/crimes.txt --days-file ../data/c_days.txt --lat-file \
+../data/c_latitudes.txt --long-file ../data/c_longitudes.txt --eps 0.5 --min-pts 1000 \
+--distance-metric haversine
 
-python ../launch/server.py
+python ../scripts/server.py
