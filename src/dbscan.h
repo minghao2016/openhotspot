@@ -49,18 +49,19 @@ public:
   DBSCAN(std::vector<Coordinates*>, ClusterWeights&);
   ~DBSCAN();
 
+  void markPoints(size_t);
+
   float error();
   uint32_t n_clusters();
   std::vector<uint32_t> noise_pts();
 
-  void epsEstimation(uint32_t p);
-  void minptsEstimation();
+  void epsEstimation(uint32_t, size_t);
+  void minptsEstimation(size_t);
 
   void getClusterCenterPoint();
-  std::vector<uint32_t> regionQuery(uint32_t);
-  void expandCluster(uint32_t, std::vector<uint32_t>*, int32_t*);
+  std::vector<uint32_t> regionQuery(uint32_t, size_t);
+  void expandCluster(uint32_t, std::vector<uint32_t>*, int32_t*, size_t);
   void performClusterSearch();
-  float computeError();
 };
 
 }

@@ -103,10 +103,12 @@ Coordinates* Hotspot::addCoordinates()
 DBSCAN Hotspot::addClusterWeights(ClusterWeights& cluster_weights, Coordinates* coordinates)
 {
   DBSCAN dbscan(cluster_coordinates, cluster_weights);
-  //for (uint32_t i = 0; i < coordinates->lat_pts.size(); i++) {
-  //  dbscan.epsEstimation(i);
-  //  dbscan.minptsEstimation();
-  //}
+  size_t coordinates_size = coordinates->lat_pts.size();
+  for (size_t i = 0; i < coordinates_size; i++){
+    //dbscan.epsEstimation(i, coordinates_size);
+  }
+  //dbscan.minptsEstimation(coordinates_size);
+  dbscan.markPoints(coordinates_size);
   dbscan.performClusterSearch();
   dbscan.getClusterCenterPoint();
   return dbscan;
@@ -127,7 +129,8 @@ PredictedData Hotspot::addPredictedData(Coordinates* coordinates, DBSCAN dbscan)
   p_data.core_lat = coordinates->lat_pts;
   p_data.core_long = coordinates->lat_pts;
   std::vector<uint32_t> noise_pts = dbscan.noise_pts();
-  for (uint32_t i = 0; i < coordinates->lat_pts.size(); i++) {
+  size_t coordinates_size = coordinates->lat_pts.size();
+  for (size_t i = 0; i < coordinates_size; i++) {
     //p_data.noise_lat[i] = coordinates->lat_pts[i];
     //p_data.noise_long[i] = coordinates->long_pts[i];
   }

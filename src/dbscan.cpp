@@ -16,14 +16,7 @@ namespace hotspot {
 DBSCAN::DBSCAN(std::vector<Coordinates*> _coordinates, ClusterWeights& _cluster_weights):
   coordinates(_coordinates),
   cluster_weights(_cluster_weights),
-  n_clusters_(-1)
-{
-  for (uint32_t i = 0; i < coordinates[0]->lat_pts.size(); i++) {
-    // mark origin points as false
-    visited_pts.push_back(false);
-    clustered_pts.push_back(false);
-  }
-}
+  n_clusters_(-1) {}
 
 DBSCAN::~DBSCAN() {}
 
@@ -42,14 +35,21 @@ std::vector<uint32_t> DBSCAN::noise_pts()
   return noise_pts_;
 }
 
-void DBSCAN::epsEstimation(uint32_t p)
+void DBSCAN::markPoints(size_t coordinates_size)
+{
+  for (size_t i = 0; i < coordinates_size; i++) {
+    visited_pts.push_back(false);
+    clustered_pts.push_back(false);
+  }
+}
+
+void DBSCAN::epsEstimation(uint32_t p, size_t coordinates_size)
 {
   Metrics metrics;
   MetricCoordinates _mc;
   std::vector<double> eps_estimates;
-  uint32_t coordinates_size = coordinates[0]->lat_pts.size();
   if (cluster_weights.dist_metric == "haversine") {
-    for (uint32_t i = 0; i < coordinates_size; i++){
+    for (size_t i = 0; i < coordinates_size; i++){
       _mc.lat_1 = coordinates[0]->lat_pts[i];
       _mc.lat_2 = coordinates[0]->lat_pts[p];
       _mc.long_1 = coordinates[0]->long_pts[i];
@@ -67,29 +67,27 @@ void DBSCAN::epsEstimation(uint32_t p)
   }
 }
 
-void DBSCAN::minptsEstimation()
+void DBSCAN::minptsEstimation(size_t coordinates_size)
 {
 }
 
 void DBSCAN::getClusterCenterPoint()
 {
-  uint32_t cluster_size = cluster_pts.size();
+  size_t cluster_size = cluster_pts.size();
   assert(cluster_size != 0);
-  for (uint32_t i = 0; i < cluster_size; i++) {
-    std::cout << i << std::endl;
-    for (unsigned int j = 0; j < cluster_pts[i].size(); j++){
+  for (size_t i = 0; i < cluster_size; i++) {
+    for (size_t j = 0; j < cluster_pts[i].size(); j++){
       // set averaged cluster coordinates equal to cluster points
     }
   }
 }
 
-std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p)
+std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p, size_t coordinates_size)
 {
   Metrics metrics;
   MetricCoordinates _mc;
-  uint32_t coordinates_size = coordinates[0]->lat_pts.size();
   if (cluster_weights.dist_metric == "haversine") {
-    for (uint32_t i = 0; i < coordinates_size; i++) {
+    for (size_t i = 0; i < coordinates_size; i++) {
       _mc.lat_1 = coordinates[0]->lat_pts[i];
       _mc.lat_2 = coordinates[0]->lat_pts[p];
       _mc.long_1 = coordinates[0]->long_pts[i];
@@ -103,17 +101,17 @@ std::vector<uint32_t> DBSCAN::regionQuery(uint32_t p)
   return rq_pts;
 }
 
-void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts, int32_t* n_clusters)
+void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts, int32_t* n_clusters, size_t coordinates_size)
 {
   cluster_pts.push_back(std::vector<int32_t>());
   cluster_pts[*n_clusters].push_back(p);
-  uint32_t ec_neighbors_size = ec_neighbor_pts->size();
+  size_t ec_neighbors_size = ec_neighbor_pts->size();
   assert(ec_neighbors_size != 0);
-  for (uint32_t i = 0; i < ec_neighbors_size; i++) {
+  for (size_t i = 0; i < ec_neighbors_size; i++) {
     if (!visited_pts[ec_neighbor_pts->at(i)]){
       // mark point p as visited
       visited_pts[ec_neighbor_pts->at(i)] = true;
-      std::vector<uint32_t> ec_neighbor_pts_ = regionQuery(ec_neighbor_pts->at(i));
+      std::vector<uint32_t> ec_neighbor_pts_ = regionQuery(ec_neighbor_pts->at(i), coordinates_size);
       if (ec_neighbor_pts_.size() >= cluster_weights.min_pts){
         ec_neighbor_pts->insert(ec_neighbor_pts->end(), ec_neighbor_pts_.begin(), ec_neighbor_pts_.end());
       }
@@ -129,21 +127,21 @@ void DBSCAN::expandCluster(uint32_t p, std::vector<uint32_t>* ec_neighbor_pts, i
 
 void DBSCAN::performClusterSearch()
 {
-  uint32_t coordinates_size = coordinates[0]->lat_pts.size();
-  for (uint32_t i = 0; i < coordinates_size; i++) {
+  size_t coordinates_size = coordinates[0]->lat_pts.size();
+  for (size_t i = 0; i < coordinates_size; i++) {
     if (visited_pts[i]) {
       continue;
      } else {
        // mark point p as visited
        visited_pts[i] = true;
-       std::vector<uint32_t> rq_neighbor_pts = regionQuery(i);
+       std::vector<uint32_t> rq_neighbor_pts = regionQuery(i, coordinates_size);
        if (rq_neighbor_pts.size() < cluster_weights.min_pts) {
          noise_pts_.push_back(rq_neighbor_pts[i]);
        } else {
          n_clusters_++;
          // mark point p as clustered
          clustered_pts[i] = true;
-         expandCluster(i, &rq_neighbor_pts, &n_clusters_);
+         expandCluster(i, &rq_neighbor_pts, &n_clusters_, coordinates_size);
        }
      }
    }
