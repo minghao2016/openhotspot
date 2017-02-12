@@ -54,14 +54,14 @@ private:
   std::vector<Coordinates*> cluster_coordinates;
 
 public:
-  void reformatCSVFile(std::string, Columns);
+  void reformatCSVFile(const std::string&, const Columns);
   void printCrimeRate();
 
   Coordinates* addCoordinates();
   DBSCAN addClusterWeights(ClusterWeights&, Coordinates*);
   Model addModelWeights();
   PredictedData addPredictedData(Coordinates*, DBSCAN);
-  //QApplication launchWebClient();
+  //QApplication launchClient();
 
   void prediction(ClusterWeights&);
 };

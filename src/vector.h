@@ -18,12 +18,11 @@
 namespace hotspot {
 
 class Vector {
-private:
 public:
-  Vector();
-  ~Vector();
-  float computeAccuracy();
-  float computeError();
+  template<class Vec>
+  float computeAccuracy(Vec, Vec);
+  template<class Vec>
+  float computeError(Vec, Vec);
 };
 
 }

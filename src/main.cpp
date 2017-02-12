@@ -88,4 +88,5 @@ int main(int argc, char **argv) {
   Hotspot hotspot;
   hotspot.prediction(cluster_weights);
   //hotspot.reformatCSVFile("../data/test_sf_dataset.csv", columns);
+  //hotspot.launchClient();
 }

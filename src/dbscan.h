@@ -34,34 +34,34 @@ class DBSCAN {
 private:
   std::vector<Coordinates*> coordinates;
 
-  ClusterWeights& cluster_weights;
-
   int32_t n_clusters_;
 
   std::vector<uint32_t> rq_pts;
   std::vector<uint32_t> noise_pts_;
+  std::vector<uint32_t> ec_neighbor_pts_;
+  std::vector<uint32_t> rq_neighbor_pts;
 
   std::vector<bool> visited_pts;
   std::vector<bool> clustered_pts;
   std::vector<std::vector<int32_t> > cluster_pts;
 
 public:
-  DBSCAN(std::vector<Coordinates*>, ClusterWeights&);
+  DBSCAN(std::vector<Coordinates*>);
   ~DBSCAN();
 
   void markPoints(size_t);
 
-  float error();
-  uint32_t n_clusters();
-  std::vector<uint32_t> noise_pts();
+  float error() const;
+  uint32_t n_clusters() const;
+  std::vector<uint32_t> noise_pts() const;
 
-  void epsEstimation(uint32_t, size_t);
-  void minptsEstimation(size_t);
+  void epsEstimation(uint32_t, size_t, ClusterWeights&);
+  void minptsEstimation(size_t, ClusterWeights&);
 
   void getClusterCenterPoint();
-  std::vector<uint32_t> regionQuery(uint32_t, size_t);
-  void expandCluster(uint32_t, std::vector<uint32_t>*, int32_t*, size_t);
-  void performClusterSearch();
+  std::vector<uint32_t> regionQuery(uint32_t, size_t, ClusterWeights&);
+  void expandCluster(uint32_t, std::vector<uint32_t>*, int32_t*, size_t, ClusterWeights&);
+  void performClusterSearch(ClusterWeights&);
 };
 
 }

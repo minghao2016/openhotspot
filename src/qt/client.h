@@ -15,8 +15,8 @@
 #include <string>
 
 #include <QMainWindow>
-#include <QWebFrame>
-#include <QWebView>
+//#include <QWebFrame>
+//#include <QWebView>
 
 namespace Ui {
   class Client;

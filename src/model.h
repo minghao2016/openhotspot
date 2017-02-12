@@ -46,7 +46,7 @@ private:
 public:
   Model(std::vector<Coordinates*>);
   ~Model();
-  std::vector<uint32_t> getCrimeFrequency(ModelWeights& weights);
+  std::vector<uint32_t> getCrimeFrequency(ModelWeights&);
   void meanAbsoluteError();
   std::vector<PredictedCoordinates> modelPrediction();
 };

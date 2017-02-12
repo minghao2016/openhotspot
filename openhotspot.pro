@@ -2,14 +2,16 @@ QT+=core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT+=widgets
 TARGET=hotspot
 TEMPLATE=app
+CONFIG-=app_bundle
 
 SOURCES+=src/main.cpp \
-         src/hotspot.h \
+         src/hotspot.cpp \
          src/qt/client.cpp \
          src/qt/dashboard.cpp \
          src/qt/trending.cpp
 
-HEADERS+=src/qt/client.h \
+HEADERS+=src/hotspot.h \
+         src/qt/client.h \
          src/qt/dashboard.h \
          src/qt/trending.h
 

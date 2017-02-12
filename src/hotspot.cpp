@@ -24,49 +24,49 @@ std::istream& operator>>(std::istream& file, Reformat& reformat)
   return file;
 }
 
-void Hotspot::reformatCSVFile(std::string csv_file, Columns columns)
+void Hotspot::reformatCSVFile(const std::string& csv_file, const Columns columns)
 {
   Reformat reformat;
   std::ifstream if_csv(csv_file);
   if (!if_csv.is_open()) {
     std::printf("ERROR: Could not open CSV file.\n");
     exit(EXIT_FAILURE);
-   } else {
-     while (if_csv >> reformat) {
-       std::string crimes_column = reformat[columns.crimes_column];
-       std::string days_column = reformat[columns.days_column];
-       std::string lat_column = reformat[columns.lat_column];
-       std::string long_column = reformat[columns.long_column];
-       std::ofstream exported_crimes(CRIMES_FILE, std::ofstream::out | std::ofstream::app);
-       if (!exported_crimes.is_open()) {
-         std::printf("ERROR: Could not write crimes file.\n");
-         exit(EXIT_FAILURE);
-       } else {
-         exported_crimes << crimes_column << std::endl;
-       }
-       std::ofstream exported_days(C_DAYS_FILE, std::ofstream::out | std::ofstream::app);
-       if (!exported_days.is_open()) {
-         std::printf("ERROR: Could not write c_dates file.\n");
-         exit(EXIT_FAILURE);
-       } else {
-         exported_days << days_column << std::endl;
-       }
-       std::ofstream exported_lat(C_LATITUDES_FILE, std::ofstream::out | std::ofstream::app);
-       if (!exported_lat.is_open()) {
-         std::printf("ERROR: Could not write c_latitudes file.\n");
-         exit(EXIT_FAILURE);
-       } else {
-         exported_lat << lat_column << std::endl;
-       }
-       std::ofstream exported_long(C_LONGITUDES_FILE, std::ofstream::out | std::ofstream::app);
-       if (!exported_long.is_open()) {
-         std::printf("ERROR: Could not write c_longitudes file.\n");
-         exit(EXIT_FAILURE);
-       } else {
-         exported_long << long_column << std::endl;
-       }
-     }
-   }
+  } else {
+    while (if_csv >> reformat) {
+      std::string crimes_column = reformat[columns.crimes_column];
+      std::string days_column = reformat[columns.days_column];
+      std::string lat_column = reformat[columns.lat_column];
+      std::string long_column = reformat[columns.long_column];
+      std::ofstream exported_crimes(CRIMES_FILE, std::ofstream::out | std::ofstream::app);
+      if (!exported_crimes.is_open()) {
+        std::printf("ERROR: Could not write crimes file.\n");
+        exit(EXIT_FAILURE);
+      } else {
+        exported_crimes << crimes_column << std::endl;
+      }
+      std::ofstream exported_days(C_DAYS_FILE, std::ofstream::out | std::ofstream::app);
+      if (!exported_days.is_open()) {
+        std::printf("ERROR: Could not write c_dates file.\n");
+        exit(EXIT_FAILURE);
+      } else {
+        exported_days << days_column << std::endl;
+      }
+      std::ofstream exported_lat(C_LATITUDES_FILE, std::ofstream::out | std::ofstream::app);
+      if (!exported_lat.is_open()) {
+        std::printf("ERROR: Could not write c_latitudes file.\n");
+        exit(EXIT_FAILURE);
+      } else {
+        exported_lat << lat_column << std::endl;
+      }
+      std::ofstream exported_long(C_LONGITUDES_FILE, std::ofstream::out | std::ofstream::app);
+      if (!exported_long.is_open()) {
+        std::printf("ERROR: Could not write c_longitudes file.\n");
+        exit(EXIT_FAILURE);
+      } else {
+        exported_long << long_column << std::endl;
+      }
+    }
+  }
 }
 
 void Hotspot::printCrimeRate()
@@ -102,14 +102,14 @@ Coordinates* Hotspot::addCoordinates()
 
 DBSCAN Hotspot::addClusterWeights(ClusterWeights& cluster_weights, Coordinates* coordinates)
 {
-  DBSCAN dbscan(cluster_coordinates, cluster_weights);
+  DBSCAN dbscan(cluster_coordinates);
   size_t coordinates_size = coordinates->lat_pts.size();
   for (size_t i = 0; i < coordinates_size; i++){
-    //dbscan.epsEstimation(i, coordinates_size);
+    //dbscan.epsEstimation(i, coordinates_size, cluster_weights);
   }
   //dbscan.minptsEstimation(coordinates_size);
   dbscan.markPoints(coordinates_size);
-  dbscan.performClusterSearch();
+  dbscan.performClusterSearch(cluster_weights);
   dbscan.getClusterCenterPoint();
   return dbscan;
 }
@@ -140,7 +140,7 @@ PredictedData Hotspot::addPredictedData(Coordinates* coordinates, DBSCAN dbscan)
 /*QApplication Hotspot::launchClient()
 {
   QApplication qa;
-  qt::Client client;
+  Client client;
   client.show();
   return qa.exec();
 }*/

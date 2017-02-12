@@ -11,19 +11,14 @@
 
 namespace hotspot {
 
-Vector::Vector()
+template<class Vec>
+float computeAccuracy(Vec input, Vec output)
 {
 }
 
-Vector::~Vector() {}
-
-float Vector::computeAccuracy()
+template<class Vec>
+float computeError(Vec input, Vec output)
 {
-}
-
-float Vector::computeError()
-{
-  return 1.99f;
 }
 
 } // hotspot namespace
