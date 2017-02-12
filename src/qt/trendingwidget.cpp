@@ -7,32 +7,25 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-#ifndef _DASHBOARD_H_
-#define _DASHBOARD_H_
-
-#include <QWidget>
-
-namespace Ui {
-  class Dashboard;
-}
+#include "trendingwidget.h"
+#include "ui_trendingwidget.h"
 
 namespace hotspot {
 
 namespace qt {
 
-class Dashboard : public QWidget {
-  Q_OBJECT
+TrendingWidget::TrendingWidget(QWidget *parent):
+  QWidget(parent),
+  ui(new Ui::TrendingWidget)
+{
+  ui->setupUi(this);
+}
 
-private:
-  Ui::Dashboard* ui;
-
-public:
-  explicit Dashboard(QWidget*);
-  ~Dashboard();
-};
-
+TrendingWidget::~TrendingWidget()
+{
+  delete ui;
 }
 
 }
 
-#endif
+}

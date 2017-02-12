@@ -21,4 +21,10 @@
 #define DASHBOARD_JS "qt/js/dashboard.js"
 #define TRENDING_JS "qt/js/trending.js"
 
+namespace Ui {
+  class TrendingWidget;
+  class DashboardWidget;
+  class ClientMap;
+}
+
 #endif

@@ -7,9 +7,12 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-#include "trending.h"
+#ifndef _CLIENTMAP_H_
+#define _CLIENTMAP_H_
 
-#include "ui_trending.h"
+#include <QMainWindow>
+//#include <QWebFrame>
+//#include <QWebView>
 
 #include "../types.h"
 
@@ -17,18 +20,19 @@ namespace hotspot {
 
 namespace qt {
 
-Trending::Trending(QWidget* parent):
-  QWidget(parent),
-  ui(new Ui::Trending)
-{
-  ui->setupUi(this);
+class ClientMap : public QMainWindow {
+  Q_OBJECT
+
+private:
+  Ui::ClientMap* ui;
+
+public:
+  explicit ClientMap(QWidget* parent = 0);
+  ~ClientMap();
+};
+
 }
 
-Trending::~Trending()
-{
-  delete ui;
 }
 
-} // qt namespace
-
-} // hotspot namespace
+#endif

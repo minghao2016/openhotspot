@@ -7,11 +7,10 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-#include "client.h"
-#include "dashboard.h"
-#include "trending.h"
+#ifndef _DASHBOARDWIDGET_H_
+#define _DASHBOARDWIDGET_H_
 
-#include "ui_client.h"
+#include <QWidget>
 
 #include "../types.h"
 
@@ -19,18 +18,19 @@ namespace hotspot {
 
 namespace qt {
 
-Client::Client(QWidget* parent):
-  QMainWindow(parent),
-  ui(new Ui::Client)
-{
-  ui->setupUi(this);
+class DashboardWidget : public QWidget {
+  Q_OBJECT
+
+private:
+  Ui::DashboardWidget* ui;
+
+public:
+  explicit DashboardWidget(QWidget* parent = 0);
+  ~DashboardWidget();
+};
+
 }
 
-Client::~Client()
-{
-  delete ui;
 }
 
-} // qt namespace
-
-} // hotspot namespace
+#endif

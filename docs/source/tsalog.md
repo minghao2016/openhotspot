@@ -1,3 +1,6 @@
+##Sun Feb 12, 2017
+- Made some changes to Qt directory.
+
 ##Fri Feb 10, 2017
 - Added vector file to compute error and accuracy of predictions.
 - Made an indentation change.

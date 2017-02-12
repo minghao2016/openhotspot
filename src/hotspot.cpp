@@ -10,11 +10,13 @@
 #include "hotspot.h"
 #include "types.h"
 
-//#include "qt/client.h"
+//#include "qt/clientmap.h"
 
 #include "utils/reformat.h"
 
 #include "version.h"
+
+//#include <QApplication>
 
 namespace hotspot {
 

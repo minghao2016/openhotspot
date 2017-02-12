@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Trending</class>
- <widget class="QWidget" name="Trending">
+ <author/>
+ <comment/>
+ <exportmacro/>
+ <class>TrendingWidget</class>
+ <widget name="TrendingWidget" class="QWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,6 +16,6 @@
    <string>Form</string>
   </property>
  </widget>
- <resources/>
+ <pixmapfunction/>
  <connections/>
 </ui>

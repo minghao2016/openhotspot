@@ -22,8 +22,6 @@
 #include <set>
 #include <iomanip>
 
-//#include <QApplication>
-
 #include "dbscan.h"
 #include "model.h"
 

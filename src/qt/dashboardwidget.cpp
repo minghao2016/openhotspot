@@ -7,28 +7,25 @@
  * The license can be found in the main directory for more
  * information about using this program.
 */
-#include "dashboard.h"
-
-#include "ui_dashboard.h"
-
-#include "../types.h"
+#include "dashboardwidget.h"
+#include "ui_dashboardwidget.h"
 
 namespace hotspot {
 
 namespace qt {
 
-Dashboard::Dashboard(QWidget* parent):
+DashboardWidget::DashboardWidget(QWidget *parent) :
   QWidget(parent),
-  ui(new Ui::Dashboard)
+  ui(new Ui::DashboardWidget)
 {
   ui->setupUi(this);
 }
 
-Dashboard::~Dashboard()
+DashboardWidget::~DashboardWidget()
 {
   delete ui;
 }
 
-} // qt namespace
+}
 
-} // hotspot namespace
+}

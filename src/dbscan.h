@@ -49,11 +49,11 @@ public:
   DBSCAN(std::vector<Coordinates*>);
   ~DBSCAN();
 
-  void markPoints(size_t);
-
   float error() const;
   uint32_t n_clusters() const;
   std::vector<uint32_t> noise_pts() const;
+
+  void markPoints(size_t);
 
   void epsEstimation(uint32_t, size_t, ClusterWeights&);
   void minptsEstimation(size_t, ClusterWeights&);

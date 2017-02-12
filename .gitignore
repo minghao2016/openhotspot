@@ -35,3 +35,4 @@
 *.dSYM
 
 # Qt files
+*.pro.user
